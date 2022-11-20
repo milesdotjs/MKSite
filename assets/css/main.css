@@ -2274,7 +2274,7 @@ body.is-preload #wrapper {
   }
 }
 
-#work header {
+#about header {
   display: flex;
   justify-content: space-around;
 }
