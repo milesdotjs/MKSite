@@ -1409,7 +1409,7 @@ textarea,
 select {
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 300;
-  color: #777777;
+  color: #050505;
   font-size: 20pt;
   line-height: 1.75em;
 }
@@ -1459,7 +1459,7 @@ h4,
 h5,
 h6 {
   font-weight: 400;
-  color: #363636;
+  color: #080808;
 }
 
 h1 {
@@ -2039,7 +2039,7 @@ body.is-preload #wrapper {
   position: relative;
   overflow: hidden;
   width: 100%;
-  background: #ffffff;
+  background: #919191d3;
   box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.25);
   -moz-transition: min-height 0.5s ease-in-out, max-height 0.5s ease-in-out;
   -webkit-transition: min-height 0.5s ease-in-out, max-height 0.5s ease-in-out;
@@ -2274,7 +2274,13 @@ body.is-preload #wrapper {
   }
 }
 
-#about header {
+#work header {
   display: flex;
+  justify-content: space-around;
+}
+
+.work-container {
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
