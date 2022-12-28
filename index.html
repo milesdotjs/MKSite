@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-
+<!--
+	Big Picture by HTML5 UP
+-->
 <html>
   <head>
     <title>Miles King</title>
@@ -14,110 +16,186 @@
     /></noscript>
   </head>
   <body class="is-preload">
-    <!-- Wrapper-->
-    <div id="wrapper">
-      <!-- Nav -->
-      <nav id="nav">
-        <a href="#" class="icon solid fa-home"><span>Home</span></a>
-        <a href="#work" class="icon solid fa-folder"><span>Work</span></a>
-        <a href="#contact" class="icon solid fa-envelope"
-          ><span>Contact</span></a
-        >
-        <a href="https://github.com/milesdotjs" class="icon brands fa-github"
-          ><span>GitHub</span></a
-        >
-        <a href="https://linkedin.com/in/miles-k" class="icon brands fa-linkedin"
-          ><span>LinkedIn</span></a
-        >
+    <!-- Header -->
+    <header id="header">
+      <h1>Miles King</h1>
+      <nav>
+        <ul>
+          <li><a href="#intro">Intro</a></li>
+          <li><a href="#one">What I Do</a></li>
+          <li><a href="#two">Who I Am</a></li>
+          <li><a href="#work">My Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </nav>
+    </header>
 
-      <!-- Main -->
-      <div id="main">
-        <!-- Me -->
-        <article id="home" class="panel intro">
-          <header>
-            <h1>Miles King</h1>
-            <p>Software Developer</p>
-            <h3>JavaScript | HTML5 | CSS3 | React | Node | Bootstrap | JQuery</h3>
-          </header>
-          <a href="#work" class="jumplink pic">
-            <span class="arrow icon solid fa-chevron-right"
-              ><span>Get to know me!</span></span
-            >
-            <img src="images/p4.jpg" alt="" />
-          </a>
-        </article>
+    <!-- Intro -->
+    <section id="intro" class="main style1 dark fullscreen">
+      <div class="content">
+        <header>
+          <h2>Hello, I'm Miles.</h2>
+        </header>
+        <p>
+          I'm a <strong>Software Developer</strong> based in Houston, Texas.
+        </p>
+        <footer>
+          <a href="#one" class="button style2 down">More</a>
+        </footer>
+      </div>
+    </section>
 
-        <!-- Work -->
-        <article id="work" class="panel">
-          <header>
-            <h2>My Work</h2>
-            <a href="images/resume.pdf">My Resume</a>
-          </header>
+    <!-- One -->
+    <section id="one" class="main style2 right dark fullscreen">
+      <div class="content box style2">
+        <header>
+          <h2>What I Do</h2>
+        </header>
+        <p>
+          I build front and back end web applications and websites for clients
+          using:
+        </p>
+        <p>HTML | CSS | JavaScript | Node.js | React.js | Bootstrap | JQuery</p>
+        <a href="./Miles King.pdf">My Resume</a>
+      </div>
+      <a href="#two" class="button style2 down anchored">Next</a>
+    </section>
+
+    <!-- Two -->
+    <section id="two" class="main style2 left dark fullscreen">
+      <div class="content box style2">
+        <header>
+          <h2>Who I Am</h2>
+        </header>
+        <p>
+          An ambitious web developer with a love for puzzles. I always welcome
+          new challenges, and my instinct is to accept them. I am happy to learn
+          from different perspectives, and consider every unfamiliar experience
+          a new learning opportunity.
+        </p>
+      </div>
+      <a href="#work" class="button style2 down anchored">Next</a>
+    </section>
+
+    <!-- Work -->
+    <section id="work" class="main style3 primary">
+      <div class="content">
+        <header>
+          <h2>My Work</h2>
           <p>
-            Thanks for spending a few minutes on my site. Below are a few of my projects. I'll be adding more any minute!
+          Check out some of my work. Who knows, I might even be cooking something up at this very moment!
           </p>
-          <div class="work-container">
-          <div class="work-item">
-            <img src="images/MettatonEX.PNG" alt="">
-            <p>MettatonEX Bot is a Discord chat bot that can integrate with a user's Discord server to automate simple tasks</p>
-          </div>
-          <div class="work-item">
-            <a href="https://milesdotjs.github.io/MoreStockImages/">MoreStockImages</a>
-            <p>A web app that searches from a library of royalty-free images</p>
-          </div>
-          <div class="work-item">
-            <a href="https://milesdotjs.github.io/InfiniteCrayons/">InfiniteCrayons</a>
-            <p>Web app to generate, edit, and save random or custom color palettes</p>
-          </div>
-        </div>
-        </article>
+        </header>
 
-        <!-- Contact -->
-        <article id="contact" class="panel">
-          <header>
-            <h2>Contact Me</h2>
-            <p>I am currently accepting freelance clients. Feel free to reach out to me regarding work, collaboration, or just to have a cool chat!</p>
-          </header>
+        <!-- Gallery  -->
+        <div class="gallery">
+          <article class="from-left">
+            <p>MettatonEX - a customizable Discord bot</p>
+            <a href="#"  data-poptrox="ignore" class="image fit"
+              ><img src="images/thumbs/MettatonEX.PNG"  title="MettatonEX" alt=""
+            /></a>
+          </article>
+          <article class="from-right">
+            <p>InfiniteCrayons - a color palette generator</p>
+            <a href="https://milesdotjs.github.io/InfiniteCrayons/" data-poptrox="ignore" class="image fit"
+              ><img src="images/thumbs/InfiniteCrayons.PNG" title="InfiniteCrayons" alt=""
+            /></a>
+      
+          </article>
+          <article class="from-left">
+            <p>MoreStockImages - search for royalty-free photos</p>
+            <a href="https://milesdotjs.github.io/MoreStockImages/" data-poptrox="ignore" class="image fit"
+              ><img src="images/thumbs/MoreStockImages.PNG" title="MoreStockImages" alt=""
+            /></a>
+          </article>
+          <article class="from-right">
+            <p>JSt Play - drum machine simulator</p>
+            <a href="https://milesdotjs.github.io/JSt-Play/" data-poptrox="ignore" class="image fit"
+              ><img src="images/thumbs/JSt Play.PNG" title="JSt Play" alt=""
+            /></a>
+          </article>
+          <!-- <article class="from-left">
+            <a href="images/fulls/05.jpg" class="image fit"
+              ><img
+                src="images/thumbs/05.jpg"
+                title="The sparkling shell"
+                alt=""
+            /></a>
+          </article>
+          <article class="from-right">
+            <a href="images/fulls/06.jpg" class="image fit"
+              ><img src="images/thumbs/06.jpg" title="Bent IX" alt=""
+            /></a>
+          </article> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="main style3 secondary">
+      <div class="content">
+        <header>
+          <h2>Say Hello.</h2>
+          <p>
+            I am currently available for freelance work. Feel free to reach out
+            regarding work, collaboration, or just to have a cool chat!
+          </p>
+        </header>
+        <div class="box">
           <form action="https://formspree.io/f/mpznbgbl" method="POST">
-            <div>
-              <div class="row">
-                <div class="col-6 col-12-medium">
-                  <input type="text" name="name" placeholder="Name" />
-                </div>
-                <div class="col-6 col-12-medium">
-                  <input type="text" name="email" placeholder="Email" />
-                </div>
-                <div class="col-12">
-                  <input type="text" name="subject" placeholder="Subject" />
-                </div>
-                <div class="col-12">
-                  <textarea
-                    name="message"
-                    placeholder="Message"
-                    rows="6"
-                  ></textarea>
-                </div>
-                <div class="col-12">
-                  <input type="submit" value="Send Message" />
-                </div>
+            <div class="fields">
+              <div class="field half">
+                <input type="text" name="name" placeholder="Name" />
+              </div>
+              <div class="field half">
+                <input type="email" name="email" placeholder="Email" />
+              </div>
+              <div class="field">
+                <textarea
+                  name="message"
+                  placeholder="Message"
+                  rows="6"
+                ></textarea>
               </div>
             </div>
+            <ul class="actions special">
+              <li><input type="submit" value="Send Message" /></li>
+            </ul>
           </form>
-        </article>
+        </div>
       </div>
+    </section>
 
-      <!-- Footer -->
-      <div id="footer">
-        <ul class="footer">
-          <li>Miles King</li>
-          <li>Software Developer</a></li>
-        </ul>
-      </div>
-    </div>
+    <!-- Footer -->
+    <footer id="footer">
+      <!-- Icons -->
+      <ul class="icons">
+        <li>
+          <a href="https://github.com/milesdotjs" class="icon brands fa-github"
+            ><span class="label">GitHub</span></a
+          >
+        </li>
+        <li>
+          <a
+            href="https://linkedin.com/in/miles-k"
+            class="icon brands fa-linkedin-in"
+            ><span class="label">LinkedIn</span></a
+          >
+        </li>
+      </ul>
+
+      <!-- Menu -->
+      <ul class="menu">
+        <li>&copy; Miles King</li>
+        <li>Software Developer</a></li>
+      </ul>
+    </footer>
 
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.poptrox.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
