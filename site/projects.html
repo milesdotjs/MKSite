@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Miles King</title>
+    <meta name="description" content="Projects by Miles King — web apps, utilities, and case studies." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" class="brand">
+          <svg class="glyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 2c.4 0 .7.2.9.5l.6.9 1.6-.5c.5-.1 1 .1 1.2.5l1 1.6c1.6.4 3 1.4 3.8 2.9.9 1.6 1.1 3.5.6 5.3l-.7 2.8c-.1.5.1 1 .5 1.3l.7.5c.4.3.6.7.6 1.1V21H4v-1.1c0-.4.2-.8.5-1.1.7-.5 1.7-1.3 2.5-2.4.8-1 1.5-2.4 1.5-4 0-.9-.3-1.7-.7-2.4l-.8.6c-.4.3-.9.2-1.2-.1l-1-1.2c-.3-.4-.3-.9.1-1.3l1.5-1.4c.1-1.4.6-2.6 1.4-3.5.4-.5.9-.8 1.4-1zm-.7 4.5c-.2.3-.3.6-.4 1l1.5-.4c.3-.1.6 0 .8.2l1.2 1.4c.2.3.2.6.1.9l-.4.8c.4 0 .8.1 1.2.3.2-.5.2-1 .1-1.5l-.3-1.4c-.1-.5-.5-.9-1-1l-1.5-.3c-.4-.1-.8 0-1.1.2l-.2-.2z"/></svg>
+          <span>Miles King</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+        </button>
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html" aria-current="page">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <span class="eyebrow">Projects</span>
+          <h1>Things I've built.</h1>
+          <p class="lede">
+            A mix of small utilities I actually use and web experiments I built
+            to learn something. Click any card to play with it.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section--alt">
+        <div class="container">
+          <div class="section-head">
+            <h2>Utilities</h2>
+            <span class="link-arrow" style="cursor: default;">Things I use</span>
+          </div>
+          <div class="project-grid">
+            <a class="card reveal" href="projects/study-something/">
+              <div class="thumb">
+                <img src="assets/img/study-something.png" alt="Study Something! preview" />
+              </div>
+              <div class="card-body">
+                <h3>Study Something!</h3>
+                <p>Pulls random over-the-board games from top players so I can study unfamiliar positions.</p>
+                <div class="card-tags">
+                  <span class="tag">Utility</span>
+                  <span class="tag">Chess</span>
+                  <span class="tag">JS</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Web apps &amp; experiments</h2>
+            <span class="link-arrow" style="cursor: default;">For fun and practice</span>
+          </div>
+          <div class="project-grid">
+            <a class="card reveal" href="projects/infinite-crayons/">
+              <div class="thumb">
+                <img src="assets/img/infinite-crayons.png" alt="InfiniteCrayons preview" />
+              </div>
+              <div class="card-body">
+                <h3>InfiniteCrayons</h3>
+                <p>A color palette generator with adjustable hue, brightness, and saturation per swatch.</p>
+                <div class="card-tags">
+                  <span class="tag">Tool</span>
+                  <span class="tag">JS</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="card reveal" href="projects/jst-play/">
+              <div class="thumb">
+                <img src="assets/img/jst-play.png" alt="JSt Play preview" />
+              </div>
+              <div class="card-body">
+                <h3>JSt Play</h3>
+                <p>A browser drum machine and step sequencer with switchable kit sounds.</p>
+                <div class="card-tags">
+                  <span class="tag">Audio</span>
+                  <span class="tag">JS</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="card reveal" href="projects/more-stock-images/">
+              <div class="thumb">
+                <img src="assets/img/more-stock-images.png" alt="MoreStockImages preview" />
+              </div>
+              <div class="card-body">
+                <h3>MoreStockImages</h3>
+                <p>Search royalty-free photos across providers from a single, simple search bar.</p>
+                <div class="card-tags">
+                  <span class="tag">Tool</span>
+                  <span class="tag">API</span>
+                </div>
+              </div>
+            </a>
+
+            <a class="card reveal" href="projects/mettatonex.html">
+              <div class="thumb">
+                <img src="assets/img/mettatonex.png" alt="MettatonEX preview" />
+              </div>
+              <div class="card-body">
+                <h3>MettatonEX</h3>
+                <p>A customizable Discord bot that posts new YouTube uploads to a server channel.</p>
+                <div class="card-tags">
+                  <span class="tag">Case study</span>
+                  <span class="tag">Node.js</span>
+                  <span class="tag">Discord.js</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>&copy; <span data-year></span> Miles King</span>
+        <ul class="icons">
+          <li>
+            <a href="https://linkedin.com/in/miles-k" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>
