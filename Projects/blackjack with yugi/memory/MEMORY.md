@@ -1,0 +1,2 @@
+- [User profile](user_profile.md) — Yu-Gi-Oh! fan; building a browser-based React blackjack game where Yugi/Atem is the dealer
+- [Project: blackjack with yugi](project_blackjack_yugi.md) — Vite + React + TS; Duel Links portrait style; user supplies assets manually

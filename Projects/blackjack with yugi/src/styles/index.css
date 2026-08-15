@@ -1,0 +1,932 @@
+@font-face {
+  font-family: 'YGO Matrix';
+  src: url('fonts/YGO-Matrix-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'YGO Matrix Caps';
+  src: url('fonts/YGO-Matrix-SmallCaps.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pirata One';
+  src: url('fonts/PirataOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IM Fell English';
+  src: url('fonts/IMFellEnglish-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Shadow-realm palette: near-black voids, dried blood, bruised violet,
+     tarnished gold, old bone. */
+  --bg-void: #050308;
+  --bg-panel: #0d0714;
+  --blood: #7e0e1c;
+  --blood-bright: #d21f33;
+  --violet: #45246e;
+  --violet-glow: #8b5fc9;
+  --gold: #b8912e;
+  --gold-bright: #e8c55a;
+  --bone: #e6dcc2;
+  --bone-dim: #b3a98e;
+
+  --hand-card-w: 92px;
+  --hand-card-h: 132px;
+
+  --font-display: 'Pirata One', 'YGO Matrix Caps', serif;
+  --font-quip: 'IM Fell English', 'Times New Roman', serif;
+  --font-lp: 'YGO Matrix', serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0; padding: 0; height: 100%;
+  font-family: 'YGO Matrix', 'Times New Roman', serif;
+  color: var(--bone);
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(69, 36, 110, 0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 45% at 50% 110%, rgba(90, 12, 22, 0.4) 0%, transparent 55%),
+    var(--bg-void);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+button { font-family: inherit; }
+
+/* ─── Ambient layers (shadow realm) ──────────────────────────────────── */
+
+.ambient-under {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fog {
+  position: absolute;
+  width: 150%;
+  height: 140%;
+  left: -25%;
+  top: -20%;
+  filter: blur(70px);
+  will-change: transform;
+}
+.fog-a {
+  opacity: 0.55;
+  background:
+    radial-gradient(ellipse 34% 26% at 22% 68%, rgba(69, 36, 110, 0.5) 0%, transparent 100%),
+    radial-gradient(ellipse 30% 22% at 74% 32%, rgba(50, 24, 84, 0.42) 0%, transparent 100%),
+    radial-gradient(ellipse 26% 20% at 52% 84%, rgba(38, 18, 66, 0.4) 0%, transparent 100%);
+}
+.fog-b {
+  opacity: 0.4;
+  background:
+    radial-gradient(ellipse 30% 24% at 68% 74%, rgba(110, 14, 26, 0.35) 0%, transparent 100%),
+    radial-gradient(ellipse 26% 18% at 28% 26%, rgba(80, 10, 20, 0.3) 0%, transparent 100%);
+}
+
+.ember-host { position: absolute; inset: 0; }
+.ember {
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.ember.gold {
+  background: var(--gold-bright);
+  box-shadow: 0 0 6px 1px rgba(232, 197, 90, 0.7);
+}
+.ember.violet {
+  background: var(--violet-glow);
+  box-shadow: 0 0 6px 1px rgba(139, 95, 201, 0.7);
+}
+
+.wdjat {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(46vw, 540px);
+  transform: translate(-50%, -50%);
+  color: var(--gold);
+  opacity: 0.06;
+}
+
+.ambient-over {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 70% at 50% 48%, transparent 45%, rgba(2, 1, 4, 0.55) 82%, rgba(2, 1, 4, 0.85) 100%);
+}
+
+.fx-flash {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.fx-lightning {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(105deg, rgba(236, 228, 255, 0.95) 0%, rgba(178, 156, 255, 0.8) 55%, rgba(236, 228, 255, 0.9) 100%);
+  mix-blend-mode: screen;
+}
+
+/* ─── Layout ─────────────────────────────────────────────────────────── */
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 28px 18px;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.hud-top {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 6px 0 8px;
+  border-bottom: 1px solid rgba(184, 145, 46, 0.3);
+}
+
+.hud-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.round-pill {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.28em;
+  color: var(--gold-bright);
+  border: 1px solid var(--gold);
+  padding: 6px 18px 5px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(69, 36, 110, 0.25) 0%, rgba(13, 7, 20, 0.6) 100%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6), 0 0 12px rgba(184, 145, 46, 0.12);
+  white-space: nowrap;
+}
+
+.mute-btn {
+  font-size: 15px;
+  line-height: 1;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 145, 46, 0.5);
+  background: rgba(13, 7, 20, 0.7);
+  color: var(--gold-bright);
+  cursor: pointer;
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+.mute-btn:hover {
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 10px rgba(232, 197, 90, 0.35);
+}
+
+.duel-board {
+  flex: 1;
+  display: grid;
+  grid-template-rows: minmax(0, auto) minmax(0, 1fr);
+  gap: 10px;
+  min-height: 0;
+  position: relative;
+}
+
+.duel-side {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 14px 110px 14px 18px; /* room for the deck pile on the right */
+  border-radius: 4px;
+  position: relative;
+}
+
+/* Ornate panel edging: a hairline gothic frame with a heavier top rule. */
+.duel-side::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  pointer-events: none;
+  border: 1px solid;
+}
+
+.dealer-side {
+  background: linear-gradient(180deg, rgba(69, 36, 110, 0.16) 0%, rgba(69, 36, 110, 0) 100%);
+}
+.dealer-side::before {
+  border-color: rgba(139, 95, 201, 0.28);
+  box-shadow: inset 0 1px 0 rgba(139, 95, 201, 0.25), inset 0 0 40px rgba(20, 8, 40, 0.5);
+}
+
+.player-side {
+  background: linear-gradient(0deg, rgba(126, 14, 28, 0.14) 0%, rgba(126, 14, 28, 0) 100%);
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+.player-side::before {
+  border-color: rgba(210, 31, 51, 0.24);
+  box-shadow: inset 0 -1px 0 rgba(210, 31, 51, 0.2), inset 0 0 40px rgba(40, 5, 10, 0.5);
+}
+
+.player-side .hand-view { align-items: center; }
+.player-side .hand-cards { justify-content: center; }
+
+/* ─── Dealer ─────────────────────────────────────────────────────────── */
+
+.dealer-frame {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+}
+
+.dealer-monitor {
+  position: relative;
+  width: 280px;
+  height: 336px;
+  border-radius: 10px;
+  padding: 10px;
+  background: linear-gradient(180deg, #241540 0%, #120722 60%, #08030f 100%);
+  border: 2px solid var(--gold);
+  box-shadow:
+    0 6px 26px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px rgba(232, 197, 90, 0.12),
+    inset 0 0 32px rgba(69, 36, 110, 0.4);
+}
+
+.dealer-aura {
+  position: absolute;
+  inset: -22px;
+  border-radius: 24px;
+  background: radial-gradient(circle at 50% 45%, rgba(139, 95, 201, 0.55) 0%, transparent 68%);
+  filter: blur(16px);
+  opacity: 0;
+  transition: opacity 700ms ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.dealer-aura.active {
+  opacity: 1;
+  animation: auraPulse 2.2s ease-in-out infinite;
+}
+@keyframes auraPulse {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+
+.dealer-monitor-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--gold-bright);
+  border-style: solid;
+  border-width: 0;
+  z-index: 2;
+}
+.dealer-monitor-corner.tl { top: 4px; left: 4px; border-top-width: 2px; border-left-width: 2px; border-top-left-radius: 6px; }
+.dealer-monitor-corner.tr { top: 4px; right: 4px; border-top-width: 2px; border-right-width: 2px; border-top-right-radius: 6px; }
+.dealer-monitor-corner.bl { bottom: 4px; left: 4px; border-bottom-width: 2px; border-left-width: 2px; border-bottom-left-radius: 6px; }
+.dealer-monitor-corner.br { bottom: 4px; right: 4px; border-bottom-width: 2px; border-right-width: 2px; border-bottom-right-radius: 6px; }
+
+.dealer-monitor-nameplate {
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  color: var(--bg-void);
+  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 100%);
+  padding: 3px 16px 2px;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  z-index: 3;
+}
+
+.dealer-monitor-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(139, 95, 201, 0.22) 0%, transparent 60%),
+    linear-gradient(180deg, #170e2a 0%, #08030f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dealer-monitor-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.08) 3px
+  );
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.dealer-sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  padding: 12px 4px 0;
+  filter: contrast(1.04) saturate(0.94) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+}
+
+/* The manga cut-in panel: fill the screen, bias toward face + pointing fist. */
+.dealer-sprite.cutin {
+  object-fit: cover;
+  object-position: 58% center;
+  padding: 0;
+  filter: contrast(1.06) saturate(1);
+}
+
+.dealer-sprite.shake { animation: shake 280ms infinite; }
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-3px, 1px); }
+  50% { transform: translate(3px, -1px); }
+  75% { transform: translate(-2px, 2px); }
+}
+
+.dealer-message {
+  background: rgba(8, 4, 14, 0.92);
+  border: 1px solid rgba(184, 145, 46, 0.75);
+  border-radius: 3px;
+  padding: 15px 20px;
+  max-width: 360px;
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.45;
+  color: var(--bone);
+  position: relative;
+  align-self: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), inset 0 0 24px rgba(69, 36, 110, 0.18);
+}
+
+.dealer-message::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 22px;
+  border-style: solid;
+  border-width: 8px 11px 8px 0;
+  border-color: transparent rgba(184, 145, 46, 0.75) transparent transparent;
+}
+
+/* ─── Hands & Cards ──────────────────────────────────────────────────── */
+
+.hand-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.hand-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.hand-label {
+  font-family: var(--font-display);
+  letter-spacing: 0.22em;
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.hand-total {
+  font-family: var(--font-lp);
+  font-size: 24px;
+  color: var(--gold-bright);
+  display: inline-block;
+  text-shadow: 0 0 10px rgba(232, 197, 90, 0.35);
+}
+
+.hand-cards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-height: var(--hand-card-h);
+  perspective: 1100px;
+}
+
+.card3d {
+  width: var(--hand-card-w);
+  height: var(--hand-card-h);
+  position: relative;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 7px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.65);
+}
+
+.card-front {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 30%, rgba(255, 250, 232, 0.5) 0%, transparent 70%),
+    linear-gradient(155deg, #ece2c6 0%, #dcc9a0 55%, #c9af83 100%);
+}
+
+.card-frame {
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(93, 62, 22, 0.4);
+  border-radius: 4px;
+  box-shadow: inset 0 0 14px rgba(70, 40, 8, 0.22);
+  pointer-events: none;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: #1a0f2e;
+}
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-front.red { color: #8c1220; }
+.card-front.black { color: #201812; }
+
+.card-corner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+.card-corner.top { top: 7px; left: 9px; }
+.card-corner.bottom { bottom: 7px; right: 9px; transform: rotate(180deg); }
+.card-rank {
+  font-family: var(--font-display);
+  font-size: 20px;
+  text-shadow: 0 1px 1px rgba(255, 252, 240, 0.6);
+}
+.card-suit { font-size: 15px; margin-top: 1px; }
+.card-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 46px;
+  font-family: Georgia, serif;
+  opacity: 0.9;
+  text-shadow: 0 2px 6px rgba(70, 40, 8, 0.35);
+}
+
+/* ─── Deck pile & shuffle ────────────────────────────────────────────── */
+
+.deck-pile {
+  position: absolute;
+  right: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.deck-stack {
+  position: relative;
+  width: 76px;
+  height: 109px;
+}
+
+.deck-cards { transition: opacity 200ms ease; }
+.deck-cards.hidden-for-shuffle { opacity: 0; }
+
+.deck-card,
+.shuffle-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.6);
+  background: #1a0f2e;
+}
+.deck-card img,
+.shuffle-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.shuffle-fx {
+  position: absolute;
+  inset: 0;
+}
+
+.deck-count {
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(184, 145, 46, 0.3);
+}
+
+/* ─── Life Points ────────────────────────────────────────────────────── */
+
+.life-points {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  max-width: 300px;
+  position: relative;
+}
+.lp-right { align-items: flex-end; text-align: right; justify-self: end; }
+
+.lp-label {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.34em;
+  color: var(--gold);
+}
+.lp-value {
+  font-family: var(--font-lp);
+  font-size: 40px;
+  letter-spacing: 0.05em;
+  color: var(--gold-bright);
+  text-shadow: 0 0 8px rgba(232, 197, 90, 0.5), 0 0 22px rgba(232, 197, 90, 0.25);
+  line-height: 1;
+  font-feature-settings: 'tnum';
+}
+.life-points.critical .lp-value {
+  color: var(--blood-bright);
+  text-shadow: 0 0 10px rgba(210, 31, 51, 0.7), 0 0 26px rgba(210, 31, 51, 0.4);
+  animation: pulseCritical 800ms ease-in-out infinite;
+}
+.life-points.zero .lp-value { animation: none; opacity: 0.5; }
+
+@keyframes pulseCritical {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.lp-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(230, 220, 194, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.lp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 100%);
+  transition: width 1100ms cubic-bezier(.2,.7,.3,1);
+}
+.life-points.critical .lp-bar-fill {
+  background: linear-gradient(90deg, var(--blood) 0%, var(--blood-bright) 100%);
+}
+.lp-right .lp-bar-fill { float: right; }
+
+.lp-float-host {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  pointer-events: none;
+  z-index: 6;
+}
+.lp-damage-float {
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 34px;
+  color: var(--blood-bright);
+  text-shadow: 0 0 12px rgba(210, 31, 51, 0.8), 0 2px 4px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+}
+
+/* ─── Controls ───────────────────────────────────────────────────────── */
+
+.controls {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.btn {
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  padding: 12px 30px 11px;
+  border-radius: 3px;
+  border: 1px solid var(--gold);
+  background: linear-gradient(180deg, #241540 0%, #120722 100%);
+  color: var(--gold-bright);
+  cursor: pointer;
+  transition: transform 100ms ease, box-shadow 200ms ease, background 200ms ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(232, 197, 90, 0.1);
+}
+.btn:hover {
+  background: linear-gradient(180deg, #32205a 0%, #1a0d30 100%);
+  box-shadow: 0 4px 18px rgba(232, 197, 90, 0.25), inset 0 0 0 1px rgba(232, 197, 90, 0.3);
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-secondary {
+  color: var(--bone);
+  border-color: rgba(230, 220, 194, 0.45);
+}
+.btn-secondary:hover {
+  box-shadow: 0 4px 18px rgba(230, 220, 194, 0.15), inset 0 0 0 1px rgba(230, 220, 194, 0.25);
+}
+
+.btn-blood {
+  color: #f2b7bd;
+  border-color: var(--blood-bright);
+  background: linear-gradient(180deg, #3a0812 0%, #1a0308 100%);
+}
+.btn-blood:hover {
+  background: linear-gradient(180deg, #52101e 0%, #26050c 100%);
+  box-shadow: 0 4px 18px rgba(210, 31, 51, 0.35), inset 0 0 0 1px rgba(210, 31, 51, 0.35);
+}
+
+/* ─── Round banner ───────────────────────────────────────────────────── */
+
+.round-banner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  pointer-events: none;
+  z-index: 20;
+  /* Sit on the seam between the two duel sides, not over the hand labels. */
+  transform: translateY(-52px);
+}
+
+.banner-text {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 5.5vw, 78px);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+.tone-win .banner-text {
+  color: var(--gold-bright);
+  text-shadow: 0 0 18px rgba(232, 197, 90, 0.7), 0 0 50px rgba(232, 197, 90, 0.35), 0 3px 6px rgba(0, 0, 0, 0.9);
+}
+.tone-loss .banner-text {
+  color: var(--blood-bright);
+  text-shadow: 0 0 18px rgba(210, 31, 51, 0.75), 0 0 50px rgba(126, 14, 28, 0.6), 0 3px 6px rgba(0, 0, 0, 0.9);
+}
+.tone-neutral .banner-text {
+  color: var(--bone);
+  text-shadow: 0 0 16px rgba(230, 220, 194, 0.4), 0 3px 6px rgba(0, 0, 0, 0.9);
+}
+
+.banner-rule {
+  height: 2px;
+  width: clamp(40px, 9vw, 140px);
+  background: linear-gradient(90deg, transparent 0%, currentColor 60%, currentColor 100%);
+}
+.banner-rule.right { transform: scaleX(-1); }
+.tone-win .banner-rule { color: rgba(232, 197, 90, 0.7); }
+.tone-loss .banner-rule { color: rgba(210, 31, 51, 0.7); }
+.tone-neutral .banner-rule { color: rgba(230, 220, 194, 0.5); }
+
+/* ─── Title splash (idle) ────────────────────────────────────────────── */
+
+.title-splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0 4px;
+}
+
+.title-eyebrow {
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--bone-dim);
+  letter-spacing: 0.08em;
+}
+
+.title-main {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6.5vw, 88px);
+  line-height: 0.95;
+  letter-spacing: 0.1em;
+  color: var(--gold-bright);
+  text-shadow:
+    0 0 22px rgba(232, 197, 90, 0.5),
+    0 0 60px rgba(184, 145, 46, 0.3),
+    0 4px 10px rgba(0, 0, 0, 0.9);
+}
+
+.title-sub {
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--bone);
+}
+
+.title-hint {
+  margin-top: 8px;
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--bone-dim);
+}
+
+/* ─── Exodia overlay ─────────────────────────────────────────────────── */
+
+.exodia-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(64, 0, 4, 0.88) 0%, rgba(2, 0, 3, 0.98) 78%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  z-index: 100;
+}
+
+.exodia-cards {
+  display: flex;
+  gap: 14px;
+}
+
+.exodia-card {
+  width: 120px;
+  height: 175px;
+  will-change: transform;
+  animation: cardGlow 1.2s ease-in-out infinite alternate;
+}
+.exodia-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+@keyframes cardGlow {
+  from { filter: drop-shadow(0 4px 12px rgba(232, 197, 90, 0.35)); }
+  to { filter: drop-shadow(0 4px 28px rgba(232, 197, 90, 0.9)); }
+}
+
+.exodia-summon-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.exodia-summon-image {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: min(90vw, 900px);
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  opacity: 0;
+  filter: drop-shadow(0 0 60px rgba(232, 197, 90, 0.7));
+}
+
+.exodia-text {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 6vw, 76px);
+  letter-spacing: 0.3em;
+  color: var(--gold-bright);
+  text-shadow: 0 0 14px #fff, 0 0 34px rgba(232, 197, 90, 0.9), 0 0 64px rgba(210, 31, 51, 0.7);
+  z-index: 2;
+  opacity: 0;
+}
+
+.exodia-dismiss {
+  position: relative;
+  z-index: 2;
+  margin-top: 18px;
+  opacity: 0;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  :root {
+    --hand-card-w: 70px;
+    --hand-card-h: 100px;
+  }
+  .app-root { padding: 12px; }
+  .duel-side {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 12px 12px 12px;
+  }
+  .dealer-monitor { width: 100%; height: 220px; }
+  .dealer-frame { flex-direction: column; align-items: stretch; }
+  .lp-value { font-size: 32px; }
+
+  /* Keep the right-hand deck lane clear of the speech bubble. */
+  .dealer-message {
+    max-width: calc(100% - 84px);
+    align-self: flex-start;
+    font-size: 16px;
+    padding: 11px 14px;
+  }
+  .dealer-message::before { display: none; }
+
+  .deck-pile {
+    right: 4px;
+    transform: translateY(-50%) scale(0.68);
+  }
+
+  .round-banner {
+    /* On small screens: a full-viewport verdict splash above everything. */
+    position: fixed;
+    transform: none;
+    z-index: 60;
+    padding: 0 10px;
+  }
+  .banner-text {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.12;
+    letter-spacing: 0.06em;
+    font-size: clamp(26px, 8vw, 42px);
+    text-shadow: 0 0 18px rgba(0, 0, 0, 0.95), 0 0 34px rgba(0, 0, 0, 0.8);
+  }
+  .tone-win .banner-text {
+    text-shadow: 0 0 16px rgba(232, 197, 90, 0.6), 0 3px 8px rgba(0, 0, 0, 0.95);
+  }
+  .tone-loss .banner-text {
+    text-shadow: 0 0 16px rgba(210, 31, 51, 0.65), 0 3px 8px rgba(0, 0, 0, 0.95);
+  }
+  .banner-rule { display: none; }
+
+  .exodia-cards { gap: 8px; }
+  .exodia-card { width: 62px; height: 90px; }
+  .exodia-text { letter-spacing: 0.14em; }
+}

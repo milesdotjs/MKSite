@@ -4,154 +4,292 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Projects — Miles King</title>
-    <meta name="description" content="Projects by Miles King — web apps, utilities, and case studies." />
+    <meta
+      name="description"
+      content="Projects by Miles King — web apps, utilities, and case studies."
+    />
+    <meta name="theme-color" content="#0d0221" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d0221'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='bold' text-anchor='middle' fill='%23ff2ec4'%3EMK%3C/text%3E%3Cline x1='10' y1='52' x2='54' y2='52' stroke='%2300f0ff' stroke-width='3'/%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Chakra+Petch:wght@300;400;500;600&family=VT323&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/site.css" />
+    <noscript>
+      <style>
+        .cursor {
+          display: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
-    <header class="site-header">
-      <div class="container">
-        <a href="index.html" class="brand">
-          <svg class="glyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 2c.4 0 .7.2.9.5l.6.9 1.6-.5c.5-.1 1 .1 1.2.5l1 1.6c1.6.4 3 1.4 3.8 2.9.9 1.6 1.1 3.5.6 5.3l-.7 2.8c-.1.5.1 1 .5 1.3l.7.5c.4.3.6.7.6 1.1V21H4v-1.1c0-.4.2-.8.5-1.1.7-.5 1.7-1.3 2.5-2.4.8-1 1.5-2.4 1.5-4 0-.9-.3-1.7-.7-2.4l-.8.6c-.4.3-.9.2-1.2-.1l-1-1.2c-.3-.4-.3-.9.1-1.3l1.5-1.4c.1-1.4.6-2.6 1.4-3.5.4-.5.9-.8 1.4-1zm-.7 4.5c-.2.3-.3.6-.4 1l1.5-.4c.3-.1.6 0 .8.2l1.2 1.4c.2.3.2.6.1.9l-.4.8c.4 0 .8.1 1.2.3.2-.5.2-1 .1-1.5l-.3-1.4c-.1-.5-.5-.9-1-1l-1.5-.3c-.4-.1-.8 0-1.1.2l-.2-.2z"/></svg>
-          <span>Miles King</span>
-        </a>
-        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-          <span></span>
-        </button>
-        <nav class="site-nav" aria-label="Primary">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html" aria-current="page">Projects</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
+    <div class="crt" aria-hidden="true"></div>
+    <div class="cursor" aria-hidden="true">
+      <div class="cursor-ring"></div>
+      <div class="cursor-dot"></div>
+    </div>
+
+    <header id="nav">
+      <a class="logo" href="index.html">
+        <span class="logo-mk">MK</span><span class="logo-ext">.exe</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="index.html"><span>Home</span></a>
+        <a href="about.html"><span>About</span></a>
+        <a class="is-here" href="projects.html" aria-current="page"><span>Projects</span></a>
+        <a href="index.html#contact"><span>Contact</span></a>
+      </nav>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="container">
-          <span class="eyebrow">Projects</span>
-          <h1>Things I've built.</h1>
-          <p class="lede">
-            A mix of small utilities I actually use and web experiments I built
-            to learn something. Click any card to play with it.
-          </p>
+      <div class="page-hero">
+        <p class="section-tag">SYS.03 <span>プロジェクト</span></p>
+        <h1 class="section-title" data-title>THINGS I'VE BUILT</h1>
+        <p class="lede">
+          A mix of small utilities I actually use and web experiments I built
+          to learn something. Click any card to play with it.
+        </p>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-chunk"
+            >UTILITIES ✦ WEB APPS ✦ EXPERIMENTS ✦ CASE STUDIES ✦ SIDE QUESTS
+            ✦&nbsp;</span
+          >
+        </div>
+      </div>
+
+      <section class="panel-section">
+        <div class="section-head">
+          <p class="section-tag">DIR.01 <span>ユーティリティ</span></p>
+          <h2 class="section-title" data-title>UTILITIES</h2>
+          <p class="section-sub">Things I actually use.</p>
+        </div>
+
+        <div class="work-grid">
+          <article class="project project-featured tilt-card">
+            <a class="project-link" href="projects/study-something/">
+              <div class="project-screen">
+                <span class="project-badge">NEW ✦ UTILITY</span>
+                <img
+                  src="assets/img/study-something.png"
+                  alt="Study Something! chess study utility preview"
+                  loading="lazy"
+                />
+                <div class="project-glitch" aria-hidden="true"></div>
+              </div>
+              <div class="project-meta">
+                <span class="project-num">01</span>
+                <div class="project-text">
+                  <h3>Study Something!</h3>
+                  <p>
+                    Pulls random over-the-board games from top chess players so
+                    I can study unfamiliar positions.
+                  </p>
+                  <span class="project-tags">UTILITY // CHESS // JS</span>
+                </div>
+                <span class="project-launch">LAUNCH ▶</span>
+              </div>
+            </a>
+          </article>
         </div>
       </section>
 
-      <section class="section section--alt">
-        <div class="container">
-          <div class="section-head">
-            <h2>Utilities</h2>
-            <span class="link-arrow" style="cursor: default;">Things I use</span>
-          </div>
-          <div class="project-grid">
-            <a class="card reveal" href="projects/study-something/">
-              <div class="thumb">
-                <img src="assets/img/study-something.png" alt="Study Something! preview" />
-              </div>
-              <div class="card-body">
-                <h3>Study Something!</h3>
-                <p>Pulls random over-the-board games from top players so I can study unfamiliar positions.</p>
-                <div class="card-tags">
-                  <span class="tag">Utility</span>
-                  <span class="tag">Chess</span>
-                  <span class="tag">JS</span>
-                </div>
-              </div>
-            </a>
-          </div>
+      <section class="panel-section">
+        <div class="section-head">
+          <p class="section-tag">DIR.02 <span>実験</span></p>
+          <h2 class="section-title" data-title>WEB APPS &amp; EXPERIMENTS</h2>
+          <p class="section-sub">For fun and practice.</p>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <h2>Web apps &amp; experiments</h2>
-            <span class="link-arrow" style="cursor: default;">For fun and practice</span>
-          </div>
-          <div class="project-grid">
-            <a class="card reveal" href="projects/infinite-crayons/">
-              <div class="thumb">
-                <img src="assets/img/infinite-crayons.png" alt="InfiniteCrayons preview" />
+        <div class="work-grid">
+          <article class="project tilt-card">
+            <a class="project-link" href="projects/infinite-crayons/">
+              <div class="project-screen">
+                <img
+                  src="assets/img/infinite-crayons.png"
+                  alt="InfiniteCrayons color palette generator preview"
+                  loading="lazy"
+                />
+                <div class="project-glitch" aria-hidden="true"></div>
               </div>
-              <div class="card-body">
-                <h3>InfiniteCrayons</h3>
-                <p>A color palette generator with adjustable hue, brightness, and saturation per swatch.</p>
-                <div class="card-tags">
-                  <span class="tag">Tool</span>
-                  <span class="tag">JS</span>
+              <div class="project-meta">
+                <span class="project-num">02</span>
+                <div class="project-text">
+                  <h3>InfiniteCrayons</h3>
+                  <p>
+                    A color palette generator with adjustable hue, brightness,
+                    and saturation per swatch.
+                  </p>
+                  <span class="project-tags">TOOL // COLOR</span>
                 </div>
+                <span class="project-launch">LAUNCH ▶</span>
               </div>
             </a>
+          </article>
 
-            <a class="card reveal" href="projects/jst-play/">
-              <div class="thumb">
-                <img src="assets/img/jst-play.png" alt="JSt Play preview" />
+          <article class="project tilt-card">
+            <a class="project-link" href="projects/jst-play/">
+              <div class="project-screen">
+                <img
+                  src="assets/img/jst-play.png"
+                  alt="JSt Play drum machine preview"
+                  loading="lazy"
+                />
+                <div class="project-glitch" aria-hidden="true"></div>
               </div>
-              <div class="card-body">
-                <h3>JSt Play</h3>
-                <p>A browser drum machine and step sequencer with switchable kit sounds.</p>
-                <div class="card-tags">
-                  <span class="tag">Audio</span>
-                  <span class="tag">JS</span>
+              <div class="project-meta">
+                <span class="project-num">03</span>
+                <div class="project-text">
+                  <h3>JSt Play</h3>
+                  <p>
+                    A browser drum machine and step sequencer with switchable
+                    kit sounds.
+                  </p>
+                  <span class="project-tags">AUDIO // FUN</span>
                 </div>
+                <span class="project-launch">LAUNCH ▶</span>
               </div>
             </a>
+          </article>
 
-            <a class="card reveal" href="projects/more-stock-images/">
-              <div class="thumb">
-                <img src="assets/img/more-stock-images.png" alt="MoreStockImages preview" />
+          <article class="project tilt-card">
+            <a class="project-link" href="projects/more-stock-images/">
+              <div class="project-screen">
+                <img
+                  src="assets/img/more-stock-images.png"
+                  alt="MoreStockImages photo search preview"
+                  loading="lazy"
+                />
+                <div class="project-glitch" aria-hidden="true"></div>
               </div>
-              <div class="card-body">
-                <h3>MoreStockImages</h3>
-                <p>Search royalty-free photos across providers from a single, simple search bar.</p>
-                <div class="card-tags">
-                  <span class="tag">Tool</span>
-                  <span class="tag">API</span>
+              <div class="project-meta">
+                <span class="project-num">04</span>
+                <div class="project-text">
+                  <h3>MoreStockImages</h3>
+                  <p>
+                    Search royalty-free photos across providers from a single,
+                    simple search bar.
+                  </p>
+                  <span class="project-tags">TOOL // API</span>
                 </div>
+                <span class="project-launch">LAUNCH ▶</span>
               </div>
             </a>
+          </article>
 
-            <a class="card reveal" href="projects/mettatonex.html">
-              <div class="thumb">
-                <img src="assets/img/mettatonex.png" alt="MettatonEX preview" />
+          <article class="project tilt-card">
+            <a class="project-link" href="projects/mettatonex.html">
+              <div class="project-screen">
+                <img
+                  src="assets/img/mettatonex.png"
+                  alt="MettatonEX Discord bot preview"
+                  loading="lazy"
+                />
+                <div class="project-glitch" aria-hidden="true"></div>
               </div>
-              <div class="card-body">
-                <h3>MettatonEX</h3>
-                <p>A customizable Discord bot that posts new YouTube uploads to a server channel.</p>
-                <div class="card-tags">
-                  <span class="tag">Case study</span>
-                  <span class="tag">Node.js</span>
-                  <span class="tag">Discord.js</span>
+              <div class="project-meta">
+                <span class="project-num">05</span>
+                <div class="project-text">
+                  <h3>MettatonEX</h3>
+                  <p>
+                    A customizable Discord bot that posts new YouTube uploads
+                    to a server channel.
+                  </p>
+                  <span class="project-tags">NODE.JS // DISCORD.JS</span>
                 </div>
+                <span class="project-launch">CASE STUDY ▶</span>
               </div>
             </a>
-          </div>
+          </article>
+
+          <article class="project tilt-card">
+            <a class="project-link" href="projects/anime-blackjack/">
+              <div class="project-screen">
+                <span class="project-badge">NEW ✦ GAME</span>
+                <img
+                  src="assets/img/anime-blackjack.jpg"
+                  alt="Anime Blackjack game preview — animated dealer and card table"
+                  loading="lazy"
+                />
+                <div class="project-glitch" aria-hidden="true"></div>
+              </div>
+              <div class="project-meta">
+                <span class="project-num">06</span>
+                <div class="project-text">
+                  <h3>Anime Blackjack</h3>
+                  <p>
+                    Blackjack against an animated anime dealer, built in React
+                    and TypeScript with a full GSAP animation layer — card
+                    flights, hole-card flips, and a dealer who reacts to every
+                    hand.
+                  </p>
+                  <span class="project-tags">GAME // REACT // GSAP</span>
+                </div>
+                <span class="project-launch">LAUNCH ▶</span>
+              </div>
+            </a>
+          </article>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container">
-        <span>&copy; <span data-year></span> Miles King</span>
-        <ul class="icons">
-          <li>
-            <a href="https://linkedin.com/in/miles-k" aria-label="LinkedIn" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-            </a>
-          </li>
-        </ul>
-      </div>
+    <footer id="footer">
+      <ul class="social">
+        <li>
+          <a
+            href="https://github.com/milesdotjs"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.66.41.35.77 1.05.77 2.12 0 1.54-.01 2.77-.01 3.15 0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"
+              />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://linkedin.com/in/miles-k"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <p class="footer-line">
+        <span>&copy; <span data-year>2026</span> MILES KING</span>
+        <span class="footer-sep">//</span>
+        <span>SOFTWARE DEVELOPER</span>
+        <span class="footer-sep">//</span>
+        <span>MILESKING.DEV</span>
+      </p>
     </footer>
 
+    <script src="assets/js/vendor/gsap.min.js"></script>
+    <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/js/vendor/ScrollToPlugin.min.js"></script>
+    <script src="assets/js/vendor/SplitText.min.js"></script>
+    <script src="assets/js/vendor/ScrambleTextPlugin.min.js"></script>
+    <script src="assets/js/vendor/CustomEase.min.js"></script>
+    <script src="assets/js/vendor/Physics2DPlugin.min.js"></script>
     <script src="assets/js/site.js"></script>
   </body>
 </html>
