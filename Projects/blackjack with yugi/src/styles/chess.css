@@ -1,0 +1,980 @@
+/* ─── Shell: game select ─────────────────────────────────────────────── */
+
+.shell-select {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 24px calc(40px + env(safe-area-inset-bottom));
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.shell-eyebrow {
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--bone-dim);
+  letter-spacing: 0.08em;
+}
+
+.shell-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(42px, 8vw, 104px);
+  line-height: 0.95;
+  letter-spacing: 0.1em;
+  color: var(--gold-bright);
+  text-shadow:
+    0 0 22px rgba(232, 197, 90, 0.5),
+    0 0 60px rgba(184, 145, 46, 0.3),
+    0 4px 10px rgba(0, 0, 0, 0.9);
+}
+
+.shell-sub {
+  margin: 0 0 10px;
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--bone-dim);
+}
+
+.game-doors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: min(860px, 100%);
+}
+
+.game-door {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 24px 26px;
+  border-radius: 5px;
+  border: 1px solid var(--gold);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(69, 36, 110, 0.5) 0%, transparent 70%),
+    linear-gradient(180deg, #1a0f2e 0%, #0b0514 100%);
+  color: var(--bone);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 260ms ease, border-color 260ms ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(232, 197, 90, 0.08);
+}
+.game-door:hover,
+.game-door:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--gold-bright);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 26px rgba(184, 145, 46, 0.22);
+}
+
+.door-suits {
+  font-size: 24px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.door-name {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: 0.12em;
+  color: var(--gold-bright);
+}
+
+.door-desc {
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--bone-dim);
+  max-width: 30ch;
+}
+
+/* ─── Shared: ghost button ───────────────────────────────────────────── */
+
+.btn-ghost {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  padding: 6px 14px 5px;
+  border-radius: 3px;
+  border: 1px solid rgba(184, 145, 46, 0.45);
+  background: rgba(13, 7, 20, 0.6);
+  color: var(--bone-dim);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+.btn-ghost:hover {
+  color: var(--gold-bright);
+  border-color: var(--gold);
+}
+
+/* ─── Roster ─────────────────────────────────────────────────────────── */
+
+.roster {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  padding: 24px 24px calc(36px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.roster-heading {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px 18px;
+  text-align: left;
+}
+.roster-heading h1 {
+  grid-column: 2;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 4.6vw, 46px);
+  letter-spacing: 0.1em;
+  color: var(--gold-bright);
+  text-shadow: 0 0 20px rgba(232, 197, 90, 0.35);
+}
+.roster-heading p {
+  grid-column: 2;
+  margin: 0;
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--bone-dim);
+}
+
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 16px;
+  max-width: 1180px;
+}
+
+.roster-card {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 14px;
+  align-items: stretch;
+  text-align: left;
+  padding: 14px;
+  border-radius: 5px;
+  border: 1px solid rgba(184, 145, 46, 0.35);
+  border-left: 3px solid var(--accent);
+  background: linear-gradient(180deg, rgba(26, 15, 46, 0.9) 0%, rgba(11, 5, 20, 0.95) 100%);
+  color: var(--bone);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 240ms ease, border-color 240ms ease;
+}
+.roster-card:hover,
+.roster-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.7), 0 0 22px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.roster-portrait {
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 20%, color-mix(in srgb, var(--accent) 30%, transparent) 0%, transparent 70%),
+    rgba(5, 3, 8, 0.7);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.roster-portrait img {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
+}
+
+.roster-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.roster-name {
+  font-family: var(--font-display);
+  font-size: 21px;
+  letter-spacing: 0.06em;
+  color: var(--gold-bright);
+  line-height: 1.1;
+}
+
+.roster-epithet {
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--accent);
+  filter: brightness(1.4);
+}
+
+.roster-rating {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 2px;
+}
+.roster-elo {
+  font-family: var(--font-lp);
+  font-size: 19px;
+  color: var(--bone);
+  white-space: nowrap;
+}
+.roster-band {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  border: 1px solid rgba(184, 145, 46, 0.35);
+  border-radius: 999px;
+  padding: 2px 9px 1px;
+  white-space: nowrap;
+}
+
+.roster-blurb {
+  margin: 4px 0 0;
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--bone-dim);
+}
+
+/* ─── Tier select ────────────────────────────────────────────────────── */
+
+.tier-screen {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  padding: 24px 24px calc(36px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tier-layout {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  max-width: 980px;
+}
+
+.tier-portrait {
+  position: relative;
+  border: 1px solid rgba(184, 145, 46, 0.4);
+  border-radius: 4px;
+  padding: 14px 12px 30px;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 20%, color-mix(in srgb, var(--accent) 30%, transparent) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(18, 10, 32, 0.9) 0%, rgba(6, 3, 12, 0.95) 100%);
+  box-shadow: inset 0 0 26px rgba(0, 0, 0, 0.75);
+}
+.tier-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.85));
+}
+.tier-portrait-name {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  filter: brightness(1.5);
+}
+
+.tier-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tier-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  padding: 14px 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(184, 145, 46, 0.3);
+  border-left: 3px solid var(--accent);
+  background: linear-gradient(90deg, rgba(26, 15, 46, 0.9) 0%, rgba(11, 5, 20, 0.9) 100%);
+  color: var(--bone);
+  cursor: pointer;
+  transition: transform 150ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.tier-row:hover,
+.tier-row:focus-visible {
+  transform: translateX(4px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.65), 0 0 18px color-mix(in srgb, var(--accent) 32%, transparent);
+}
+
+.tier-step {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  filter: brightness(1.4);
+  white-space: nowrap;
+}
+.tier-step-dim {
+  color: var(--bone-dim);
+  opacity: 0.35;
+  filter: none;
+}
+
+.tier-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.tier-label {
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: var(--gold-bright);
+  line-height: 1.15;
+}
+.tier-meta {
+  font-family: var(--font-lp);
+  font-size: 13px;
+  color: var(--bone-dim);
+  letter-spacing: 0.04em;
+}
+
+.tier-canon {
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--accent);
+  filter: brightness(1.5);
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-radius: 999px;
+  padding: 3px 11px 2px;
+  white-space: nowrap;
+}
+
+.tier-pill {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  border: 1px solid rgba(184, 145, 46, 0.5);
+  padding: 5px 14px 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(69, 36, 110, 0.25) 0%, rgba(13, 7, 20, 0.6) 100%);
+  white-space: nowrap;
+}
+
+/* ─── Chess: layout ──────────────────────────────────────────────────── */
+
+.chess-root {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 24px calc(16px + env(safe-area-inset-bottom));
+  gap: 12px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Both games now carry a Leave button in the HUD centre, which is one item too
+   many for the original vertical stack. */
+.chess-root .hud-center,
+.app-root .hud-center {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.chess-layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(230px, 290px) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  align-content: start;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.chess-opponent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.chess-portrait-frame {
+  position: relative;
+  border: 1px solid rgba(184, 145, 46, 0.4);
+  border-radius: 4px;
+  padding: 22px 10px 8px;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 15%, color-mix(in srgb, var(--accent) 26%, transparent) 0%, transparent 72%),
+    linear-gradient(180deg, rgba(18, 10, 32, 0.9) 0%, rgba(6, 3, 12, 0.95) 100%);
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.75);
+  transition: box-shadow 400ms ease;
+}
+.chess-portrait-frame.thinking {
+  box-shadow:
+    inset 0 0 24px rgba(0, 0, 0, 0.75),
+    0 0 26px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.chess-portrait-name {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  filter: brightness(1.5);
+  white-space: nowrap;
+}
+
+.char-portrait {
+  position: relative;
+  width: 100%;
+  max-width: 210px;
+  margin: 0 auto;
+}
+.char-stack {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+.char-body,
+.char-eyes,
+.char-mouth {
+  position: absolute;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+.char-body {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.85));
+}
+.char-eyes,
+.char-mouth {
+  opacity: 0;
+}
+
+.chess-speech {
+  min-height: 3.6em;
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--bone);
+  text-align: center;
+  padding: 8px 10px;
+  border-top: 1px solid rgba(184, 145, 46, 0.25);
+  border-bottom: 1px solid rgba(184, 145, 46, 0.25);
+  text-wrap: balance;
+}
+
+/* ─── Chess: captured tray ───────────────────────────────────────────── */
+
+.chess-tray {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tray-row {
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+.tray-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+}
+.tray-pieces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  min-height: 20px;
+  align-items: center;
+}
+.tray-empty {
+  color: var(--bone-dim);
+  opacity: 0.5;
+}
+.piece.tray-piece {
+  width: 20px;
+  height: 20px;
+}
+
+/* ─── Chess: board ───────────────────────────────────────────────────── */
+
+.chess-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.chess-board-wrap {
+  position: relative;
+  width: min(100%, 80vh);
+  padding: 0 0 18px 18px;
+}
+
+.chess-board {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  border: 2px solid var(--gold);
+  border-radius: 2px;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(69, 36, 110, 0.35);
+  overflow: hidden;
+  touch-action: none;
+}
+
+.chess-square {
+  position: absolute;
+  width: 12.5%;
+  height: 12.5%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chess-square.light {
+  background: linear-gradient(160deg, #7b7060 0%, #625848 100%);
+}
+/* Kept clearly lighter than the black pieces sitting on it — at the original
+   value the dark squares and the dark fill were close enough that a black
+   piece on a dark square read as an empty outline. */
+.chess-square.dark {
+  background: linear-gradient(160deg, #3d2c58 0%, #2b1e40 100%);
+}
+.chess-square.last-move::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(184, 145, 46, 0.24);
+  pointer-events: none;
+}
+.chess-square.selected::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 3px var(--gold-bright);
+  pointer-events: none;
+}
+.chess-square.in-check::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(210, 31, 51, 0.75) 0%, transparent 70%);
+  animation: check-pulse 1.1s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes check-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.target-dot {
+  width: 26%;
+  height: 26%;
+  border-radius: 50%;
+  background: rgba(232, 197, 90, 0.5);
+  box-shadow: 0 0 10px rgba(232, 197, 90, 0.5);
+  pointer-events: none;
+}
+.target-capture {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  border: 3px solid rgba(210, 31, 51, 0.75);
+  box-shadow: 0 0 12px rgba(210, 31, 51, 0.5);
+  pointer-events: none;
+}
+
+.chess-piece-slot {
+  position: absolute;
+  width: 12.5%;
+  height: 12.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  /* The slot glides between squares; a re-parented piece would teleport. */
+  transition: left 260ms cubic-bezier(0.2, 0.9, 0.3, 1),
+              top 260ms cubic-bezier(0.2, 0.9, 0.3, 1);
+  will-change: left, top;
+}
+.chess-piece-slot.dragging {
+  transition: none;
+  z-index: 5;
+  cursor: grabbing;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.8));
+}
+
+.piece {
+  width: 84%;
+  height: 84%;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
+}
+
+/* A clone of a captured piece, animated after React has dropped the original.
+   Carries its own layout rather than reusing .chess-piece-slot so that nothing
+   can mistake it for a piece still on the board. */
+.piece-ghost {
+  position: absolute;
+  width: 12.5%;
+  height: 12.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.capture-ring {
+  position: absolute;
+  width: 12.5%;
+  height: 12.5%;
+  border-radius: 50%;
+  border: 2px solid rgba(232, 197, 90, 0.85);
+  box-shadow: 0 0 18px rgba(232, 197, 90, 0.6), inset 0 0 12px rgba(210, 31, 51, 0.5);
+  pointer-events: none;
+  z-index: 3;
+}
+.piece-w path {
+  fill: #efe7d2;
+  stroke: #241a14;
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+/* Near-black rather than dark-violet, so the silhouette reads on both square
+   colours instead of only on the light ones. */
+.piece-b path {
+  fill: #0b0710;
+  stroke: #cbbb97;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.chess-coords {
+  position: absolute;
+  display: flex;
+  font-family: var(--font-lp);
+  font-size: 11px;
+  color: var(--bone-dim);
+  pointer-events: none;
+}
+.chess-coords-files {
+  left: 18px;
+  right: 0;
+  bottom: 2px;
+  justify-content: space-around;
+}
+.chess-coords-ranks {
+  left: 0;
+  top: 0;
+  bottom: 18px;
+  width: 16px;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.chess-status {
+  min-height: 22px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+}
+.check-warn {
+  color: var(--blood-bright);
+}
+.thinking-dots::after {
+  content: '';
+  animation: thinking-ellipsis 1.4s steps(4, end) infinite;
+}
+@keyframes thinking-ellipsis {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+}
+
+/* ─── Chess: engine loading / failure ────────────────────────────────── */
+
+.engine-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 60px 20px;
+  text-align: center;
+}
+.engine-loading-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 0.1em;
+  color: var(--gold-bright);
+}
+.engine-loading-sub {
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--bone-dim);
+  max-width: 44ch;
+  line-height: 1.45;
+}
+.engine-loading-bar {
+  width: min(280px, 70vw);
+  height: 3px;
+  background: rgba(184, 145, 46, 0.2);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.engine-loading-bar span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+  animation: engine-sweep 1.3s ease-in-out infinite;
+}
+@keyframes engine-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* ─── Chess: promotion + result ──────────────────────────────────────── */
+
+.promo-overlay,
+.chess-result {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(3, 1, 6, 0.78);
+  backdrop-filter: blur(3px);
+}
+
+.promo-card,
+.chess-result-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 26px 32px;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
+  background: linear-gradient(180deg, #1a0f2e 0%, #0b0514 100%);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(69, 36, 110, 0.4);
+  text-align: center;
+}
+
+.promo-title,
+.chess-result-title {
+  font-family: var(--font-display);
+  letter-spacing: 0.1em;
+  color: var(--gold-bright);
+}
+.promo-title { font-size: 20px; }
+.chess-result-title { font-size: clamp(32px, 5vw, 52px); }
+
+.chess-result-card.won {
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.9), 0 0 46px rgba(232, 197, 90, 0.35);
+}
+
+.chess-result-sub {
+  font-family: var(--font-quip);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--bone-dim);
+  max-width: 34ch;
+}
+
+.chess-result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.promo-choices {
+  display: flex;
+  gap: 10px;
+}
+.promo-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 76px;
+  padding: 10px 6px 8px;
+  border: 1px solid rgba(184, 145, 46, 0.45);
+  border-radius: 4px;
+  background: rgba(13, 7, 20, 0.7);
+  color: var(--bone-dim);
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease, transform 140ms ease;
+}
+.promo-choice:hover {
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+  transform: translateY(-2px);
+}
+.promo-choice .piece {
+  width: 46px;
+  height: 46px;
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .game-doors {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chess-root {
+    padding: 8px 10px calc(12px + env(safe-area-inset-bottom));
+  }
+
+  /* Height is the scarce axis on a phone: the board leads, and the opponent
+     becomes a portrait-beside-speech strip under it rather than a column. */
+  .chess-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    align-content: start;
+  }
+
+  .chess-opponent {
+    order: 2;
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr);
+    grid-template-areas:
+      'portrait speech'
+      'tray tray';
+    gap: 8px 12px;
+    align-items: center;
+  }
+  .chess-portrait-frame {
+    grid-area: portrait;
+    padding: 16px 4px 4px;
+  }
+  .chess-portrait-name { font-size: 10px; letter-spacing: 0.12em; }
+  .chess-speech {
+    grid-area: speech;
+    text-align: left;
+    font-size: 16px;
+    min-height: 3em;
+    border: 0;
+  }
+  .chess-tray { grid-area: tray; }
+
+  .chess-main { order: 1; }
+  .chess-board-wrap {
+    width: min(100%, 62vh);
+    padding: 0 0 14px 14px;
+  }
+  .chess-coords-files { left: 14px; }
+  .chess-coords-ranks { bottom: 14px; width: 13px; }
+
+  .roster { padding: 14px 12px calc(24px + env(safe-area-inset-bottom)); }
+  .roster-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .roster-card { grid-template-columns: 76px 1fr; padding: 10px; }
+  .roster-blurb { display: none; }
+
+  .tier-screen { padding: 14px 12px calc(24px + env(safe-area-inset-bottom)); gap: 14px; }
+  /* The portrait is decoration here; the list is the job. */
+  .tier-layout { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .tier-portrait { display: none; }
+  .tier-row { grid-template-columns: auto 1fr; gap: 12px; padding: 12px 14px; }
+  .tier-canon {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 4px;
+  }
+}
+
+/* Landscape phones: the board and the opponent sit side by side again, since
+   width is suddenly the plentiful axis. */
+@media (max-width: 900px) and (max-height: 560px) {
+  .chess-layout {
+    grid-template-columns: minmax(150px, 210px) minmax(0, 1fr);
+  }
+  .chess-opponent {
+    order: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'portrait' 'speech';
+  }
+  .chess-tray { display: none; }
+  .chess-main { order: 1; }
+  .chess-board-wrap { width: min(100%, 82vh); }
+}

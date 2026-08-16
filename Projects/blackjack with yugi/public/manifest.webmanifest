@@ -1,11 +1,10 @@
 {
-  "name": "Blackjack with Yugi",
+  "name": "Shadow Games",
   "short_name": "Shadow Game",
-  "description": "A shadow game of blackjack against the Pharaoh himself.",
+  "description": "Blackjack and chess against the duelists of Yu-Gi-Oh.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#050308",
   "theme_color": "#050308",
   "icons": [

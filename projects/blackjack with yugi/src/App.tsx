@@ -1,220 +1,132 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+/**
+ * Shell and router.
+ *
+ * Two games now live behind one door, so App stops being the blackjack game
+ * and becomes the thing that chooses between them. Routing is on the hash
+ * rather than a router library: this is a static bundle that gets dropped into
+ * a subfolder of a plain site, so anything relying on server rewrites would
+ * break the moment it was deployed. The hash also makes a chosen opponent and
+ * difficulty survive a refresh, which matters on a phone home screen.
+ */
+import { useCallback, useEffect, useState } from 'react';
 import { AmbientLayer } from './components/AmbientLayer';
-import { Controls } from './components/Controls';
-import { Dealer } from './components/Dealer';
-import { DeckPile } from './components/DeckPile';
-import { ExodiaOverlay } from './components/ExodiaOverlay';
-import { HandView } from './components/HandView';
-import { LifePoints } from './components/LifePoints';
-import { RoundBanner } from './components/RoundBanner';
-import { TitleSplash } from './components/TitleSplash';
-import { flash, lightning, registerFx, screenShake } from './anim/fx';
+import { BlackjackGame } from './blackjack/BlackjackGame';
+import { ChessGame } from './chess/ChessGame';
+import { OpponentSelect, TierSelect } from './chess/components/OpponentSelect';
+import { GameSelect, type GameId } from './shell/GameSelect';
+import { CHARACTERS, characterById, tierIndex } from './chess/characters';
 import { sound } from './anim/sound';
-import {
-  dealerHit,
-  finishShuffle,
-  initialState,
-  newGame,
-  nextRound,
-  playerDouble,
-  playerHit,
-  playerStand,
-  resolveRound,
-} from './game/engine';
-import { dealerShouldHit } from './game/dealer';
-import type { GameState } from './game/types';
 import './styles/index.css';
+import './styles/chess.css';
 
-/** Dev-only: jump straight to a hard-to-reach state via ?debug=... */
-function debugInitialState(): GameState | null {
-  if (!import.meta.env.DEV) return null;
-  const mode = new URLSearchParams(window.location.search).get('debug');
-  if (!mode) return null;
-  const base = initialState();
-  switch (mode) {
-    case 'exodia':
-      return { ...base, phase: 'exodia', playerLP: 0, outcome: 'exodia', message: 'EXODIA! OBLITERATE!' };
-    case 'mindcrush':
-      return { ...base, phase: 'gameOver', playerLP: 0, outcome: 'dealerWin', message: 'Mind Crush!' };
-    case 'victory':
-      return { ...base, phase: 'gameOver', dealerLP: 0, outcome: 'playerWin', message: 'Incredible... you have defeated me.' };
+type Route =
+  | { screen: 'select' }
+  | { screen: 'blackjack' }
+  | { screen: 'chess-roster' }
+  | { screen: 'chess-tiers'; characterId: string }
+  | { screen: 'chess'; characterId: string; tier: number };
+
+const knownCharacter = (id: string) => CHARACTERS.some((c) => c.id === id);
+
+function parseHash(): Route {
+  const raw = window.location.hash.replace(/^#\/?/, '');
+  if (raw === 'blackjack') return { screen: 'blackjack' };
+  if (raw === 'chess') return { screen: 'chess-roster' };
+
+  const withTier = /^chess\/([\w-]+)\/(\d+)$/.exec(raw);
+  if (withTier && knownCharacter(withTier[1])) {
+    const character = characterById(withTier[1]);
+    return {
+      screen: 'chess',
+      characterId: withTier[1],
+      tier: tierIndex(character, Number(withTier[2])),
+    };
+  }
+
+  const justCharacter = /^chess\/([\w-]+)$/.exec(raw);
+  if (justCharacter && knownCharacter(justCharacter[1])) {
+    return { screen: 'chess-tiers', characterId: justCharacter[1] };
+  }
+
+  return { screen: 'select' };
+}
+
+function hashFor(route: Route): string {
+  switch (route.screen) {
+    case 'blackjack':
+      return '#/blackjack';
+    case 'chess-roster':
+      return '#/chess';
+    case 'chess-tiers':
+      return `#/chess/${route.characterId}`;
+    case 'chess':
+      return `#/chess/${route.characterId}/${route.tier}`;
     default:
-      return null;
+      return '#/';
   }
 }
 
 export default function App() {
-  const [state, setState] = useState<GameState>(() => debugInitialState() ?? initialState());
-  const [muted, setMuted] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const stateRef = useRef(state);
-  stateRef.current = state;
+  const [route, setRoute] = useState<Route>(() => parseHash());
+  // Bumped to force a fresh ChessGame (and a fresh engine) for a rematch,
+  // which is cheaper and less jarring than reloading the page.
+  const [rematch, setRematch] = useState(0);
 
-  const handleHit = useCallback(() => setState((s) => playerHit(s)), []);
-  const handleStand = useCallback(() => setState((s) => playerStand(s)), []);
-  const handleDouble = useCallback(() => setState((s) => playerDouble(s)), []);
-  const handleNewRound = useCallback(() => setState((s) => nextRound(s)), []);
-  const handleNewGame = useCallback(() => {
-    sound.unlock();
-    setState(() => newGame());
-  }, []);
-  const handleShuffleDone = useCallback(() => setState((s) => finishShuffle(s)), []);
-  const handleExodiaDismiss = useCallback(() => setState(() => initialState()), []);
-
-  const toggleMute = useCallback(() => {
-    setMuted((m) => {
-      sound.setMuted(!m);
-      return !m;
-    });
+  // Keep the back button working: the hash is the source of truth, and every
+  // navigation goes through it rather than setting state directly.
+  useEffect(() => {
+    const onHash = () => setRoute(parseHash());
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
-  // Register the shake target for full-screen damage rumbles.
-  useEffect(() => {
-    registerFx('shakeTarget', rootRef.current);
-    return () => registerFx('shakeTarget', null);
+  const go = useCallback((next: Route) => {
+    window.location.hash = hashFor(next);
   }, []);
 
-  // Drive the dealer's automated turn (slower than the original — the
-  // card-flight animations deserve room to breathe).
-  useEffect(() => {
-    if (state.phase !== 'dealerTurn') return;
-
-    if (dealerShouldHit(state.dealerHand)) {
-      const t = window.setTimeout(() => {
-        setState((s) => (s.phase === 'dealerTurn' ? dealerHit(s) : s));
-      }, 950);
-      return () => window.clearTimeout(t);
-    }
-
-    const t = window.setTimeout(() => {
-      setState((s) => (s.phase === 'dealerTurn' ? resolveRound(s) : s));
-    }, 850);
-    return () => window.clearTimeout(t);
-  }, [state.phase, state.dealerHand]);
-
-  // Global FX on damage: red wash + shake when the player bleeds LP,
-  // violet wash when the Pharaoh does.
-  const prevLP = useRef({ player: state.playerLP, dealer: state.dealerLP });
-  useEffect(() => {
-    const prev = prevLP.current;
-    if (state.playerLP < prev.player) {
-      flash('rgba(140, 10, 25, 0.5)');
-      screenShake(prev.player - state.playerLP > 1000 ? 1.6 : 1);
-    }
-    if (state.dealerLP < prev.dealer) {
-      flash('rgba(96, 44, 150, 0.4)');
-      screenShake(0.8);
-    }
-    prevLP.current = { player: state.playerLP, dealer: state.dealerLP };
-  }, [state.playerLP, state.dealerLP]);
-
-  // Storm and fanfare when a hand resolves.
-  useEffect(() => {
-    if (state.phase !== 'roundOver' && state.phase !== 'gameOver') return;
-    const won =
-      state.outcome === 'playerWin' ||
-      state.outcome === 'dealerBust' ||
-      state.outcome === 'playerBlackjack';
-    if (won) {
-      sound.chime(0.25);
-    } else if (state.outcome === 'dealerWin' || state.outcome === 'playerBust') {
-      lightning();
-      sound.thunder(0.12);
-    }
-    if (state.phase === 'gameOver') {
-      lightning();
-      if (state.dealerLP <= 0) sound.chime(0.5);
-      else sound.thunder(0.4);
-    }
-  }, [state.phase, state.outcome, state.dealerLP]);
-
-  // Keyboard shortcuts: H hit, S stand, D double, Space/Enter advance.
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.repeat) return;
-      const s = stateRef.current;
-      const k = e.key.toLowerCase();
-      if (k === 'h' && s.phase === 'playerTurn') handleHit();
-      else if (k === 's' && s.phase === 'playerTurn') handleStand();
-      else if (k === 'd' && s.phase === 'playerTurn') handleDouble();
-      else if (k === ' ' || k === 'enter') {
-        if (s.phase === 'idle' || s.phase === 'gameOver') handleNewGame();
-        else if (s.phase === 'roundOver') handleNewRound();
-        e.preventDefault();
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [handleHit, handleStand, handleDouble, handleNewGame, handleNewRound]);
-
-  // Hide dealer total during the player's turn (since the hole card is hidden).
-  const hideDealerTotal = state.phase === 'playerTurn';
-  const inRound = state.phase !== 'idle';
+  const pickGame = useCallback(
+    (game: GameId) => {
+      // First real gesture of the session — the browser will only let us build
+      // the audio graph inside a user event.
+      sound.unlock();
+      go(game === 'blackjack' ? { screen: 'blackjack' } : { screen: 'chess-roster' });
+    },
+    [go]
+  );
 
   return (
     <>
       <AmbientLayer />
-      <div className="app-root" ref={rootRef}>
-        <div className="hud-top">
-          <LifePoints label="ATEM" value={state.dealerLP} align="left" />
-          <div className="hud-center">
-            <div className="round-pill">Round {state.roundNumber || '—'}</div>
-            <button
-              className="mute-btn"
-              onClick={toggleMute}
-              title={muted ? 'Unmute' : 'Mute'}
-              aria-label={muted ? 'Unmute sound' : 'Mute sound'}
-            >
-              {muted ? '♪̸' : '♪'}
-            </button>
-          </div>
-          <LifePoints label="YOU" value={state.playerLP} align="right" />
-        </div>
+      {route.screen === 'select' && <GameSelect onPick={pickGame} />}
 
-        <div className="duel-board">
-          <div className="duel-side dealer-side">
-            <Dealer state={state} />
-            <HandView
-              key={`d-${state.roundNumber}`}
-              label="Atem's hand"
-              hand={state.dealerHand}
-              hideTotal={hideDealerTotal}
-              dealOffset={0.16}
-            />
-          </div>
+      {route.screen === 'blackjack' && (
+        <BlackjackGame onExit={() => go({ screen: 'select' })} />
+      )}
 
-          <div className="duel-side player-side">
-            {state.phase === 'idle' ? (
-              <TitleSplash />
-            ) : (
-              <HandView
-                key={`p-${state.roundNumber}`}
-                label="Your hand"
-                hand={state.playerHand}
-              />
-            )}
-            <Controls
-              state={state}
-              onHit={handleHit}
-              onStand={handleStand}
-              onDouble={handleDouble}
-              onNewRound={handleNewRound}
-              onNewGame={handleNewGame}
-            />
-          </div>
+      {route.screen === 'chess-roster' && (
+        <OpponentSelect
+          onPick={(characterId) => go({ screen: 'chess-tiers', characterId })}
+          onBack={() => go({ screen: 'select' })}
+        />
+      )}
 
-          {inRound && (
-            <DeckPile
-              count={state.deck.length}
-              shuffling={state.phase === 'shuffling'}
-              onShuffleDone={handleShuffleDone}
-            />
-          )}
-          <RoundBanner state={state} />
-        </div>
-      </div>
+      {route.screen === 'chess-tiers' && (
+        <TierSelect
+          character={characterById(route.characterId)}
+          onStart={(tier) => go({ screen: 'chess', characterId: route.characterId, tier })}
+          onBack={() => go({ screen: 'chess-roster' })}
+        />
+      )}
 
-      <ExodiaOverlay active={state.phase === 'exodia'} onDismiss={handleExodiaDismiss} />
+      {route.screen === 'chess' && (
+        <ChessGame
+          key={`${route.characterId}-${route.tier}-${rematch}`}
+          characterId={route.characterId}
+          tier={route.tier}
+          onExit={() => go({ screen: 'chess-tiers', characterId: route.characterId })}
+          onRematch={() => setRematch((n) => n + 1)}
+        />
+      )}
     </>
   );
 }

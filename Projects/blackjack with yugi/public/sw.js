@@ -2,7 +2,7 @@
    Vite fingerprints its bundles, so instead of a hard-coded file list this
    caches same-origin GETs as they are requested and serves them cache-first
    afterwards. Bump CACHE to evict everything from a previous deploy. */
-var CACHE = "yugi-blackjack-v1";
+var CACHE = "yugi-shadow-games-v2";
 
 /* Only the entry point is worth precaching by name — everything else is
    hashed and gets picked up on first visit. */

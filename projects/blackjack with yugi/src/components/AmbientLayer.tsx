@@ -14,13 +14,16 @@ export function AmbientLayer() {
   const overRef = useRef<HTMLDivElement>(null);
   const flashRef = useRef<HTMLDivElement>(null);
   const lightningRef = useRef<HTMLDivElement>(null);
+  const impactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     registerFx('flash', flashRef.current);
     registerFx('lightning', lightningRef.current);
+    registerFx('impact', impactRef.current);
     return () => {
       registerFx('flash', null);
       registerFx('lightning', null);
+      registerFx('impact', null);
     };
   }, []);
 
@@ -125,6 +128,7 @@ export function AmbientLayer() {
       </div>
       <div className="ambient-over" ref={overRef} aria-hidden>
         <div className="vignette" />
+        <div className="fx-impact" ref={impactRef} />
         <div className="fx-flash" ref={flashRef} />
         <div className="fx-lightning" ref={lightningRef} />
       </div>
