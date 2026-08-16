@@ -69,6 +69,40 @@ html, body, #root {
   overflow-x: hidden;
 }
 
+/* Screens that are lists rather than one-viewport games (the game select, the
+   opponent roster, the difficulty ladder) opt out of the fixed shell via
+   data-shell on <html>, set by App.
+
+   `height: 100%` above is a ceiling, not a floor: combined with the
+   overflow-x, anything taller than the viewport gets clamped and clipped with
+   no way to scroll to it. That is invisible for blackjack, which is built to
+   fit exactly one screen, but it hid half the roster — at 950x420 the last
+   card sat 266px below a page that refused to scroll at all. */
+html[data-shell='scroll'],
+html[data-shell='scroll'] body,
+html[data-shell='scroll'] #root {
+  height: auto;
+  min-height: 100%;
+}
+
+/* Exactly one scroll container: the document.
+
+   body and #root need `visible` on BOTH axes. The rule above sets
+   overflow-x: hidden on all three, and when one axis is hidden the other
+   computes to `auto` instead of staying visible — so body and #root quietly
+   become scroll containers of their own. A nested scroller only a couple of
+   pixels tall is worse than a large one: every touch gesture is swallowed by
+   the inner box before the page moves. */
+html[data-shell='scroll'] body,
+html[data-shell='scroll'] #root {
+  overflow: visible;
+}
+
+html[data-shell='scroll'] {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 /* App-shell hardening: this is installed to a home screen, so it should never
    feel like a web page — no rubber-band scroll, no tap flash, no accidental
    text selection or long-press callouts on the board. */
@@ -967,15 +1001,8 @@ button {
     overflow: hidden;
   }
 
-  /* Scrollable screens still need the viewport as a floor, not a ceiling. */
-  html[data-shell='scroll'],
-  html[data-shell='scroll'] body,
-  html[data-shell='scroll'] #root {
-    height: auto;
-    min-height: 100%;
-    overflow-x: hidden;
-    overflow-y: visible;
-  }
+  /* The scroll-mode counterpart lives outside this media query — those
+     screens overflow on short desktop windows too, not just on phones. */
 
   .app-root {
     height: 100vh;
