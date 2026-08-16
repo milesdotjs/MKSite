@@ -80,6 +80,18 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
+  // Blackjack is a true one-viewport shell and must never scroll or
+  // rubber-band. The menus are lists that can outgrow the viewport, and the
+  // chess board is better scrollable than clipped on a short phone — so the
+  // shell lock is per-screen rather than global. The mobile CSS keys off this.
+  useEffect(() => {
+    const el = document.documentElement;
+    el.dataset.shell = route.screen === 'blackjack' ? 'fixed' : 'scroll';
+    return () => {
+      delete el.dataset.shell;
+    };
+  }, [route.screen]);
+
   const go = useCallback((next: Route) => {
     window.location.hash = hashFor(next);
   }, []);

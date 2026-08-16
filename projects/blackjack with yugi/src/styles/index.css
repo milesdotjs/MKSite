@@ -952,11 +952,29 @@ button {
   }
 
   /* True app shell: exactly one viewport tall, never scrolls, and every edge
-     respects the notch / home indicator when installed to the home screen. */
-  html, body, #root {
+     respects the notch / home indicator when installed to the home screen.
+
+     Scoped to the screens that genuinely are one viewport — App sets
+     data-shell on <html>. It used to apply to every screen, which was correct
+     when blackjack was the only game, but the menus are lists that can exceed
+     the viewport, and `overflow: hidden` does not merely block scrolling: it
+     clamps scrollHeight, so anything past the fold is clipped away entirely. */
+  html[data-shell='fixed'],
+  html[data-shell='fixed'] body,
+  html[data-shell='fixed'] #root {
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
+  }
+
+  /* Scrollable screens still need the viewport as a floor, not a ceiling. */
+  html[data-shell='scroll'],
+  html[data-shell='scroll'] body,
+  html[data-shell='scroll'] #root {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
   }
 
   .app-root {
