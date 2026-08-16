@@ -39,7 +39,9 @@ export function RoundBanner({ state }: { state: GameState }) {
     () => {
       const el = ref.current?.querySelector('.banner-text');
       if (!el || !banner) return;
-      const split = new SplitText(el, { type: 'chars' });
+      // Words too, so the banner can wrap on narrow screens without
+      // splitting a word down the middle.
+      const split = new SplitText(el, { type: 'words,chars' });
       const tl = gsap.timeline();
       tl.from(split.chars, {
         opacity: 0,

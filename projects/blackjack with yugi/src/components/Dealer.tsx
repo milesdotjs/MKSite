@@ -1,64 +1,63 @@
 import { useRef } from 'react';
 import type { GameState } from '../game/types';
 import { gsap, useGSAP, SplitText } from '../anim/gsapSetup';
+import { AtemPortrait } from './AtemPortrait';
 
 type Props = {
   state: GameState;
 };
 
 /**
- * Sprites are Saikyo Card Battle bustups with the six face expressions
- * composited in — one uniform art style across every dealer state. The
- * "cutin" is the same game's dramatic pointing panel, used for the two
- * moments Atem goes for the kill.
+ * Two registers of dealer art, cut like an anime duel:
+ *
+ * - "live" — the Nightmare Troubadour portrait that blinks and talks. This is
+ *   Atem as you actually sit across from him, and it carries the quiet phases.
+ * - "still" — a Saikyo Card Battle bustup held for a single emotional beat,
+ *   the equivalent of cutting to a reaction shot. `cutin` marks the two
+ *   moments he goes for the kill, which fill the frame instead.
  */
-function spriteFor(state: GameState): { src: string; alt: string; cutin?: boolean } {
+type DealerArt =
+  | { kind: 'live' }
+  | { kind: 'still'; src: string; alt: string; cutin?: boolean };
+
+function artFor(state: GameState): DealerArt {
   if (state.phase === 'exodia') {
-    return { src: 'sprites/atem/atem-cutin.png', alt: 'Atem summons Exodia', cutin: true };
+    return { kind: 'still', src: 'sprites/atem/atem-cutin.png', alt: 'Atem summons Exodia', cutin: true };
   }
   if (state.phase === 'gameOver') {
     return state.dealerLP <= 0
-      ? { src: 'sprites/atem/atem-shock.png', alt: 'Atem defeated' }
-      : { src: 'sprites/atem/atem-cutin.png', alt: 'Atem triumphant', cutin: true };
+      ? { kind: 'still', src: 'sprites/atem/atem-shock.png', alt: 'Atem defeated' }
+      : { kind: 'still', src: 'sprites/atem/atem-cutin.png', alt: 'Atem triumphant', cutin: true };
   }
   if (state.phase === 'roundOver') {
     switch (state.outcome) {
       case 'playerWin':
       case 'dealerBust':
-        return { src: 'sprites/atem/atem-uneasy.png', alt: 'Atem rattled' };
+        return { kind: 'still', src: 'sprites/atem/atem-uneasy.png', alt: 'Atem rattled' };
       case 'dealerWin':
-        return { src: 'sprites/atem/atem-sly.png', alt: 'Atem smug' };
+        return { kind: 'still', src: 'sprites/atem/atem-sly.png', alt: 'Atem smug' };
       case 'playerBust':
-        return { src: 'sprites/atem/atem-shout.png', alt: 'Atem triumphant' };
+        return { kind: 'still', src: 'sprites/atem/atem-shout.png', alt: 'Atem triumphant' };
       case 'playerBlackjack':
-        return { src: 'sprites/atem/atem-shock.png', alt: 'Atem shocked' };
-      case 'push':
-        return { src: 'sprites/atem/atem-closed.png', alt: 'Atem unmoved' };
+        return { kind: 'still', src: 'sprites/atem/atem-shock.png', alt: 'Atem shocked' };
       default:
-        return { src: 'sprites/atem/atem-serious.png', alt: 'Atem' };
+        // A push moves nobody — stay with the living portrait.
+        return { kind: 'live' };
     }
   }
-  if (state.phase === 'shuffling') {
-    return { src: 'sprites/atem/atem-closed.png', alt: 'Atem shuffles, eyes closed' };
-  }
-  if (state.phase === 'dealerTurn') {
-    return { src: 'sprites/atem/atem-shout.png', alt: 'Atem draws' };
-  }
-  if (state.phase === 'playerTurn') {
-    return { src: 'sprites/atem/atem-sly.png', alt: 'Atem watching your move' };
-  }
-  return { src: 'sprites/atem/atem-serious.png', alt: 'Atem' };
+  return { kind: 'live' };
 }
 
 export function Dealer({ state }: Props) {
-  const { src, alt, cutin } = spriteFor(state);
+  const art = artFor(state);
   const frameRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
   const msgRef = useRef<HTMLSpanElement>(null);
 
   const auraActive = state.phase === 'dealerTurn' || state.phase === 'exodia';
+  const stillSrc = art.kind === 'still' ? art.src : null;
 
-  // Slow "breathing" on the monitor screen — keeps Atem feeling alive.
+  // Slow "breathing" on the monitor screen — keeps the frame itself alive.
   useGSAP(
     () => {
       if (!screenRef.current) return;
@@ -73,13 +72,13 @@ export function Dealer({ state }: Props) {
     { scope: frameRef, dependencies: [] }
   );
 
-  // Materialize the new sprite out of the shadows whenever the pose changes.
+  // Materialize whichever art just took the frame out of the shadows.
   useGSAP(
     () => {
-      const img = frameRef.current?.querySelector('.dealer-sprite');
-      if (!img) return;
+      const el = frameRef.current?.querySelector('.dealer-art');
+      if (!el) return;
       gsap.fromTo(
-        img,
+        el,
         { opacity: 0, filter: 'brightness(0.15) blur(7px)', scale: 1.05 },
         {
           opacity: 1,
@@ -90,14 +89,16 @@ export function Dealer({ state }: Props) {
         }
       );
     },
-    { scope: frameRef, dependencies: [src] }
+    { scope: frameRef, dependencies: [stillSrc, art.kind] }
   );
 
   // Quips whisper in character by character.
   useGSAP(
     () => {
       if (!msgRef.current) return;
-      const split = new SplitText(msgRef.current, { type: 'chars' });
+      // Split words as well as chars — with chars alone the per-character
+      // wrappers let a line break land inside a word ("th / ought").
+      const split = new SplitText(msgRef.current, { type: 'words,chars' });
       gsap.from(split.chars, {
         opacity: 0,
         filter: 'blur(4px)',
@@ -121,12 +122,23 @@ export function Dealer({ state }: Props) {
         <div className="dealer-monitor-corner br" />
         <div className="dealer-monitor-nameplate">ATEM</div>
         <div className="dealer-monitor-screen" ref={screenRef}>
-          <img
-            key={src}
-            className={`dealer-sprite ${cutin ? 'cutin' : ''} ${state.phase === 'exodia' ? 'shake' : ''}`}
-            src={src}
-            alt={alt}
-          />
+          {art.kind === 'live' ? (
+            <div className="dealer-art" key="live">
+              <AtemPortrait
+                message={state.message}
+                agitated={state.phase === 'dealerTurn'}
+              />
+            </div>
+          ) : (
+            <img
+              key={art.src}
+              className={`dealer-art dealer-sprite ${art.cutin ? 'cutin' : ''} ${
+                state.phase === 'exodia' ? 'shake' : ''
+              }`}
+              src={art.src}
+              alt={art.alt}
+            />
+          )}
         </div>
       </div>
       <div className="dealer-message">
