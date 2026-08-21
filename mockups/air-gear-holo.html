@@ -1,59 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Miles King &#10022; Software Developer</title>
-    <meta name="description" content="Miles King — software developer based in Houston, Texas. Web apps, utilities, and case studies." />
-    <meta property="og:title" content="Miles King — Software Developer" />
-    <meta property="og:description" content="Software developer based in Houston, Texas." />
-    <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#05060d" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2305060d'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='bold' text-anchor='middle' fill='%234ff5ff'%3EMK%3C/text%3E%3Cline x1='10' y1='52' x2='54' y2='52' stroke='%23ff4fd8' stroke-width='3'/%3E%3C/svg%3E" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500..900&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600;1,700&family=Space+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/site.css" />
-    <noscript>
-      <style>
-        #boot { display: none !important; }
-        body.is-booting { overflow: auto; height: auto; }
-        .reticle { display: none !important; }
-      </style>
-    </noscript>
-  </head>
-  <body class="is-booting">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MK &#10022; AIR GEAR / HOLO &mdash; visual mockup</title>
+<meta name="theme-color" content="#05060d" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&amp;family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&amp;family=Space+Mono:wght@400;700&amp;family=Zen+Kaku+Gothic+New:wght@500;700;900&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="air-gear-holo.css" />
+</head>
+<body class="is-booting">
 
 <!-- ===== mechanical sprite sheet ===== -->
 <svg class="sprite" aria-hidden="true" width="0" height="0">
   <defs>
     <linearGradient id="chr" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/><stop offset="22%" stop-color="#eaf3ff"/>
-      <stop offset="44%" stop-color="#aabdd9"/><stop offset="50%" stop-color="#6f80a2"/>
-      <stop offset="57%" stop-color="#edf5ff"/><stop offset="74%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#b4c4dd"/>
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="26%" stop-color="#cfe0f5"/>
+      <stop offset="45%" stop-color="#6c7fa0"/><stop offset="51%" stop-color="#2c3550"/>
+      <stop offset="58%" stop-color="#dfeaff"/><stop offset="80%" stop-color="#7d8dae"/>
+      <stop offset="100%" stop-color="#e8f2ff"/>
+    </linearGradient>
+    <linearGradient id="iris" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ff5ff"/><stop offset="34%" stop-color="#9d6bff"/>
+      <stop offset="67%" stop-color="#ff4fd8"/><stop offset="100%" stop-color="#b6ff4f"/>
     </linearGradient>
 
-    <!-- Air Treck wheel: tyre + tread + rim + internal drive gear + spokes -->
-    <g id="wheelSolid">
-      <path d="M 8.0 200.0 A 192.0 192.0 0 1 1 392.0 200.0 A 192.0 192.0 0 1 1 8.0 200.0 Z M 48.0 200.0 A 152.0 152.0 0 1 0 352.0 200.0 A 152.0 152.0 0 1 0 48.0 200.0 Z" fill="#070b16" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="2"/>
-      <path d="M 187.6 46.5 L 189.0 10.3 L 211.0 10.3 L 212.4 46.5 Z M 219.8 47.3 L 228.7 12.2 L 250.2 16.7 L 244.0 52.4 Z M 251.2 54.7 L 267.1 22.3 L 287.2 31.2 L 273.7 64.8 Z M 280.2 68.6 L 302.6 40.1 L 320.4 53.0 L 300.2 83.1 Z M 305.8 88.1 L 333.6 64.9 L 348.3 81.2 L 322.3 106.5 Z M 326.8 112.6 L 358.8 95.7 L 369.8 114.7 L 339.1 133.9 Z M 342.2 140.8 L 377.0 130.9 L 383.8 151.8 L 349.8 164.3 Z M 351.4 171.7 L 387.5 169.3 L 389.8 191.1 L 354.0 196.2 Z M 354.0 203.8 L 389.8 208.9 L 387.5 230.7 L 351.4 228.3 Z M 349.8 235.7 L 383.8 248.2 L 377.0 269.1 L 342.2 259.2 Z M 339.1 266.1 L 369.8 285.3 L 358.8 304.3 L 326.8 287.4 Z M 322.3 293.5 L 348.3 318.8 L 333.6 335.1 L 305.8 311.9 Z M 300.2 316.9 L 320.4 347.0 L 302.6 359.9 L 280.2 331.4 Z M 273.7 335.2 L 287.2 368.8 L 267.1 377.7 L 251.2 345.3 Z M 244.0 347.6 L 250.2 383.3 L 228.7 387.8 L 219.8 352.7 Z M 212.4 353.5 L 211.0 389.7 L 189.0 389.7 L 187.6 353.5 Z M 180.2 352.7 L 171.3 387.8 L 149.8 383.3 L 156.0 347.6 Z M 148.8 345.3 L 132.9 377.7 L 112.8 368.8 L 126.3 335.2 Z M 119.8 331.4 L 97.4 359.9 L 79.6 347.0 L 99.8 316.9 Z M 94.2 311.9 L 66.4 335.1 L 51.7 318.8 L 77.7 293.5 Z M 73.2 287.4 L 41.2 304.3 L 30.2 285.3 L 60.9 266.1 Z M 57.8 259.2 L 23.0 269.1 L 16.2 248.2 L 50.2 235.7 Z M 48.6 228.3 L 12.5 230.7 L 10.2 208.9 L 46.0 203.8 Z M 46.0 196.2 L 10.2 191.1 L 12.5 169.3 L 48.6 171.7 Z M 50.2 164.3 L 16.2 151.8 L 23.0 130.9 L 57.8 140.8 Z M 60.9 133.9 L 30.2 114.7 L 41.2 95.7 L 73.2 112.6 Z M 77.7 106.5 L 51.7 81.2 L 66.4 64.9 L 94.2 88.1 Z M 99.8 83.1 L 79.6 53.0 L 97.4 40.1 L 119.8 68.6 Z M 126.3 64.8 L 112.8 31.2 L 132.9 22.3 L 148.8 54.7 Z M 156.0 52.4 L 149.8 16.7 L 171.3 12.2 L 180.2 47.3 Z" fill="#16233f" stroke="#5fa8d8" stroke-width="1.2"/>
-      <path d="M 48.0 200.0 A 152.0 152.0 0 1 1 352.0 200.0 A 152.0 152.0 0 1 1 48.0 200.0 Z M 58.0 200.0 A 142.0 142.0 0 1 0 342.0 200.0 A 142.0 142.0 0 1 0 58.0 200.0 Z" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.6"/>
-      <path d="M 181.2 59.2 L 189.4 78.5 L 210.6 78.5 L 218.8 59.2 L 218.3 59.2 L 221.2 79.9 L 241.7 85.4 L 254.6 68.9 L 254.1 68.7 L 251.6 89.4 L 270.0 100.1 L 286.6 87.5 L 286.2 87.2 L 278.4 106.5 L 293.5 121.6 L 312.8 113.8 L 312.5 113.4 L 299.9 130.0 L 310.6 148.4 L 331.3 145.9 L 331.1 145.4 L 314.6 158.3 L 320.1 178.8 L 340.8 181.7 L 340.8 181.2 L 321.5 189.4 L 321.5 210.6 L 340.8 218.8 L 340.8 218.3 L 320.1 221.2 L 314.6 241.7 L 331.1 254.6 L 331.3 254.1 L 310.6 251.6 L 299.9 270.0 L 312.5 286.6 L 312.8 286.2 L 293.5 278.4 L 278.4 293.5 L 286.2 312.8 L 286.6 312.5 L 270.0 299.9 L 251.6 310.6 L 254.1 331.3 L 254.6 331.1 L 241.7 314.6 L 221.2 320.1 L 218.3 340.8 L 218.8 340.8 L 210.6 321.5 L 189.4 321.5 L 181.2 340.8 L 181.7 340.8 L 178.8 320.1 L 158.3 314.6 L 145.4 331.1 L 145.9 331.3 L 148.4 310.6 L 130.0 299.9 L 113.4 312.5 L 113.8 312.8 L 121.6 293.5 L 106.5 278.4 L 87.2 286.2 L 87.5 286.6 L 100.1 270.0 L 89.4 251.6 L 68.7 254.1 L 68.9 254.6 L 85.4 241.7 L 79.9 221.2 L 59.2 218.3 L 59.2 218.8 L 78.5 210.6 L 78.5 189.4 L 59.2 181.2 L 59.2 181.7 L 79.9 178.8 L 85.4 158.3 L 68.9 145.4 L 68.7 145.9 L 89.4 148.4 L 100.1 130.0 L 87.5 113.4 L 87.2 113.8 L 106.5 121.6 L 121.6 106.5 L 113.8 87.2 L 113.4 87.5 L 130.0 100.1 L 148.4 89.4 L 145.9 68.7 L 145.4 68.9 L 158.3 85.4 L 178.8 79.9 L 181.7 59.2 Z" fill="url(#chr)" stroke="#8fd8ff" stroke-width="1.6" stroke-linejoin="round"/>
-      <circle cx="200" cy="200" r="122" fill="#070b16"/>
-      <path d="M 185.6 152.1 L 191.0 78.3 L 209.0 78.3 L 214.4 152.1 Z M 234.3 163.6 L 300.9 131.4 L 309.9 146.9 L 248.7 188.5 Z M 248.7 211.5 L 309.9 253.1 L 300.9 268.6 L 234.3 236.4 Z M 214.4 247.9 L 209.0 321.7 L 191.0 321.7 L 185.6 247.9 Z M 165.7 236.4 L 99.1 268.6 L 90.1 253.1 L 151.3 211.5 Z M 151.3 188.5 L 90.1 146.9 L 99.1 131.4 L 165.7 163.6 Z" fill="url(#chr)" stroke="#8fd8ff" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="M 148.0 200.0 A 52.0 52.0 0 1 1 252.0 200.0 A 52.0 52.0 0 1 1 148.0 200.0 Z M 162.0 200.0 A 38.0 38.0 0 1 0 238.0 200.0 A 38.0 38.0 0 1 0 162.0 200.0 Z" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.6"/>
-      <g fill="#070b16" stroke="#8fd8ff" stroke-width="1.4"><circle cx="222.5" cy="161.0" r="5.5"/><circle cx="245.0" cy="200.0" r="5.5"/><circle cx="222.5" cy="239.0" r="5.5"/><circle cx="177.5" cy="239.0" r="5.5"/><circle cx="155.0" cy="200.0" r="5.5"/><circle cx="177.5" cy="161.0" r="5.5"/></g>
-      <circle cx="200" cy="200" r="30" fill="#ff4fd8" stroke="#070b16" stroke-width="4"/>
-      <circle cx="200" cy="200" r="13" fill="#070b16"/>
-      <g fill="#b6ff4f"><circle cx="200.0" cy="114.0" r="5.0"/><circle cx="286.0" cy="200.0" r="5.0"/><circle cx="200.0" cy="286.0" r="5.0"/><circle cx="114.0" cy="200.0" r="5.0"/></g>
-    </g>
-    <g id="wheelWire">
-      <path d="M 8.0 200.0 A 192.0 192.0 0 1 1 392.0 200.0 A 192.0 192.0 0 1 1 8.0 200.0 Z M 48.0 200.0 A 152.0 152.0 0 1 0 352.0 200.0 A 152.0 152.0 0 1 0 48.0 200.0 Z" fill="none" stroke="#4ff5ff" stroke-width="2"/>
-      <path d="M 181.2 59.2 L 189.4 78.5 L 210.6 78.5 L 218.8 59.2 L 218.3 59.2 L 221.2 79.9 L 241.7 85.4 L 254.6 68.9 L 254.1 68.7 L 251.6 89.4 L 270.0 100.1 L 286.6 87.5 L 286.2 87.2 L 278.4 106.5 L 293.5 121.6 L 312.8 113.8 L 312.5 113.4 L 299.9 130.0 L 310.6 148.4 L 331.3 145.9 L 331.1 145.4 L 314.6 158.3 L 320.1 178.8 L 340.8 181.7 L 340.8 181.2 L 321.5 189.4 L 321.5 210.6 L 340.8 218.8 L 340.8 218.3 L 320.1 221.2 L 314.6 241.7 L 331.1 254.6 L 331.3 254.1 L 310.6 251.6 L 299.9 270.0 L 312.5 286.6 L 312.8 286.2 L 293.5 278.4 L 278.4 293.5 L 286.2 312.8 L 286.6 312.5 L 270.0 299.9 L 251.6 310.6 L 254.1 331.3 L 254.6 331.1 L 241.7 314.6 L 221.2 320.1 L 218.3 340.8 L 218.8 340.8 L 210.6 321.5 L 189.4 321.5 L 181.2 340.8 L 181.7 340.8 L 178.8 320.1 L 158.3 314.6 L 145.4 331.1 L 145.9 331.3 L 148.4 310.6 L 130.0 299.9 L 113.4 312.5 L 113.8 312.8 L 121.6 293.5 L 106.5 278.4 L 87.2 286.2 L 87.5 286.6 L 100.1 270.0 L 89.4 251.6 L 68.7 254.1 L 68.9 254.6 L 85.4 241.7 L 79.9 221.2 L 59.2 218.3 L 59.2 218.8 L 78.5 210.6 L 78.5 189.4 L 59.2 181.2 L 59.2 181.7 L 79.9 178.8 L 85.4 158.3 L 68.9 145.4 L 68.7 145.9 L 89.4 148.4 L 100.1 130.0 L 87.5 113.4 L 87.2 113.8 L 106.5 121.6 L 121.6 106.5 L 113.8 87.2 L 113.4 87.5 L 130.0 100.1 L 148.4 89.4 L 145.9 68.7 L 145.4 68.9 L 158.3 85.4 L 178.8 79.9 L 181.7 59.2 Z" fill="none" stroke="#4ff5ff" stroke-width="1.4" stroke-linejoin="round"/>
-      <path d="M 185.6 152.1 L 191.0 78.3 L 209.0 78.3 L 214.4 152.1 Z M 234.3 163.6 L 300.9 131.4 L 309.9 146.9 L 248.7 188.5 Z M 248.7 211.5 L 309.9 253.1 L 300.9 268.6 L 234.3 236.4 Z M 214.4 247.9 L 209.0 321.7 L 191.0 321.7 L 185.6 247.9 Z M 165.7 236.4 L 99.1 268.6 L 90.1 253.1 L 151.3 211.5 Z M 151.3 188.5 L 90.1 146.9 L 99.1 131.4 L 165.7 163.6 Z" fill="none" stroke="#4ff5ff" stroke-width="1.4" stroke-linejoin="round"/>
-      <circle cx="200" cy="200" r="52" fill="none" stroke="#4ff5ff" stroke-width="1.4"/>
-      <circle cx="200" cy="200" r="30" fill="none" stroke="#4ff5ff" stroke-width="1.4"/>
+    <g id="wingShape">
+      <path d="M342 196 C 250 150 158 116 66 92 C 100 130 154 168 232 196 C 274 210 318 216 344 214Z"/>
+      <path d="M340 220 C 244 208 148 200 52 200 C 96 232 158 262 244 274 C 288 280 324 276 346 268Z"/>
+      <path d="M344 246 C 258 262 174 288 100 326 C 152 342 216 344 288 322 C 324 310 348 292 356 274Z"/>
+      <path d="M356 268 C 296 302 240 348 196 404 C 250 402 306 378 350 334 C 372 312 382 290 382 272Z"/>
+      <path d="M418 196 C 510 150 602 116 694 92 C 660 130 606 168 528 196 C 486 210 442 216 416 214Z"/>
+      <path d="M420 220 C 516 208 612 200 708 200 C 664 232 602 262 516 274 C 472 280 436 276 414 268Z"/>
+      <path d="M416 246 C 502 262 586 288 660 326 C 608 342 544 344 472 322 C 436 310 412 292 404 274Z"/>
+      <path d="M404 268 C 464 302 520 348 564 404 C 510 402 454 378 410 334 C 388 312 378 290 378 272Z"/>
     </g>
 
     <g id="gearA">
@@ -86,11 +67,11 @@
   <div class="boot-scan"></div>
   <div class="boot-core">
     <span class="boot-gear"><svg viewBox="0 0 120 120"><use href="#gearWire"/></svg></span>
-    <p class="boot-id" data-boot-id>MK-AT-2026 :: WING DRIVE CORE</p>
+    <p class="boot-id" data-boot-id>MK-AT-2026 :: PARADIGM CORE</p>
     <div class="boot-log">
       <p data-boot-line>&gt; mounting /dev/at0 .............. OK</p>
       <p data-boot-line>&gt; spinning up gear train ......... 12/12</p>
-      <p data-boot-line>&gt; calibrating drive wheel W-01 ... OK</p>
+      <p data-boot-line>&gt; calibrating wing unit A-01 ..... OK</p>
       <p data-boot-line>&gt; projecting holo layer .......... OK</p>
       <p data-boot-line>&gt; loading portfolio manifest ..... 06 NODES</p>
       <p data-boot-line>&gt; handshake .......................</p>
@@ -144,7 +125,7 @@
     <a href="#contact"><span data-scramble>CONTACT</span></a>
   </nav>
   <div class="nav-side">
-    <span class="nav-kana">マイルス</span>
+    <span class="nav-kana">&#12510;&#12452;&#12523;&#12473;</span>
     <a class="nav-cta" href="#contact"><span data-scramble>SAY HELLO</span></a>
   </div>
 </header>
@@ -159,14 +140,29 @@
     <span class="gear g-d" data-gear data-dur="30" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearA"/></svg></span>
     <span class="gear g-e" data-gear data-dur="18"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
     <span class="gear g-f" data-gear data-dur="12" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
-    <span class="gear g-g" data-gear data-dur="26"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
-    <span class="gear g-h" data-gear data-dur="11" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
   </div>
 
-  <!-- emblem: the chrome wheel plus a holographic twin a few px out of register -->
+  <!-- emblem: a physical chrome machine with a holographic twin that
+       drifts a few pixels out of register -->
   <div class="emblem" aria-hidden="true">
-    <svg class="em-wire" viewBox="0 0 400 400"><use href="#wheelWire"/></svg>
-    <svg class="em-solid" viewBox="0 0 400 400"><use href="#wheelSolid"/></svg>
+    <svg class="em-wire" viewBox="0 0 760 470"><use href="#wingShape"/></svg>
+    <svg class="em-solid" viewBox="0 0 760 470">
+      <use href="#wingShape"/>
+      <g class="em-hub">
+        <circle cx="380" cy="240" r="96" fill="#070b16"/>
+        <circle cx="380" cy="240" r="82" fill="none" stroke="url(#chr)" stroke-width="9"/>
+        <g stroke="#cfe6ff" stroke-width="7" stroke-linecap="round">
+          <path d="M380 168v26M380 286v26M308 240h26M426 240h26"/>
+          <path d="M329 189l18 18M413 273l18 18M431 189l-18 18M347 273l-18 18"/>
+        </g>
+        <circle cx="380" cy="240" r="30" fill="#ff4fd8" stroke="#070b16" stroke-width="5"/>
+        <circle cx="380" cy="240" r="13" fill="#070b16"/>
+        <g fill="#b6ff4f">
+          <circle cx="380" cy="196" r="5"/><circle cx="380" cy="284" r="5"/>
+          <circle cx="336" cy="240" r="5"/><circle cx="424" cy="240" r="5"/>
+        </g>
+      </g>
+    </svg>
     <span class="em-scan"></span>
   </div>
 
@@ -179,7 +175,7 @@
     <span class="bp-stamp bs-bl">UNIT&nbsp;MK-AT-2026</span>
     <span class="bp-stamp bs-br">TOL&nbsp;&plusmn;0.05</span>
     <span class="bp-dim"><i class="bp-arrow"></i><b>1240.00</b><i class="bp-arrow bp-arrow-r"></i></span>
-    <span class="bp-call bp-c1"><em></em>DRIVE WHEEL / W-01</span>
+    <span class="bp-call bp-c1"><em></em>WING UNIT / A-01</span>
     <span class="bp-call bp-c2"><em></em>MOTOR HUB / &#8709;96</span>
     <span class="bp-call bp-c3"><em></em>BEARING &times;4</span>
   </div>
@@ -188,9 +184,10 @@
     <p class="hero-kicker">
       <span class="tag tag-pink" data-scramble>SOFTWARE DEVELOPER</span>
       <span class="tag tag-cyan" data-scramble>HOUSTON, TX</span>
+      <span class="tag tag-out" data-scramble>EST. 2026</span>
     </p>
     <h1 class="hero-name" data-text="MILES KING"><span data-split>MILES KING</span></h1>
-    <p class="hero-kana" data-scramble>マイルス・キング</p>
+    <p class="hero-kana" data-scramble>&#12510;&#12452;&#12523;&#12473;&#12539;&#12461;&#12531;&#12464;</p>
     <p class="hero-lede">
       I build web apps, small utilities, and the occasional weird side project &mdash;
       then I measure whether they actually get used.
@@ -221,16 +218,12 @@
 
 <main>
 
-<!-- ===== TRICK.01 — WHAT I DO ===== -->
+<!-- ===== TRICK.01 ===== -->
 <section id="stack" class="sec">
-  <span class="sec-gears" aria-hidden="true">
-    <span class="gear g-s1" data-gear data-dur="40"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
-    <span class="gear g-s2" data-gear data-dur="15" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
-  </span>
-  <div class="sec-head">
-    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.01</i><span>スキル</span></p>
-    <h2 class="sec-title" data-text="WHAT I DO" data-scramble><span>WHAT I DO</span></h2>
-  </div>
+    <div class="sec-head">
+      <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.01</i><span>スキル</span></p>
+      <h2 class="sec-title" data-text="WHAT I DO" data-scramble><span>WHAT I DO</span></h2>
+    </div>
 
   <div class="stack-grid">
     <div class="glass spec" data-panel>
@@ -324,21 +317,17 @@
         <p class="chip-label">ANALYTICS &amp; DATA</p>
         <ul class="chips"><li>GA4</li><li>GTM</li><li>LOOKER STUDIO</li><li>BIGQUERY</li><li>DATA VIZ</li></ul>
       </div>
-      <a class="btn btn-ghost" data-magnet href="assets/Miles-King.pdf" target="_blank" rel="noopener"><span data-scramble>RESUME.PDF &darr;</span></a>
+      <a class="btn btn-ghost" data-magnet href="#"><span data-scramble>RESUME.PDF &darr;</span></a>
     </div>
   </div>
 </section>
 
-<!-- ===== TRICK.02 — WHO I AM ===== -->
+<!-- ===== TRICK.02 ===== -->
 <section id="rider" class="sec">
-  <span class="sec-gears" aria-hidden="true">
-    <span class="gear g-r1" data-gear data-dur="36" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearA"/></svg></span>
-    <span class="gear g-r2" data-gear data-dur="13"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
-  </span>
-  <div class="sec-head">
-    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.02</i><span>ライダー</span></p>
-    <h2 class="sec-title" data-text="WHO I AM" data-scramble><span>WHO I AM</span></h2>
-  </div>
+    <div class="sec-head">
+      <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.02</i><span>ライダー</span></p>
+      <h2 class="sec-title" data-text="WHO I AM" data-scramble><span>WHO I AM</span></h2>
+    </div>
 
   <div class="rider-grid">
     <div class="glass rcard" data-panel data-tilt>
@@ -347,7 +336,7 @@
         <span class="rcard-rank">01</span>
         <div class="rcard-name">
           <b>MILES KING</b>
-          <span>マイルス・キング</span>
+          <span>&#12510;&#12452;&#12523;&#12473;&#12539;&#12461;&#12531;&#12464;</span>
         </div>
         <span class="rcard-badge">DEV</span>
       </div>
@@ -384,35 +373,32 @@
         <li><span>02</span>Ships small tools, then measures whether they get used.</li>
         <li><span>03</span>Houston, TX. Open to interesting problems.</li>
       </ul>
-      <a class="btn btn-ghost" data-magnet href="about.html"><span data-scramble>MORE ABOUT ME &rarr;</span></a>
+      <a class="btn btn-ghost" data-magnet href="#"><span data-scramble>MORE ABOUT ME &rarr;</span></a>
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- ===== TRICK.03 — MY WORK ===== -->
+<!-- ===== TRICK.03 ===== -->
 <section id="work" class="sec sec-deep">
   <span class="deep-gears" aria-hidden="true">
     <span class="gear g-w1" data-gear data-dur="44"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
     <span class="gear g-w2" data-gear data-dur="19" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
-    <span class="gear g-w3" data-gear data-dur="33"><svg viewBox="0 0 120 120"><use href="#gearA"/></svg></span>
   </span>
   <div class="sec-inner">
-  <div class="sec-head">
-    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.03</i><span>プロジェクト</span></p>
-    <h2 class="sec-title" data-text="MY WORK" data-scramble><span>MY WORK</span></h2>
-    <p class="sec-sub">A mix of small utilities I actually use and web experiments I built to learn something. Click any card to play with it.</p>
-    <a class="head-link" href="projects.html"><span data-scramble>FULL PROJECT INDEX</span> <i>&rarr;</i></a>
-  </div>
+    <div class="sec-head">
+      <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.03</i><span>プロジェクト</span></p>
+      <h2 class="sec-title is-light" data-text="MY WORK" data-scramble><span>MY WORK</span></h2>
+      <p class="sec-sub">A mix of small utilities I actually use and web experiments I built to learn something. Click any one to open it.</p>
+      <a class="head-link" href="#"><span data-scramble>FULL PROJECT INDEX</span> <i>&rarr;</i></a>
+    </div>
 
     <div class="work-grid">
       <article class="card is-top" data-tilt>
-        <a href="projects/study-something/">
+        <a href="#">
           <span class="card-rank">01</span>
-          <div class="card-shot">
-            <img src="assets/img/study-something.png" alt="Study Something! chess study utility preview" loading="lazy" />
-            <span class="card-tint" aria-hidden="true"></span>
+          <div class="card-shot" data-shot="chess">
             <span class="card-sheen" aria-hidden="true"></span>
             <span class="card-scan" aria-hidden="true"></span>
           </div>
@@ -420,7 +406,7 @@
             <span class="card-flag is-amber">NEW &#10022; UTILITY</span>
             <h3 data-scramble>Study Something!</h3>
             <p>Pulls random over-the-board games from top chess players so I can study unfamiliar positions.</p>
-            <span class="card-tags">UTILITY // CHESS // JS</span>
+            <span class="card-tags">UTILITY / CHESS / JS</span>
             <span class="card-pn"><em>P/N</em>MK-2026-01<i></i>REV 2.6</span>
             <span class="card-go">LAUNCH &rarr;</span>
           </div>
@@ -429,19 +415,17 @@
       </article>
 
       <article class="card" data-tilt>
-        <a href="projects/anime-blackjack/">
+        <a href="#">
           <span class="card-rank">02</span>
-          <div class="card-shot">
-            <img src="assets/img/anime-blackjack.jpg" alt="Anime Blackjack game preview — animated dealer and card table" loading="lazy" />
-            <span class="card-tint" aria-hidden="true"></span>
+          <div class="card-shot" data-shot="cards">
             <span class="card-sheen" aria-hidden="true"></span>
             <span class="card-scan" aria-hidden="true"></span>
           </div>
           <div class="card-body">
             <span class="card-flag">NEW &#10022; GAME</span>
             <h3 data-scramble>Anime Blackjack</h3>
-            <p>Blackjack against an animated anime dealer who reacts to every hand.</p>
-            <span class="card-tags">GAME // REACT // GSAP</span>
+            <p>Blackjack against an animated dealer who reacts to every hand.</p>
+            <span class="card-tags">GAME / REACT / GSAP</span>
             <span class="card-pn"><em>P/N</em>MK-2026-02<i></i>REV 2.6</span>
             <span class="card-go">LAUNCH &rarr;</span>
           </div>
@@ -450,18 +434,16 @@
       </article>
 
       <article class="card" data-tilt>
-        <a href="projects/infinite-crayons/">
+        <a href="#">
           <span class="card-rank">03</span>
-          <div class="card-shot">
-            <img src="assets/img/infinite-crayons.png" alt="InfiniteCrayons color palette generator preview" loading="lazy" />
-            <span class="card-tint" aria-hidden="true"></span>
+          <div class="card-shot" data-shot="color">
             <span class="card-sheen" aria-hidden="true"></span>
             <span class="card-scan" aria-hidden="true"></span>
           </div>
           <div class="card-body">
             <h3 data-scramble>InfiniteCrayons</h3>
-            <p>Color palette generator with per-swatch HSL control.</p>
-            <span class="card-tags">TOOL // COLOR</span>
+            <p>Colour palette generator with per-swatch HSL control.</p>
+            <span class="card-tags">TOOL / COLOR</span>
             <span class="card-pn"><em>P/N</em>MK-2026-03<i></i>REV 2.6</span>
             <span class="card-go">LAUNCH &rarr;</span>
           </div>
@@ -470,18 +452,16 @@
       </article>
 
       <article class="card" data-tilt>
-        <a href="projects/jst-play/">
+        <a href="#">
           <span class="card-rank">04</span>
-          <div class="card-shot">
-            <img src="assets/img/jst-play.png" alt="JSt Play drum machine preview" loading="lazy" />
-            <span class="card-tint" aria-hidden="true"></span>
+          <div class="card-shot" data-shot="audio">
             <span class="card-sheen" aria-hidden="true"></span>
             <span class="card-scan" aria-hidden="true"></span>
           </div>
           <div class="card-body">
             <h3 data-scramble>JSt Play</h3>
             <p>Browser drum machine &amp; step sequencer.</p>
-            <span class="card-tags">AUDIO // FUN</span>
+            <span class="card-tags">AUDIO / FUN</span>
             <span class="card-pn"><em>P/N</em>MK-2026-04<i></i>REV 2.6</span>
             <span class="card-go">LAUNCH &rarr;</span>
           </div>
@@ -490,18 +470,16 @@
       </article>
 
       <article class="card" data-tilt>
-        <a href="projects/more-stock-images/">
+        <a href="#">
           <span class="card-rank">05</span>
-          <div class="card-shot">
-            <img src="assets/img/more-stock-images.png" alt="MoreStockImages photo search preview" loading="lazy" />
-            <span class="card-tint" aria-hidden="true"></span>
+          <div class="card-shot" data-shot="stock">
             <span class="card-sheen" aria-hidden="true"></span>
             <span class="card-scan" aria-hidden="true"></span>
           </div>
           <div class="card-body">
             <h3 data-scramble>MoreStockImages</h3>
             <p>Royalty-free photo search across providers.</p>
-            <span class="card-tags">TOOL // API</span>
+            <span class="card-tags">TOOL / API</span>
             <span class="card-pn"><em>P/N</em>MK-2026-05<i></i>REV 2.6</span>
             <span class="card-go">LAUNCH &rarr;</span>
           </div>
@@ -510,18 +488,16 @@
       </article>
 
       <article class="card" data-tilt>
-        <a href="projects/mettatonex.html">
+        <a href="#">
           <span class="card-rank">06</span>
-          <div class="card-shot">
-            <img src="assets/img/mettatonex.png" alt="MettatonEX Discord bot preview" loading="lazy" />
-            <span class="card-tint" aria-hidden="true"></span>
+          <div class="card-shot" data-shot="bot">
             <span class="card-sheen" aria-hidden="true"></span>
             <span class="card-scan" aria-hidden="true"></span>
           </div>
           <div class="card-body">
             <h3 data-scramble>MettatonEX</h3>
             <p>Discord bot that announces new YouTube uploads.</p>
-            <span class="card-tags">NODE.JS // DISCORD.JS</span>
+            <span class="card-tags">NODE.JS / DISCORD.JS</span>
             <span class="card-pn"><em>P/N</em>MK-2026-06<i></i>REV 2.6</span>
             <span class="card-go">CASE STUDY &rarr;</span>
           </div>
@@ -532,17 +508,13 @@
   </div>
 </section>
 
-<!-- ===== TRICK.04 — SAY HELLO ===== -->
+<!-- ===== TRICK.04 ===== -->
 <section id="contact" class="sec">
-  <span class="sec-gears" aria-hidden="true">
-    <span class="gear g-c1" data-gear data-dur="42" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
-    <span class="gear g-c2" data-gear data-dur="16"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
-  </span>
-  <div class="sec-head">
-    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.04</i><span>コンタクト</span></p>
-    <h2 class="sec-title" data-text="SAY HELLO" data-scramble><span>SAY HELLO</span></h2>
-    <p class="sec-sub">Reach out about a project, a collaboration, an interesting problem, or just to say hi.</p>
-  </div>
+    <div class="sec-head">
+      <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.04</i><span>コンタクト</span></p>
+      <h2 class="sec-title" data-text="SAY HELLO" data-scramble><span>SAY HELLO</span></h2>
+      <p class="sec-sub">Reach out about a project, a collaboration, an interesting problem, or just to say hi.</p>
+    </div>
 
   <div class="glass console" data-panel>
     <span class="g-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -551,14 +523,14 @@
       <span>TRANSMISSION CONSOLE</span>
       <span class="console-id" data-cycle>CH-04 / OPEN</span>
     </div>
-    <form class="form" action="https://formspree.io/f/mpznbgbl" method="POST">
+    <form class="form" onsubmit="return false">
       <div class="f-row">
-        <label class="field"><span>NAME</span><input type="text" name="name" placeholder="operator name" required /></label>
-        <label class="field"><span>EMAIL</span><input type="email" name="email" placeholder="you@cyberspace.net" required /></label>
+        <label class="field"><span>NAME</span><input type="text" placeholder="your name" /></label>
+        <label class="field"><span>EMAIL</span><input type="email" placeholder="you@somewhere.com" /></label>
       </div>
-      <label class="field"><span>MESSAGE</span><textarea rows="6" name="message" placeholder="begin transmission..." required></textarea></label>
+      <label class="field"><span>MESSAGE</span><textarea rows="6" placeholder="say something..."></textarea></label>
       <div class="console-foot">
-        <button class="btn btn-pink btn-big" data-magnet type="submit"><span data-scramble>TRANSMIT &#9654;</span></button>
+        <button class="btn btn-pink btn-big" data-magnet type="submit"><span data-scramble>SEND IT &rarr;</span></button>
         <dl class="console-read">
           <div><dt>LATENCY</dt><dd data-jitter="14">014&nbsp;ms</dd></div>
           <div><dt>REPLY</dt><dd>&lt;&nbsp;24&nbsp;h</dd></div>
@@ -573,20 +545,22 @@
 <footer id="footer">
   <span class="foot-gear"><svg viewBox="0 0 120 120"><use href="#gearWire"/></svg></span>
   <ul class="social">
-    <li><a href="https://github.com/milesdotjs" target="_blank" rel="noopener" aria-label="GitHub" data-magnet><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.66.41.35.77 1.05.77 2.12 0 1.54-.01 2.77-.01 3.15 0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a></li>
-    <li><a href="https://linkedin.com/in/miles-k" target="_blank" rel="noopener" aria-label="LinkedIn" data-magnet><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li>
+    <li><a href="#" aria-label="GitHub" data-magnet><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.66.41.35.77 1.05.77 2.12 0 1.54-.01 2.77-.01 3.15 0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a></li>
+    <li><a href="#" aria-label="LinkedIn" data-magnet><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li>
   </ul>
-  <p class="foot-line">&copy; <span data-year>2026</span> MILES KING <i>&#10022;</i> SOFTWARE DEVELOPER <i>&#10022;</i> MILESKING.DEV</p>
+  <p class="foot-line">&copy; 2026 MILES KING <i>&#10022;</i> SOFTWARE DEVELOPER <i>&#10022;</i> MILESKING.DEV</p>
   <p class="foot-sig" data-cycle>&mdash; HOLO LINK STABLE &mdash;</p>
   <a class="totop" href="#hero"><span data-scramble>BACK TO TOP &uarr;</span></a>
 </footer>
 
-<script src="assets/js/vendor/gsap.min.js"></script>
-<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
-<script src="assets/js/vendor/ScrollToPlugin.min.js"></script>
-<script src="assets/js/vendor/SplitText.min.js"></script>
-<script src="assets/js/vendor/ScrambleTextPlugin.min.js"></script>
-<script src="assets/js/vendor/Physics2DPlugin.min.js"></script>
-<script src="assets/js/site.js"></script>
-  </body>
+<script src="../assets/js/vendor/gsap.min.js"></script>
+<script src="../assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="../assets/js/vendor/ScrollToPlugin.min.js"></script>
+<script src="../assets/js/vendor/SplitText.min.js"></script>
+<script src="../assets/js/vendor/ScrambleTextPlugin.min.js"></script>
+<script src="../assets/js/vendor/Physics2DPlugin.min.js"></script>
+<script src="../assets/js/vendor/Observer.min.js"></script>
+<script src="../assets/js/vendor/CustomEase.min.js"></script>
+<script src="air-gear-holo.js"></script>
+</body>
 </html>

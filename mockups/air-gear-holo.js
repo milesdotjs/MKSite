@@ -1,5 +1,5 @@
 /* ============================================================
-   MILESKING.DEV — motion (Air Gear / Holo theme)
+   AIR GEAR / HOLO — motion
    GSAP 3.13 + ScrollTrigger, SplitText, ScrambleText, Physics2D, Observer.
 
    Two ideas drive almost everything here:
@@ -26,10 +26,7 @@
   var root = document.documentElement;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var params = new URLSearchParams(location.search);
-  var seenBoot = false;
-  try { seenBoot = sessionStorage.getItem("mk-booted") === "1"; } catch (e) {}
-  var skipBoot = params.get("boot") === "0" || reduce ||
-                 (seenBoot && params.get("boot") !== "1");
+  var skipBoot = params.get("boot") === "0" || reduce;
 
   if (!window.gsap) {           // no GSAP: CSS fallbacks carry the page
     document.body.classList.remove("is-booting");
@@ -39,7 +36,7 @@
   }
 
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText,
-                      ScrambleTextPlugin, Physics2DPlugin);
+                      ScrambleTextPlugin, Physics2DPlugin, Observer);
   root.classList.add("is-gsap");
 
   var $ = function (s, c) { return (c || document).querySelector(s); };
@@ -61,7 +58,6 @@
 
     var tl = gsap.timeline({
       onComplete: function () {
-        try { sessionStorage.setItem("mk-booted", "1"); } catch (e) {}
         el.remove();
         document.body.classList.remove("is-booting");
         ScrollTrigger.refresh();
@@ -74,7 +70,7 @@
     tl.to($(".boot-gear svg"), { rotation: 720, duration: 3.4, ease: "power2.inOut", transformOrigin: "50% 50%" }, 0)
       .from($(".boot-core"), { opacity: 0, duration: .4 }, 0)
       .to($("[data-boot-id]"), {
-        duration: .9, scrambleText: { text: "MK-AT-2026 :: WING DRIVE CORE", chars: SCRAMBLE, speed: .5 }
+        duration: .9, scrambleText: { text: "MK-AT-2026 :: PARADIGM CORE", chars: SCRAMBLE, speed: .5 }
       }, .1);
 
     // log lines land one at a time, each decoding into place
@@ -127,10 +123,11 @@
       }));
     });
 
-    // every tape is part of the same drivetrain
-    $$("[data-tape]").forEach(function (tape) {
+    // the tape is part of the same drivetrain
+    var tape = $("[data-tape]");
+    if (tape) {
       drives.push(gsap.to(tape, { xPercent: -50, duration: 24, ease: "none", repeat: -1 }));
-    });
+    }
 
     // Scroll velocity drives the whole train. One shared timeScale,
     // lerped on the ticker — spawning a tween per gear per scroll tick
@@ -160,7 +157,6 @@
      3. HERO — the projection powers on
      ========================================================== */
   function hero() {
-    if (!$("#hero")) return;
     var name = $(".hero-name span[data-split]");
     var tl = gsap.timeline({ delay: .1 });
 
@@ -405,24 +401,6 @@
      9. PARALLAX — depth in the chamber
      ========================================================== */
   function parallax() {
-    if ($("#hero")) parallaxHero();
-    gsap.to(".fx-floor", {
-      yPercent: -18, ease: "none",
-      scrollTrigger: { start: 0, end: "max", scrub: 1 }
-    });
-    // gears drift as well as spin
-    $$("[data-gear]").forEach(function (g, i) {
-      gsap.to(g, {
-        yPercent: (i % 2 ? -1 : 1) * gsap.utils.random(14, 34), ease: "none",
-        scrollTrigger: {
-          trigger: g.closest("section") || document.body,
-          start: "top bottom", end: "bottom top", scrub: .8
-        }
-      });
-    });
-  }
-
-  function parallaxHero() {
     gsap.to(".emblem", {
       yPercent: 16, ease: "none",
       scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 }
@@ -434,6 +412,20 @@
     gsap.to(".hero-in", {
       yPercent: -12, opacity: .25, ease: "none",
       scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .5 }
+    });
+    gsap.to(".fx-floor", {
+      yPercent: -18, ease: "none",
+      scrollTrigger: { start: 0, end: "max", scrub: 1 }
+    });
+    // gears drift as well as spin
+    $$("[data-gear]").forEach(function (g, i) {
+      gsap.to(g, {
+        yPercent: (i % 2 ? -1 : 1) * gsap.utils.random(14, 34), ease: "none",
+        scrollTrigger: {
+          trigger: g.closest("section") || "#hero",
+          start: "top bottom", end: "bottom top", scrub: .8
+        }
+      });
     });
   }
 
@@ -584,17 +576,16 @@
         if (hs) hs.textContent = String(Math.round(p * 100)).padStart(3, "0");
       }
     });
-    $$("section[id]").forEach(function (el, i) {
+    ["#hero", "#stack", "#rider", "#work", "#contact"].forEach(function (id, i) {
+      var el = $(id);
+      if (!el) return;
       ScrollTrigger.create({
         trigger: el, start: "top 50%", end: "bottom 50%",
         onToggle: function (self) {
           if (!self.isActive) return;
           if (hsec) hsec.textContent = String(i + 1).padStart(2, "0");
           $$("#nav nav a").forEach(function (a) {
-            var h = a.getAttribute("href");
-            if (h && h.charAt(0) === "#") {
-              a.classList.toggle("is-on", h === "#" + el.id);
-            }
+            a.classList.toggle("is-on", a.getAttribute("href") === id);
           });
         }
       });
@@ -613,17 +604,6 @@
       var text = el.textContent;
       gsap.timeline({ repeat: -1, repeatDelay: 5 })
         .to(el, { duration: .5, scrambleText: { text: text, chars: SCRAMBLE, speed: .7 } });
-    });
-
-    /* footer year */
-    $$("[data-year]").forEach(function (el) {
-      el.textContent = new Date().getFullYear();
-    });
-
-    /* a missing project screenshot falls back to the card gradient
-       instead of a broken-image glyph (7-3 has no shot yet) */
-    $$(".card-shot img").forEach(function (img) {
-      img.addEventListener("error", function () { img.remove(); });
     });
 
     /* smooth anchor scrolling */
@@ -678,44 +658,18 @@
     });
   }
 
-  /* ==========================================================
-     BOOTSTRAP
-
-     Everything waits on document.fonts.ready. Two things break if it
-     doesn't: SplitText measures glyph boxes with the fallback face and
-     re-wraps when the real one lands, and — worse — ScrollTrigger
-     records every start/end position against a layout that is about to
-     shift, so reveals further down the page never fire and their
-     panels stay at opacity 0. A 2s cap keeps a slow font CDN from
-     holding the whole page hostage.
-     ========================================================== */
-  function whenReady(fn) {
-    var done = false;
-    var go = function () { if (!done) { done = true; fn(); } };
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(go);
-      setTimeout(go, 2000);
-    } else {
-      setTimeout(go, 0);
-    }
+  if (reduce) {
+    // no theatre: land everything in its final state
+    gsap.set("[data-panel], .card, .hero-in > *", { clearProps: "all" });
+    boot(function () {
+      cacheText();
+      buildMachine();
+      instruments();
+      telemetry();
+      titles();
+      root.classList.add("is-ready");
+    });
+  } else {
+    boot(start);
   }
-
-  whenReady(function () {
-    if (reduce) {
-      // no theatre: land everything in its final state
-      gsap.set("[data-panel], .card, .hero-in > *", { clearProps: "all" });
-      boot(function () {
-        cacheText();
-        buildMachine();
-        instruments();
-        telemetry();
-        titles();
-        root.classList.add("is-ready");
-      });
-    } else {
-      boot(start);
-    }
-    // late-loading images (project shots) change section heights
-    window.addEventListener("load", function () { ScrollTrigger.refresh(); });
-  });
 })();

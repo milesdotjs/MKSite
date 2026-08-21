@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <title>7-3 — A Neverending Workday RPG</title>
+    <meta
+      name="description"
+      content="A 90s-styled office RPG you cannot lose. Answer email, file reports, clear printer jams, and level up forever — or switch on autopilot and just watch."
+    />
+    <meta name="theme-color" content="#0d0221" />
+    <meta name="color-scheme" content="dark" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230d0221'/%3E%3Crect x='8' y='14' width='34' height='7' fill='%23e8b048'/%3E%3Crect x='44' y='14' width='14' height='7' fill='%234c3f74'/%3E%3Ctext x='32' y='50' font-family='monospace' font-size='26' font-weight='bold' text-anchor='middle' fill='%23e8b048'%3E7-3%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#screen">Skip to the game</a>
+
+    <div class="stage">
+      <div class="console" id="console">
+        <div class="console-top">
+          <div class="brand">
+            <span class="brand-mark">7-3</span>
+            <span class="brand-sub">WORKDAY SYSTEM</span>
+          </div>
+          <a class="back" href="/projects.html">&larr; mileking.dev</a>
+        </div>
+
+        <div class="screen-well">
+          <div class="screen-bezel">
+            <span class="power" aria-hidden="true"></span>
+            <div class="screen-holder" id="screen">
+              <canvas
+                id="game"
+                width="160"
+                height="144"
+                aria-label="7-3 game screen"
+              ></canvas>
+            </div>
+          </div>
+
+          <aside class="readout" aria-label="Status">
+            <div class="readout-row readout-title">
+              <span data-hud="title">ASSOCIATE</span>
+              <span class="ot" data-hud="overtime" hidden>OVERTIME</span>
+            </div>
+            <div class="readout-grid">
+              <div class="stat">
+                <span class="stat-k">LEVEL</span>
+                <span class="stat-v big" data-hud="level">1</span>
+              </div>
+              <div class="stat">
+                <span class="stat-k">WALLET</span>
+                <span class="stat-v" data-hud="money">$400</span>
+              </div>
+              <div class="stat">
+                <span class="stat-k">DAY</span>
+                <span class="stat-v" data-hud="day">1</span>
+              </div>
+              <div class="stat">
+                <span class="stat-k">TIME</span>
+                <span class="stat-v" data-hud="clock">7:00AM</span>
+              </div>
+            </div>
+            <div class="xp">
+              <div class="xp-head">
+                <span>EXP</span>
+                <span data-hud="xp">0</span>
+              </div>
+              <div class="xp-bar" data-hud="xpbar"><i></i></div>
+              <div class="xp-foot">
+                <span>NEXT</span>
+                <span data-hud="next">83</span>
+              </div>
+            </div>
+            <div class="readout-row readout-foot">
+              <span data-hud="area">APARTMENT</span>
+              <span><b data-hud="tasks">0</b> tasks</span>
+            </div>
+          </aside>
+        </div>
+
+        <div class="controls" data-auto-state="off">
+          <div class="dpad" role="group" aria-label="Direction pad">
+            <button class="d up" data-btn="up" aria-label="Up"></button>
+            <button class="d left" data-btn="left" aria-label="Left"></button>
+            <button class="d centre" aria-hidden="true" tabindex="-1"></button>
+            <button class="d right" data-btn="right" aria-label="Right"></button>
+            <button class="d down" data-btn="down" aria-label="Down"></button>
+          </div>
+
+          <div class="ab">
+            <button class="round b" data-btn="b" aria-label="B — cancel">B</button>
+            <button class="round a" data-btn="a" aria-label="A — confirm">A</button>
+          </div>
+
+          <div class="sys">
+            <button class="pill" data-btn="start" aria-label="Start — menu">MENU</button>
+            <button class="pill auto" id="autoBtn" aria-label="Toggle autopilot">
+              AUTO
+            </button>
+            <button class="pill" id="speedBtn" aria-label="Cycle speed">1&times;</button>
+          </div>
+        </div>
+
+        <p class="hint">
+          Arrows or WASD to move &middot; Z / Enter to confirm &middot; X to cancel
+          &middot; Esc for the menu. Nothing here can be lost.
+        </p>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

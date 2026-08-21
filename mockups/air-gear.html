@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MK ✦ AIR GEAR — visual mockup</title>
+<meta name="theme-color" content="#eef0f4" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&family=Space+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="air-gear.css" />
+</head>
+<body>
+
+<!-- ===== mechanical sprite sheet ===== -->
+<svg class="sprite" aria-hidden="true" width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="chr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="27%" stop-color="#e4ebf7"/>
+      <stop offset="46%" stop-color="#95a2ba"/><stop offset="51%" stop-color="#4c5870"/>
+      <stop offset="57%" stop-color="#ebf1fb"/><stop offset="79%" stop-color="#a9b5cb"/>
+      <stop offset="100%" stop-color="#f5f9ff"/>
+    </linearGradient>
+
+    <g id="gearA">
+      <path d="M 51.98 16.74 L 52.93 2.43 L 67.07 2.43 L 68.02 16.74 L 74.69 18.52 L 82.66 6.61 L 94.91 13.68 L 88.58 26.54 L 93.46 31.42 L 106.32 25.09 L 113.39 37.34 L 101.48 45.31 L 103.26 51.98 L 117.57 52.93 L 117.57 67.07 L 103.26 68.02 L 101.48 74.69 L 113.39 82.66 L 106.32 94.91 L 93.46 88.58 L 88.58 93.46 L 94.91 106.32 L 82.66 113.39 L 74.69 101.48 L 68.02 103.26 L 67.07 117.57 L 52.93 117.57 L 51.98 103.26 L 45.31 101.48 L 37.34 113.39 L 25.09 106.32 L 31.42 93.46 L 26.54 88.58 L 13.68 94.91 L 6.61 82.66 L 18.52 74.69 L 16.74 68.02 L 2.43 67.07 L 2.43 52.93 L 16.74 51.98 L 18.52 45.31 L 6.61 37.34 L 13.68 25.09 L 26.54 31.42 L 31.42 26.54 L 25.09 13.68 L 37.34 6.61 L 45.31 18.52 Z" fill="url(#chr)" stroke="#0d0e12" stroke-width="3.5" stroke-linejoin="round"/>
+      <circle cx="60" cy="60" r="30" fill="none" stroke="#0d0e12" stroke-width="3"/>
+      <g fill="#eceff5" stroke="#0d0e12" stroke-width="2.5"><circle cx="60.00" cy="33.00" r="8.0"/><circle cx="85.68" cy="51.66" r="8.0"/><circle cx="75.87" cy="81.84" r="8.0"/><circle cx="44.13" cy="81.84" r="8.0"/><circle cx="34.32" cy="51.66" r="8.0"/></g>
+      <circle cx="60" cy="60" r="11" fill="#0d0e12"/>
+    </g>
+
+    <g id="gearB">
+      <path d="M 53.76 14.43 L 54.74 2.24 L 65.26 2.24 L 66.24 14.43 L 71.67 15.51 L 77.25 4.62 L 86.96 8.65 L 83.21 20.28 L 87.81 23.36 L 97.13 15.44 L 104.56 22.87 L 96.64 32.19 L 99.72 36.79 L 111.35 33.04 L 115.38 42.75 L 104.49 48.33 L 105.57 53.76 L 117.76 54.74 L 117.76 65.26 L 105.57 66.24 L 104.49 71.67 L 115.38 77.25 L 111.35 86.96 L 99.72 83.21 L 96.64 87.81 L 104.56 97.13 L 97.13 104.56 L 87.81 96.64 L 83.21 99.72 L 86.96 111.35 L 77.25 115.38 L 71.67 104.49 L 66.24 105.57 L 65.26 117.76 L 54.74 117.76 L 53.76 105.57 L 48.33 104.49 L 42.75 115.38 L 33.04 111.35 L 36.79 99.72 L 32.19 96.64 L 22.87 104.56 L 15.44 97.13 L 23.36 87.81 L 20.28 83.21 L 8.65 86.96 L 4.62 77.25 L 15.51 71.67 L 14.43 66.24 L 2.24 65.26 L 2.24 54.74 L 14.43 53.76 L 15.51 48.33 L 4.62 42.75 L 8.65 33.04 L 20.28 36.79 L 23.36 32.19 L 15.44 22.87 L 22.87 15.44 L 32.19 23.36 L 36.79 20.28 L 33.04 8.65 L 42.75 4.62 L 48.33 15.51 Z" fill="url(#chr)" stroke="#0d0e12" stroke-width="3.5" stroke-linejoin="round"/>
+      <circle cx="60" cy="60" r="32" fill="none" stroke="#0d0e12" stroke-width="3"/>
+      <g fill="#eceff5" stroke="#0d0e12" stroke-width="2.5"><circle cx="60.00" cy="32.00" r="6.5"/><circle cx="84.25" cy="46.00" r="6.5"/><circle cx="84.25" cy="74.00" r="6.5"/><circle cx="60.00" cy="88.00" r="6.5"/><circle cx="35.75" cy="74.00" r="6.5"/><circle cx="35.75" cy="46.00" r="6.5"/></g>
+      <circle cx="60" cy="60" r="10" fill="#0d0e12"/>
+    </g>
+
+    <g id="gearC">
+      <path d="M 49.65 21.36 L 49.93 2.88 L 70.07 2.88 L 70.35 21.36 L 80.00 25.36 L 93.27 12.49 L 107.51 26.73 L 94.64 40.00 L 98.64 49.65 L 117.12 49.93 L 117.12 70.07 L 98.64 70.35 L 94.64 80.00 L 107.51 93.27 L 93.27 107.51 L 80.00 94.64 L 70.35 98.64 L 70.07 117.12 L 49.93 117.12 L 49.65 98.64 L 40.00 94.64 L 26.73 107.51 L 12.49 93.27 L 25.36 80.00 L 21.36 70.35 L 2.88 70.07 L 2.88 49.93 L 21.36 49.65 L 25.36 40.00 L 12.49 26.73 L 26.73 12.49 L 40.00 25.36 Z" fill="url(#chr)" stroke="#0d0e12" stroke-width="3.5" stroke-linejoin="round"/>
+      <circle cx="60" cy="60" r="26" fill="none" stroke="#0d0e12" stroke-width="3"/>
+      <circle cx="60" cy="60" r="12" fill="#ff2f8e" stroke="#0d0e12" stroke-width="3"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ===== global texture ===== -->
+<div class="fx-tone" aria-hidden="true"></div>
+<div class="fx-grain" aria-hidden="true"></div>
+
+<!-- ===== NAV ===== -->
+<header id="nav">
+  <a class="logo" href="#hero">
+    <span class="logo-wheel" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="3"/>
+        <circle cx="20" cy="20" r="6" fill="currentColor"/>
+        <g stroke="currentColor" stroke-width="2.5">
+          <path d="M20 3v8M20 29v8M3 20h8M29 20h8"/>
+        </g>
+      </svg>
+    </span>
+    <b>MK</b>
+  </a>
+  <nav aria-label="Main">
+    <a href="#hero" class="is-on">INTRO</a>
+    <a href="#stack">WHAT I DO</a>
+    <a href="#rider">WHO I AM</a>
+    <a href="#work">MY WORK</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <div class="nav-side">
+    <span class="nav-kana">マイルス</span>
+    <a class="nav-cta" href="#contact">SAY HELLO</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="burst"></span>
+    <span class="streaks"></span>
+    <span class="gear g-a"><svg viewBox="0 0 120 120"><use href="#gearA"/></svg></span>
+    <span class="gear g-b"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
+    <span class="gear g-c"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
+    <span class="gear g-d"><svg viewBox="0 0 120 120"><use href="#gearA"/></svg></span>
+    <span class="gear g-e"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
+    <span class="gear g-f"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
+    <span class="tone-blob tb1"></span>
+    <span class="tone-blob tb2"></span>
+  </div>
+
+  <!-- wing + wheel emblem: the Air Gear tell, minus the occult -->
+  <div class="emblem" aria-hidden="true">
+    <svg viewBox="0 0 760 470" fill="none">
+      <defs>
+        <linearGradient id="chromeWing" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="28%" stop-color="#e2e9f6"/>
+          <stop offset="45%" stop-color="#93a0b8"/>
+          <stop offset="50%" stop-color="#4a566e"/>
+          <stop offset="56%" stop-color="#eaf0fa"/>
+          <stop offset="78%" stop-color="#a8b4ca"/>
+          <stop offset="100%" stop-color="#f4f8ff"/>
+        </linearGradient>
+        <linearGradient id="chromeRim" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="50%" stop-color="#9aa6bd"/>
+          <stop offset="100%" stop-color="#eef3fb"/>
+        </linearGradient>
+      </defs>
+
+      <g stroke="#0d0e12" stroke-width="5" stroke-linejoin="round" fill="url(#chromeWing)">
+        <!-- LEFT WING — four tapered feathers, gaps kept open so the
+             silhouette reads at a glance instead of blobbing together -->
+        <path d="M342 196 C 250 150 158 116 66 92 C 100 130 154 168 232 196 C 274 210 318 216 344 214Z"/>
+        <path d="M340 220 C 244 208 148 200 52 200 C 96 232 158 262 244 274 C 288 280 324 276 346 268Z"/>
+        <path d="M344 246 C 258 262 174 288 100 326 C 152 342 216 344 288 322 C 324 310 348 292 356 274Z"/>
+        <path d="M356 268 C 296 302 240 348 196 404 C 250 402 306 378 350 334 C 372 312 382 290 382 272Z"/>
+
+        <!-- RIGHT WING (mirror) -->
+        <path d="M418 196 C 510 150 602 116 694 92 C 660 130 606 168 528 196 C 486 210 442 216 416 214Z"/>
+        <path d="M420 220 C 516 208 612 200 708 200 C 664 232 602 262 516 274 C 472 280 436 276 414 268Z"/>
+        <path d="M416 246 C 502 262 586 288 660 326 C 608 342 544 344 472 322 C 436 310 412 292 404 274Z"/>
+        <path d="M404 268 C 464 302 520 348 564 404 C 510 402 454 378 410 334 C 388 312 378 290 378 272Z"/>
+      </g>
+
+      <!-- HUB WHEEL — an Air Treck wheel, not a magic circle -->
+      <g>
+        <circle cx="380" cy="240" r="96" fill="#0d0e12"/>
+        <circle cx="380" cy="240" r="82" fill="none" stroke="url(#chromeRim)" stroke-width="9"/>
+        <g stroke="#eef0f4" stroke-width="7" stroke-linecap="round">
+          <path d="M380 168v26M380 286v26M308 240h26M426 240h26"/>
+          <path d="M329 189l18 18M413 273l18 18M431 189l-18 18M347 273l-18 18"/>
+        </g>
+        <circle cx="380" cy="240" r="30" fill="#ff2f8e" stroke="#0d0e12" stroke-width="5"/>
+        <circle cx="380" cy="240" r="13" fill="#0d0e12"/>
+        <!-- bearing dots -->
+        <g fill="#c8ff2b">
+          <circle cx="380" cy="196" r="5"/><circle cx="380" cy="284" r="5"/>
+          <circle cx="336" cy="240" r="5"/><circle cx="424" cy="240" r="5"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- engineering-drawing layer: this is a technical document about a machine -->
+  <div class="bp" aria-hidden="true">
+    <span class="bp-cross bc1"></span><span class="bp-cross bc2"></span>
+    <span class="bp-cross bc3"></span><span class="bp-cross bc4"></span>
+
+    <span class="bp-stamp bs-tl">SCALE&nbsp;1:1</span>
+    <span class="bp-stamp bs-tr">REV&nbsp;2.6 &nbsp;/&nbsp; SHEET&nbsp;01&nbsp;OF&nbsp;04</span>
+    <span class="bp-stamp bs-bl">UNIT&nbsp;MK-AT-2026</span>
+    <span class="bp-stamp bs-br">TOL&nbsp;&plusmn;0.05</span>
+
+    <!-- dimension line under the wordmark -->
+    <span class="bp-dim">
+      <i class="bp-arrow"></i>
+      <b>1240.00</b>
+      <i class="bp-arrow bp-arrow-r"></i>
+    </span>
+
+    <!-- leader callouts into the emblem -->
+    <span class="bp-call bp-c1"><em></em>WING UNIT / A-01</span>
+    <span class="bp-call bp-c2"><em></em>MOTOR HUB / &#8709;96</span>
+    <span class="bp-call bp-c3"><em></em>BEARING &times;4</span>
+  </div>
+
+  <div class="hero-in">
+    <p class="hero-kicker">
+      <span class="tag tag-pink">SOFTWARE DEVELOPER</span>
+      <span class="tag tag-cyan">HOUSTON, TX</span>
+      <span class="tag tag-out">EST. 2026</span>
+    </p>
+
+    <h1 class="hero-name" data-text="MILES KING"><span>MILES KING</span></h1>
+
+    <p class="hero-kana">マイルス・キング</p>
+
+    <p class="hero-lede">
+      I build web apps, small utilities, and the occasional weird side project —
+      then I measure whether they actually get used.
+    </p>
+
+    <div class="hero-cta">
+      <a class="btn btn-pink" href="#work">VIEW MY WORK</a>
+      <a class="btn btn-ghost" href="#contact">SAY HELLO</a>
+    </div>
+  </div>
+
+  <!-- rotated sticker cluster -->
+  <div class="stickers" aria-hidden="true">
+    <span class="stk stk-1">RANK 01</span>
+    <span class="stk stk-2">JS / NODE / SQL</span>
+    <span class="stk stk-3">ANALYTICS</span>
+    <span class="stk stk-4">✦ NEW BUILD ✦</span>
+  </div>
+
+  <a class="scroll-cue" href="#stack">
+    <span>SCROLL</span>
+    <span class="scroll-arrow" aria-hidden="true"></span>
+  </a>
+</section>
+
+<!-- ===== TAPE TICKER ===== -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span>JAVASCRIPT ✦ NODE.JS ✦ PHP ✦ SQL ✦ PYTHON ✦ GA4 ✦ GTM ✦ BIGQUERY ✦ GSAP ✦&nbsp;</span>
+    <span>JAVASCRIPT ✦ NODE.JS ✦ PHP ✦ SQL ✦ PYTHON ✦ GA4 ✦ GTM ✦ BIGQUERY ✦ GSAP ✦&nbsp;</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ===== TRICK.01 — WHAT I DO ===== -->
+<section id="stack" class="sec">
+  <div class="sec-head">
+    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.01</i><span>スキル</span></p>
+    <h2 class="sec-title" data-text="WHAT I DO"><span>WHAT I DO</span></h2>
+  </div>
+
+  <div class="stack-grid">
+    <!-- parts / tuning spec sheet: the AT maintenance card -->
+    <div class="spec">
+      <span class="rivets" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <div class="spec-head">
+        <span class="spec-mark" aria-hidden="true"></span>
+        <span>PARTS &amp; TUNING</span>
+        <span class="spec-id">MK-01</span>
+      </div>
+      <div class="gauges">
+        <div class="dial">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" fill="url(#chr)" stroke="#0d0e12" stroke-width="3"/>
+            <circle cx="50" cy="50" r="39" fill="#eceff5" stroke="#0d0e12" stroke-width="2"/>
+            <g stroke="#0d0e12" stroke-linecap="round"><path d="M27.06 66.06 L18.05 72.37" stroke-width="3"/><path d="M18.49 55.56 L11.59 56.77" stroke-width="1.5"/><path d="M19.09 41.72 L12.33 39.91" stroke-width="1.5"/><path d="M25.49 29.43 L20.12 24.93" stroke-width="1.5"/><path d="M36.48 21.00 L33.52 14.65" stroke-width="1.5"/><path d="M50.00 22.00 L50.00 11.00" stroke-width="3"/><path d="M63.52 21.00 L66.48 14.65" stroke-width="1.5"/><path d="M74.51 29.43 L79.88 24.93" stroke-width="1.5"/><path d="M80.91 41.72 L87.67 39.91" stroke-width="1.5"/><path d="M81.51 55.56 L88.41 56.77" stroke-width="1.5"/><path d="M72.94 66.06 L81.95 72.37" stroke-width="3"/></g>
+            <path class="dial-arc" d="M18 72 A39 39 0 0 1 82 72" fill="none" stroke="#ff2f8e" stroke-width="5" stroke-linecap="round"/>
+            <path d="M50.00 50.00 L78.98 57.76" stroke="#0d0e12" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="7" fill="#0d0e12"/>
+            <circle cx="50" cy="50" r="2.5" fill="#ff2f8e"/>
+          </svg>
+          <span class="dial-val">92</span>
+          <span class="dial-label">FRONT-END</span>
+        </div>
+        <div class="dial">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" fill="url(#chr)" stroke="#0d0e12" stroke-width="3"/>
+            <circle cx="50" cy="50" r="39" fill="#eceff5" stroke="#0d0e12" stroke-width="2"/>
+            <g stroke="#0d0e12" stroke-linecap="round"><path d="M27.06 66.06 L18.05 72.37" stroke-width="3"/><path d="M18.49 55.56 L11.59 56.77" stroke-width="1.5"/><path d="M19.09 41.72 L12.33 39.91" stroke-width="1.5"/><path d="M25.49 29.43 L20.12 24.93" stroke-width="1.5"/><path d="M36.48 21.00 L33.52 14.65" stroke-width="1.5"/><path d="M50.00 22.00 L50.00 11.00" stroke-width="3"/><path d="M63.52 21.00 L66.48 14.65" stroke-width="1.5"/><path d="M74.51 29.43 L79.88 24.93" stroke-width="1.5"/><path d="M80.91 41.72 L87.67 39.91" stroke-width="1.5"/><path d="M81.51 55.56 L88.41 56.77" stroke-width="1.5"/><path d="M72.94 66.06 L81.95 72.37" stroke-width="3"/></g>
+            <path class="dial-arc" d="M18 72 A39 39 0 0 1 82 72" fill="none" stroke="#00c9f5" stroke-width="5" stroke-linecap="round"/>
+            <path d="M50.00 50.00 L75.98 35.00" stroke="#0d0e12" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="7" fill="#0d0e12"/>
+            <circle cx="50" cy="50" r="2.5" fill="#00c9f5"/>
+          </svg>
+          <span class="dial-val">74</span>
+          <span class="dial-label">BACK-END</span>
+        </div>
+        <div class="dial">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" fill="url(#chr)" stroke="#0d0e12" stroke-width="3"/>
+            <circle cx="50" cy="50" r="39" fill="#eceff5" stroke="#0d0e12" stroke-width="2"/>
+            <g stroke="#0d0e12" stroke-linecap="round"><path d="M27.06 66.06 L18.05 72.37" stroke-width="3"/><path d="M18.49 55.56 L11.59 56.77" stroke-width="1.5"/><path d="M19.09 41.72 L12.33 39.91" stroke-width="1.5"/><path d="M25.49 29.43 L20.12 24.93" stroke-width="1.5"/><path d="M36.48 21.00 L33.52 14.65" stroke-width="1.5"/><path d="M50.00 22.00 L50.00 11.00" stroke-width="3"/><path d="M63.52 21.00 L66.48 14.65" stroke-width="1.5"/><path d="M74.51 29.43 L79.88 24.93" stroke-width="1.5"/><path d="M80.91 41.72 L87.67 39.91" stroke-width="1.5"/><path d="M81.51 55.56 L88.41 56.77" stroke-width="1.5"/><path d="M72.94 66.06 L81.95 72.37" stroke-width="3"/></g>
+            <path class="dial-arc" d="M18 72 A39 39 0 0 1 82 72" fill="none" stroke="#c8ff2b" stroke-width="5" stroke-linecap="round"/>
+            <path d="M50.00 50.00 L79.89 52.61" stroke="#0d0e12" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="7" fill="#0d0e12"/>
+            <circle cx="50" cy="50" r="2.5" fill="#c8ff2b"/>
+          </svg>
+          <span class="dial-val">88</span>
+          <span class="dial-label">ANALYTICS</span>
+        </div>
+      </div>
+      <ul class="spec-list">
+        <li><span>FRONT-END</span><b data-fill="92"></b><em>92</em></li>
+        <li><span>BACK-END</span><b data-fill="74"></b><em>74</em></li>
+        <li><span>ANALYTICS</span><b data-fill="88"></b><em>88</em></li>
+        <li><span>DATA VIZ</span><b data-fill="70"></b><em>70</em></li>
+        <li><span>SHIP SPEED</span><b data-fill="84"></b><em>84</em></li>
+      </ul>
+      <table class="sheet">
+        <caption>SPECIFICATION &mdash; MK-AT-2026</caption>
+        <tbody>
+          <tr><th>PART NO.</th><td>MK-2026-HTX</td><th>REV</th><td>2.6</td></tr>
+          <tr><th>DRIVE</th><td>JAVASCRIPT / NODE</td><th>OUTPUT</th><td>WEB APPS</td></tr>
+          <tr><th>TELEMETRY</th><td>GA4 / GTM / BIGQUERY</td><th>SAMPLE</th><td>100%</td></tr>
+          <tr><th>BASE</th><td>HOUSTON, TX</td><th>STATUS</th><td class="ok">ACTIVE</td></tr>
+        </tbody>
+      </table>
+      <div class="spec-foot">
+        <span class="spec-note">TUNED FOR: clean interfaces, fast pages,<br />tools that make a tedious thing simple.</span>
+        <span class="spec-stamp">CERTIFIED</span>
+      </div>
+    </div>
+
+    <div class="stack-copy">
+      <p class="lede">
+        I build <b>web apps</b>, small <b>utilities</b>, and the occasional weird
+        side project. And because I work in <b>digital analytics</b> too, I like
+        knowing whether the things I build actually work once people use them.
+      </p>
+
+      <div class="chip-set">
+        <p class="chip-label">LANGUAGES</p>
+        <ul class="chips">
+          <li>JAVASCRIPT</li><li>HTML</li><li>CSS</li>
+          <li>PHP</li><li>SQL</li><li>PYTHON</li>
+        </ul>
+      </div>
+      <div class="chip-set">
+        <p class="chip-label">FRAMEWORKS &amp; PLATFORMS</p>
+        <ul class="chips">
+          <li>NODE.JS</li><li>JQUERY</li><li>WORDPRESS</li><li>API INTEGRATION</li>
+        </ul>
+      </div>
+      <div class="chip-set">
+        <p class="chip-label">ANALYTICS &amp; DATA</p>
+        <ul class="chips">
+          <li>GA4</li><li>GTM</li><li>LOOKER STUDIO</li><li>BIGQUERY</li><li>DATA VIZ</li>
+        </ul>
+      </div>
+
+      <a class="btn btn-ink" href="#">RESUME.PDF ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRICK.02 — WHO I AM ===== -->
+<section id="rider" class="sec">
+  <div class="sec-head">
+    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.02</i><span>ライダー</span></p>
+    <h2 class="sec-title" data-text="WHO I AM"><span>WHO I AM</span></h2>
+  </div>
+
+  <div class="rider-grid">
+    <div class="rcard">
+      <span class="rivets" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <div class="rcard-top">
+        <span class="rcard-rank">01</span>
+        <div class="rcard-name">
+          <b>MILES KING</b>
+          <span>マイルス・キング</span>
+        </div>
+        <span class="rcard-badge">DEV</span>
+      </div>
+      <div class="rcard-photo">
+        <span class="rcard-mono">MK</span>
+        <span class="rcard-shine" aria-hidden="true"></span>
+      </div>
+      <dl class="rcard-fields">
+        <div><dt>CLASS</dt><dd>DEV × ANALYTICS</dd></div>
+        <div><dt>BASE</dt><dd>HOUSTON, TX</dd></div>
+        <div><dt>ROUTE</dt><dd>CHEM ENG → SOFTWARE</dd></div>
+        <div><dt>STATUS</dt><dd class="ok">CAFFEINATED</dd></div>
+      </dl>
+      <div class="rcard-foot">
+        <span class="rcard-serial">MK-2026-HTX</span>
+        <span class="rcard-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      </div>
+    </div>
+
+    <div class="rider-copy">
+      <blockquote class="bigquote">
+        I like building things that <em>work cleanly</em> — and knowing whether
+        they actually do once people start using them.
+      </blockquote>
+      <p>
+        I came to software from a chemical-engineering background — a
+        problem-solving, quantitative route rather than a CS one. I welcome new
+        challenges and treat unfamiliar problems as a chance to learn something
+        I didn't know yesterday.
+      </p>
+      <ul class="factlist">
+        <li><span>01</span>Chemical engineering → software. The long way round.</li>
+        <li><span>02</span>Ships small tools, then measures whether they get used.</li>
+        <li><span>03</span>Houston, TX. Open to interesting problems.</li>
+      </ul>
+      <a class="btn btn-ink" href="#">MORE ABOUT ME →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== TRICK.03 — MY WORK (dark band) ===== -->
+<section id="work" class="sec sec-dark">
+  <span class="dark-gears" aria-hidden="true">
+    <span class="gear g-w1"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
+    <span class="gear g-w2"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
+  </span>
+
+  <div class="sec-inner">
+    <div class="sec-head">
+      <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.03</i><span>プロジェクト</span></p>
+      <h2 class="sec-title is-light" data-text="MY WORK"><span>MY WORK</span></h2>
+      <p class="sec-sub">
+        A mix of small utilities I actually use and web experiments I built to
+        learn something. Click any one to open it.
+      </p>
+      <a class="head-link" href="#">FULL PROJECT INDEX →</a>
+    </div>
+
+    <div class="work-grid">
+      <article class="card is-top">
+        <a href="#">
+          <span class="card-rank">01</span>
+          <div class="card-shot" data-shot="chess"><span class="card-shine" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <span class="card-flag">NEW ✦ UTILITY</span>
+            <h3>Study Something!</h3>
+            <p>Pulls random over-the-board games from top chess players so I can study unfamiliar positions.</p>
+            <span class="card-tags">UTILITY / CHESS / JS</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-01<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="card">
+        <a href="#">
+          <span class="card-rank">02</span>
+          <div class="card-shot" data-shot="cards"><span class="card-shine" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <span class="card-flag is-cyan">NEW ✦ GAME</span>
+            <h3>Anime Blackjack</h3>
+            <p>Blackjack against an animated dealer who reacts to every hand.</p>
+            <span class="card-tags">GAME / REACT / GSAP</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-02<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="card">
+        <a href="#">
+          <span class="card-rank">03</span>
+          <div class="card-shot" data-shot="color"><span class="card-shine" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>InfiniteCrayons</h3>
+            <p>Colour palette generator with per-swatch HSL control.</p>
+            <span class="card-tags">TOOL / COLOR</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-03<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="card">
+        <a href="#">
+          <span class="card-rank">04</span>
+          <div class="card-shot" data-shot="audio"><span class="card-shine" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>JSt Play</h3>
+            <p>Browser drum machine &amp; step sequencer.</p>
+            <span class="card-tags">AUDIO / FUN</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-04<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="card">
+        <a href="#">
+          <span class="card-rank">05</span>
+          <div class="card-shot" data-shot="stock"><span class="card-shine" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>MoreStockImages</h3>
+            <p>Royalty-free photo search across providers.</p>
+            <span class="card-tags">TOOL / API</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-05<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH →</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="card">
+        <a href="#">
+          <span class="card-rank">06</span>
+          <div class="card-shot" data-shot="bot"><span class="card-shine" aria-hidden="true"></span></div>
+          <div class="card-body">
+            <h3>MettatonEX</h3>
+            <p>Discord bot that announces new YouTube uploads.</p>
+            <span class="card-tags">NODE.JS / DISCORD.JS</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-06<i></i>REV 2.6</span>
+            <span class="card-go">CASE STUDY →</span>
+          </div>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRICK.04 — CONTACT ===== -->
+<section id="contact" class="sec">
+  <div class="sec-head">
+    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>TRICK.04</i><span>コンタクト</span></p>
+    <h2 class="sec-title" data-text="SAY HELLO"><span>SAY HELLO</span></h2>
+    <p class="sec-sub">
+      Reach out about a project, a collaboration, an interesting problem, or
+      just to say hi.
+    </p>
+  </div>
+
+  <div class="console">
+    <span class="rivets" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <div class="console-head">
+      <span class="leds" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>
+      <span>TRANSMISSION CONSOLE</span>
+      <span class="console-id">CH-04 / OPEN</span>
+    </div>
+  <form class="form" onsubmit="return false">
+    <div class="f-row">
+      <label class="field">
+        <span>NAME</span>
+        <input type="text" placeholder="your name" />
+      </label>
+      <label class="field">
+        <span>EMAIL</span>
+        <input type="email" placeholder="you@somewhere.com" />
+      </label>
+    </div>
+    <label class="field">
+      <span>MESSAGE</span>
+      <textarea rows="6" placeholder="say something..."></textarea>
+    </label>
+    <div class="console-foot">
+      <button class="btn btn-pink btn-big" type="submit">SEND IT →</button>
+      <dl class="console-read">
+        <div><dt>LATENCY</dt><dd>014&nbsp;ms</dd></div>
+        <div><dt>REPLY</dt><dd>&lt;&nbsp;24&nbsp;h</dd></div>
+        <div><dt>NODE</dt><dd>HTX-01</dd></div>
+      </dl>
+    </div>
+  </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer">
+  <span class="foot-wheel" aria-hidden="true">
+    <svg viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="3"/>
+      <circle cx="20" cy="20" r="6" fill="currentColor"/>
+      <g stroke="currentColor" stroke-width="2.5"><path d="M20 3v8M20 29v8M3 20h8M29 20h8"/></g>
+    </svg>
+  </span>
+  <ul class="social">
+    <li><a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.66.41.35.77 1.05.77 2.12 0 1.54-.01 2.77-.01 3.15 0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a></li>
+    <li><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li>
+  </ul>
+  <p class="foot-line">© 2026 MILES KING <i>✦</i> SOFTWARE DEVELOPER <i>✦</i> MILESKING.DEV</p>
+  <a class="totop" href="#hero">BACK TO TOP ↑</a>
+</footer>
+
+<script src="air-gear.js"></script>
+</body>
+</html>

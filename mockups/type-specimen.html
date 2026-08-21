@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Heading type specimen — holo theme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=Big+Shoulders+Display:wght@400..900&family=Saira:ital,wdth,wght@0,50..125,100..900;1,50..125,100..900&family=Russo+One&family=Michroma&family=Teko:wght@300..700&family=Chakra+Petch:ital,wght@0,300;0,400;0,600;0,700;1,600;1,700&family=Orbitron:wght@400..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --void:#05060d; --cyan:#4ff5ff; --magenta:#ff4fd8; --muted:#7f93bd; --dim:#4d5f85;
+  --chrome:linear-gradient(180deg,#ffffff 0%,#eaf3ff 22%,#aabdd9 44%,
+    #6f80a2 50%,#edf5ff 57%,#ffffff 74%,#b4c4dd 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:
+    radial-gradient(70% 50% at 50% 0%,rgba(79,245,255,.1),transparent 62%),
+    linear-gradient(180deg,#070a16,#0c1024 45%,#06070f);
+  color:#d4e8ff;font-family:"Space Mono",monospace;
+  padding:44px clamp(20px,5vw,70px) 90px;
+}
+h1{font-family:"Space Mono",monospace;font-size:15px;letter-spacing:.24em;color:var(--cyan);margin-bottom:8px}
+.lead{font-size:12px;color:var(--muted);letter-spacing:.06em;margin-bottom:40px;max-width:70ch;line-height:1.8}
+.row{border-top:1px solid rgba(79,245,255,.2);padding:30px 0 34px}
+.meta{display:flex;align-items:baseline;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.key{
+  font-size:12px;font-weight:700;letter-spacing:.14em;color:#05060d;
+  background:var(--cyan);padding:3px 10px;border-radius:3px;
+}
+.name{font-size:13px;font-weight:700;letter-spacing:.12em;color:#f2f9ff}
+.note{font-size:11px;color:var(--dim);letter-spacing:.06em}
+
+/* the real treatment: chrome fill + chromatic aberration ghosts */
+.big,.mid{position:relative;display:block;width:fit-content;text-transform:uppercase;line-height:.95}
+.big{font-size:clamp(36px,7vw,84px)}
+.mid{font-size:clamp(24px,3.6vw,44px);margin-top:12px}
+.big::before,.big::after,.mid::before,.mid::after{
+  content:attr(data-text);position:absolute;left:0;top:0;width:100%;
+  z-index:-1;pointer-events:none;mix-blend-mode:screen;
+}
+.big::before,.mid::before{color:var(--cyan);transform:translate(-4px,-2.4px)}
+.big::after,.mid::after{color:var(--magenta);transform:translate(4px,2.4px)}
+.big>span,.mid>span{
+  position:relative;background:var(--chrome);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 16px rgba(79,245,255,.36));
+}
+.sub{margin-top:14px;font-size:15px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+
+.wings{margin:52px 0 10px;text-align:center}
+.wings svg{
+  width:min(760px,92%);height:auto;
+  fill:none;stroke:var(--cyan);stroke-width:2.5;stroke-linejoin:round;
+  filter:drop-shadow(0 0 10px rgba(79,245,255,.5));
+}
+.wcap{text-align:center;font-size:11px;letter-spacing:.2em;color:var(--dim);margin-top:6px}
+</style>
+</head>
+<body>
+<h1>HEADING TYPE — CANDIDATES</h1>
+<p class="lead">
+  Same chrome fill and chromatic-aberration treatment on every row, so the only
+  variable is the typeface. Skew is applied where the family has no true italic.
+</p>
+
+  <section class="row">
+    <div class="meta">
+      <span class="key">A</span>
+      <span class="name">Archivo (current)</span>
+      <span class="note">wide grotesque — clean but generic</span>
+    </div>
+    <h2 class="big" data-text="MILES KING" style="font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;font-variation-settings:"wdth" 112;"><span>MILES KING</span></h2>
+    <h3 class="mid" data-text="WHAT I DO" style="font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;font-variation-settings:"wdth" 112;"><span>WHAT I DO</span></h3>
+    <p class="sub" style="font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;font-variation-settings:"wdth" 112;">WEB APPS &amp; EXPERIMENTS &nbsp;/&nbsp; SAY HELLO</p>
+  </section>
+
+  <section class="row">
+    <div class="meta">
+      <span class="key">B</span>
+      <span class="name">Big Shoulders</span>
+      <span class="note">sharp angular condensed, hard cut terminals</span>
+    </div>
+    <h2 class="big" data-text="MILES KING" style="font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-style:normal;transform:skewX(-9deg);"><span>MILES KING</span></h2>
+    <h3 class="mid" data-text="WHAT I DO" style="font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-style:normal;transform:skewX(-9deg);"><span>WHAT I DO</span></h3>
+    <p class="sub" style="font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-style:normal;transform:skewX(-9deg);">WEB APPS &amp; EXPERIMENTS &nbsp;/&nbsp; SAY HELLO</p>
+  </section>
+
+  <section class="row">
+    <div class="meta">
+      <span class="key">C</span>
+      <span class="name">Saira</span>
+      <span class="note">sporty techno, rounded-square</span>
+    </div>
+    <h2 class="big" data-text="MILES KING" style="font-family:'Saira',sans-serif;font-weight:900;font-style:italic;font-variation-settings:"wdth" 105;"><span>MILES KING</span></h2>
+    <h3 class="mid" data-text="WHAT I DO" style="font-family:'Saira',sans-serif;font-weight:900;font-style:italic;font-variation-settings:"wdth" 105;"><span>WHAT I DO</span></h3>
+    <p class="sub" style="font-family:'Saira',sans-serif;font-weight:900;font-style:italic;font-variation-settings:"wdth" 105;">WEB APPS &amp; EXPERIMENTS &nbsp;/&nbsp; SAY HELLO</p>
+  </section>
+
+  <section class="row">
+    <div class="meta">
+      <span class="key">D</span>
+      <span class="name">Russo One</span>
+      <span class="note">heavy squared, single weight</span>
+    </div>
+    <h2 class="big" data-text="MILES KING" style="font-family:'Russo One',sans-serif;font-weight:400;font-style:normal;transform:skewX(-10deg);"><span>MILES KING</span></h2>
+    <h3 class="mid" data-text="WHAT I DO" style="font-family:'Russo One',sans-serif;font-weight:400;font-style:normal;transform:skewX(-10deg);"><span>WHAT I DO</span></h3>
+    <p class="sub" style="font-family:'Russo One',sans-serif;font-weight:400;font-style:normal;transform:skewX(-10deg);">WEB APPS &amp; EXPERIMENTS &nbsp;/&nbsp; SAY HELLO</p>
+  </section>
+
+  <section class="row">
+    <div class="meta">
+      <span class="key">E</span>
+      <span class="name">Michroma</span>
+      <span class="note">wide square techno, very cyber-logo</span>
+    </div>
+    <h2 class="big" data-text="MILES KING" style="font-family:'Michroma',sans-serif;font-weight:400;font-style:normal;transform:skewX(-8deg);letter-spacing:-.01em;"><span>MILES KING</span></h2>
+    <h3 class="mid" data-text="WHAT I DO" style="font-family:'Michroma',sans-serif;font-weight:400;font-style:normal;transform:skewX(-8deg);letter-spacing:-.01em;"><span>WHAT I DO</span></h3>
+    <p class="sub" style="font-family:'Michroma',sans-serif;font-weight:400;font-style:normal;transform:skewX(-8deg);letter-spacing:-.01em;">WEB APPS &amp; EXPERIMENTS &nbsp;/&nbsp; SAY HELLO</p>
+  </section>
+
+  <section class="row">
+    <div class="meta">
+      <span class="key">F</span>
+      <span class="name">Teko</span>
+      <span class="note">tall condensed, sharp</span>
+    </div>
+    <h2 class="big" data-text="MILES KING" style="font-family:'Teko',sans-serif;font-weight:700;font-style:normal;transform:skewX(-10deg);letter-spacing:.01em;"><span>MILES KING</span></h2>
+    <h3 class="mid" data-text="WHAT I DO" style="font-family:'Teko',sans-serif;font-weight:700;font-style:normal;transform:skewX(-10deg);letter-spacing:.01em;"><span>WHAT I DO</span></h3>
+    <p class="sub" style="font-family:'Teko',sans-serif;font-weight:700;font-style:normal;transform:skewX(-10deg);letter-spacing:.01em;">WEB APPS &amp; EXPERIMENTS &nbsp;/&nbsp; SAY HELLO</p>
+  </section>
+
+  <section class="row">
+    <div class="meta">
+      <span class="key">G</span>
+      <span class="name">Chakra Petch</span>
+      <span class="note">notched corners — most Japanese-tech</span>
+    </div>
+    <h2 class="big" data-text="MILES KING" style="font-family:'Chakra Petch',sans-serif;font-weight:700;font-style:italic;letter-spacing:-.005em;"><span>MILES KING</span></h2>
+    <h3 class="mid" data-text="WHAT I DO" style="font-family:'Chakra Petch',sans-serif;font-weight:700;font-style:italic;letter-spacing:-.005em;"><span>WHAT I DO</span></h3>
+    <p class="sub" style="font-family:'Chakra Petch',sans-serif;font-weight:700;font-style:italic;letter-spacing:-.005em;">WEB APPS &amp; EXPERIMENTS &nbsp;/&nbsp; SAY HELLO</p>
+  </section>
+
+  <section class="row">
+    <div class="meta">
+      <span class="key">H</span>
+      <span class="name">Orbitron</span>
+      <span class="note">geometric sci-fi (old site used this)</span>
+    </div>
+    <h2 class="big" data-text="MILES KING" style="font-family:'Orbitron',sans-serif;font-weight:900;font-style:normal;transform:skewX(-8deg);letter-spacing:-.02em;"><span>MILES KING</span></h2>
+    <h3 class="mid" data-text="WHAT I DO" style="font-family:'Orbitron',sans-serif;font-weight:900;font-style:normal;transform:skewX(-8deg);letter-spacing:-.02em;"><span>WHAT I DO</span></h3>
+    <p class="sub" style="font-family:'Orbitron',sans-serif;font-weight:900;font-style:normal;transform:skewX(-8deg);letter-spacing:-.02em;">WEB APPS &amp; EXPERIMENTS &nbsp;/&nbsp; SAY HELLO</p>
+  </section>
+
+<div class="wings">
+  <svg viewBox="93 -46 574 347" aria-hidden="true">
+      <path d="M 340.3 231.8 L 335.6 226.4 L 331.3 220.5 L 327.4 214.2 L 324.0 207.5 L 321.2 200.3 L 318.9 192.7 L 317.1 184.8 L 315.9 176.8 L 315.0 168.6 L 314.4 160.4 L 313.8 152.3 L 313.1 144.4 L 312.2 136.8 L 311.5 129.1 L 316.5 134.5 L 320.0 140.7 L 322.9 147.1 L 325.5 153.8 L 327.9 160.5 L 330.2 167.2 L 332.7 173.9 L 335.4 180.4 L 338.4 186.8 L 341.7 193.0 L 345.3 199.0 L 349.3 204.8 L 353.5 210.4 L 358.1 215.8 Z"/>
+      <path d="M 334.6 243.8 L 328.1 239.6 L 321.8 234.9 L 315.8 229.7 L 310.1 224.0 L 304.8 217.8 L 299.9 211.1 L 295.3 203.9 L 291.2 196.5 L 287.3 188.8 L 283.6 181.0 L 280.1 173.3 L 276.5 165.8 L 272.8 158.5 L 269.2 151.0 L 276.2 154.9 L 281.9 160.0 L 287.2 165.6 L 292.2 171.4 L 297.2 177.3 L 302.1 183.1 L 307.1 188.9 L 312.2 194.6 L 317.5 200.0 L 323.0 205.2 L 328.8 210.1 L 334.7 214.8 L 340.9 219.2 L 347.3 223.4 Z"/>
+      <path d="M 332.7 255.9 L 325.9 253.8 L 319.1 251.3 L 312.4 248.4 L 305.8 244.9 L 299.4 241.0 L 293.2 236.6 L 287.2 231.7 L 281.4 226.6 L 275.8 221.2 L 270.3 215.6 L 264.9 210.1 L 259.5 204.7 L 254.1 199.5 L 248.8 194.0 L 256.0 195.4 L 262.6 198.2 L 269.0 201.3 L 275.2 204.8 L 281.3 208.4 L 287.4 211.9 L 293.5 215.4 L 299.7 218.8 L 305.9 222.0 L 312.3 225.0 L 318.8 227.8 L 325.3 230.3 L 332.0 232.6 L 338.8 234.7 Z"/>
+      <path d="M 334.0 268.0 L 328.4 267.9 L 322.8 267.5 L 317.1 266.8 L 311.5 265.6 L 305.8 264.1 L 300.2 262.2 L 294.7 260.0 L 289.1 257.5 L 283.7 254.8 L 278.3 252.0 L 273.0 249.2 L 267.7 246.4 L 262.4 243.8 L 257.2 240.7 L 263.0 239.7 L 268.6 239.9 L 274.1 240.5 L 279.5 241.3 L 285.0 242.2 L 290.4 243.2 L 295.8 244.2 L 301.2 245.1 L 306.6 245.9 L 312.0 246.6 L 317.5 247.2 L 322.9 247.6 L 328.4 247.9 L 334.0 248.0 Z"/>
+      <path d="M 338.5 217.9 L 329.6 203.1 L 321.7 187.7 L 315.0 171.4 L 309.7 154.3 L 306.1 136.4 L 304.1 117.9 L 303.8 99.0 L 304.9 79.8 L 307.2 60.5 L 310.2 41.4 L 313.4 22.6 L 316.2 4.1 L 317.8 -13.9 L 318.5 -31.5 L 323.4 -15.1 L 325.1 2.1 L 325.3 19.6 L 324.7 37.3 L 324.0 55.1 L 323.8 72.9 L 324.4 90.7 L 326.0 108.1 L 328.9 125.2 L 333.2 141.8 L 338.8 157.8 L 345.6 173.4 L 353.5 188.4 L 362.2 203.1 Z"/>
+      <path d="M 329.3 229.9 L 315.9 216.5 L 303.1 202.4 L 291.2 187.2 L 280.5 171.0 L 271.0 153.6 L 262.9 135.3 L 256.1 116.1 L 250.6 96.3 L 246.1 76.1 L 242.2 55.8 L 238.7 35.6 L 234.8 15.8 L 230.2 -3.3 L 224.9 -21.9 L 235.5 -6.2 L 243.4 10.9 L 249.9 28.8 L 255.9 47.1 L 261.8 65.5 L 268.1 83.7 L 275.0 101.6 L 282.8 119.0 L 291.6 135.7 L 301.5 151.6 L 312.4 166.8 L 324.2 181.2 L 336.9 195.0 L 350.1 208.3 Z"/>
+      <path d="M 323.5 243.9 L 306.9 234.0 L 290.6 223.2 L 275.0 211.4 L 260.0 198.3 L 246.0 184.0 L 232.9 168.4 L 220.7 151.8 L 209.6 134.3 L 199.2 116.2 L 189.4 97.8 L 179.8 79.4 L 170.2 61.5 L 160.0 44.3 L 149.5 27.5 L 164.6 39.6 L 177.5 54.0 L 189.4 69.2 L 200.9 85.0 L 212.4 100.8 L 224.0 116.5 L 236.2 131.7 L 249.0 146.2 L 262.4 159.9 L 276.6 172.8 L 291.5 184.7 L 307.0 195.9 L 323.0 206.3 L 339.5 216.1 Z"/>
+      <path d="M 322.0 257.0 L 304.5 251.7 L 287.0 245.7 L 269.9 238.6 L 253.0 230.4 L 236.7 220.9 L 220.8 210.3 L 205.4 198.6 L 190.7 185.9 L 176.4 172.6 L 162.5 159.0 L 148.8 145.2 L 135.1 131.8 L 121.2 119.1 L 107.1 106.7 L 124.1 113.8 L 139.8 123.2 L 154.9 133.6 L 169.7 144.5 L 184.5 155.5 L 199.4 166.2 L 214.6 176.6 L 230.1 186.3 L 245.9 195.2 L 262.1 203.3 L 278.7 210.6 L 295.6 217.1 L 312.9 222.9 L 330.3 228.1 Z"/>
+      <path d="M 323.6 269.0 L 307.7 268.3 L 291.8 266.9 L 275.9 264.7 L 260.0 261.6 L 244.2 257.5 L 228.5 252.4 L 213.1 246.4 L 197.8 239.7 L 182.8 232.3 L 167.9 224.6 L 153.2 216.8 L 138.5 209.3 L 123.8 202.3 L 109.1 195.5 L 125.0 197.2 L 140.4 201.0 L 155.5 205.7 L 170.6 210.8 L 185.6 216.1 L 200.6 221.2 L 215.8 226.0 L 231.0 230.2 L 246.3 233.9 L 261.8 237.0 L 277.3 239.3 L 293.0 241.1 L 308.7 242.3 L 324.5 243.1 Z"/>
+      <path d="M 327.5 280.4 L 315.0 282.9 L 302.4 285.0 L 289.6 286.4 L 276.7 287.3 L 263.7 287.4 L 250.5 286.8 L 237.4 285.6 L 224.2 283.8 L 211.1 281.6 L 198.0 279.2 L 185.0 276.7 L 172.0 274.3 L 159.2 272.3 L 146.3 270.2 L 158.9 267.8 L 171.6 267.1 L 184.3 267.1 L 197.0 267.4 L 209.7 267.8 L 222.4 268.1 L 235.1 268.3 L 247.8 268.1 L 260.4 267.6 L 273.0 266.7 L 285.5 265.3 L 298.0 263.5 L 310.5 261.3 L 322.9 258.9 Z"/>
+      <path d="M 419.7 231.8 L 424.4 226.4 L 428.7 220.5 L 432.6 214.2 L 436.0 207.5 L 438.8 200.3 L 441.1 192.7 L 442.9 184.8 L 444.1 176.8 L 445.0 168.6 L 445.6 160.4 L 446.2 152.3 L 446.9 144.4 L 447.8 136.8 L 448.5 129.1 L 443.5 134.5 L 440.0 140.7 L 437.1 147.1 L 434.5 153.8 L 432.1 160.5 L 429.8 167.2 L 427.3 173.9 L 424.6 180.4 L 421.6 186.8 L 418.3 193.0 L 414.7 199.0 L 410.7 204.8 L 406.5 210.4 L 401.9 215.8 Z"/>
+      <path d="M 425.4 243.8 L 431.9 239.6 L 438.2 234.9 L 444.2 229.7 L 449.9 224.0 L 455.2 217.8 L 460.1 211.1 L 464.7 203.9 L 468.8 196.5 L 472.7 188.8 L 476.4 181.0 L 479.9 173.3 L 483.5 165.8 L 487.2 158.5 L 490.8 151.0 L 483.8 154.9 L 478.1 160.0 L 472.8 165.6 L 467.8 171.4 L 462.8 177.3 L 457.9 183.1 L 452.9 188.9 L 447.8 194.6 L 442.5 200.0 L 437.0 205.2 L 431.2 210.1 L 425.3 214.8 L 419.1 219.2 L 412.7 223.4 Z"/>
+      <path d="M 427.3 255.9 L 434.1 253.8 L 440.9 251.3 L 447.6 248.4 L 454.2 244.9 L 460.6 241.0 L 466.8 236.6 L 472.8 231.7 L 478.6 226.6 L 484.2 221.2 L 489.7 215.6 L 495.1 210.1 L 500.5 204.7 L 505.9 199.5 L 511.2 194.0 L 504.0 195.4 L 497.4 198.2 L 491.0 201.3 L 484.8 204.8 L 478.7 208.4 L 472.6 211.9 L 466.5 215.4 L 460.3 218.8 L 454.1 222.0 L 447.7 225.0 L 441.2 227.8 L 434.7 230.3 L 428.0 232.6 L 421.2 234.7 Z"/>
+      <path d="M 426.0 268.0 L 431.6 267.9 L 437.2 267.5 L 442.9 266.8 L 448.5 265.6 L 454.2 264.1 L 459.8 262.2 L 465.3 260.0 L 470.9 257.5 L 476.3 254.8 L 481.7 252.0 L 487.0 249.2 L 492.3 246.4 L 497.6 243.8 L 502.8 240.7 L 497.0 239.7 L 491.4 239.9 L 485.9 240.5 L 480.5 241.3 L 475.0 242.2 L 469.6 243.2 L 464.2 244.2 L 458.8 245.1 L 453.4 245.9 L 448.0 246.6 L 442.5 247.2 L 437.1 247.6 L 431.6 247.9 L 426.0 248.0 Z"/>
+      <path d="M 421.5 217.9 L 430.4 203.1 L 438.3 187.7 L 445.0 171.4 L 450.3 154.3 L 453.9 136.4 L 455.9 117.9 L 456.2 99.0 L 455.1 79.8 L 452.8 60.5 L 449.8 41.4 L 446.6 22.6 L 443.8 4.1 L 442.2 -13.9 L 441.5 -31.5 L 436.6 -15.1 L 434.9 2.1 L 434.7 19.6 L 435.3 37.3 L 436.0 55.1 L 436.2 72.9 L 435.6 90.7 L 434.0 108.1 L 431.1 125.2 L 426.8 141.8 L 421.2 157.8 L 414.4 173.4 L 406.5 188.4 L 397.8 203.1 Z"/>
+      <path d="M 430.7 229.9 L 444.1 216.5 L 456.9 202.4 L 468.8 187.2 L 479.5 171.0 L 489.0 153.6 L 497.1 135.3 L 503.9 116.1 L 509.4 96.3 L 513.9 76.1 L 517.8 55.8 L 521.3 35.6 L 525.2 15.8 L 529.8 -3.3 L 535.1 -21.9 L 524.5 -6.2 L 516.6 10.9 L 510.1 28.8 L 504.1 47.1 L 498.2 65.5 L 491.9 83.7 L 485.0 101.6 L 477.2 119.0 L 468.4 135.7 L 458.5 151.6 L 447.6 166.8 L 435.8 181.2 L 423.1 195.0 L 409.9 208.3 Z"/>
+      <path d="M 436.5 243.9 L 453.1 234.0 L 469.4 223.2 L 485.0 211.4 L 500.0 198.3 L 514.0 184.0 L 527.1 168.4 L 539.3 151.8 L 550.4 134.3 L 560.8 116.2 L 570.6 97.8 L 580.2 79.4 L 589.8 61.5 L 600.0 44.3 L 610.5 27.5 L 595.4 39.6 L 582.5 54.0 L 570.6 69.2 L 559.1 85.0 L 547.6 100.8 L 536.0 116.5 L 523.8 131.7 L 511.0 146.2 L 497.6 159.9 L 483.4 172.8 L 468.5 184.7 L 453.0 195.9 L 437.0 206.3 L 420.5 216.1 Z"/>
+      <path d="M 438.0 257.0 L 455.5 251.7 L 473.0 245.7 L 490.1 238.6 L 507.0 230.4 L 523.3 220.9 L 539.2 210.3 L 554.6 198.6 L 569.3 185.9 L 583.6 172.6 L 597.5 159.0 L 611.2 145.2 L 624.9 131.8 L 638.8 119.1 L 652.9 106.7 L 635.9 113.8 L 620.2 123.2 L 605.1 133.6 L 590.3 144.5 L 575.5 155.5 L 560.6 166.2 L 545.4 176.6 L 529.9 186.3 L 514.1 195.2 L 497.9 203.3 L 481.3 210.6 L 464.4 217.1 L 447.1 222.9 L 429.7 228.1 Z"/>
+      <path d="M 436.4 269.0 L 452.3 268.3 L 468.2 266.9 L 484.1 264.7 L 500.0 261.6 L 515.8 257.5 L 531.5 252.4 L 546.9 246.4 L 562.2 239.7 L 577.2 232.3 L 592.1 224.6 L 606.8 216.8 L 621.5 209.3 L 636.2 202.3 L 650.9 195.5 L 635.0 197.2 L 619.6 201.0 L 604.5 205.7 L 589.4 210.8 L 574.4 216.1 L 559.4 221.2 L 544.2 226.0 L 529.0 230.2 L 513.7 233.9 L 498.2 237.0 L 482.7 239.3 L 467.0 241.1 L 451.3 242.3 L 435.5 243.1 Z"/>
+      <path d="M 432.5 280.4 L 445.0 282.9 L 457.6 285.0 L 470.4 286.4 L 483.3 287.3 L 496.3 287.4 L 509.5 286.8 L 522.6 285.6 L 535.8 283.8 L 548.9 281.6 L 562.0 279.2 L 575.0 276.7 L 588.0 274.3 L 600.8 272.3 L 613.7 270.2 L 601.1 267.8 L 588.4 267.1 L 575.7 267.1 L 563.0 267.4 L 550.3 267.8 L 537.6 268.1 L 524.9 268.3 L 512.2 268.1 L 499.6 267.6 L 487.0 266.7 L 474.5 265.3 L 462.0 263.5 L 449.5 261.3 L 437.1 258.9 Z"/>
+  </svg>
+  <p class="wcap">REDRAWN WINGS — 10 BLADES PER SIDE (6 PRIMARIES + 4 COVERTS)</p>
+</div>
+</body>
+</html>

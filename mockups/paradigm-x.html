@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MK ✦ PARADIGM X — visual mockup</title>
+<meta name="theme-color" content="#03060e" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@300;400;500;600;700&family=Share+Tech+Mono&family=DotGothic16&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="paradigm-x.css" />
+</head>
+<body>
+
+<!-- ===== global overlays ===== -->
+<div class="fx-vignette" aria-hidden="true"></div>
+<div class="fx-dither" aria-hidden="true"></div>
+<div class="fx-scan" aria-hidden="true"></div>
+<div class="fx-sweep" aria-hidden="true"></div>
+<div class="fx-grid" aria-hidden="true"></div>
+<div class="fx-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+<!-- ===== NAV ===== -->
+<header id="nav">
+  <a class="logo" href="#hero">
+    <b>MK</b><span>//PX</span>
+  </a>
+  <nav aria-label="Main">
+    <a href="#hero" class="is-on"><span class="idx">01</span>INTRO</a>
+    <a href="#stack"><span class="idx">02</span>WHAT I DO</a>
+    <a href="#operator"><span class="idx">03</span>WHO I AM</a>
+    <a href="#work"><span class="idx">04</span>MY WORK</a>
+    <a href="#contact"><span class="idx">05</span>CONTACT</a>
+  </nav>
+  <div class="nav-stat">
+    <span class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+    <span>LINK <b>STABLE</b></span>
+    <span class="nav-clock" data-clock>00:00:00</span>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="sky" aria-hidden="true">
+    <div class="sky-grad"></div>
+    <div class="sky-band"></div>
+
+    <div class="city">
+      <svg viewBox="0 0 1600 320" preserveAspectRatio="xMidYMax meet" fill="none">
+        <g stroke="#3fe3ff" stroke-width="1" opacity=".85">
+          <!-- wireframe skyline: rects + a few internal floor lines each -->
+          <path d="M40 320V196h74v124M40 232h74M40 268h74"/>
+          <path d="M128 320V138h52v182M128 176h52M128 214h52M128 252h52M128 290h52"/>
+          <path d="M196 320V246h96v74M196 282h96"/>
+          <path d="M306 320V104h64v216M306 148h64M306 192h64M306 236h64M306 280h64"/>
+          <path d="M384 320V176h40v144M384 216h40M384 256h40"/>
+          <path d="M440 320V222h110v98M440 262h110M440 296h110"/>
+          <path d="M566 320V62h78v258M566 108h78M566 154h78M566 200h78M566 246h78M566 292h78"/>
+          <path d="M605 62V26" stroke-dasharray="3 4"/>
+          <path d="M660 320V150h44v170M660 190h44M660 230h44M660 270h44"/>
+          <path d="M718 320V210h72v110M718 250h72M718 288h72"/>
+          <path d="M806 320V16h96v304M806 66h96M806 116h96M806 166h96M806 216h96M806 266h96"/>
+          <path d="M854 16V-14" stroke-dasharray="3 4"/>
+          <path d="M918 320V132h56v188M918 174h56M918 216h56M918 258h56M918 300h56"/>
+          <path d="M990 320V236h88v84M990 274h88"/>
+          <path d="M1094 320V88h70v232M1094 132h70M1094 176h70M1094 220h70M1094 264h70"/>
+          <path d="M1180 320V186h46v134M1180 226h46M1180 266h46"/>
+          <path d="M1242 320V118h84v202M1242 160h84M1242 202h84M1242 244h84M1242 286h84"/>
+          <path d="M1342 320V244h74v76M1342 282h74"/>
+          <path d="M1432 320V158h58v162M1432 200h58M1432 242h58M1432 284h58"/>
+          <path d="M1506 320V214h62v106M1506 254h62M1506 292h62"/>
+        </g>
+        <!-- a handful of lit windows -->
+        <g fill="#3fe3ff">
+          <rect x="820" y="80" width="8" height="6"/><rect x="852" y="130" width="8" height="6"/>
+          <rect x="884" y="180" width="8" height="6"/><rect x="580" y="122" width="8" height="6"/>
+          <rect x="612" y="214" width="8" height="6"/><rect x="320" y="162" width="8" height="6"/>
+          <rect x="1108" y="146" width="8" height="6"/><rect x="1256" y="216" width="8" height="6"/>
+        </g>
+        <g fill="#ffab1f">
+          <rect x="868" y="230" width="8" height="6"/><rect x="596" y="260" width="8" height="6"/>
+          <rect x="1290" y="174" width="8" height="6"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="horizon"></div>
+    <div class="floor"></div>
+  </div>
+
+  <div class="plates" aria-hidden="true">
+    <div class="plate p1"></div>
+    <div class="plate p2"></div>
+    <div class="plate p3"></div>
+    <div class="plate p4"></div>
+  </div>
+
+  <!-- summoning circle: the MegaTen tell -->
+  <div class="circle" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" stroke="#3fe3ff">
+      <g class="ring-a">
+        <circle cx="200" cy="200" r="188" stroke-width="1"/>
+        <circle cx="200" cy="200" r="180" stroke-width="1" stroke-dasharray="2 10"/>
+        <g stroke-width="1">
+          <path d="M200 12v18M200 370v18M12 200h18M370 200h18"/>
+          <path d="M67 67l13 13M320 320l13 13M333 67l-13 13M80 320l-13 13"/>
+        </g>
+      </g>
+      <g class="ring-b">
+        <circle cx="200" cy="200" r="150" stroke-width="1" opacity=".8"/>
+        <circle cx="200" cy="200" r="118" stroke-width="1" stroke-dasharray="14 6" opacity=".7"/>
+        <!-- hexagram -->
+        <path d="M200 58 341 300 59 300Z" stroke-width="1" opacity=".85"/>
+        <path d="M200 342 59 100 341 100Z" stroke-width="1" opacity=".85"/>
+      </g>
+      <g class="ring-c">
+        <circle cx="200" cy="200" r="86" stroke-width="1" stroke-dasharray="1 7"/>
+        <rect x="146" y="146" width="108" height="108" stroke-width="1" opacity=".6"/>
+        <rect x="146" y="146" width="108" height="108" stroke-width="1" opacity=".45" transform="rotate(45 200 200)"/>
+      </g>
+      <circle cx="200" cy="200" r="34" stroke-width="1" opacity=".5"/>
+    </svg>
+  </div>
+
+  <div class="rail rail-l" aria-hidden="true">
+    <div data-rail></div>
+  </div>
+  <div class="rail rail-r" aria-hidden="true">
+    <div data-rail></div>
+  </div>
+
+  <div class="hero-in">
+    <p class="access">
+      <span class="k">ACCESS</span>
+      <span class="v"><em>PARADIGM&nbsp;X</em><b>//</b><em>NODE&nbsp;0x1F</em><b>//</b><em>HOUSTON</em></span>
+    </p>
+
+    <h1 class="hero-name">MILES KING</h1>
+    <p class="hero-kana">マイルス・キング</p>
+
+    <p class="hero-rule"><span>SOFTWARE DEVELOPER<i>◆</i>WEB &amp; ANALYTICS<i>◆</i>HOUSTON, TX</span></p>
+
+    <div class="hero-cta">
+      <a class="btn" href="#work"><s>VIEW WORK ▶</s></a>
+      <a class="btn is-amber" href="#contact"><s>SAY HELLO ▶</s></a>
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#stack">SCROLL<i>▼</i></a>
+</section>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>JAVASCRIPT ◆ NODE.JS ◆ PHP ◆ SQL ◆ PYTHON ◆ GA4 ◆ GTM ◆ BIGQUERY ◆ GSAP ◆&nbsp;</span>
+    <span>JAVASCRIPT ◆ NODE.JS ◆ PHP ◆ SQL ◆ PYTHON ◆ GA4 ◆ GTM ◆ BIGQUERY ◆ GSAP ◆&nbsp;</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ===== SYS.02 — WHAT I DO ===== -->
+<section id="stack" class="sec">
+  <div class="sec-head">
+    <div class="sec-head-main">
+      <p class="sec-tag"><span class="k">SYS.02</span><span class="v">スキル</span></p>
+      <h2 class="sec-title">WHAT I DO</h2>
+    </div>
+    <div class="sec-head-side" aria-hidden="true">
+      <span class="sec-idx">02<b>/05</b></span>
+      <span class="sec-coord">SECTOR 02 // TOOLSET</span>
+      <span class="sec-dots"><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+    <p class="sec-line" aria-hidden="true"></p>
+  </div>
+
+  <div class="stack-grid">
+    <div class="pnl" style="--nx:18px">
+      <div class="pnl-in">
+        <div class="pnl-head">
+          <span>GUMP://MILES/SKILLS.EXE</span>
+          <span class="sp">RUN</span>
+        </div>
+        <div class="term">
+          <p><span class="tp">&gt;</span> whoami</p>
+          <p class="to">miles.king — developer // web + analytics</p>
+          <p><span class="tp">&gt;</span> skills.exe --list</p>
+          <p class="to">[<b>████████████</b>] 100% — 15 modules loaded</p>
+          <p><span class="tp">&gt;</span> status</p>
+          <p class="to ok">CONNECTION STABLE // CAFFEINATED</p>
+          <p><span class="tp">&gt;</span> <i class="caret">█</i></p>
+        </div>
+        <ul class="meter">
+          <li><span>FRONT-END</span><b data-fill="92"></b><em>92</em></li>
+          <li><span>BACK-END</span><b data-fill="74"></b><em>74</em></li>
+          <li><span>ANALYTICS</span><b data-fill="88"></b><em>88</em></li>
+          <li><span>DATA VIZ</span><b data-fill="70"></b><em>70</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stack-copy">
+      <p class="lede">
+        I build <b>web apps</b>, small <b>utilities</b>, and the occasional weird
+        side project — clean interfaces, fast pages, and tools that make a tedious
+        thing simple. And because I work in <b>digital analytics</b> too, I like
+        knowing whether the things I build actually work once people use them.
+      </p>
+
+      <div class="chip-set">
+        <p class="chip-label"><i>01</i>LANGUAGES</p>
+        <ul class="chips">
+          <li>JAVASCRIPT</li><li>HTML</li><li>CSS</li>
+          <li>PHP</li><li>SQL</li><li>PYTHON</li>
+        </ul>
+      </div>
+      <div class="chip-set">
+        <p class="chip-label"><i>02</i>FRAMEWORKS &amp; PLATFORMS</p>
+        <ul class="chips">
+          <li>NODE.JS</li><li>JQUERY</li><li>WORDPRESS</li><li>API INTEGRATION</li>
+        </ul>
+      </div>
+      <div class="chip-set">
+        <p class="chip-label"><i>03</i>ANALYTICS &amp; DATA</p>
+        <ul class="chips">
+          <li>GA4</li><li>GTM</li><li>LOOKER STUDIO</li><li>BIGQUERY</li><li>DATA VIZ</li>
+        </ul>
+      </div>
+
+      <a class="btn is-ghost" href="#"><s>RESUME.PDF ↓</s></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SYS.03 — WHO I AM ===== -->
+<section id="operator" class="sec">
+  <div class="sec-head">
+    <div class="sec-head-main">
+      <p class="sec-tag"><span class="k">SYS.03</span><span class="v">オペレーター</span></p>
+      <h2 class="sec-title">WHO I AM</h2>
+    </div>
+    <div class="sec-head-side" aria-hidden="true">
+      <span class="sec-idx">03<b>/05</b></span>
+      <span class="sec-coord">SECTOR 03 // OPERATOR</span>
+      <span class="sec-dots"><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+    <p class="sec-line" aria-hidden="true"></p>
+  </div>
+
+  <div class="op-grid">
+    <!-- Operator licence — the "GUMP ID" -->
+    <div class="pnl is-amber idcard" style="--nx:20px">
+      <div class="pnl-in">
+        <div class="pnl-head is-amber">
+          <span>SUMMONER LICENCE</span>
+          <span class="sp">CLASS S</span>
+        </div>
+        <div class="id-main">
+          <div class="id-photo">
+            <span class="id-mono">MK</span>
+            <span class="id-scan" aria-hidden="true"></span>
+          </div>
+          <dl class="id-fields">
+            <div><dt>NAME</dt><dd>MILES KING</dd></div>
+            <div><dt>KANA</dt><dd class="px">マイルス・キング</dd></div>
+            <div><dt>CLASS</dt><dd>DEV × ANALYTICS</dd></div>
+            <div><dt>BASE</dt><dd>HOUSTON, TX</dd></div>
+            <div><dt>STATE</dt><dd class="ok"><i></i>CAFFEINATED</dd></div>
+          </dl>
+        </div>
+        <div class="id-foot">
+          <span class="barcode" aria-hidden="true"></span>
+          <span class="id-serial">MK-2097-HTX</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="op-copy">
+      <blockquote class="bigquote">
+        I like building things that <em>work cleanly</em> — and knowing whether
+        they actually do once people start using them.
+      </blockquote>
+      <p>
+        I came to software from a chemical-engineering background — a
+        problem-solving, quantitative route rather than a CS one. I welcome new
+        challenges and treat unfamiliar problems as a chance to learn something
+        I didn't know yesterday.
+      </p>
+      <a class="head-link" href="#">MORE ABOUT ME <i>→</i></a>
+
+      <ul class="oplog">
+        <li><span>0x01</span>Chemical engineering → software. Long way round.</li>
+        <li><span>0x02</span>Ships small tools, then measures whether they get used.</li>
+        <li><span>0x03</span>Currently in Houston, TX. Available for interesting problems.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SYS.04 — MY WORK ===== -->
+<section id="work" class="sec">
+  <div class="sec-head">
+    <div class="sec-head-main">
+      <p class="sec-tag"><span class="k">SYS.04</span><span class="v">プロジェクト</span></p>
+      <h2 class="sec-title">MY WORK</h2>
+      <p class="sec-sub">A mix of small utilities I actually use and web experiments I built to learn something. Click any node to open it.</p>
+      <a class="head-link" href="#">FULL PROJECT INDEX <i>→</i></a>
+    </div>
+    <div class="sec-head-side" aria-hidden="true">
+      <span class="sec-idx">04<b>/05</b></span>
+      <span class="sec-coord">SECTOR 04 // 06 NODES</span>
+      <span class="sec-dots"><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+    <p class="sec-line" aria-hidden="true"></p>
+  </div>
+
+  <div class="work-grid">
+    <article class="node is-feature">
+      <a href="#">
+        <div class="node-screen">
+          <span class="node-badge is-amber">NEW / UTILITY</span>
+          <div class="node-thumb" data-thumb="chess"></div>
+          <span class="node-lines" aria-hidden="true"></span>
+          <span class="node-hud" aria-hidden="true">NODE_01</span>
+        </div>
+        <div class="node-meta">
+          <div class="node-top">
+            <span class="node-num">01</span>
+            <h3>Study Something!</h3>
+          </div>
+          <p>Pulls random over-the-board games from top chess players so I can study unfamiliar positions.</p>
+          <span class="node-tags">UTILITY // CHESS // JS</span>
+          <span class="node-go">LAUNCH &#9654;</span>
+        </div>
+      </a>
+      <span class="brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </article>
+
+    <article class="node">
+      <a href="#">
+        <div class="node-screen">
+          <span class="node-badge">NEW / GAME</span>
+          <div class="node-thumb" data-thumb="cards"></div>
+          <span class="node-lines" aria-hidden="true"></span>
+          <span class="node-hud" aria-hidden="true">NODE_02</span>
+        </div>
+        <div class="node-meta">
+          <div class="node-top">
+            <span class="node-num">02</span>
+            <h3>Anime Blackjack</h3>
+          </div>
+          <p>Blackjack against an animated dealer who reacts to every hand.</p>
+          <span class="node-tags">GAME // REACT // GSAP</span>
+          <span class="node-go">LAUNCH &#9654;</span>
+        </div>
+      </a>
+      <span class="brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </article>
+
+    <article class="node">
+      <a href="#">
+        <div class="node-screen">
+          <div class="node-thumb" data-thumb="color"></div>
+          <span class="node-lines" aria-hidden="true"></span>
+          <span class="node-hud" aria-hidden="true">NODE_03</span>
+        </div>
+        <div class="node-meta">
+          <div class="node-top">
+            <span class="node-num">03</span>
+            <h3>InfiniteCrayons</h3>
+          </div>
+          <p>Colour palette generator with per-swatch HSL control.</p>
+          <span class="node-tags">TOOL // COLOR</span>
+          <span class="node-go">LAUNCH &#9654;</span>
+        </div>
+      </a>
+      <span class="brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </article>
+
+    <article class="node">
+      <a href="#">
+        <div class="node-screen">
+          <div class="node-thumb" data-thumb="audio"></div>
+          <span class="node-lines" aria-hidden="true"></span>
+          <span class="node-hud" aria-hidden="true">NODE_04</span>
+        </div>
+        <div class="node-meta">
+          <div class="node-top">
+            <span class="node-num">04</span>
+            <h3>JSt Play</h3>
+          </div>
+          <p>Browser drum machine &amp; step sequencer.</p>
+          <span class="node-tags">AUDIO // FUN</span>
+          <span class="node-go">LAUNCH &#9654;</span>
+        </div>
+      </a>
+      <span class="brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </article>
+
+    <article class="node">
+      <a href="#">
+        <div class="node-screen">
+          <div class="node-thumb" data-thumb="stock"></div>
+          <span class="node-lines" aria-hidden="true"></span>
+          <span class="node-hud" aria-hidden="true">NODE_05</span>
+        </div>
+        <div class="node-meta">
+          <div class="node-top">
+            <span class="node-num">05</span>
+            <h3>MoreStockImages</h3>
+          </div>
+          <p>Royalty-free photo search across providers.</p>
+          <span class="node-tags">TOOL // API</span>
+          <span class="node-go">LAUNCH &#9654;</span>
+        </div>
+      </a>
+      <span class="brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </article>
+
+    <article class="node">
+      <a href="#">
+        <div class="node-screen">
+          <div class="node-thumb" data-thumb="bot"></div>
+          <span class="node-lines" aria-hidden="true"></span>
+          <span class="node-hud" aria-hidden="true">NODE_06</span>
+        </div>
+        <div class="node-meta">
+          <div class="node-top">
+            <span class="node-num">06</span>
+            <h3>MettatonEX</h3>
+          </div>
+          <p>Discord bot that announces new YouTube uploads.</p>
+          <span class="node-tags">NODE.JS // DISCORD.JS</span>
+          <span class="node-go">CASE STUDY &#9654;</span>
+        </div>
+      </a>
+      <span class="brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    </article>
+  </div>
+
+</section>
+
+<!-- ===== SYS.05 — CONTACT ===== -->
+<section id="contact" class="sec">
+  <div class="sec-head">
+    <div class="sec-head-main">
+      <p class="sec-tag"><span class="k">SYS.05</span><span class="v">コンタクト</span></p>
+      <h2 class="sec-title">SAY HELLO</h2>
+      <p class="sec-sub">Reach out about a project, a collaboration, an interesting problem, or just to say hi.</p>
+    </div>
+    <div class="sec-head-side" aria-hidden="true">
+      <span class="sec-idx">05<b>/05</b></span>
+      <span class="sec-coord">SECTOR 05 // CH.05 OPEN</span>
+      <span class="sec-dots"><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+    <p class="sec-line" aria-hidden="true"></p>
+  </div>
+
+  <div class="contact-grid">
+  <div class="pnl contact-pnl" style="--nx:22px">
+    <div class="pnl-in">
+      <div class="pnl-head">
+        <span>GUMP://TRANSMIT</span>
+        <span class="sp">CH.05 — OPEN</span>
+      </div>
+      <form class="form" onsubmit="return false">
+        <div class="f-row">
+          <label class="field">
+            <span>NAME</span>
+            <input type="text" placeholder="operator name" />
+          </label>
+          <label class="field">
+            <span>EMAIL</span>
+            <input type="email" placeholder="you@paradigm-x.net" />
+          </label>
+        </div>
+        <label class="field">
+          <span>MESSAGE</span>
+          <textarea rows="6" placeholder="begin transmission..."></textarea>
+        </label>
+        <button class="btn is-amber f-send" type="submit"><s>TRANSMIT ▶</s></button>
+      </form>
+    </div>
+  </div>
+
+  <aside class="ch-side" aria-hidden="true">
+    <p class="ch-title">CHANNEL STATUS</p>
+    <dl class="ch-list">
+      <div><dt>UPLINK</dt><dd class="ok">OPEN</dd></div>
+      <div><dt>LATENCY</dt><dd>014 ms</dd></div>
+      <div><dt>ENCRYPT</dt><dd>AES-256</dd></div>
+      <div><dt>REPLY</dt><dd>&lt; 24 h</dd></div>
+      <div><dt>NODE</dt><dd>0x1F HTX</dd></div>
+    </dl>
+    <p class="ch-note">All transmissions are logged to<br />GUMP://MILES/INBOX.</p>
+    <span class="ch-wave"></span>
+  </aside>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer">
+  <div class="foot-rule" aria-hidden="true"></div>
+  <ul class="social">
+    <li><a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.66.41.35.77 1.05.77 2.12 0 1.54-.01 2.77-.01 3.15 0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a></li>
+    <li><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li>
+  </ul>
+  <p class="foot-line">
+    <span>&copy; 2026 MILES KING</span><i>◆</i>
+    <span>SOFTWARE DEVELOPER</span><i>◆</i>
+    <span>MILESKING.DEV</span>
+  </p>
+  <p class="foot-sig px">— DISCONNECTING FROM PARADIGM X —</p>
+  <a class="totop" href="#hero">RETURN TO TOP ▲</a>
+</footer>
+
+<script src="paradigm-x.js"></script>
+</body>
+</html>
