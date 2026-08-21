@@ -353,27 +353,32 @@ RIDER_CARD = '''    <div class="glass rcard" data-panel data-tilt>
 
 # ---------------------------------------------------------------- index
 INDEX_CARDS = [
-    ('01', 'projects/study-something/', 'study-something.png',
+    ('01', 'projects/7-3/', 'seven-three.png',
+     '7-3 game preview — a Game Boy Color styled office RPG', '7-3',
+     'A neverending workday RPG in the shape of a 1998 Game Boy Color cartridge — '
+     'email, reports and printer jams as turn-based encounters.',
+     'GAME // CANVAS // NO ENGINE', 'LAUNCH', 'NEW &#10022; GAME', True, False),
+    ('02', 'projects/study-something/', 'study-something.png',
      'Study Something! chess study utility preview', 'Study Something!',
      'Pulls random over-the-board games from top chess players so I can study unfamiliar positions.',
-     'UTILITY // CHESS // JS', 'LAUNCH', 'NEW &#10022; UTILITY', True, False),
-    ('02', 'projects/anime-blackjack/', 'anime-blackjack.jpg',
+     'UTILITY // CHESS // JS', 'LAUNCH', 'NEW &#10022; UTILITY', False, False),
+    ('03', 'projects/anime-blackjack/', 'anime-blackjack.jpg',
      'Anime Blackjack game preview — animated dealer and card table', 'Anime Blackjack',
      'Blackjack against an animated anime dealer who reacts to every hand.',
-     'GAME // REACT // GSAP', 'LAUNCH', 'NEW &#10022; GAME', False, False),
-    ('03', 'projects/infinite-crayons/', 'infinite-crayons.png',
+     'GAME // REACT // GSAP', 'LAUNCH', None, False, False),
+    ('04', 'projects/infinite-crayons/', 'infinite-crayons.png',
      'InfiniteCrayons color palette generator preview', 'InfiniteCrayons',
      'Color palette generator with per-swatch HSL control.',
      'TOOL // COLOR', 'LAUNCH', None, False, False),
-    ('04', 'projects/jst-play/', 'jst-play.png',
+    ('05', 'projects/jst-play/', 'jst-play.png',
      'JSt Play drum machine preview', 'JSt Play',
      'Browser drum machine &amp; step sequencer.',
      'AUDIO // FUN', 'LAUNCH', None, False, False),
-    ('05', 'projects/more-stock-images/', 'more-stock-images.png',
+    ('06', 'projects/more-stock-images/', 'more-stock-images.png',
      'MoreStockImages photo search preview', 'MoreStockImages',
      'Royalty-free photo search across providers.',
      'TOOL // API', 'LAUNCH', None, False, False),
-    ('06', 'projects/mettatonex.html', 'mettatonex.png',
+    ('07', 'projects/mettatonex.html', 'mettatonex.png',
      'MettatonEX Discord bot preview', 'MettatonEX',
      'Discord bot that announces new YouTube uploads.',
      'NODE.JS // DISCORD.JS', 'CASE STUDY', None, False, False),
@@ -403,7 +408,7 @@ def build_index():
       <p data-boot-line>&gt; spinning up gear train ......... 12/12</p>
       <p data-boot-line>&gt; calibrating drive wheel W-01 ... OK</p>
       <p data-boot-line>&gt; projecting holo layer .......... OK</p>
-      <p data-boot-line>&gt; loading portfolio manifest ..... 06 NODES</p>
+      <p data-boot-line>&gt; loading portfolio manifest ..... 07 NODES</p>
       <p data-boot-line>&gt; handshake .......................</p>
     </div>
     <div class="boot-bar"><i data-boot-bar></i></div>
