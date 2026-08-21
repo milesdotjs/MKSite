@@ -19,15 +19,21 @@ const LINES = 4;
 const CPS = 52; // characters per second
 
 /**
- * How long to leave a finished page on screen before the autopilot
- * turns it. Scaled to the amount of text, because the jokes are the
- * point of watching and a flat delay reads fine on "Saved." and far
- * too fast on four lines of an isekai protagonist explaining himself.
- * Roughly 180 words per minute plus a beat to register the punchline.
+ * How long a finished page sits before the autopilot turns it.
+ *
+ * The clock starts only once the typewriter has finished printing, so
+ * this is three full seconds of a complete page on screen regardless of
+ * how long it took to type out. A flat figure beat scaling by length:
+ * length-scaled timing made the long pages genuinely slow to sit
+ * through without making the short ones any easier to catch.
+ *
+ * Nobody is trapped by it — A still turns the page instantly, and the
+ * speed control divides straight into it (1.5s at 2x, 0.75s at 4x).
  */
-export function readingTime(chars) {
-  return 1.1 + chars / 26;
-}
+export const PAGE_DWELL = 3;
+
+/** A short beat after a conversation ends, before the autopilot moves on. */
+export const SETTLE_AFTER_TALK = 0.6;
 
 export class TextBox {
   constructor() {

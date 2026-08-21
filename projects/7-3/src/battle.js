@@ -14,7 +14,7 @@ import { enemiesFor, PREFIXES, ENEMY_BY_ID } from './enemies.js';
 import { SKILL_BY_ID, ITEM_BY_ID, skillsAt } from './content.js';
 import { xpAward, abbrev, money as fmtMoney } from './xp.js';
 import { payFor } from './state.js';
-import { Menu, readingTime } from './ui.js';
+import { Menu, PAGE_DWELL } from './ui.js';
 import { rng } from './rng.js';
 import { sfx } from './audio.js';
 
@@ -121,7 +121,8 @@ export class Battle {
       const auto = this.g.auto.active;
       if (auto) {
         this.autoHold = (this.autoHold || 0) + dt;
-        if (this.g.box.pageComplete && this.autoHold > 0.65 / this.g.speed) {
+        const dwell = PAGE_DWELL / this.g.speed;
+        if (this.g.box.pageComplete && this.autoHold > dwell) {
           this.autoHold = 0;
           if (this.g.box.advance()) this.waitingForKey = false;
         }
@@ -146,7 +147,10 @@ export class Battle {
         this.g.box.say(step.text);
         this.autoHold = 0;
         if (step.wait) this.waitingForKey = true;
-        else this.timer = 0.35 + step.text.length / 52; // reveal time + a beat
+        // Lines that turn themselves get half the dwell plus their print
+        // time: they are short beats between blows, and a manual player
+        // sits through these too, so a full 3s each would drag a fight.
+        else this.timer = (step.text.length / 52 + PAGE_DWELL * 0.5) / this.g.speed;
         break;
       case 'wait':
         this.timer = step.time / this.g.speed;

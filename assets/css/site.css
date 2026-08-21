@@ -908,8 +908,15 @@ ul{list-style:none}
 .g-w2{width:158px;height:158px;right:126px;top:28%;opacity:.26}
 .sec-inner{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
 
-.work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;perspective:1200px}
-.card{position:relative;transform-style:preserve-3d}
+/* No `perspective` here and no `transform-style:preserve-3d` on .card.
+   The holo tilt sets its own transformPerspective on the <a> (see site.js),
+   so a 3D context on the article buys nothing -- and it BREAKS CLICKS: with
+   preserve-3d the tilted anchor joins the article's 3D rendering context and
+   Chrome hit-tests the pointer onto the article instead of the anchor, so the
+   link never receives the click. Cards looked fine and were completely dead.
+   Keep this flat. */
+.work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{position:relative}
 .card > a{
   position:relative;display:flex;flex-direction:column;height:100%;
   background:

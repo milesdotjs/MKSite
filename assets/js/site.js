@@ -666,16 +666,27 @@
      that is still effectively transparent.
      ========================================================== */
   function watchdog() {
-    gsap.delayedCall(5, function () {
-      var stuck = $$("[data-panel], .card, .chips li, .factlist li, .sheet tr, .sec-tag, .sec-sub, .head-link")
-        .filter(function (el) {
-          return parseFloat(getComputedStyle(el).opacity) < 0.05;
-        });
+    // Only sweep what SHOULD already have fired: an element still below the
+    // fold is legitimately waiting its turn, and force-revealing it would
+    // silently kill its entrance animation. Re-arm after scrolling so the
+    // net still covers the rest of the page.
+    var SEL = "[data-panel], .card, .chips li, .factlist li, .sheet tr, .sec-tag, .sec-sub, .head-link";
+    function sweep() {
+      var stuck = $$(SEL).filter(function (el) {
+        if (parseFloat(getComputedStyle(el).opacity) >= 0.05) return false;
+        return el.getBoundingClientRect().top < window.innerHeight * 0.95;
+      });
       if (!stuck.length) return;
       console.warn("[holo] watchdog revealed " + stuck.length + " stuck element(s)");
       gsap.set(stuck, { clearProps: "opacity,transform" });
       gsap.to(stuck, { opacity: 1, duration: .3 });
-    });
+    }
+    gsap.delayedCall(5, sweep);
+    var t;
+    window.addEventListener("scroll", function () {
+      clearTimeout(t);
+      t = setTimeout(sweep, 900);
+    }, { passive: true });
   }
 
   /* ==========================================================

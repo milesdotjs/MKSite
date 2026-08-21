@@ -11,7 +11,7 @@ import { tileById } from './tiles.js';
 import { tileIdAt } from './world.js';
 import { SKILL_BY_ID, ITEM_BY_ID, skillsAt } from './content.js';
 import { rng } from './rng.js';
-import { readingTime } from './ui.js';
+import { PAGE_DWELL, SETTLE_AFTER_TALK } from './ui.js';
 
 /* How strongly each part of the day pulls toward each kind of door. */
 const AGENDA_DOORS = {
@@ -50,6 +50,8 @@ export class Auto {
     this.hold = 0;
     this.idle = 0;
     this.stuck = 0;
+    this.wasTalking = false;
+    this.pageTimer = null;
     // people and objects already pressed A on, keyed by area and tile
     this.visited = new Set();
     // how many things have been used in each area, so it eventually moves on
@@ -89,14 +91,38 @@ export class Auto {
 
     const g = this.g;
 
-    // any text on screen: read it, then move on
+    /*
+     * Text on screen: leave it up long enough to read, then turn it.
+     *
+     * The wait has to happen BEFORE the page is dismissed. Setting the
+     * delay after injecting A meant the timer ran with the box already
+     * closed — pages two and later looked right, but the first page of
+     * every conversation flashed past in a fraction of a second.
+     */
     if (g.box.visible) {
-      if (this.hold <= 0) {
-        if (g.box.pageComplete) {
-          g.input.inject('a');
-          this.hold = 0.45 / g.speed;
-        }
+      this.wasTalking = true;
+      if (!g.box.pageComplete) {
+        this.pageTimer = null; // still typing; start the clock when it lands
+        return;
       }
+      if (this.pageTimer === null) this.pageTimer = PAGE_DWELL / g.speed;
+      this.pageTimer -= dt;
+      if (this.pageTimer <= 0) {
+        g.input.inject('a');
+        this.pageTimer = null;
+      }
+      return;
+    }
+
+    /*
+     * A beat once the box has closed. Without it the last line of a
+     * joke vanishes and the character is already walking off in the
+     * same frame, which reads as rushed no matter how long the pages
+     * themselves sat there.
+     */
+    if (this.wasTalking) {
+      this.wasTalking = false;
+      this.hold = Math.max(this.hold, SETTLE_AFTER_TALK / g.speed);
       return;
     }
 
