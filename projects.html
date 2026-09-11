@@ -4,203 +4,337 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Projects &mdash; Miles King</title>
-    <meta name="description" content="Games, utilities and a Discord bot by Miles King. Most of them run right in your browser." />
-    <meta property="og:title" content="Projects &mdash; Miles King" />
-    <meta property="og:description" content="Games, utilities and a Discord bot by Miles King. Most of them run right in your browser." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mileskingdev.com/projects.html" />
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='31' fill='%23040404'/%3E%3Ccircle cx='32' cy='32' r='25.5' fill='none' stroke='%23fff' stroke-width='5'/%3E%3Ctext x='32' y='40' font-family='Arial,sans-serif' font-size='21' font-weight='700' text-anchor='middle' fill='%23fff'%3EMK%3C/text%3E%3C/svg%3E" />
+    <meta name="description" content="Projects by Miles King — web apps, utilities, and case studies." />
+    <meta name="theme-color" content="#05060d" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2305060d'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='bold' text-anchor='middle' fill='%234ff5ff'%3EMK%3C/text%3E%3Cline x1='10' y1='52' x2='54' y2='52' stroke='%23ff4fd8' stroke-width='3'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700&text=%E3%83%9E%E3%82%A4%E3%83%AB%E3%82%B9%E3%83%BB%E3%82%AD%E3%83%B3%E3%82%B0&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500..900&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600;1,700&family=Space+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/site.css" />
+    <noscript>
+      <style>
+        .reticle { display: none !important; }
+      </style>
+    </noscript>
   </head>
   <body id="top">
 
-<!-- ===== sprite: the Air Treck wheel as flat drafting + two-tone cel ===== -->
-<svg class="sprite" aria-hidden="true" width="0" height="0" focusable="false">
+<!-- ===== mechanical sprite sheet ===== -->
+<svg class="sprite" aria-hidden="true" width="0" height="0">
   <defs>
-    <pattern id="tone45" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="1.1" fill="#8a939b"/></pattern>
-    <symbol id="wheel" viewBox="0 0 400 400">
-      <path class="wh-tyre" fill-rule="evenodd" d="M 8.0 200.0 A 192.0 192.0 0 1 1 392.0 200.0 A 192.0 192.0 0 1 1 8.0 200.0 Z M 48.0 200.0 A 152.0 152.0 0 1 0 352.0 200.0 A 152.0 152.0 0 1 0 48.0 200.0 Z"/>
-      <path class="wh-tone" fill-rule="evenodd" d="M 8.0 200.0 A 192.0 192.0 0 1 1 392.0 200.0 A 192.0 192.0 0 1 1 8.0 200.0 Z M 48.0 200.0 A 152.0 152.0 0 1 0 352.0 200.0 A 152.0 152.0 0 1 0 48.0 200.0 Z"/>
-      <path class="wh-tread" d="M 187.6 46.5 L 189.0 10.3 L 211.0 10.3 L 212.4 46.5 Z M 219.8 47.3 L 228.7 12.2 L 250.2 16.7 L 244.0 52.4 Z M 251.2 54.7 L 267.1 22.3 L 287.2 31.2 L 273.7 64.8 Z M 280.2 68.6 L 302.6 40.1 L 320.4 53.0 L 300.2 83.1 Z M 305.8 88.1 L 333.6 64.9 L 348.3 81.2 L 322.3 106.5 Z M 326.8 112.6 L 358.8 95.7 L 369.8 114.7 L 339.1 133.9 Z M 342.2 140.8 L 377.0 130.9 L 383.8 151.8 L 349.8 164.3 Z M 351.4 171.7 L 387.5 169.3 L 389.8 191.1 L 354.0 196.2 Z M 354.0 203.8 L 389.8 208.9 L 387.5 230.7 L 351.4 228.3 Z M 349.8 235.7 L 383.8 248.2 L 377.0 269.1 L 342.2 259.2 Z M 339.1 266.1 L 369.8 285.3 L 358.8 304.3 L 326.8 287.4 Z M 322.3 293.5 L 348.3 318.8 L 333.6 335.1 L 305.8 311.9 Z M 300.2 316.9 L 320.4 347.0 L 302.6 359.9 L 280.2 331.4 Z M 273.7 335.2 L 287.2 368.8 L 267.1 377.7 L 251.2 345.3 Z M 244.0 347.6 L 250.2 383.3 L 228.7 387.8 L 219.8 352.7 Z M 212.4 353.5 L 211.0 389.7 L 189.0 389.7 L 187.6 353.5 Z M 180.2 352.7 L 171.3 387.8 L 149.8 383.3 L 156.0 347.6 Z M 148.8 345.3 L 132.9 377.7 L 112.8 368.8 L 126.3 335.2 Z M 119.8 331.4 L 97.4 359.9 L 79.6 347.0 L 99.8 316.9 Z M 94.2 311.9 L 66.4 335.1 L 51.7 318.8 L 77.7 293.5 Z M 73.2 287.4 L 41.2 304.3 L 30.2 285.3 L 60.9 266.1 Z M 57.8 259.2 L 23.0 269.1 L 16.2 248.2 L 50.2 235.7 Z M 48.6 228.3 L 12.5 230.7 L 10.2 208.9 L 46.0 203.8 Z M 46.0 196.2 L 10.2 191.1 L 12.5 169.3 L 48.6 171.7 Z M 50.2 164.3 L 16.2 151.8 L 23.0 130.9 L 57.8 140.8 Z M 60.9 133.9 L 30.2 114.7 L 41.2 95.7 L 73.2 112.6 Z M 77.7 106.5 L 51.7 81.2 L 66.4 64.9 L 94.2 88.1 Z M 99.8 83.1 L 79.6 53.0 L 97.4 40.1 L 119.8 68.6 Z M 126.3 64.8 L 112.8 31.2 L 132.9 22.3 L 148.8 54.7 Z M 156.0 52.4 L 149.8 16.7 L 171.3 12.2 L 180.2 47.3 Z"/>
-      <path class="wh-rim" fill-rule="evenodd" d="M 48.0 200.0 A 152.0 152.0 0 1 1 352.0 200.0 A 152.0 152.0 0 1 1 48.0 200.0 Z M 58.0 200.0 A 142.0 142.0 0 1 0 342.0 200.0 A 142.0 142.0 0 1 0 58.0 200.0 Z"/>
-      <path class="wh-drive" d="M 181.2 59.2 L 189.4 78.5 L 210.6 78.5 L 218.8 59.2 L 218.3 59.2 L 221.2 79.9 L 241.7 85.4 L 254.6 68.9 L 254.1 68.7 L 251.6 89.4 L 270.0 100.1 L 286.6 87.5 L 286.2 87.2 L 278.4 106.5 L 293.5 121.6 L 312.8 113.8 L 312.5 113.4 L 299.9 130.0 L 310.6 148.4 L 331.3 145.9 L 331.1 145.4 L 314.6 158.3 L 320.1 178.8 L 340.8 181.7 L 340.8 181.2 L 321.5 189.4 L 321.5 210.6 L 340.8 218.8 L 340.8 218.3 L 320.1 221.2 L 314.6 241.7 L 331.1 254.6 L 331.3 254.1 L 310.6 251.6 L 299.9 270.0 L 312.5 286.6 L 312.8 286.2 L 293.5 278.4 L 278.4 293.5 L 286.2 312.8 L 286.6 312.5 L 270.0 299.9 L 251.6 310.6 L 254.1 331.3 L 254.6 331.1 L 241.7 314.6 L 221.2 320.1 L 218.3 340.8 L 218.8 340.8 L 210.6 321.5 L 189.4 321.5 L 181.2 340.8 L 181.7 340.8 L 178.8 320.1 L 158.3 314.6 L 145.4 331.1 L 145.9 331.3 L 148.4 310.6 L 130.0 299.9 L 113.4 312.5 L 113.8 312.8 L 121.6 293.5 L 106.5 278.4 L 87.2 286.2 L 87.5 286.6 L 100.1 270.0 L 89.4 251.6 L 68.7 254.1 L 68.9 254.6 L 85.4 241.7 L 79.9 221.2 L 59.2 218.3 L 59.2 218.8 L 78.5 210.6 L 78.5 189.4 L 59.2 181.2 L 59.2 181.7 L 79.9 178.8 L 85.4 158.3 L 68.9 145.4 L 68.7 145.9 L 89.4 148.4 L 100.1 130.0 L 87.5 113.4 L 87.2 113.8 L 106.5 121.6 L 121.6 106.5 L 113.8 87.2 L 113.4 87.5 L 130.0 100.1 L 148.4 89.4 L 145.9 68.7 L 145.4 68.9 L 158.3 85.4 L 178.8 79.9 L 181.7 59.2 Z"/>
-      <circle class="wh-well" cx="200" cy="200" r="122"/>
-      <path class="wh-spoke" d="M 185.6 152.1 L 191.0 78.3 L 209.0 78.3 L 214.4 152.1 Z M 234.3 163.6 L 300.9 131.4 L 309.9 146.9 L 248.7 188.5 Z M 248.7 211.5 L 309.9 253.1 L 300.9 268.6 L 234.3 236.4 Z M 214.4 247.9 L 209.0 321.7 L 191.0 321.7 L 185.6 247.9 Z M 165.7 236.4 L 99.1 268.6 L 90.1 253.1 L 151.3 211.5 Z M 151.3 188.5 L 90.1 146.9 L 99.1 131.4 L 165.7 163.6 Z"/>
-      <path class="wh-hub" fill-rule="evenodd" d="M 148.0 200.0 A 52.0 52.0 0 1 1 252.0 200.0 A 52.0 52.0 0 1 1 148.0 200.0 Z M 162.0 200.0 A 38.0 38.0 0 1 0 238.0 200.0 A 38.0 38.0 0 1 0 162.0 200.0 Z"/>
-      <g class="wh-bolt"><circle cx="222.5" cy="161.0" r="5.5"/><circle cx="245.0" cy="200.0" r="5.5"/><circle cx="222.5" cy="239.0" r="5.5"/><circle cx="177.5" cy="239.0" r="5.5"/><circle cx="155.0" cy="200.0" r="5.5"/><circle cx="177.5" cy="161.0" r="5.5"/></g>
-      <g class="wh-bear"><circle cx="200.0" cy="114.0" r="5.0"/><circle cx="286.0" cy="200.0" r="5.0"/><circle cx="200.0" cy="286.0" r="5.0"/><circle cx="114.0" cy="200.0" r="5.0"/></g>
-      <circle class="wh-core" cx="200" cy="200" r="31"/>
-      <circle class="wh-ring" cx="200" cy="200" r="23.5"/>
-      <circle class="wh-bore" cx="200" cy="200" r="8"/>
-    </symbol>
-    <!-- the rim light is its own symbol, drawn static over the turning wheel -->
-    <symbol id="wheel-edge" viewBox="0 0 400 400"><path class="wh-edge" d="M15.0 180.6A186.0 186.0 0 0 1 155.0 19.5 M56.2 169.4A147.0 147.0 0 0 1 154.6 60.2"/></symbol>
+    <linearGradient id="chr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/><stop offset="22%" stop-color="#eaf3ff"/>
+      <stop offset="44%" stop-color="#aabdd9"/><stop offset="50%" stop-color="#6f80a2"/>
+      <stop offset="57%" stop-color="#edf5ff"/><stop offset="74%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#b4c4dd"/>
+    </linearGradient>
+
+    <!-- Air Treck wheel: tyre + tread + rim + internal drive gear + spokes -->
+    <g id="wheelSolid">
+      <path d="M 8.0 200.0 A 192.0 192.0 0 1 1 392.0 200.0 A 192.0 192.0 0 1 1 8.0 200.0 Z M 48.0 200.0 A 152.0 152.0 0 1 0 352.0 200.0 A 152.0 152.0 0 1 0 48.0 200.0 Z" fill="#070b16" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="2"/>
+      <path d="M 187.6 46.5 L 189.0 10.3 L 211.0 10.3 L 212.4 46.5 Z M 219.8 47.3 L 228.7 12.2 L 250.2 16.7 L 244.0 52.4 Z M 251.2 54.7 L 267.1 22.3 L 287.2 31.2 L 273.7 64.8 Z M 280.2 68.6 L 302.6 40.1 L 320.4 53.0 L 300.2 83.1 Z M 305.8 88.1 L 333.6 64.9 L 348.3 81.2 L 322.3 106.5 Z M 326.8 112.6 L 358.8 95.7 L 369.8 114.7 L 339.1 133.9 Z M 342.2 140.8 L 377.0 130.9 L 383.8 151.8 L 349.8 164.3 Z M 351.4 171.7 L 387.5 169.3 L 389.8 191.1 L 354.0 196.2 Z M 354.0 203.8 L 389.8 208.9 L 387.5 230.7 L 351.4 228.3 Z M 349.8 235.7 L 383.8 248.2 L 377.0 269.1 L 342.2 259.2 Z M 339.1 266.1 L 369.8 285.3 L 358.8 304.3 L 326.8 287.4 Z M 322.3 293.5 L 348.3 318.8 L 333.6 335.1 L 305.8 311.9 Z M 300.2 316.9 L 320.4 347.0 L 302.6 359.9 L 280.2 331.4 Z M 273.7 335.2 L 287.2 368.8 L 267.1 377.7 L 251.2 345.3 Z M 244.0 347.6 L 250.2 383.3 L 228.7 387.8 L 219.8 352.7 Z M 212.4 353.5 L 211.0 389.7 L 189.0 389.7 L 187.6 353.5 Z M 180.2 352.7 L 171.3 387.8 L 149.8 383.3 L 156.0 347.6 Z M 148.8 345.3 L 132.9 377.7 L 112.8 368.8 L 126.3 335.2 Z M 119.8 331.4 L 97.4 359.9 L 79.6 347.0 L 99.8 316.9 Z M 94.2 311.9 L 66.4 335.1 L 51.7 318.8 L 77.7 293.5 Z M 73.2 287.4 L 41.2 304.3 L 30.2 285.3 L 60.9 266.1 Z M 57.8 259.2 L 23.0 269.1 L 16.2 248.2 L 50.2 235.7 Z M 48.6 228.3 L 12.5 230.7 L 10.2 208.9 L 46.0 203.8 Z M 46.0 196.2 L 10.2 191.1 L 12.5 169.3 L 48.6 171.7 Z M 50.2 164.3 L 16.2 151.8 L 23.0 130.9 L 57.8 140.8 Z M 60.9 133.9 L 30.2 114.7 L 41.2 95.7 L 73.2 112.6 Z M 77.7 106.5 L 51.7 81.2 L 66.4 64.9 L 94.2 88.1 Z M 99.8 83.1 L 79.6 53.0 L 97.4 40.1 L 119.8 68.6 Z M 126.3 64.8 L 112.8 31.2 L 132.9 22.3 L 148.8 54.7 Z M 156.0 52.4 L 149.8 16.7 L 171.3 12.2 L 180.2 47.3 Z" fill="#16233f" stroke="#5fa8d8" stroke-width="1.2"/>
+      <path d="M 48.0 200.0 A 152.0 152.0 0 1 1 352.0 200.0 A 152.0 152.0 0 1 1 48.0 200.0 Z M 58.0 200.0 A 142.0 142.0 0 1 0 342.0 200.0 A 142.0 142.0 0 1 0 58.0 200.0 Z" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.6"/>
+      <path d="M 181.2 59.2 L 189.4 78.5 L 210.6 78.5 L 218.8 59.2 L 218.3 59.2 L 221.2 79.9 L 241.7 85.4 L 254.6 68.9 L 254.1 68.7 L 251.6 89.4 L 270.0 100.1 L 286.6 87.5 L 286.2 87.2 L 278.4 106.5 L 293.5 121.6 L 312.8 113.8 L 312.5 113.4 L 299.9 130.0 L 310.6 148.4 L 331.3 145.9 L 331.1 145.4 L 314.6 158.3 L 320.1 178.8 L 340.8 181.7 L 340.8 181.2 L 321.5 189.4 L 321.5 210.6 L 340.8 218.8 L 340.8 218.3 L 320.1 221.2 L 314.6 241.7 L 331.1 254.6 L 331.3 254.1 L 310.6 251.6 L 299.9 270.0 L 312.5 286.6 L 312.8 286.2 L 293.5 278.4 L 278.4 293.5 L 286.2 312.8 L 286.6 312.5 L 270.0 299.9 L 251.6 310.6 L 254.1 331.3 L 254.6 331.1 L 241.7 314.6 L 221.2 320.1 L 218.3 340.8 L 218.8 340.8 L 210.6 321.5 L 189.4 321.5 L 181.2 340.8 L 181.7 340.8 L 178.8 320.1 L 158.3 314.6 L 145.4 331.1 L 145.9 331.3 L 148.4 310.6 L 130.0 299.9 L 113.4 312.5 L 113.8 312.8 L 121.6 293.5 L 106.5 278.4 L 87.2 286.2 L 87.5 286.6 L 100.1 270.0 L 89.4 251.6 L 68.7 254.1 L 68.9 254.6 L 85.4 241.7 L 79.9 221.2 L 59.2 218.3 L 59.2 218.8 L 78.5 210.6 L 78.5 189.4 L 59.2 181.2 L 59.2 181.7 L 79.9 178.8 L 85.4 158.3 L 68.9 145.4 L 68.7 145.9 L 89.4 148.4 L 100.1 130.0 L 87.5 113.4 L 87.2 113.8 L 106.5 121.6 L 121.6 106.5 L 113.8 87.2 L 113.4 87.5 L 130.0 100.1 L 148.4 89.4 L 145.9 68.7 L 145.4 68.9 L 158.3 85.4 L 178.8 79.9 L 181.7 59.2 Z" fill="url(#chr)" stroke="#8fd8ff" stroke-width="1.6" stroke-linejoin="round"/>
+      <circle cx="200" cy="200" r="122" fill="#070b16"/>
+      <path d="M 185.6 152.1 L 191.0 78.3 L 209.0 78.3 L 214.4 152.1 Z M 234.3 163.6 L 300.9 131.4 L 309.9 146.9 L 248.7 188.5 Z M 248.7 211.5 L 309.9 253.1 L 300.9 268.6 L 234.3 236.4 Z M 214.4 247.9 L 209.0 321.7 L 191.0 321.7 L 185.6 247.9 Z M 165.7 236.4 L 99.1 268.6 L 90.1 253.1 L 151.3 211.5 Z M 151.3 188.5 L 90.1 146.9 L 99.1 131.4 L 165.7 163.6 Z" fill="url(#chr)" stroke="#8fd8ff" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M 148.0 200.0 A 52.0 52.0 0 1 1 252.0 200.0 A 52.0 52.0 0 1 1 148.0 200.0 Z M 162.0 200.0 A 38.0 38.0 0 1 0 238.0 200.0 A 38.0 38.0 0 1 0 162.0 200.0 Z" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.6"/>
+      <g fill="#070b16" stroke="#8fd8ff" stroke-width="1.4"><circle cx="222.5" cy="161.0" r="5.5"/><circle cx="245.0" cy="200.0" r="5.5"/><circle cx="222.5" cy="239.0" r="5.5"/><circle cx="177.5" cy="239.0" r="5.5"/><circle cx="155.0" cy="200.0" r="5.5"/><circle cx="177.5" cy="161.0" r="5.5"/></g>
+      <circle cx="200" cy="200" r="30" fill="#ff4fd8" stroke="#070b16" stroke-width="4"/>
+      <circle cx="200" cy="200" r="13" fill="#070b16"/>
+      <g fill="#b6ff4f"><circle cx="200.0" cy="114.0" r="5.0"/><circle cx="286.0" cy="200.0" r="5.0"/><circle cx="200.0" cy="286.0" r="5.0"/><circle cx="114.0" cy="200.0" r="5.0"/></g>
+    </g>
+    <g id="wheelWire">
+      <path d="M 8.0 200.0 A 192.0 192.0 0 1 1 392.0 200.0 A 192.0 192.0 0 1 1 8.0 200.0 Z M 48.0 200.0 A 152.0 152.0 0 1 0 352.0 200.0 A 152.0 152.0 0 1 0 48.0 200.0 Z" fill="none" stroke="#4ff5ff" stroke-width="2"/>
+      <path d="M 181.2 59.2 L 189.4 78.5 L 210.6 78.5 L 218.8 59.2 L 218.3 59.2 L 221.2 79.9 L 241.7 85.4 L 254.6 68.9 L 254.1 68.7 L 251.6 89.4 L 270.0 100.1 L 286.6 87.5 L 286.2 87.2 L 278.4 106.5 L 293.5 121.6 L 312.8 113.8 L 312.5 113.4 L 299.9 130.0 L 310.6 148.4 L 331.3 145.9 L 331.1 145.4 L 314.6 158.3 L 320.1 178.8 L 340.8 181.7 L 340.8 181.2 L 321.5 189.4 L 321.5 210.6 L 340.8 218.8 L 340.8 218.3 L 320.1 221.2 L 314.6 241.7 L 331.1 254.6 L 331.3 254.1 L 310.6 251.6 L 299.9 270.0 L 312.5 286.6 L 312.8 286.2 L 293.5 278.4 L 278.4 293.5 L 286.2 312.8 L 286.6 312.5 L 270.0 299.9 L 251.6 310.6 L 254.1 331.3 L 254.6 331.1 L 241.7 314.6 L 221.2 320.1 L 218.3 340.8 L 218.8 340.8 L 210.6 321.5 L 189.4 321.5 L 181.2 340.8 L 181.7 340.8 L 178.8 320.1 L 158.3 314.6 L 145.4 331.1 L 145.9 331.3 L 148.4 310.6 L 130.0 299.9 L 113.4 312.5 L 113.8 312.8 L 121.6 293.5 L 106.5 278.4 L 87.2 286.2 L 87.5 286.6 L 100.1 270.0 L 89.4 251.6 L 68.7 254.1 L 68.9 254.6 L 85.4 241.7 L 79.9 221.2 L 59.2 218.3 L 59.2 218.8 L 78.5 210.6 L 78.5 189.4 L 59.2 181.2 L 59.2 181.7 L 79.9 178.8 L 85.4 158.3 L 68.9 145.4 L 68.7 145.9 L 89.4 148.4 L 100.1 130.0 L 87.5 113.4 L 87.2 113.8 L 106.5 121.6 L 121.6 106.5 L 113.8 87.2 L 113.4 87.5 L 130.0 100.1 L 148.4 89.4 L 145.9 68.7 L 145.4 68.9 L 158.3 85.4 L 178.8 79.9 L 181.7 59.2 Z" fill="none" stroke="#4ff5ff" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M 185.6 152.1 L 191.0 78.3 L 209.0 78.3 L 214.4 152.1 Z M 234.3 163.6 L 300.9 131.4 L 309.9 146.9 L 248.7 188.5 Z M 248.7 211.5 L 309.9 253.1 L 300.9 268.6 L 234.3 236.4 Z M 214.4 247.9 L 209.0 321.7 L 191.0 321.7 L 185.6 247.9 Z M 165.7 236.4 L 99.1 268.6 L 90.1 253.1 L 151.3 211.5 Z M 151.3 188.5 L 90.1 146.9 L 99.1 131.4 L 165.7 163.6 Z" fill="none" stroke="#4ff5ff" stroke-width="1.4" stroke-linejoin="round"/>
+      <circle cx="200" cy="200" r="52" fill="none" stroke="#4ff5ff" stroke-width="1.4"/>
+      <circle cx="200" cy="200" r="30" fill="none" stroke="#4ff5ff" stroke-width="1.4"/>
+    </g>
+
+    <g id="gearA">
+      <path d="M 51.98 16.74 L 52.93 2.43 L 67.07 2.43 L 68.02 16.74 L 74.69 18.52 L 82.66 6.61 L 94.91 13.68 L 88.58 26.54 L 93.46 31.42 L 106.32 25.09 L 113.39 37.34 L 101.48 45.31 L 103.26 51.98 L 117.57 52.93 L 117.57 67.07 L 103.26 68.02 L 101.48 74.69 L 113.39 82.66 L 106.32 94.91 L 93.46 88.58 L 88.58 93.46 L 94.91 106.32 L 82.66 113.39 L 74.69 101.48 L 68.02 103.26 L 67.07 117.57 L 52.93 117.57 L 51.98 103.26 L 45.31 101.48 L 37.34 113.39 L 25.09 106.32 L 31.42 93.46 L 26.54 88.58 L 13.68 94.91 L 6.61 82.66 L 18.52 74.69 L 16.74 68.02 L 2.43 67.07 L 2.43 52.93 L 16.74 51.98 L 18.52 45.31 L 6.61 37.34 L 13.68 25.09 L 26.54 31.42 L 31.42 26.54 L 25.09 13.68 L 37.34 6.61 L 45.31 18.52 Z" fill="url(#chr)" stroke="#8fd8ff" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="60" cy="60" r="30" fill="none" stroke="#8fd8ff" stroke-width="1.6"/>
+      <g fill="none" stroke="#8fd8ff" stroke-width="1.6"><circle cx="60.00" cy="33.00" r="8.0"/><circle cx="85.68" cy="51.66" r="8.0"/><circle cx="75.87" cy="81.84" r="8.0"/><circle cx="44.13" cy="81.84" r="8.0"/><circle cx="34.32" cy="51.66" r="8.0"/></g>
+      <circle cx="60" cy="60" r="11" fill="#0a1020" stroke="#8fd8ff" stroke-width="1.6"/>
+    </g>
+    <g id="gearB">
+      <path d="M 53.76 14.43 L 54.74 2.24 L 65.26 2.24 L 66.24 14.43 L 71.67 15.51 L 77.25 4.62 L 86.96 8.65 L 83.21 20.28 L 87.81 23.36 L 97.13 15.44 L 104.56 22.87 L 96.64 32.19 L 99.72 36.79 L 111.35 33.04 L 115.38 42.75 L 104.49 48.33 L 105.57 53.76 L 117.76 54.74 L 117.76 65.26 L 105.57 66.24 L 104.49 71.67 L 115.38 77.25 L 111.35 86.96 L 99.72 83.21 L 96.64 87.81 L 104.56 97.13 L 97.13 104.56 L 87.81 96.64 L 83.21 99.72 L 86.96 111.35 L 77.25 115.38 L 71.67 104.49 L 66.24 105.57 L 65.26 117.76 L 54.74 117.76 L 53.76 105.57 L 48.33 104.49 L 42.75 115.38 L 33.04 111.35 L 36.79 99.72 L 32.19 96.64 L 22.87 104.56 L 15.44 97.13 L 23.36 87.81 L 20.28 83.21 L 8.65 86.96 L 4.62 77.25 L 15.51 71.67 L 14.43 66.24 L 2.24 65.26 L 2.24 54.74 L 14.43 53.76 L 15.51 48.33 L 4.62 42.75 L 8.65 33.04 L 20.28 36.79 L 23.36 32.19 L 15.44 22.87 L 22.87 15.44 L 32.19 23.36 L 36.79 20.28 L 33.04 8.65 L 42.75 4.62 L 48.33 15.51 Z" fill="url(#chr)" stroke="#8fd8ff" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="60" cy="60" r="32" fill="none" stroke="#8fd8ff" stroke-width="1.6"/>
+      <g fill="none" stroke="#8fd8ff" stroke-width="1.6"><circle cx="60.00" cy="32.00" r="6.5"/><circle cx="84.25" cy="46.00" r="6.5"/><circle cx="84.25" cy="74.00" r="6.5"/><circle cx="60.00" cy="88.00" r="6.5"/><circle cx="35.75" cy="74.00" r="6.5"/><circle cx="35.75" cy="46.00" r="6.5"/></g>
+      <circle cx="60" cy="60" r="10" fill="#0a1020" stroke="#8fd8ff" stroke-width="1.6"/>
+    </g>
+    <g id="gearC">
+      <path d="M 49.65 21.36 L 49.93 2.88 L 70.07 2.88 L 70.35 21.36 L 80.00 25.36 L 93.27 12.49 L 107.51 26.73 L 94.64 40.00 L 98.64 49.65 L 117.12 49.93 L 117.12 70.07 L 98.64 70.35 L 94.64 80.00 L 107.51 93.27 L 93.27 107.51 L 80.00 94.64 L 70.35 98.64 L 70.07 117.12 L 49.93 117.12 L 49.65 98.64 L 40.00 94.64 L 26.73 107.51 L 12.49 93.27 L 25.36 80.00 L 21.36 70.35 L 2.88 70.07 L 2.88 49.93 L 21.36 49.65 L 25.36 40.00 L 12.49 26.73 L 26.73 12.49 L 40.00 25.36 Z" fill="url(#chr)" stroke="#8fd8ff" stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="60" cy="60" r="26" fill="none" stroke="#8fd8ff" stroke-width="1.6"/>
+      <circle cx="60" cy="60" r="12" fill="#ff4fd8" stroke="#0a1020" stroke-width="2"/>
+    </g>
+    <g id="gearWire">
+      <path d="M 51.98 16.74 L 52.93 2.43 L 67.07 2.43 L 68.02 16.74 L 74.69 18.52 L 82.66 6.61 L 94.91 13.68 L 88.58 26.54 L 93.46 31.42 L 106.32 25.09 L 113.39 37.34 L 101.48 45.31 L 103.26 51.98 L 117.57 52.93 L 117.57 67.07 L 103.26 68.02 L 101.48 74.69 L 113.39 82.66 L 106.32 94.91 L 93.46 88.58 L 88.58 93.46 L 94.91 106.32 L 82.66 113.39 L 74.69 101.48 L 68.02 103.26 L 67.07 117.57 L 52.93 117.57 L 51.98 103.26 L 45.31 101.48 L 37.34 113.39 L 25.09 106.32 L 31.42 93.46 L 26.54 88.58 L 13.68 94.91 L 6.61 82.66 L 18.52 74.69 L 16.74 68.02 L 2.43 67.07 L 2.43 52.93 L 16.74 51.98 L 18.52 45.31 L 6.61 37.34 L 13.68 25.09 L 26.54 31.42 L 31.42 26.54 L 25.09 13.68 L 37.34 6.61 L 45.31 18.52 Z" fill="none" stroke="#4ff5ff" stroke-width="1.6" stroke-linejoin="round"/>
+      <circle cx="60" cy="60" r="30" fill="none" stroke="#4ff5ff" stroke-width="1.2"/>
+      <circle cx="60" cy="60" r="11" fill="none" stroke="#4ff5ff" stroke-width="1.2"/>
+    </g>
   </defs>
 </svg>
 
-<div class="rail" aria-hidden="true">
-  <i class="rail-a"></i><i class="rail-b"></i>
-  <ol class="rail-num"><li style="top:67px">1</li><li style="top:139px">2</li><li style="top:211px">3</li><li style="top:283px">4</li><li style="top:355px">5</li><li style="top:427px">6</li><li style="top:499px">7</li><li style="top:571px">8</li><li style="top:643px">9</li><li style="top:715px">10</li><li style="top:787px">11</li><li style="top:859px">12</li><li style="top:931px">13</li><li style="top:1003px">14</li><li style="top:1075px">15</li><li style="top:1147px">16</li><li style="top:1219px">17</li><li style="top:1291px">18</li><li style="top:1363px">19</li><li style="top:1435px">20</li><li style="top:1507px">21</li><li style="top:1579px">22</li><li style="top:1651px">23</li><li style="top:1723px">24</li><li style="top:1795px">25</li><li style="top:1867px">26</li><li style="top:1939px">27</li><li style="top:2011px">28</li><li style="top:2083px">29</li><li style="top:2155px">30</li><li style="top:2227px">31</li><li style="top:2299px">32</li><li style="top:2371px">33</li><li style="top:2443px">34</li><li style="top:2515px">35</li><li style="top:2587px">36</li><li style="top:2659px">37</li><li style="top:2731px">38</li><li style="top:2803px">39</li><li style="top:2875px">40</li><li class="rail-bit" style="top:86px">MIL</li><li class="rail-bit" style="top:230px">M_ ERROR</li><li class="rail-bit" style="top:374px">KING</li></ol>
-  <i class="rail-idx" data-rail-idx></i>
-  <p class="rail-frag" data-frag-out>MILES KING</p>
+<!-- ===== fixed atmosphere ===== -->
+<div class="fx-chamber" aria-hidden="true"></div>
+<div class="fx-floor" aria-hidden="true"></div>
+<div class="fx-tone" aria-hidden="true"></div>
+<div class="fx-scan" aria-hidden="true"></div>
+<div class="fx-grain" aria-hidden="true"></div>
+<div class="fx-vig" aria-hidden="true"></div>
+
+<div class="rain rain-l" aria-hidden="true"><span data-rain></span></div>
+<div class="rain rain-r" aria-hidden="true"><span data-rain></span></div>
+
+<!-- ===== HUD ===== -->
+<div class="prog" aria-hidden="true"><i data-prog></i></div>
+
+<aside class="hud" aria-hidden="true">
+  <span class="hud-gear"><svg viewBox="0 0 120 120"><use href="#gearWire"/></svg></span>
+  <dl>
+    <div><dt>SCRL</dt><dd data-hud-scroll>000</dd></div>
+    <div><dt>SECT</dt><dd data-hud-sect>01</dd></div>
+    <div><dt>RPM</dt><dd data-hud-rpm>0000</dd></div>
+    <div><dt>SYS</dt><dd class="ok">NOMINAL</dd></div>
+  </dl>
+</aside>
+
+<div class="reticle" aria-hidden="true">
+  <i class="r-ring"></i><i class="r-dot"></i>
+  <span class="r-read" data-reticle>0000 : 0000</span>
 </div>
 
-<a class="skip" href="#main">Skip to content</a>
+<!-- ===== NAV ===== -->
 <header id="nav">
-  <a class="logo" href="index.html" aria-label="MK, Miles King, home"><svg class="roundel" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="49" class="rd-disc"/><circle cx="50" cy="50" r="40.5" class="rd-ring"/><text x="50" y="51" class="rd-txt" dominant-baseline="central" text-anchor="middle">MK</text></svg></a>
+  <a class="logo" href="index.html">
+    <span class="logo-wheel" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
+    <b>MK</b>
+  </a>
   <nav aria-label="Main">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html" aria-current="page">Projects</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="index.html"><span data-scramble>HOME</span></a>
+    <a href="about.html"><span data-scramble>ABOUT</span></a>
+    <a href="projects.html" class="is-here" aria-current="page"><span data-scramble>PROJECTS</span></a>
+    <a href="index.html#contact"><span data-scramble>CONTACT</span></a>
   </nav>
-  <a class="btn btn-ink nav-cta" href="index.html#contact">Say hello</a>
+  <div class="nav-side">
+    <span class="nav-kana">マイルス</span>
+    <a class="nav-cta" href="index.html#contact"><span data-scramble>SAY HELLO</span></a>
+  </div>
 </header>
 
-<main id="main">
+<main>
 
-<section class="sec page-top" data-frag="INDEX">
-  <div class="page-grid" aria-hidden="true"></div>
-  <div class="sec-in">
-    <p class="page-sig">Miles King</p>
-    <h1 class="sec-title">Things I've built</h1>
-    <p class="page-lede">
-      Small tools I actually use, and web experiments I built to learn
-      something. Most of them run right in your browser.
-    </p>
+<section class="sec page-top" id="built">
+  <span class="sec-gears" aria-hidden="true">
+    <span class="gear g-p1" data-gear data-dur="40"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
+    <span class="gear g-p2" data-gear data-dur="15" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
+  </span>
+  <div class="sec-head">
+    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>DIR.00</i><span>プロジェクト</span></p>
+    <h1 class="sec-title" data-text="THINGS I'VE BUILT" data-scramble><span>THINGS I'VE BUILT</span></h1>
   </div>
+  <p class="page-lede">
+    A mix of small utilities I actually use and web experiments I built
+    to learn something. Click any card to play with it.
+  </p>
 </section>
 
-<section class="sec sec-work" id="utilities" data-frag="TOOLS">
-  <div class="sec-in">
-    <div class="sec-head">
-      <h2 class="sec-title sec-title-s">Utilities</h2>
-      <p class="sec-sub">Things I actually use.</p>
-    </div>
-    <div class="work-grid">
-      <article class="card is-top is-feature">
-        <a href="projects/study-something/" aria-labelledby="c01-t c01-f" aria-describedby="c01-d">
-          <div class="card-shot"><picture><source type="image/webp" srcset="assets/img/cards/study-something-760.webp 760w, assets/img/cards/study-something-1140.webp 1140w" sizes="(max-width:900px) calc(100vw - 40px), 690px" /><img src="assets/img/cards/study-something-760.jpg" srcset="assets/img/cards/study-something-760.jpg 760w, assets/img/cards/study-something-1140.jpg 1140w" sizes="(max-width:900px) calc(100vw - 40px), 690px" width="760" height="551" alt="" loading="lazy" decoding="async" /></picture><span class="card-flag" id="c01-f">New</span></div>
-          <div class="card-body">
-            <h3 id="c01-t">Study Something!</h3>
-            <p class="card-desc" id="c01-d">Pulls random over-the-board games from top chess players so I can study unfamiliar positions.</p>
-            <ul class="card-tags"><li>Utility</li><li>Chess</li><li>Lichess API</li></ul>
-            <p class="card-pn" aria-hidden="true"><i></i><span class="card-go">Open</span></p>
-          </div>
-        </a>
-      </article>
-    </div>
+<!-- ===== TAPE ===== -->
+<div class="tape" aria-hidden="true">
+  <div class="tape-track" data-tape>
+    <span>UTILITIES &#10022; WEB APPS &#10022; EXPERIMENTS &#10022; CASE STUDIES &#10022; SIDE QUESTS &#10022;&nbsp;</span>
+    <span>UTILITIES &#10022; WEB APPS &#10022; EXPERIMENTS &#10022; CASE STUDIES &#10022; SIDE QUESTS &#10022;&nbsp;</span>
   </div>
-</section>
+</div>
 
-<section class="sec band-sec sec-work" id="experiments" data-frag="LAB">
-  <div class="sec-in">
-    <div class="sec-head">
-      <h2 class="sec-title sec-title-s">Web apps &amp; experiments</h2>
-      <p class="sec-sub">For fun and practice.</p>
-    </div>
-    <div class="work-grid">
-      <article class="card is-top">
-        <a href="projects/7-3/" aria-labelledby="c02-t c02-f" aria-describedby="c02-d">
-          <div class="card-shot"><picture><source type="image/webp" srcset="assets/img/cards/seven-three-760.webp 760w, assets/img/cards/seven-three-1140.webp 920w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" /><img src="assets/img/cards/seven-three-760.jpg" srcset="assets/img/cards/seven-three-760.jpg 760w, assets/img/cards/seven-three-1140.jpg 920w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" width="760" height="428" alt="" loading="lazy" decoding="async" /></picture><span class="card-flag" id="c02-f">New</span></div>
+<section class="sec" id="utilities">
+  <div class="sec-head">
+    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>DIR.01</i><span>ユーティリティ</span></p>
+    <h2 class="sec-title" data-text="UTILITIES" data-scramble><span>UTILITIES</span></h2>
+    <p class="sec-sub">Things I actually use.</p>
+  </div>
+  <div class="work-grid">
+      <article class="card is-top is-wide" data-tilt>
+        <a href="projects/study-something/">
+          <span class="card-rank">01</span>
+          <div class="card-shot">
+            <img src="assets/img/study-something.png" alt="Study Something! chess study utility preview" loading="lazy" />
+            <span class="card-tint" aria-hidden="true"></span>
+            <span class="card-sheen" aria-hidden="true"></span>
+            <span class="card-scan" aria-hidden="true"></span>
+          </div>
           <div class="card-body">
-            <h3 id="c02-t">7-3</h3>
-            <p class="card-desc" id="c02-d">A neverending workday RPG styled like a 1998 Game Boy Color game. Answer email, file reports and clear printer jams as turn-based encounters on an endlessly generated map &mdash; or flip on autopilot and watch it play itself. You cannot lose, and the level cap is 1000.</p>
-            <ul class="card-tags"><li>Game</li><li>Canvas</li><li>Custom engine</li></ul>
-            <p class="card-pn" aria-hidden="true"><i></i><span class="card-go">Play</span></p>
+            <span class="card-flag is-amber">NEW &#10022; UTILITY</span>
+            <h3 data-scramble>Study Something!</h3>
+            <p>Pulls random over-the-board games from top chess players so I can study unfamiliar positions.</p>
+            <span class="card-tags">UTILITY // CHESS // JS</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-01<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH &rarr;</span>
           </div>
         </a>
+        <span class="card-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       </article>
-
-      <article class="card">
-        <a href="projects/anime-blackjack/" aria-labelledby="c03-t" aria-describedby="c03-d">
-          <div class="card-shot"><picture><source type="image/webp" srcset="assets/img/cards/anime-blackjack-760.webp 760w, assets/img/cards/anime-blackjack-1140.webp 1140w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" /><img src="assets/img/cards/anime-blackjack-760.jpg" srcset="assets/img/cards/anime-blackjack-760.jpg 760w, assets/img/cards/anime-blackjack-1140.jpg 1140w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" width="760" height="434" alt="" loading="lazy" decoding="async" /></picture></div>
-          <div class="card-body">
-            <h3 id="c03-t">Shadow Games</h3>
-            <p class="card-desc" id="c03-d">Two games against animated anime opponents, built in React and TypeScript with a full GSAP animation layer: blackjack against a dealer who reacts to every hand, and chess against six character bots running Stockfish in WebAssembly, each with its own difficulty ladder.</p>
-            <ul class="card-tags"><li>Game</li><li>React</li><li>Stockfish</li></ul>
-            <p class="card-pn" aria-hidden="true"><i></i><span class="card-go">Play</span></p>
-          </div>
-        </a>
-      </article>
-
-      <article class="card">
-        <a href="projects/infinite-crayons/" aria-labelledby="c04-t" aria-describedby="c04-d">
-          <div class="card-shot"><picture><source type="image/webp" srcset="assets/img/cards/infinite-crayons-760.webp 760w, assets/img/cards/infinite-crayons-1140.webp 1140w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" /><img src="assets/img/cards/infinite-crayons-760.jpg" srcset="assets/img/cards/infinite-crayons-760.jpg 760w, assets/img/cards/infinite-crayons-1140.jpg 1140w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" width="760" height="394" alt="" loading="lazy" decoding="async" /></picture></div>
-          <div class="card-body">
-            <h3 id="c04-t">InfiniteCrayons</h3>
-            <p class="card-desc" id="c04-d">A color palette generator with adjustable hue, brightness, and saturation per swatch.</p>
-            <ul class="card-tags"><li>Tool</li><li>chroma.js</li></ul>
-            <p class="card-pn" aria-hidden="true"><i></i><span class="card-go">Open</span></p>
-          </div>
-        </a>
-      </article>
-
-      <article class="card">
-        <a href="projects/jst-play/" aria-labelledby="c05-t" aria-describedby="c05-d">
-          <div class="card-shot"><picture><source type="image/webp" srcset="assets/img/cards/jst-play-760.webp 760w, assets/img/cards/jst-play-1140.webp 1140w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" /><img src="assets/img/cards/jst-play-760.jpg" srcset="assets/img/cards/jst-play-760.jpg 760w, assets/img/cards/jst-play-1140.jpg 1140w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" width="760" height="438" alt="" loading="lazy" decoding="async" /></picture></div>
-          <div class="card-body">
-            <h3 id="c05-t">JSt Play</h3>
-            <p class="card-desc" id="c05-d">A browser drum machine and step sequencer with switchable kit sounds.</p>
-            <ul class="card-tags"><li>Audio</li><li>HTML5 audio</li></ul>
-            <p class="card-pn" aria-hidden="true"><i></i><span class="card-go">Open</span></p>
-          </div>
-        </a>
-      </article>
-
-      <article class="card">
-        <a href="projects/more-stock-images/" aria-labelledby="c06-t" aria-describedby="c06-d">
-          <div class="card-shot"><picture><source type="image/webp" srcset="assets/img/cards/more-stock-images-760.webp 760w, assets/img/cards/more-stock-images-1140.webp 1140w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" /><img src="assets/img/cards/more-stock-images-760.jpg" srcset="assets/img/cards/more-stock-images-760.jpg 760w, assets/img/cards/more-stock-images-1140.jpg 1140w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" width="760" height="419" alt="" loading="lazy" decoding="async" /></picture></div>
-          <div class="card-body">
-            <h3 id="c06-t">MoreStockImages</h3>
-            <p class="card-desc" id="c06-d">Search the Pexels library of royalty-free photos from one simple search bar.</p>
-            <ul class="card-tags"><li>Tool</li><li>Pexels API</li></ul>
-            <p class="card-pn" aria-hidden="true"><i></i><span class="card-go">Open</span></p>
-          </div>
-        </a>
-      </article>
-
-      <article class="card">
-        <a href="projects/mettatonex.html" aria-labelledby="c07-t" aria-describedby="c07-d">
-          <div class="card-shot"><picture><source type="image/webp" srcset="assets/img/cards/mettatonex-760.webp 600w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" /><img src="assets/img/cards/mettatonex-760.jpg" srcset="assets/img/cards/mettatonex-760.jpg 600w" sizes="(max-width:640px) calc(100vw - 40px), (max-width:1080px) 46vw, 380px" width="600" height="356" alt="" loading="lazy" decoding="async" /></picture></div>
-          <div class="card-body">
-            <h3 id="c07-t">MettatonEX</h3>
-            <p class="card-desc" id="c07-d">A customizable Discord bot that posts new YouTube uploads to a server channel.</p>
-            <ul class="card-tags"><li>Bot</li><li>Node.js</li><li>Discord.js</li></ul>
-            <p class="card-pn" aria-hidden="true"><i></i><span class="card-go">Read case study</span></p>
-          </div>
-        </a>
-      </article>
-    </div>
   </div>
 </section>
 
 </main>
 
-<footer id="footer">
-  <svg class="gear-bed" viewBox="-146 -165 1152 197" preserveAspectRatio="xMidYMin meet" aria-hidden="true" focusable="false"><g class="gt" id="gt"><g class="gt-g gt-t1" data-z="40" data-dir="1" data-phase="0.00" transform="translate(0.0 0.0)"><g class="gt-rot" transform="rotate(0.00)"><path class="gt-body" fill-rule="evenodd" d="M-5.5 -112.4L-3.1 -126.0L3.1 -126.0L5.5 -112.4L12.1 -111.8L16.7 -124.9L22.7 -123.9L23.0 -110.1L29.5 -108.6L36.0 -120.7L41.8 -118.8L40.0 -105.2L46.1 -102.6L54.5 -113.6L59.9 -110.8L55.9 -97.6L61.6 -94.1L71.6 -103.7L76.5 -100.1L70.5 -87.7L75.6 -83.4L86.9 -91.2L91.2 -86.9L83.4 -75.6L87.7 -70.5L100.1 -76.5L103.7 -71.6L94.1 -61.6L97.6 -55.9L110.8 -59.9L113.6 -54.5L102.6 -46.1L105.2 -40.0L118.8 -41.8L120.7 -36.0L108.6 -29.5L110.1 -23.0L123.9 -22.7L124.9 -16.7L111.8 -12.1L112.4 -5.5L126.0 -3.1L126.0 3.1L112.4 5.5L111.8 12.1L124.9 16.7L123.9 22.7L110.1 23.0L108.6 29.5L120.7 36.0L118.8 41.8L105.2 40.0L102.6 46.1L113.6 54.5L110.8 59.9L97.6 55.9L94.1 61.6L103.7 71.6L100.1 76.5L87.7 70.5L83.4 75.6L91.2 86.9L86.9 91.2L75.6 83.4L70.5 87.7L76.5 100.1L71.6 103.7L61.6 94.1L55.9 97.6L59.9 110.8L54.5 113.6L46.1 102.6L40.0 105.2L41.8 118.8L36.0 120.7L29.5 108.6L23.0 110.1L22.7 123.9L16.7 124.9L12.1 111.8L5.5 112.4L3.1 126.0L-3.1 126.0L-5.5 112.4L-12.1 111.8L-16.7 124.9L-22.7 123.9L-23.0 110.1L-29.5 108.6L-36.0 120.7L-41.8 118.8L-40.0 105.2L-46.1 102.6L-54.5 113.6L-59.9 110.8L-55.9 97.6L-61.6 94.1L-71.6 103.7L-76.5 100.1L-70.5 87.7L-75.6 83.4L-86.9 91.2L-91.2 86.9L-83.4 75.6L-87.7 70.5L-100.1 76.5L-103.7 71.6L-94.1 61.6L-97.6 55.9L-110.8 59.9L-113.6 54.5L-102.6 46.1L-105.2 40.0L-118.8 41.8L-120.7 36.0L-108.6 29.5L-110.1 23.0L-123.9 22.7L-124.9 16.7L-111.8 12.1L-112.4 5.5L-126.0 3.1L-126.0 -3.1L-112.4 -5.5L-111.8 -12.1L-124.9 -16.7L-123.9 -22.7L-110.1 -23.0L-108.6 -29.5L-120.7 -36.0L-118.8 -41.8L-105.2 -40.0L-102.6 -46.1L-113.6 -54.5L-110.8 -59.9L-97.6 -55.9L-94.1 -61.6L-103.7 -71.6L-100.1 -76.5L-87.7 -70.5L-83.4 -75.6L-91.2 -86.9L-86.9 -91.2L-75.6 -83.4L-70.5 -87.7L-76.5 -100.1L-71.6 -103.7L-61.6 -94.1L-55.9 -97.6L-59.9 -110.8L-54.5 -113.6L-46.1 -102.6L-40.0 -105.2L-41.8 -118.8L-36.0 -120.7L-29.5 -108.6L-23.0 -110.1L-22.7 -123.9L-16.7 -124.9L-12.1 -111.8Z M15.0 -101.8A102.9 102.9 0 0 1 80.6 -63.9L27.0 -24.7A36.6 36.6 0 0 0 7.9 -35.7ZM95.7 -37.9A102.9 102.9 0 0 1 95.7 37.9L34.9 11.1A36.6 36.6 0 0 0 34.9 -11.1ZM80.6 63.9A102.9 102.9 0 0 1 15.0 101.8L7.9 35.7A36.6 36.6 0 0 0 27.0 24.7ZM-15.0 101.8A102.9 102.9 0 0 1 -80.6 63.9L-27.0 24.7A36.6 36.6 0 0 0 -7.9 35.7ZM-95.7 37.9A102.9 102.9 0 0 1 -95.7 -37.9L-34.9 -11.1A36.6 36.6 0 0 0 -34.9 11.1ZM-80.6 -63.9A102.9 102.9 0 0 1 -15.0 -101.8L-7.9 -35.7A36.6 36.6 0 0 0 -27.0 -24.7Z M0 0m-4.8 0a4.8 4.8 0 1 0 9.6 0a4.8 4.8 0 1 0 -9.6 0"/><circle class="gt-hub" r="31.2"/><circle class="gt-bore" r="4.8"/></g><path class="gt-edge" d="M-108.1 -19.1A109.8 109.8 0 0 1 19.1 -108.1"/></g><g class="gt-g gt-t2" data-z="16" data-dir="-1" data-phase="15.75" transform="translate(159.8 -51.9)"><g class="gt-rot" transform="rotate(15.75)"><path class="gt-body" fill-rule="evenodd" d="M-5.0 -40.2L-3.3 -53.9L3.3 -53.9L5.0 -40.2L10.8 -39.0L17.6 -51.1L23.7 -48.5L20.0 -35.2L24.9 -31.9L35.8 -40.4L40.4 -35.8L31.9 -24.9L35.2 -20.0L48.5 -23.7L51.1 -17.6L39.0 -10.8L40.2 -5.0L53.9 -3.3L53.9 3.3L40.2 5.0L39.0 10.8L51.1 17.6L48.5 23.7L35.2 20.0L31.9 24.9L40.4 35.8L35.8 40.4L24.9 31.9L20.0 35.2L23.7 48.5L17.6 51.1L10.8 39.0L5.0 40.2L3.3 53.9L-3.3 53.9L-5.0 40.2L-10.8 39.0L-17.6 51.1L-23.7 48.5L-20.0 35.2L-24.9 31.9L-35.8 40.4L-40.4 35.8L-31.9 24.9L-35.2 20.0L-48.5 23.7L-51.1 17.6L-39.0 10.8L-40.2 5.0L-53.9 3.3L-53.9 -3.3L-40.2 -5.0L-39.0 -10.8L-51.1 -17.6L-48.5 -23.7L-35.2 -20.0L-31.9 -24.9L-40.4 -35.8L-35.8 -40.4L-24.9 -31.9L-20.0 -35.2L-23.7 -48.5L-17.6 -51.1L-10.8 -39.0Z M0.0 -22.7m-5.4 0a5.4 5.4 0 1 0 10.8 0a5.4 5.4 0 1 0 -10.8 0M19.6 11.3m-5.4 0a5.4 5.4 0 1 0 10.8 0a5.4 5.4 0 1 0 -10.8 0M-19.6 11.3m-5.4 0a5.4 5.4 0 1 0 10.8 0a5.4 5.4 0 1 0 -10.8 0 M0 0m-4.8 0a4.8 4.8 0 1 0 9.6 0a4.8 4.8 0 1 0 -9.6 0"/><circle class="gt-hub" r="13.2"/><circle class="gt-bore" r="4.8"/></g><path class="gt-edge" d="M-37.2 -6.6A37.8 37.8 0 0 1 6.6 -37.2"/></g><g class="gt-g gt-t0" data-z="30" data-dir="1" data-phase="1.07" transform="translate(293.7 -18.5)"><g class="gt-rot" transform="rotate(1.07)"><path class="gt-body" fill-rule="evenodd" d="M-5.4 -82.3L-3.1 -95.9L3.1 -95.9L5.4 -82.3L11.8 -81.6L16.9 -94.5L23.0 -93.2L22.4 -79.4L28.6 -77.4L36.2 -88.9L41.9 -86.4L38.4 -73.0L44.0 -69.8L53.9 -79.5L58.9 -75.8L52.8 -63.4L57.6 -59.1L69.2 -66.5L73.4 -61.9L64.8 -51.1L68.6 -45.8L81.5 -50.7L84.7 -45.3L74.0 -36.5L76.6 -30.6L90.3 -32.6L92.2 -26.7L80.0 -20.3L81.3 -14.0L95.1 -13.1L95.7 -6.9L82.4 -3.2L82.4 3.2L95.7 6.9L95.1 13.1L81.3 14.0L80.0 20.3L92.2 26.7L90.3 32.6L76.6 30.6L74.0 36.5L84.7 45.3L81.5 50.7L68.6 45.8L64.8 51.1L73.4 61.9L69.2 66.5L57.6 59.1L52.8 63.4L58.9 75.8L53.9 79.5L44.0 69.8L38.4 73.0L41.9 86.4L36.2 88.9L28.6 77.4L22.4 79.4L23.0 93.2L16.9 94.5L11.8 81.6L5.4 82.3L3.1 95.9L-3.1 95.9L-5.4 82.3L-11.8 81.6L-16.9 94.5L-23.0 93.2L-22.4 79.4L-28.6 77.4L-36.2 88.9L-41.9 86.4L-38.4 73.0L-44.0 69.8L-53.9 79.5L-58.9 75.8L-52.8 63.4L-57.6 59.1L-69.2 66.5L-73.4 61.9L-64.8 51.1L-68.6 45.8L-81.5 50.7L-84.7 45.3L-74.0 36.5L-76.6 30.6L-90.3 32.6L-92.2 26.7L-80.0 20.3L-81.3 14.0L-95.1 13.1L-95.7 6.9L-82.4 3.2L-82.4 -3.2L-95.7 -6.9L-95.1 -13.1L-81.3 -14.0L-80.0 -20.3L-92.2 -26.7L-90.3 -32.6L-76.6 -30.6L-74.0 -36.5L-84.7 -45.3L-81.5 -50.7L-68.6 -45.8L-64.8 -51.1L-73.4 -61.9L-69.2 -66.5L-57.6 -59.1L-52.8 -63.4L-58.9 -75.8L-53.9 -79.5L-44.0 -69.8L-38.4 -73.0L-41.9 -86.4L-36.2 -88.9L-28.6 -77.4L-22.4 -79.4L-23.0 -93.2L-16.9 -94.5L-11.8 -81.6Z M12.8 -71.8A72.9 72.9 0 0 1 64.3 -34.3L24.4 -15.3A28.8 28.8 0 0 0 7.0 -27.9ZM72.2 -10.0A72.9 72.9 0 0 1 52.5 50.6L22.1 18.5A28.8 28.8 0 0 0 28.7 -2.0ZM31.9 65.6A72.9 72.9 0 0 1 -31.9 65.6L-10.8 26.7A28.8 28.8 0 0 0 10.8 26.7ZM-52.5 50.6A72.9 72.9 0 0 1 -72.2 -10.0L-28.7 -2.0A28.8 28.8 0 0 0 -22.1 18.5ZM-64.3 -34.3A72.9 72.9 0 0 1 -12.8 -71.8L-7.0 -27.9A28.8 28.8 0 0 0 -24.4 -15.3Z M0 0m-4.8 0a4.8 4.8 0 1 0 9.6 0a4.8 4.8 0 1 0 -9.6 0"/><circle class="gt-hub" r="23.4"/><circle class="gt-bore" r="4.8"/></g><path class="gt-edge" d="M-78.6 -13.9A79.8 79.8 0 0 1 13.9 -78.6"/></g><g class="gt-g gt-t2" data-z="12" data-dir="-1" data-phase="3.33" transform="translate(408.8 -69.8)"><g class="gt-rot" transform="rotate(3.33)"><path class="gt-body" fill-rule="evenodd" d="M-4.6 -28.1L-3.4 -41.9L3.4 -41.9L4.6 -28.1L10.0 -26.7L18.0 -38.0L23.9 -34.6L18.1 -22.0L22.0 -18.1L34.6 -23.9L38.0 -18.0L26.7 -10.0L28.1 -4.6L41.9 -3.4L41.9 3.4L28.1 4.6L26.7 10.0L38.0 18.0L34.6 23.9L22.0 18.1L18.1 22.0L23.9 34.6L18.0 38.0L10.0 26.7L4.6 28.1L3.4 41.9L-3.4 41.9L-4.6 28.1L-10.0 26.7L-18.0 38.0L-23.9 34.6L-18.1 22.0L-22.0 18.1L-34.6 23.9L-38.0 18.0L-26.7 10.0L-28.1 4.6L-41.9 3.4L-41.9 -3.4L-28.1 -4.6L-26.7 -10.0L-38.0 -18.0L-34.6 -23.9L-22.0 -18.1L-18.1 -22.0L-23.9 -34.6L-18.0 -38.0L-10.0 -26.7Z  M0 0m-4.8 0a4.8 4.8 0 1 0 9.6 0a4.8 4.8 0 1 0 -9.6 0"/><circle class="gt-hub" r="13.2"/><circle class="gt-bore" r="4.8"/></g><path class="gt-edge" d="M-25.4 -4.5A25.8 25.8 0 0 1 4.5 -25.4"/></g><g class="gt-g gt-t1" data-z="44" data-dir="1" data-phase="6.64" transform="translate(564.6 -6.8)"><g class="gt-rot" transform="rotate(6.64)"><path class="gt-body" fill-rule="evenodd" d="M-5.6 -124.4L-3.1 -138.0L3.1 -138.0L5.6 -124.4L12.2 -123.9L16.6 -137.0L22.7 -136.1L23.2 -122.3L29.7 -120.9L35.9 -133.2L41.8 -131.5L40.4 -117.8L46.6 -115.4L54.5 -126.8L60.1 -124.2L56.7 -110.8L62.6 -107.6L72.0 -117.7L77.2 -114.4L71.9 -101.6L77.3 -97.6L88.0 -106.3L92.7 -102.3L85.6 -90.4L90.4 -85.6L102.3 -92.7L106.3 -88.0L97.6 -77.3L101.6 -71.9L114.4 -77.2L117.7 -72.0L107.6 -62.6L110.8 -56.7L124.2 -60.1L126.8 -54.5L115.4 -46.6L117.8 -40.4L131.5 -41.8L133.2 -35.9L120.9 -29.7L122.3 -23.2L136.1 -22.7L137.0 -16.6L123.9 -12.2L124.4 -5.6L138.0 -3.1L138.0 3.1L124.4 5.6L123.9 12.2L137.0 16.6L136.1 22.7L122.3 23.2L120.9 29.7L133.2 35.9L131.5 41.8L117.8 40.4L115.4 46.6L126.8 54.5L124.2 60.1L110.8 56.7L107.6 62.6L117.7 72.0L114.4 77.2L101.6 71.9L97.6 77.3L106.3 88.0L102.3 92.7L90.4 85.6L85.6 90.4L92.7 102.3L88.0 106.3L77.3 97.6L71.9 101.6L77.2 114.4L72.0 117.7L62.6 107.6L56.7 110.8L60.1 124.2L54.5 126.8L46.6 115.4L40.4 117.8L41.8 131.5L35.9 133.2L29.7 120.9L23.2 122.3L22.7 136.1L16.6 137.0L12.2 123.9L5.6 124.4L3.1 138.0L-3.1 138.0L-5.6 124.4L-12.2 123.9L-16.6 137.0L-22.7 136.1L-23.2 122.3L-29.7 120.9L-35.9 133.2L-41.8 131.5L-40.4 117.8L-46.6 115.4L-54.5 126.8L-60.1 124.2L-56.7 110.8L-62.6 107.6L-72.0 117.7L-77.2 114.4L-71.9 101.6L-77.3 97.6L-88.0 106.3L-92.7 102.3L-85.6 90.4L-90.4 85.6L-102.3 92.7L-106.3 88.0L-97.6 77.3L-101.6 71.9L-114.4 77.2L-117.7 72.0L-107.6 62.6L-110.8 56.7L-124.2 60.1L-126.8 54.5L-115.4 46.6L-117.8 40.4L-131.5 41.8L-133.2 35.9L-120.9 29.7L-122.3 23.2L-136.1 22.7L-137.0 16.6L-123.9 12.2L-124.4 5.6L-138.0 3.1L-138.0 -3.1L-124.4 -5.6L-123.9 -12.2L-137.0 -16.6L-136.1 -22.7L-122.3 -23.2L-120.9 -29.7L-133.2 -35.9L-131.5 -41.8L-117.8 -40.4L-115.4 -46.6L-126.8 -54.5L-124.2 -60.1L-110.8 -56.7L-107.6 -62.6L-117.7 -72.0L-114.4 -77.2L-101.6 -71.9L-97.6 -77.3L-106.3 -88.0L-102.3 -92.7L-90.4 -85.6L-85.6 -90.4L-92.7 -102.3L-88.0 -106.3L-77.3 -97.6L-71.9 -101.6L-77.2 -114.4L-72.0 -117.7L-62.6 -107.6L-56.7 -110.8L-60.1 -124.2L-54.5 -126.8L-46.6 -115.4L-40.4 -117.8L-41.8 -131.5L-35.9 -133.2L-29.7 -120.9L-23.2 -122.3L-22.7 -136.1L-16.6 -137.0L-12.2 -123.9Z M16.8 -113.7A114.9 114.9 0 0 1 90.0 -71.4L29.3 -26.8A39.7 39.7 0 0 0 8.5 -38.8ZM106.8 -42.3A114.9 114.9 0 0 1 106.8 42.3L37.9 12.0A39.7 39.7 0 0 0 37.9 -12.0ZM90.0 71.4A114.9 114.9 0 0 1 16.8 113.7L8.5 38.8A39.7 39.7 0 0 0 29.3 26.8ZM-16.8 113.7A114.9 114.9 0 0 1 -90.0 71.4L-29.3 26.8A39.7 39.7 0 0 0 -8.5 38.8ZM-106.8 42.3A114.9 114.9 0 0 1 -106.8 -42.3L-37.9 -12.0A39.7 39.7 0 0 0 -37.9 12.0ZM-90.0 -71.4A114.9 114.9 0 0 1 -16.8 -113.7L-8.5 -38.8A39.7 39.7 0 0 0 -29.3 -26.8Z M0 0m-4.8 0a4.8 4.8 0 1 0 9.6 0a4.8 4.8 0 1 0 -9.6 0"/><circle class="gt-hub" r="34.3"/><circle class="gt-bore" r="4.8"/></g><path class="gt-edge" d="M-119.9 -21.2A121.8 121.8 0 0 1 21.2 -119.9"/></g><g class="gt-g gt-t0" data-z="18" data-dir="-1" data-phase="14.89" transform="translate(739.3 -70.5)"><g class="gt-rot" transform="rotate(14.89)"><path class="gt-body" fill-rule="evenodd" d="M-5.1 -46.2L-3.2 -59.9L3.2 -59.9L5.1 -46.2L11.1 -45.2L17.4 -57.4L23.5 -55.2L20.6 -41.7L25.8 -38.7L36.0 -48.0L41.0 -43.8L33.6 -32.2L37.5 -27.5L50.3 -32.8L53.5 -27.1L42.6 -18.7L44.6 -13.0L58.4 -13.6L59.6 -7.2L46.4 -3.0L46.4 3.0L59.6 7.2L58.4 13.6L44.6 13.0L42.6 18.7L53.5 27.1L50.3 32.8L37.5 27.5L33.6 32.2L41.0 43.8L36.0 48.0L25.8 38.7L20.6 41.7L23.5 55.2L17.4 57.4L11.1 45.2L5.1 46.2L3.2 59.9L-3.2 59.9L-5.1 46.2L-11.1 45.2L-17.4 57.4L-23.5 55.2L-20.6 41.7L-25.8 38.7L-36.0 48.0L-41.0 43.8L-33.6 32.2L-37.5 27.5L-50.3 32.8L-53.5 27.1L-42.6 18.7L-44.6 13.0L-58.4 13.6L-59.6 7.2L-46.4 3.0L-46.4 -3.0L-59.6 -7.2L-58.4 -13.6L-44.6 -13.0L-42.6 -18.7L-53.5 -27.1L-50.3 -32.8L-37.5 -27.5L-33.6 -32.2L-41.0 -43.8L-36.0 -48.0L-25.8 -38.7L-20.6 -41.7L-23.5 -55.2L-17.4 -57.4L-11.1 -45.2Z M0.0 -26.0m-5.4 0a5.4 5.4 0 1 0 10.8 0a5.4 5.4 0 1 0 -10.8 0M22.6 13.0m-5.4 0a5.4 5.4 0 1 0 10.8 0a5.4 5.4 0 1 0 -10.8 0M-22.6 13.0m-5.4 0a5.4 5.4 0 1 0 10.8 0a5.4 5.4 0 1 0 -10.8 0 M0 0m-4.8 0a4.8 4.8 0 1 0 9.6 0a4.8 4.8 0 1 0 -9.6 0"/><circle class="gt-hub" r="14.0"/><circle class="gt-bore" r="4.8"/></g><path class="gt-edge" d="M-43.1 -7.6A43.8 43.8 0 0 1 7.6 -43.1"/></g><g class="gt-g gt-t2" data-z="32" data-dir="1" data-phase="5.37" transform="translate(883.5 -29.1)"><g class="gt-rot" transform="rotate(5.37)"><path class="gt-body" fill-rule="evenodd" d="M-5.4 -88.3L-3.1 -102.0L3.1 -102.0L5.4 -88.3L11.9 -87.7L16.8 -100.6L22.9 -99.4L22.6 -85.6L28.8 -83.7L36.1 -95.4L41.9 -93.0L38.8 -79.5L44.6 -76.5L54.1 -86.5L59.2 -83.0L53.6 -70.4L58.6 -66.3L69.9 -74.3L74.3 -69.9L66.3 -58.6L70.4 -53.6L83.0 -59.2L86.5 -54.1L76.5 -44.6L79.5 -38.8L93.0 -41.9L95.4 -36.1L83.7 -28.8L85.6 -22.6L99.4 -22.9L100.6 -16.8L87.7 -11.9L88.3 -5.4L102.0 -3.1L102.0 3.1L88.3 5.4L87.7 11.9L100.6 16.8L99.4 22.9L85.6 22.6L83.7 28.8L95.4 36.1L93.0 41.9L79.5 38.8L76.5 44.6L86.5 54.1L83.0 59.2L70.4 53.6L66.3 58.6L74.3 69.9L69.9 74.3L58.6 66.3L53.6 70.4L59.2 83.0L54.1 86.5L44.6 76.5L38.8 79.5L41.9 93.0L36.1 95.4L28.8 83.7L22.6 85.6L22.9 99.4L16.8 100.6L11.9 87.7L5.4 88.3L3.1 102.0L-3.1 102.0L-5.4 88.3L-11.9 87.7L-16.8 100.6L-22.9 99.4L-22.6 85.6L-28.8 83.7L-36.1 95.4L-41.9 93.0L-38.8 79.5L-44.6 76.5L-54.1 86.5L-59.2 83.0L-53.6 70.4L-58.6 66.3L-69.9 74.3L-74.3 69.9L-66.3 58.6L-70.4 53.6L-83.0 59.2L-86.5 54.1L-76.5 44.6L-79.5 38.8L-93.0 41.9L-95.4 36.1L-83.7 28.8L-85.6 22.6L-99.4 22.9L-100.6 16.8L-87.7 11.9L-88.3 5.4L-102.0 3.1L-102.0 -3.1L-88.3 -5.4L-87.7 -11.9L-100.6 -16.8L-99.4 -22.9L-85.6 -22.6L-83.7 -28.8L-95.4 -36.1L-93.0 -41.9L-79.5 -38.8L-76.5 -44.6L-86.5 -54.1L-83.0 -59.2L-70.4 -53.6L-66.3 -58.6L-74.3 -69.9L-69.9 -74.3L-58.6 -66.3L-53.6 -70.4L-59.2 -83.0L-54.1 -86.5L-44.6 -76.5L-38.8 -79.5L-41.9 -93.0L-36.1 -95.4L-28.8 -83.7L-22.6 -85.6L-22.9 -99.4L-16.8 -100.6L-11.9 -87.7Z M13.8 -77.7A78.9 78.9 0 0 1 69.6 -37.1L25.7 -16.1A30.4 30.4 0 0 0 7.4 -29.4ZM78.1 -10.9A78.9 78.9 0 0 1 56.8 54.7L23.3 19.5A30.4 30.4 0 0 0 30.3 -2.1ZM34.5 71.0A78.9 78.9 0 0 1 -34.5 71.0L-11.3 28.2A30.4 30.4 0 0 0 11.3 28.2ZM-56.8 54.7A78.9 78.9 0 0 1 -78.1 -10.9L-30.3 -2.1A30.4 30.4 0 0 0 -23.3 19.5ZM-69.6 -37.1A78.9 78.9 0 0 1 -13.8 -77.7L-7.4 -29.4A30.4 30.4 0 0 0 -25.7 -16.1Z M0 0m-4.8 0a4.8 4.8 0 1 0 9.6 0a4.8 4.8 0 1 0 -9.6 0"/><circle class="gt-hub" r="25.0"/><circle class="gt-bore" r="4.8"/></g><path class="gt-edge" d="M-84.5 -14.9A85.8 85.8 0 0 1 14.9 -84.5"/></g></g></svg>
-  <div class="foot-in">
-    <div class="sig" aria-hidden="true">
-      <span class="sig-name">Miles King</span>
-      <span class="sig-kana">マイルス・キング</span>
-      <span class="cap cap-dark">Software developer</span>
-    </div>
-    <ul class="social">
-      <li><a href="https://linkedin.com/in/miles-k" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li>
-    </ul>
-    <p class="foot-line"><span>&copy; <span data-year>2026</span> Miles King, Houston, TX</span><a class="totop" href="#top">Back to top</a></p>
+<section class="sec sec-deep" id="experiments">
+  <span class="deep-gears" aria-hidden="true">
+    <span class="gear g-w1" data-gear data-dur="44"><svg viewBox="0 0 120 120"><use href="#gearB"/></svg></span>
+    <span class="gear g-w2" data-gear data-dur="19" data-rev="1"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span>
+    <span class="gear g-w3" data-gear data-dur="33"><svg viewBox="0 0 120 120"><use href="#gearA"/></svg></span>
+  </span>
+  <div class="sec-inner">
+  <div class="sec-head">
+    <p class="sec-tag"><span class="tag-gear" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#gearC"/></svg></span><i>DIR.02</i><span>実験</span></p>
+    <h2 class="sec-title" data-text="WEB APPS &amp; EXPERIMENTS" data-scramble><span>WEB APPS &amp; EXPERIMENTS</span></h2>
+    <p class="sec-sub">For fun and practice.</p>
   </div>
+    <div class="work-grid">
+      <article class="card is-top" data-tilt>
+        <a href="projects/7-3/">
+          <span class="card-rank">02</span>
+          <div class="card-shot">
+            <img src="assets/img/seven-three.png" alt="7-3 game preview — a Game Boy Color styled office RPG" loading="lazy" />
+            <span class="card-tint" aria-hidden="true"></span>
+            <span class="card-sheen" aria-hidden="true"></span>
+            <span class="card-scan" aria-hidden="true"></span>
+          </div>
+          <div class="card-body">
+            <span class="card-flag is-amber">NEW &#10022; GAME</span>
+            <h3 data-scramble>7-3</h3>
+            <p>A neverending workday RPG in the shape of a 1998 Game Boy Color cartridge. Answer email, file reports and clear printer jams as turn-based encounters on an endlessly generated map &mdash; or flip on autopilot and watch it play itself. You cannot lose, and the level cap is 1000.</p>
+            <span class="card-tags">GAME // CANVAS // NO ENGINE</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-02<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH &rarr;</span>
+          </div>
+        </a>
+        <span class="card-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </article>
+
+      <article class="card" data-tilt>
+        <a href="projects/anime-blackjack/">
+          <span class="card-rank">03</span>
+          <div class="card-shot">
+            <img src="assets/img/anime-blackjack.jpg" alt="Anime Blackjack game preview — animated dealer and card table" loading="lazy" />
+            <span class="card-tint" aria-hidden="true"></span>
+            <span class="card-sheen" aria-hidden="true"></span>
+            <span class="card-scan" aria-hidden="true"></span>
+          </div>
+          <div class="card-body">
+            <h3 data-scramble>Anime Blackjack</h3>
+            <p>Blackjack against an animated anime dealer, built in React and TypeScript with a full GSAP animation layer &mdash; card flights, hole-card flips, and a dealer who reacts to every hand.</p>
+            <span class="card-tags">GAME // REACT // GSAP</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-03<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH &rarr;</span>
+          </div>
+        </a>
+        <span class="card-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </article>
+
+      <article class="card" data-tilt>
+        <a href="projects/infinite-crayons/">
+          <span class="card-rank">04</span>
+          <div class="card-shot">
+            <img src="assets/img/infinite-crayons.png" alt="InfiniteCrayons color palette generator preview" loading="lazy" />
+            <span class="card-tint" aria-hidden="true"></span>
+            <span class="card-sheen" aria-hidden="true"></span>
+            <span class="card-scan" aria-hidden="true"></span>
+          </div>
+          <div class="card-body">
+            <h3 data-scramble>InfiniteCrayons</h3>
+            <p>A color palette generator with adjustable hue, brightness, and saturation per swatch.</p>
+            <span class="card-tags">TOOL // COLOR</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-04<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH &rarr;</span>
+          </div>
+        </a>
+        <span class="card-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </article>
+
+      <article class="card" data-tilt>
+        <a href="projects/jst-play/">
+          <span class="card-rank">05</span>
+          <div class="card-shot">
+            <img src="assets/img/jst-play.png" alt="JSt Play drum machine preview" loading="lazy" />
+            <span class="card-tint" aria-hidden="true"></span>
+            <span class="card-sheen" aria-hidden="true"></span>
+            <span class="card-scan" aria-hidden="true"></span>
+          </div>
+          <div class="card-body">
+            <h3 data-scramble>JSt Play</h3>
+            <p>A browser drum machine and step sequencer with switchable kit sounds.</p>
+            <span class="card-tags">AUDIO // FUN</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-05<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH &rarr;</span>
+          </div>
+        </a>
+        <span class="card-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </article>
+
+      <article class="card" data-tilt>
+        <a href="projects/more-stock-images/">
+          <span class="card-rank">06</span>
+          <div class="card-shot">
+            <img src="assets/img/more-stock-images.png" alt="MoreStockImages photo search preview" loading="lazy" />
+            <span class="card-tint" aria-hidden="true"></span>
+            <span class="card-sheen" aria-hidden="true"></span>
+            <span class="card-scan" aria-hidden="true"></span>
+          </div>
+          <div class="card-body">
+            <h3 data-scramble>MoreStockImages</h3>
+            <p>Search royalty-free photos across providers from a single, simple search bar.</p>
+            <span class="card-tags">TOOL // API</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-06<i></i>REV 2.6</span>
+            <span class="card-go">LAUNCH &rarr;</span>
+          </div>
+        </a>
+        <span class="card-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </article>
+
+      <article class="card" data-tilt>
+        <a href="projects/mettatonex.html">
+          <span class="card-rank">07</span>
+          <div class="card-shot">
+            <img src="assets/img/mettatonex.png" alt="MettatonEX Discord bot preview" loading="lazy" />
+            <span class="card-tint" aria-hidden="true"></span>
+            <span class="card-sheen" aria-hidden="true"></span>
+            <span class="card-scan" aria-hidden="true"></span>
+          </div>
+          <div class="card-body">
+            <h3 data-scramble>MettatonEX</h3>
+            <p>A customizable Discord bot that posts new YouTube uploads to a server channel.</p>
+            <span class="card-tags">NODE.JS // DISCORD.JS</span>
+            <span class="card-pn"><em>P/N</em>MK-2026-07<i></i>REV 2.6</span>
+            <span class="card-go">CASE STUDY &rarr;</span>
+          </div>
+        </a>
+        <span class="card-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer">
+  <span class="foot-gear"><svg viewBox="0 0 120 120"><use href="#gearWire"/></svg></span>
+  <ul class="social">
+    <li><a href="https://github.com/milesdotjs" target="_blank" rel="noopener" aria-label="GitHub" data-magnet><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.66.41.35.77 1.05.77 2.12 0 1.54-.01 2.77-.01 3.15 0 .3.2.67.8.55A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a></li>
+    <li><a href="https://linkedin.com/in/miles-k" target="_blank" rel="noopener" aria-label="LinkedIn" data-magnet><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></li>
+  </ul>
+  <p class="foot-line">&copy; <span data-year>2026</span> MILES KING <i>&#10022;</i> SOFTWARE DEVELOPER <i>&#10022;</i> MILESKING.DEV</p>
+  <p class="foot-sig" data-cycle>&mdash; HOLO LINK STABLE &mdash;</p>
+  <a class="totop" href="#top"><span data-scramble>BACK TO TOP &uarr;</span></a>
 </footer>
 
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/ScrollToPlugin.min.js"></script>
+<script src="assets/js/vendor/SplitText.min.js"></script>
 <script src="assets/js/vendor/ScrambleTextPlugin.min.js"></script>
+<script src="assets/js/vendor/Physics2DPlugin.min.js"></script>
 <script src="assets/js/site.js"></script>
   </body>
 </html>
