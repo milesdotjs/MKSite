@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Generates index.html / about.html / projects.html for the holo theme.
+"""Generates index.html / about.html / projects.html for the storm-rotor theme.
 
 The three pages share their nav, footer, SVG sprite sheet and card markup, so
 they are generated from one source rather than kept in sync by hand. Gear and
 gauge geometry is computed (real meshing teeth, real dial scales) and the hero
-wheel comes from tools/wheel.py.
+halo drive (the hero emblem: halo ring, ring gear, stator plates, bearing,
+open hub) comes from tools/rotor.py.
 
     cd tools && python build_pages.py
 
@@ -13,8 +14,10 @@ next time this runs.
 """
 import io, math, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from wheel import (TYRE, TREAD, RIM, DRIVE, SPOKES, HUB_RING, BOLTS,
-                   BEARINGS, VIEWBOX as WHEEL_VB)
+from rotor import (GEAR_RING, GEAR_HOLES, PLATES, PLATE_LINES, PLATE_RIVETS,
+                   BEARING, BEARING_NOTCH, HUB, HUB_BOLTS,
+                   HALO_TICK_S, HALO_TICK_L, HALO_RAYS,
+                   VIEWBOX as ROTOR_VB)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -73,12 +76,12 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox
            "text-anchor='middle' fill='%234ff5ff'%3EMK%3C/text%3E"
            "%3Cline x1='10' y1='52' x2='54' y2='52' stroke='%23ff4fd8' stroke-width='3'/%3E%3C/svg%3E")
 
-FONTS = ("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500..900"
+FONTS = ("https://fonts.googleapis.com/css2?family=Michroma"
          "&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600;1,700"
          "&family=Space+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap")
 
 # ---------------------------------------------------------------- shared blocks
-SPRITE = '''<!-- ===== mechanical sprite sheet ===== -->
+SPRITE_T = '''<!-- ===== mechanical sprite sheet ===== -->
 <svg class="sprite" aria-hidden="true" width="0" height="0">
   <defs>
     <linearGradient id="chr" x1="0" y1="0" x2="0" y2="1">
@@ -88,27 +91,7 @@ SPRITE = '''<!-- ===== mechanical sprite sheet ===== -->
       <stop offset="100%%" stop-color="#b4c4dd"/>
     </linearGradient>
 
-    <!-- Air Treck wheel: tyre + tread + rim + internal drive gear + spokes -->
-    <g id="wheelSolid">
-      <path d="%(tyre)s" fill="#070b16" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="2"/>
-      <path d="%(tread)s" fill="#16233f" stroke="#5fa8d8" stroke-width="1.2"/>
-      <path d="%(rim)s" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.6"/>
-      <path d="%(drive)s" fill="url(#chr)" stroke="#8fd8ff" stroke-width="1.6" stroke-linejoin="round"/>
-      <circle cx="200" cy="200" r="122" fill="#070b16"/>
-      <path d="%(spokes)s" fill="url(#chr)" stroke="#8fd8ff" stroke-width="1.8" stroke-linejoin="round"/>
-      <path d="%(hubring)s" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.6"/>
-      <g fill="#070b16" stroke="#8fd8ff" stroke-width="1.4">%(bolts)s</g>
-      <circle cx="200" cy="200" r="30" fill="#ff4fd8" stroke="#070b16" stroke-width="4"/>
-      <circle cx="200" cy="200" r="13" fill="#070b16"/>
-      <g fill="#b6ff4f">%(bearings)s</g>
-    </g>
-    <g id="wheelWire">
-      <path d="%(tyre)s" fill="none" stroke="#4ff5ff" stroke-width="2"/>
-      <path d="%(drive)s" fill="none" stroke="#4ff5ff" stroke-width="1.4" stroke-linejoin="round"/>
-      <path d="%(spokes)s" fill="none" stroke="#4ff5ff" stroke-width="1.4" stroke-linejoin="round"/>
-      <circle cx="200" cy="200" r="52" fill="none" stroke="#4ff5ff" stroke-width="1.4"/>
-      <circle cx="200" cy="200" r="30" fill="none" stroke="#4ff5ff" stroke-width="1.4"/>
-    </g>
+%(rotor)s
 
     <g id="gearA">
       <path d="%(g12)s" fill="url(#chr)" stroke="#8fd8ff" stroke-width="2" stroke-linejoin="round"/>
@@ -125,7 +108,7 @@ SPRITE = '''<!-- ===== mechanical sprite sheet ===== -->
     <g id="gearC">
       <path d="%(g8)s" fill="url(#chr)" stroke="#8fd8ff" stroke-width="2" stroke-linejoin="round"/>
       <circle cx="60" cy="60" r="26" fill="none" stroke="#8fd8ff" stroke-width="1.6"/>
-      <circle cx="60" cy="60" r="12" fill="#ff4fd8" stroke="#0a1020" stroke-width="2"/>
+      <circle cx="60" cy="60" r="12" fill="#0a1020" stroke="#8fd8ff" stroke-width="1.6"/>
     </g>
     <g id="gearWire">
       <path d="%(g12)s" fill="none" stroke="#4ff5ff" stroke-width="1.6" stroke-linejoin="round"/>
@@ -133,17 +116,56 @@ SPRITE = '''<!-- ===== mechanical sprite sheet ===== -->
       <circle cx="60" cy="60" r="11" fill="none" stroke="#4ff5ff" stroke-width="1.2"/>
     </g>
   </defs>
-</svg>''' % {'tyre': TYRE, 'tread': TREAD, 'rim': RIM, 'drive': DRIVE, 'spokes': SPOKES,
-             'hubring': HUB_RING, 'bolts': BOLTS, 'bearings': BEARINGS,
-             'g12': G12, 'g16': G16, 'g8': G8, 'h5': H5, 'h6': H6}
+</svg>'''
+
+ROTOR_SYMBOLS = '''    <!-- brighter silver for the rotor plates; warm light for the core -->
+    <linearGradient id="chrW" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%%" stop-color="#ffffff"/><stop offset="30%%" stop-color="#dbe8fa"/>
+      <stop offset="50%%" stop-color="#8c9fc0"/><stop offset="62%%" stop-color="#f3f8ff"/>
+      <stop offset="100%%" stop-color="#b9c9e2"/>
+    </linearGradient>
+    <!-- halo drive (tools/rotor.py). Five stages, each stacked as its own
+         <svg> on the page so the rotating ones spin with a composited CSS
+         transform instead of repainting one big drawing every frame.
+         The centre is open on purpose: nothing here should look like an eye. -->
+    <g id="rotorHalo">
+      <circle cx="400" cy="400" r="300" fill="none" stroke="#fff1c9" stroke-width="2"/>
+      <circle cx="400" cy="400" r="291" fill="none" stroke="#fff1c9" stroke-width=".8" opacity=".5"/>
+      <path d="%(tick_s)s" stroke="#fff1c9" stroke-width="1.2" opacity=".6"/>
+      <path d="%(tick_l)s" stroke="#fff1c9" stroke-width="2"/>
+      <path d="%(rays)s" fill="#fff1c9" opacity=".55"/>
+    </g>
+    <g id="rotorOuter">
+      <path d="%(gear)s" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.6" stroke-linejoin="round"/>
+      <circle cx="400" cy="400" r="237" fill="none" stroke="#8fd8ff" stroke-width="1" opacity=".55"/>
+      <g fill="#070b16" stroke="#8fd8ff" stroke-width="1.2">%(gear_holes)s</g>
+    </g>
+    <g id="rotorRing">
+      <path d="%(plates)s" fill="url(#chrW)" stroke="#8fd8ff" stroke-width="1.5" stroke-linejoin="round"/>
+      <path d="%(plate_lines)s" fill="none" stroke="#0a1020" stroke-width="1.6" opacity=".55"/>
+      <g fill="#070b16" stroke="#8fd8ff" stroke-width="1">%(plate_rivets)s</g>
+    </g>
+    <g id="rotorInner">
+      <path d="%(bearing)s" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.4"/>
+      <path d="%(bearing_n)s" stroke="#0a1020" stroke-width="2.2"/>
+    </g>
+    <g id="rotorHub">
+      <path d="%(hub)s" fill="url(#chr)" fill-rule="evenodd" stroke="#8fd8ff" stroke-width="1.4"/>
+      <g fill="#070b16" stroke="#8fd8ff" stroke-width="1.2">%(bolts)s</g>
+      <circle cx="400" cy="400" r="70" fill="none" stroke="#fff1c9" stroke-width="1.2" opacity=".7"/>
+    </g>''' % {'tick_s': HALO_TICK_S, 'tick_l': HALO_TICK_L, 'rays': HALO_RAYS,
+             'gear': GEAR_RING, 'gear_holes': GEAR_HOLES,
+             'plates': PLATES, 'plate_lines': PLATE_LINES, 'plate_rivets': PLATE_RIVETS,
+             'bearing': BEARING, 'bearing_n': BEARING_NOTCH, 'hub': HUB, 'bolts': HUB_BOLTS}
+
+_SPRITE_KEYS = {'g12': G12, 'g16': G16, 'g8': G8, 'h5': H5, 'h6': H6}
+SPRITE = SPRITE_T % dict(_SPRITE_KEYS, rotor='')                  # subpages
+SPRITE_ROTOR = SPRITE_T % dict(_SPRITE_KEYS, rotor=ROTOR_SYMBOLS)  # index (carries the hero)
 
 FX = '''<!-- ===== fixed atmosphere ===== -->
 <div class="fx-chamber" aria-hidden="true"></div>
 <div class="fx-floor" aria-hidden="true"></div>
-<div class="fx-tone" aria-hidden="true"></div>
-<div class="fx-scan" aria-hidden="true"></div>
-<div class="fx-grain" aria-hidden="true"></div>
-<div class="fx-vig" aria-hidden="true"></div>
+<div class="fx-over" aria-hidden="true"></div>
 
 <div class="rain rain-l" aria-hidden="true"><span data-rain></span></div>
 <div class="rain rain-r" aria-hidden="true"><span data-rain></span></div>
@@ -236,13 +258,12 @@ def footer(page):
 <footer id="footer">
   <span class="foot-gear"><svg viewBox="0 0 120 120"><use href="#gearWire"/></svg></span>
   <ul class="social">
-    <li><a href="https://github.com/milesdotjs" target="_blank" rel="noopener" aria-label="GitHub" data-magnet><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="%s"/></svg></a></li>
     <li><a href="https://linkedin.com/in/miles-k" target="_blank" rel="noopener" aria-label="LinkedIn" data-magnet><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="%s"/></svg></a></li>
   </ul>
   <p class="foot-line">&copy; <span data-year>2026</span> MILES KING <i>&#10022;</i> SOFTWARE DEVELOPER <i>&#10022;</i> MILESKING.DEV</p>
   <p class="foot-sig" data-cycle>%s</p>
   <a class="totop" href="%s"><span data-scramble>BACK TO TOP &uarr;</span></a>
-</footer>''' % (GH_PATH, LI_PATH, sig, totop)
+</footer>''' % (LI_PATH, sig, totop)
 
 SCRIPTS = '''<script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
@@ -301,7 +322,6 @@ def card(rank, href, img, alt, title, desc, tags, go='LAUNCH', flag=None, top=Fa
           <div class="card-shot">%s
             <span class="card-tint" aria-hidden="true"></span>
             <span class="card-sheen" aria-hidden="true"></span>
-            <span class="card-scan" aria-hidden="true"></span>
           </div>
           <div class="card-body">%s
             <h3 data-scramble>%s</h3>
@@ -321,8 +341,10 @@ def tape(text):
   <div class="tape-track" data-tape>
     %s
     %s
+    %s
+    %s
   </div>
-</div>''' % (span, span)
+</div>''' % (span, span, span, span)
 
 RIDER_CARD = '''    <div class="glass rcard" data-panel data-tilt>
       <span class="g-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -337,13 +359,12 @@ RIDER_CARD = '''    <div class="glass rcard" data-panel data-tilt>
       <div class="rcard-photo">
         <span class="rcard-mono">MK</span>
         <span class="rcard-sheen" aria-hidden="true"></span>
-        <span class="rcard-scan" aria-hidden="true"></span>
       </div>
       <dl class="rcard-fields">
         <div><dt>CLASS</dt><dd>DEV &times; ANALYTICS</dd></div>
         <div><dt>BASE</dt><dd>HOUSTON, TX</dd></div>
         <div><dt>ROUTE</dt><dd>CHEM ENG &rarr; SOFTWARE</dd></div>
-        <div><dt>STATUS</dt><dd class="ok">CAFFEINATED</dd></div>
+        <div><dt>STATUS</dt><dd class="ok" data-status>CAFFEINATED</dd></div>
       </dl>
       <div class="rcard-foot">
         <span class="rcard-serial">MK-2026-HTX</span>
@@ -384,14 +405,36 @@ INDEX_CARDS = [
      'NODE.JS // DISCORD.JS', 'CASE STUDY', None, False, False),
 ]
 
+HERO_ROTOR = '''  <!-- the halo drive: halo ring, ring gear, stator plates, bearing, open hub -->
+  <div class="rotor" aria-hidden="true">
+    <span class="ro-glow"></span>
+    <svg class="ro ro-halo" viewBox="@@RVB@@"><use href="#rotorHalo"/></svg>
+    <svg class="ro ro-outer" data-rotor data-dur="120" viewBox="@@RVB@@"><use href="#rotorOuter"/></svg>
+    <svg class="ro ro-ring" data-rotor data-dur="64" data-rev="1" viewBox="@@RVB@@"><use href="#rotorRing"/></svg>
+    <svg class="ro ro-inner" data-rotor data-dur="30" viewBox="@@RVB@@"><use href="#rotorInner"/></svg>
+    <svg class="ro ro-hub" viewBox="@@RVB@@"><use href="#rotorHub"/></svg>
+  </div>'''
+
+HERO_CALLS_ROTOR = '''
+    <span class="bp-call bp-c1"><em></em>HALO RING / &#8709;600</span>
+    <span class="bp-call bp-c2"><em></em>RING GEAR / 36T</span>
+    <span class="bp-call bp-c3"><em></em>STATOR PLATES &times;12</span>'''
+
+KICKER = '''    <p class="hero-kicker">
+      <span class="tag tag-pink" data-scramble>SOFTWARE DEVELOPER</span>
+      <span class="tag tag-cyan" data-scramble>HOUSTON, TX</span>
+    </p>'''
+NAME = '''    <h1 class="hero-name"><span class="hn" data-text="MILES" data-split>MILES</span><span class="hn" data-text="KING" data-split>KING</span></h1>
+    <p class="hero-dim"><i class="bp-arrow" aria-hidden="true"></i><b lang="ja">マイルス・キング</b><i class="bp-arrow bp-arrow-r" aria-hidden="true"></i></p>'''
+
 def build_index():
     def c(t):  # unpack card tuple
         return card(t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7], t[8], t[9], t[10])
-    hero_gears = '\n'.join('    ' + g for g in [
-        gear('g-a', 'gearA', 38), gear('g-b', 'gearB', 22, True), gear('g-c', 'gearC', 14),
-        gear('g-d', 'gearA', 30, True), gear('g-e', 'gearB', 18), gear('g-f', 'gearC', 12, True),
-        gear('g-g', 'gearB', 26), gear('g-h', 'gearC', 11, True),
-    ])
+    gears = [gear('g-a', 'gearA', 38), gear('g-b', 'gearB', 22, True), gear('g-c', 'gearC', 14),
+             gear('g-d', 'gearA', 30, True), gear('g-e', 'gearB', 18)]
+    hero_visual, hero_calls, hero_cls, sprite = HERO_ROTOR, HERO_CALLS_ROTOR, 'hero-crest', SPRITE_ROTOR
+    hero_top = NAME + '\n' + KICKER              # name under the halo, tags beneath
+    hero_gears = '\n'.join('    ' + g for g in gears)
     return '''%(head)s
   <body class="is-booting">
 
@@ -402,11 +445,11 @@ def build_index():
   <div class="boot-scan"></div>
   <div class="boot-core">
     <span class="boot-gear"><svg viewBox="0 0 120 120"><use href="#gearWire"/></svg></span>
-    <p class="boot-id" data-boot-id>MK-AT-2026 :: WING DRIVE CORE</p>
+    <p class="boot-id" data-boot-id>MK-AT-2026 :: DRIVE TRAIN</p>
     <div class="boot-log">
       <p data-boot-line>&gt; mounting /dev/at0 .............. OK</p>
       <p data-boot-line>&gt; spinning up gear train ......... 12/12</p>
-      <p data-boot-line>&gt; calibrating drive wheel W-01 ... OK</p>
+      <p data-boot-line>&gt; meshing gear train ............ OK</p>
       <p data-boot-line>&gt; projecting holo layer .......... OK</p>
       <p data-boot-line>&gt; loading portfolio manifest ..... 07 NODES</p>
       <p data-boot-line>&gt; handshake .......................</p>
@@ -422,43 +465,18 @@ def build_index():
 %(nav)s
 
 <!-- ===== HERO ===== -->
-<section id="hero">
+<section id="hero" class="%(hero_cls)s">
   <div class="hero-bg" aria-hidden="true">
-    <span class="cone"></span>
+    <span class="hero-light"></span>
 %(hero_gears)s
   </div>
 
-  <!-- emblem: the chrome wheel plus a holographic twin a few px out of register -->
-  <div class="emblem" aria-hidden="true">
-    <svg class="em-wire" viewBox="@@WVB@@"><use href="#wheelWire"/></svg>
-    <svg class="em-solid" viewBox="@@WVB@@"><use href="#wheelSolid"/></svg>
-    <span class="em-scan"></span>
-  </div>
-
-  <!-- engineering annotation -->
-  <div class="bp" aria-hidden="true">
-    <span class="bp-cross bc1"></span><span class="bp-cross bc2"></span>
-    <span class="bp-cross bc3"></span><span class="bp-cross bc4"></span>
-    <span class="bp-stamp bs-tl">SCALE&nbsp;1:1</span>
-    <span class="bp-stamp bs-tr">REV&nbsp;2.6&nbsp;/&nbsp;SHEET&nbsp;01&nbsp;OF&nbsp;04</span>
-    <span class="bp-stamp bs-bl">UNIT&nbsp;MK-AT-2026</span>
-    <span class="bp-stamp bs-br">TOL&nbsp;&plusmn;0.05</span>
-    <span class="bp-dim"><i class="bp-arrow"></i><b>1240.00</b><i class="bp-arrow bp-arrow-r"></i></span>
-    <span class="bp-call bp-c1"><em></em>DRIVE WHEEL / W-01</span>
-    <span class="bp-call bp-c2"><em></em>MOTOR HUB / &#8709;96</span>
-    <span class="bp-call bp-c3"><em></em>BEARING &times;4</span>
-  </div>
+%(hero_visual)s
 
   <div class="hero-in">
-    <p class="hero-kicker">
-      <span class="tag tag-pink" data-scramble>SOFTWARE DEVELOPER</span>
-      <span class="tag tag-cyan" data-scramble>HOUSTON, TX</span>
-    </p>
-    <h1 class="hero-name" data-text="MILES KING"><span data-split>MILES KING</span></h1>
-    <p class="hero-kana" data-scramble>マイルス・キング</p>
+%(hero_top)s
     <p class="hero-lede">
-      I build web apps, small utilities, and the occasional weird side project &mdash;
-      then I measure whether they actually get used.
+      I build websites, web applications, and funny ideas.
     </p>
     <div class="hero-cta">
       <a class="btn btn-pink" data-magnet href="#work"><span data-scramble>VIEW MY WORK</span></a>
@@ -466,11 +484,13 @@ def build_index():
     </div>
   </div>
 
-  <div class="stickers" aria-hidden="true">
-    <span class="stk stk-1">RANK 01</span>
-    <span class="stk stk-2">JS / NODE / SQL</span>
-    <span class="stk stk-3">ANALYTICS</span>
-    <span class="stk stk-4">&#10022; NEW BUILD &#10022;</span>
+  <!-- engineering annotation -->
+  <div class="bp" aria-hidden="true">
+    <span class="bp-cross bc1"></span><span class="bp-cross bc2"></span>
+    <span class="bp-cross bc3"></span><span class="bp-cross bc4"></span>
+    <span class="bp-stamp bs-tl">SCALE&nbsp;1:1</span>
+    <span class="bp-stamp bs-tr">REV&nbsp;3.0&nbsp;/&nbsp;SHEET&nbsp;01&nbsp;OF&nbsp;04</span>
+    <span class="bp-stamp bs-br">UNIT&nbsp;MK-AT-2026&nbsp;&middot;&nbsp;TOL&nbsp;&plusmn;0.05</span>%(hero_calls)s
   </div>
 
   <a class="scroll-cue" href="#stack"><span>SCROLL</span><span class="scroll-arrow" aria-hidden="true"></span></a>
@@ -636,9 +656,10 @@ def build_index():
         'head': head('Miles King &#10022; Software Developer',
                      'Miles King — software developer based in Houston, Texas. Web apps, utilities, and case studies.',
                      is_index=True),
-        'sprite': SPRITE, 'fx': FX, 'nav': nav('index'),
-        'hero_gears': hero_gears,
-        'tape': tape('JAVASCRIPT &#10022; NODE.JS &#10022; PHP &#10022; SQL &#10022; PYTHON &#10022; GA4 &#10022; GTM &#10022; BIGQUERY &#10022; GSAP &#10022;'),
+        'sprite': sprite, 'fx': FX, 'nav': nav('index'),
+        'hero_gears': hero_gears, 'hero_visual': hero_visual, 'hero_calls': hero_calls,
+        'hero_cls': hero_cls, 'hero_top': hero_top,
+        'tape': tape('JAVASCRIPT &#10022; NODE.JS &#10022; PHP &#10022; SQL &#10022; PYTHON &#10022; GA4 &#10022; GTM &#10022; BIGQUERY &#10022; GSAP &#10022; EVERYTHING ELSE &#10022;'),
         'gs1': gear('g-s1', 'gearB', 40), 'gs2': gear('g-s2', 'gearC', 15, True),
         'gr1': gear('g-r1', 'gearA', 36, True), 'gr2': gear('g-r2', 'gearC', 13),
         'gw1': gear('g-w1', 'gearB', 44), 'gw2': gear('g-w2', 'gearC', 19, True), 'gw3': gear('g-w3', 'gearA', 33),
@@ -851,7 +872,7 @@ def build_projects():
 for name, html in (('index.html', build_index()),
                    ('about.html', build_about()),
                    ('projects.html', build_projects())):
-    html = html.replace('@@WVB@@', WHEEL_VB)
+    html = html.replace('@@RVB@@', ROTOR_VB)
     assert '@@' not in html, 'unresolved token in ' + name
     path = os.path.join(ROOT, name)
     io.open(path, 'w', encoding='utf-8', newline='\n').write(html)

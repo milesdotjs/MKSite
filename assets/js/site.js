@@ -1,20 +1,27 @@
 /* ============================================================
-   MILESKING.DEV — motion (Air Gear / Holo theme)
-   GSAP 3.13 + ScrollTrigger, SplitText, ScrambleText, Physics2D, Observer.
+   MILESKING.DEV — motion (Air Gear / Halo Drive theme)
+   GSAP 3.13 + ScrollTrigger, SplitText, ScrambleText, Physics2D.
 
    Two ideas drive almost everything here:
 
    1. SCROLL IS THE CRANK. Nothing is scrubbed to a scroll position;
-      instead every rotating thing (gears, tape, logo) runs a free
-      idle spin whose *timeScale* is driven by scroll velocity. Scroll
-      down and the machine spools up; scroll up and it runs backwards;
-      stop and it coasts back to idle. A gear train that only moves
-      while you scroll feels dead — this feels driven.
+      instead every rotating thing (hero machinery, gears, tape, logo)
+      runs a free idle spin whose *timeScale* follows scroll velocity.
+      Scroll down and the machine spools up; scroll up and it runs
+      backwards; stop and it coasts back to idle.
 
-   2. THE PROJECTION IS UNSTABLE. Holograms flicker, slip out of
-      register and re-scan. The chromatic aberration offsets, the
-      wire twin, the sheen sweeps and the scramble decodes are all
-      the same idea at different scales.
+   2. THE PROJECTION IS UNSTABLE. The chamber flickers, the wordmark's
+      aberration snaps apart and settles, the sheens sweep the glass.
+
+   PERFORMANCE — the previous build lagged on weaker devices, so:
+     - drive tweens PAUSE while their host is off-screen (IntersectionObserver)
+     - the sheen is ONE sweep at a time, on a panel that is actually visible,
+       moving a transform (composited) rather than a background-position
+     - the HUD rpm readout updates every 8th frame, not every frame
+     - no per-frame skew/x glitch on the giant chrome name; the aberration
+       snap tweens a CSS variable that only moves two transforms
+     - `.is-lite` on coarse-pointer / low-core devices: no sheen scheduler,
+       no data rain, fewer gears (see site.css)
 
    Note: anything GSAP animates must NOT also carry a CSS keyframe
    animation — GSAP samples the live computed style and can bake in a
@@ -30,6 +37,14 @@
   try { seenBoot = sessionStorage.getItem("mk-booted") === "1"; } catch (e) {}
   var skipBoot = params.get("boot") === "0" || reduce ||
                  (seenBoot && params.get("boot") !== "1");
+
+  // Lite mode: phones/tablets and anything with few cores. ?lite=1 / ?lite=0 force it.
+  var lite = params.get("lite") === "1" || (params.get("lite") !== "0" && (
+    !window.matchMedia("(pointer: fine)").matches ||
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+    (navigator.connection && navigator.connection.saveData)));
+  if (lite) root.classList.add("is-lite");
 
   if (!window.gsap) {           // no GSAP: CSS fallbacks carry the page
     document.body.classList.remove("is-booting");
@@ -74,7 +89,7 @@
     tl.to($(".boot-gear svg"), { rotation: 720, duration: 3.4, ease: "power2.inOut", transformOrigin: "50% 50%" }, 0)
       .from($(".boot-core"), { opacity: 0, duration: .4 }, 0)
       .to($("[data-boot-id]"), {
-        duration: .9, scrambleText: { text: "MK-AT-2026 :: WING DRIVE CORE", chars: SCRAMBLE, speed: .5 }
+        duration: .9, scrambleText: { text: "MK-AT-2026 :: HALO DRIVE CORE", chars: SCRAMBLE, speed: .5 }
       }, .1);
 
     // log lines land one at a time, each decoding into place
@@ -89,7 +104,6 @@
         v: 100, duration: 2.4, ease: "power1.inOut",
         onUpdate: function () { $("[data-boot-pct]").textContent = Math.round(counter.v); }
       }, .5)
-      // handshake resolves, then the chamber floods
       .to($$("[data-boot-line]").slice(-1), {
         duration: .3, scrambleText: { text: "> handshake ....................... OK", chars: SCRAMBLE, speed: 1 }
       }, 2.5)
@@ -104,38 +118,72 @@
   }
 
   /* ==========================================================
-     2. THE MACHINE — idle spin whose speed follows scroll velocity
+     2. THE MACHINE — idle spin whose speed follows scroll velocity.
+        Every drive knows its host element; an IntersectionObserver
+        pauses the tween while the host is off-screen, so a page with
+        twenty gears only ever animates the handful you can see.
      ========================================================== */
-  var drives = [];   // every tween whose timeScale scroll should drive
+  var drives = [];   // { tween, host, on }
+
+  function addDrive(tween, host) {
+    drives.push({ tween: tween, host: host, on: true });
+  }
 
   function buildMachine() {
-    $$("[data-gear]").forEach(function (g) {
-      var svg = g.querySelector("svg");
+    // every gear / rotor stage: data-dur (s per cycle), data-rev (direction) —
+    // and, for the meshing train, data-rot (mesh phase) + data-turn (degrees
+    // per cycle = 360 * teeth ratio) so meshed gears stay meshed at any timeScale
+    $$("[data-gear], [data-rotor]").forEach(function (g) {
+      var svg = g.tagName.toLowerCase() === "svg" ? g : g.querySelector("svg");
       var dur = parseFloat(g.dataset.dur) || 24;
-      var dir = g.dataset.rev ? -360 : 360;
-      drives.push(gsap.to(svg, {
-        rotation: dir, duration: dur, ease: "none", repeat: -1,
-        transformOrigin: "50% 50%"
-      }));
+      var turn = g.dataset.turn ? parseFloat(g.dataset.turn) : (g.dataset.rev ? -360 : 360);
+      var rot = parseFloat(g.dataset.rot) || 0;
+      gsap.set(svg, { rotation: rot, transformOrigin: "50% 50%" });
+      addDrive(gsap.to(svg, {
+        rotation: (turn < 0 ? "-=" : "+=") + Math.abs(turn), duration: dur, ease: "none", repeat: -1
+      }), g.closest("section, header, footer") || g);
     });
 
-    // the chrome gears in the nav / section tags / footer join the train
+    // the small chrome parts in the nav / section tags / footer join the train
     $$(".logo-wheel svg, .tag-gear svg, .foot-gear svg, .hud-gear svg").forEach(function (svg, i) {
-      drives.push(gsap.to(svg, {
+      addDrive(gsap.to(svg, {
         rotation: i % 2 ? -360 : 360, duration: 10 + i * 2, ease: "none",
         repeat: -1, transformOrigin: "50% 50%"
-      }));
+      }), svg.closest("section, header, footer, aside") || svg);
     });
 
     // every tape is part of the same drivetrain
     $$("[data-tape]").forEach(function (tape) {
-      drives.push(gsap.to(tape, { xPercent: -50, duration: 24, ease: "none", repeat: -1 }));
+      // four copies of the string; one copy's width per cycle keeps the loop seamless
+      addDrive(gsap.to(tape, { xPercent: -25, duration: 24, ease: "none", repeat: -1 }), tape);
     });
 
+    // pause what you can't see
+    if ("IntersectionObserver" in window) {
+      var byHost = new Map();
+      drives.forEach(function (d) {
+        if (!byHost.has(d.host)) byHost.set(d.host, []);
+        byHost.get(d.host).push(d);
+      });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var list = byHost.get(en.target) || [];
+          list.forEach(function (d) {
+            d.on = en.isIntersecting;
+            if (d.on) d.tween.play(); else d.tween.pause();
+          });
+        });
+      }, { rootMargin: "12% 0px 12% 0px" });
+      byHost.forEach(function (_, host) {
+        // fixed hosts (nav, hud) are always on screen; observe the rest
+        var pos = getComputedStyle(host).position;
+        if (pos !== "fixed") io.observe(host);
+      });
+    }
+
     // Scroll velocity drives the whole train. One shared timeScale,
-    // lerped on the ticker — spawning a tween per gear per scroll tick
-    // was ~15 overlapping tweens a frame for no visible gain.
-    var targetTS = 1, curTS = 1, lastScroll = 0;
+    // lerped on the ticker, applied only to the drives that are running.
+    var targetTS = 1, curTS = 1, lastScroll = 0, frame = 0;
     var rpm = $("[data-hud-rpm]");
 
     ScrollTrigger.create({
@@ -149,117 +197,122 @@
 
     gsap.ticker.add(function () {
       if (performance.now() - lastScroll > 140) targetTS = 1;
-      curTS += (targetTS - curTS) * 0.09;
-      if (Math.abs(curTS) < 0.02) curTS = 0.02;
-      for (var i = 0; i < drives.length; i++) drives[i].timeScale(curTS);
-      if (rpm) rpm.textContent = String(Math.min(9999, Math.round(Math.abs(curTS) * 620))).padStart(4, "0");
+      var next = curTS + (targetTS - curTS) * 0.09;
+      if (Math.abs(next) < 0.02) next = 0.02;
+      // at idle nothing changes — skip the loop entirely
+      if (Math.abs(next - curTS) > 0.0005 || Math.abs(next - 1) > 0.0005) {
+        curTS = next;
+        for (var i = 0; i < drives.length; i++) if (drives[i].on) drives[i].tween.timeScale(curTS);
+      }
+      if (rpm && (++frame & 7) === 0) {
+        rpm.textContent = String(Math.min(9999, Math.round(Math.abs(curTS) * 620))).padStart(4, "0");
+      }
     });
   }
 
   /* ==========================================================
-     3. HERO — the projection powers on
+     3. HERO — the halo drive assembles, the nameplate resolves
      ========================================================== */
   function hero() {
     if (!$("#hero")) return;
-    var name = $(".hero-name span[data-split]");
     var tl = gsap.timeline({ delay: .1 });
 
-    if (name) {
-      var split = new SplitText(name, { type: "chars", charsClass: "char" });
+    // halo blooms, stages arrive from a fast spin down to idle
+    tl.from(".ro-glow", { opacity: 0, scale: .6, duration: 1.4, ease: "expo.out" }, 0)
+      .from(".ro-halo", { opacity: 0, scale: 1.18, duration: 1.1, ease: "expo.out" }, .05)
+      .from(".ro-outer", { opacity: 0, scale: .8, rotation: -40, duration: 1.5, ease: "expo.out" }, .1)
+      .from(".ro-ring", { opacity: 0, scale: .6, rotation: 60, duration: 1.3, ease: "expo.out" }, .2)
+      .from(".ro-inner", { opacity: 0, scale: .4, rotation: -90, duration: 1.2, ease: "expo.out" }, .3)
+      .from(".ro-hub", { opacity: 0, scale: .3, duration: .8, ease: "back.out(2)" }, .45)
+      .from(".hero-light", { opacity: 0, duration: 1.4 }, 0);
+
+    var chars = [];
+    $$(".hero-name [data-split]").forEach(function (line) {
+      var split = new SplitText(line, { type: "chars", charsClass: "char" });
       // Once split, the chars are inline-block. `background-clip:text` on
       // the parent cannot clip to text inside inline-block descendants, so
       // it paints a solid rectangle over the first glyph instead. Each
       // .char carries its own gradient now, so drop the parent's.
-      name.classList.add("is-split");
-      tl.from(split.chars, {
-        opacity: 0, yPercent: 60, rotateX: -80, scale: .8,
-        transformOrigin: "50% 100% -30px",
-        stagger: { each: .035, from: "start" },
-        duration: .7, ease: "back.out(1.8)"
-      }, 0);
+      line.classList.add("is-split");
+      chars = chars.concat(split.chars);
+    });
+    if (chars.length) {
+      tl.from(chars, {
+        opacity: 0, yPercent: 40, scale: .86,
+        transformOrigin: "50% 100%",
+        stagger: { each: .04, from: "center" },
+        duration: .7, ease: "power3.out"
+      }, .3);
     }
 
-    tl.from(".hero-kicker .tag", { opacity: 0, y: 14, stagger: .07, duration: .5, ease: "power2.out" }, .15)
-      .from(".hero-kana", { opacity: 0, y: 12, duration: .5 }, .5)
-      .from(".hero-lede", { opacity: 0, y: 14, duration: .55 }, .6)
-      .from(".hero-cta .btn", { opacity: 0, y: 16, stagger: .09, duration: .5, ease: "back.out(1.5)" }, .7)
-      .from(".emblem", { opacity: 0, scale: .9, rotate: -16, duration: 1.2, ease: "expo.out" }, .1)
-      .from(".stk", { opacity: 0, scale: .6, rotate: 0, stagger: .08, duration: .5, ease: "back.out(2)" }, .8)
-      .from(".bp-stamp, .bp-cross, .bp-call, .bp-dim", { opacity: 0, stagger: .04, duration: .4 }, .9)
-      .from(".cone", { opacity: 0, duration: 1.4 }, 0);
+    tl.from(".hero-kicker .tag", { opacity: 0, y: 14, stagger: .07, duration: .5, ease: "power2.out" }, .9)
+      .from(".hero-dim", { opacity: 0, scaleX: .2, transformOrigin: "50% 50%", duration: .7, ease: "expo.out" }, .85)
+      .from(".hero-lede", { opacity: 0, y: 14, duration: .55 }, .95)
+      .from(".hero-cta .btn", { opacity: 0, y: 16, stagger: .09, duration: .5, ease: "back.out(1.5)" }, 1.05)
+      .from(".bp-stamp, .bp-cross, .bp-call", { opacity: 0, stagger: .04, duration: .4 }, 1.1);
 
     // the kicker tags resolve out of noise
     $$(".hero-kicker .tag").forEach(function (t, i) {
       tl.to(t, {
         duration: .6,
         scrambleText: { text: t.dataset.final || t.textContent, chars: SCRAMBLE, speed: .8 }
-      }, .25 + i * .09);
+      }, 1.0 + i * .09);
     });
 
-    // the emblem's holo twin drifts out of register, forever
-    gsap.to(".em-wire", {
-      x: "+=9", y: "-=6", duration: 3.2, ease: "sine.inOut",
-      repeat: -1, yoyo: true
-    });
-    gsap.to(".em-wire", { opacity: .22, duration: .09, repeat: -1, repeatDelay: 2.6, yoyo: true });
-
-    // scan bar sweeping the emblem
-    gsap.fromTo(".em-scan", { top: "-18%" }, {
-      top: "100%", duration: 3.6, ease: "none", repeat: -1, repeatDelay: 1.1
-    });
-
-    // the whole emblem breathes
-    gsap.to(".emblem", { y: -18, duration: 6, ease: "sine.inOut", repeat: -1, yoyo: true });
+    // the whole machine breathes (one transform on the container)
+    if (!reduce) gsap.to(".rotor", { y: "-=9", duration: 5.5, ease: "sine.inOut", repeat: -1, yoyo: true });
   }
 
   /* ==========================================================
-     4. GLITCH — the projection loses lock now and then
+     4. GLITCH — the projection loses lock now and then.
+        Cheap version: the aberration copies snap apart (two transforms)
+        and the chamber gradient blinks (one opacity). No skew on the
+        giant chrome text — that re-rasterised it every frame.
      ========================================================== */
   function glitch() {
     var name = $(".hero-name");
-    if (!name) return;
-
-    function burst() {
-      var tl = gsap.timeline({
-        onComplete: function () { gsap.delayedCall(gsap.utils.random(3.5, 8), burst); }
-      });
-      var n = gsap.utils.random(2, 4, 1);
-      for (var i = 0; i < n; i++) {
-        tl.set(name, {
-          x: gsap.utils.random(-7, 7),
-          skewX: gsap.utils.random(-9, 9),
-          opacity: gsap.utils.random(.72, 1)
-        }, i * .055);
-      }
-      tl.set(name, { x: 0, skewX: 0, opacity: 1 }, n * .055);
+    if (name) {
+      (function snap() {
+        gsap.timeline({ onComplete: function () { gsap.delayedCall(gsap.utils.random(4, 9), snap); } })
+          .to(name, { "--ab": 14, duration: .06 })
+          .to(name, { "--ab": 3, duration: .5, ease: "power3.out" });
+      })();
     }
-    gsap.delayedCall(2.4, burst);
-
-    // the whole chamber flickers occasionally
-    function flicker() {
-      gsap.timeline({ onComplete: function () { gsap.delayedCall(gsap.utils.random(6, 14), flicker); } })
-        .to(".fx-chamber", { opacity: .55, duration: .05 })
+    (function flicker() {
+      gsap.timeline({ onComplete: function () { gsap.delayedCall(gsap.utils.random(8, 16), flicker); } })
+        .to(".fx-chamber", { opacity: .6, duration: .05 })
         .to(".fx-chamber", { opacity: 1, duration: .05 })
-        .to(".fx-chamber", { opacity: .7, duration: .04 })
+        .to(".fx-chamber", { opacity: .75, duration: .04 })
         .to(".fx-chamber", { opacity: 1, duration: .12 });
-    }
-    gsap.delayedCall(5, flicker);
+    })();
   }
 
   /* ==========================================================
-     5. IRIDESCENT SHEEN — sweeps across every projected surface
+     5. IRIDESCENT SHEEN — one sweep at a time across a VISIBLE surface.
+        Each surface reads --sx into translateX(); GSAP tweens the var.
      ========================================================== */
   function sheen() {
-    // A pseudo-element can't be tweened directly, so each rule reads a
-    // registered --sx custom property and GSAP sweeps that instead.
-    $$(".glass, .stk, .btn").forEach(function (el, i) {
-      gsap.fromTo(el,
-        { "--sx": "130%" },
-        {
-          "--sx": "-70%", duration: 3.2, ease: "power2.inOut",
-          repeat: -1, repeatDelay: gsap.utils.random(2.6, 6.5), delay: i * .28
-        });
-    });
+    var surfaces = $$(".glass, .card > a, .btn");
+    if (!surfaces.length || !("IntersectionObserver" in window)) return;
+    var visible = new Set();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target);
+      });
+    }, { threshold: .25 });
+    surfaces.forEach(function (s) { io.observe(s); });
+
+    var last = null;
+    (function sweep() {
+      var pool = Array.from(visible).filter(function (s) { return s !== last; });
+      if (pool.length) {
+        var el = pool[Math.floor(Math.random() * pool.length)];
+        last = el;
+        gsap.fromTo(el, { "--sx": "0%" }, { "--sx": "270%", duration: 1.5, ease: "power2.inOut",
+          onComplete: function () { gsap.set(el, { "--sx": "0%" }); } });
+      }
+      gsap.delayedCall(gsap.utils.random(2.2, 4.2), sweep);
+    })();
   }
 
   /* ==========================================================
@@ -281,7 +334,7 @@
             { opacity: 1, y: 0, duration: .5, ease: "power2.out" });
           gsap.to(span, { duration: .9, scrambleText: { text: text, chars: SCRAMBLE, speed: .6 } });
           // the aberration snaps apart then settles
-          gsap.fromTo(el, { "--ab": 18 }, { "--ab": 5, duration: .8, ease: "power3.out" });
+          gsap.fromTo(el, { "--ab": 16 }, { "--ab": 3, duration: .8, ease: "power3.out" });
         }
       });
     });
@@ -356,7 +409,7 @@
      8. INSTRUMENTS — dials, bars and counters spin up
      ========================================================== */
   function instruments() {
-    var SWEEP = 250;   // degrees between scale min and max, matches _build-holo.py
+    var SWEEP = 250;   // degrees between scale min and max, matches build_pages.py
 
     $$("[data-dial]").forEach(function (dial) {
       var val = parseFloat(dial.dataset.val) || 0;
@@ -402,14 +455,16 @@
   }
 
   /* ==========================================================
-     9. PARALLAX — depth in the chamber
+     9. PARALLAX — depth in the chamber (scrubbed transforms only)
      ========================================================== */
   function parallax() {
     if ($("#hero")) parallaxHero();
-    gsap.to(".fx-floor", {
-      yPercent: -18, ease: "none",
-      scrollTrigger: { start: 0, end: "max", scrub: 1 }
-    });
+    if (!lite) {
+      gsap.to(".fx-floor", {
+        yPercent: -18, ease: "none",
+        scrollTrigger: { start: 0, end: "max", scrub: 1 }
+      });
+    }
     // gears drift as well as spin
     $$("[data-gear]").forEach(function (g, i) {
       gsap.to(g, {
@@ -423,16 +478,16 @@
   }
 
   function parallaxHero() {
-    gsap.to(".emblem", {
-      yPercent: 16, ease: "none",
+    gsap.to(".rotor", {
+      yPercent: 18, ease: "none",
       scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 }
     });
-    gsap.to(".cone", {
+    gsap.to(".hero-light", {
       yPercent: 22, opacity: .2, ease: "none",
       scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 }
     });
     gsap.to(".hero-in", {
-      yPercent: -12, opacity: .25, ease: "none",
+      yPercent: -10, opacity: .25, ease: "none",
       scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .5 }
     });
   }
@@ -488,13 +543,14 @@
       el.addEventListener("pointerleave", function () { mx(0); my(0); });
     });
 
-    /* --- holographic card tilt: the sheen tracks the pointer, so the
-           iridescence shifts with viewing angle like real foil --- */
+    /* --- holographic card tilt: the sheen strip tracks the pointer, so
+           the iridescence shifts with viewing angle like real foil --- */
     $$("[data-tilt]").forEach(function (el) {
       var target = el.querySelector("a") || el;
       var rx = gsap.quickTo(target, "rotationX", { duration: .5, ease: "power3" });
       var ry = gsap.quickTo(target, "rotationY", { duration: .5, ease: "power3" });
       var sheenEl = el.querySelector(".card-sheen, .rcard-sheen");
+      var sx = sheenEl ? gsap.quickTo(sheenEl, "--sx", { duration: .4, ease: "power2" }) : null;
 
       el.addEventListener("pointermove", function (e) {
         var r = el.getBoundingClientRect();
@@ -503,18 +559,18 @@
         gsap.set(target, { transformPerspective: 900, transformOrigin: "50% 50%" });
         ry((px - .5) * 15);
         rx((.5 - py) * 15);
-        if (sheenEl) gsap.to(sheenEl, { backgroundPositionX: (140 - px * 190) + "%", duration: .4 });
+        if (sx) sx(px * 270);
       });
       el.addEventListener("pointerleave", function () {
         rx(0); ry(0);
-        if (sheenEl) gsap.to(sheenEl, { backgroundPositionX: "130%", duration: .7 });
+        if (sx) sx(0);
       });
     });
 
     /* --- click sparks (Physics2D) --- */
     var COLORS = ["#4ff5ff", "#ff4fd8", "#b6ff4f", "#9d6bff"];
     window.addEventListener("pointerdown", function (e) {
-      var n = 14;
+      var n = 12;
       for (var i = 0; i < n; i++) {
         var s = document.createElement("i");
         s.className = "spark";
@@ -557,20 +613,22 @@
       return rnd(HEX, 8);
     }
 
-    $$("[data-rain]").forEach(function (el, i) {
-      var lines = [];
-      for (var n = 0; n < 70; n++) lines.push(rainLine());
-      el.textContent = lines.join("\n") + "\n" + lines.join("\n");
-      gsap.fromTo(el, { yPercent: i ? -50 : 0 }, {
-        yPercent: i ? 0 : -50, duration: i ? 34 : 26, ease: "none", repeat: -1
+    if (!lite) {
+      $$("[data-rain]").forEach(function (el, i) {
+        var lines = [];
+        for (var n = 0; n < 70; n++) lines.push(rainLine());
+        el.textContent = lines.join("\n") + "\n" + lines.join("\n");
+        gsap.fromTo(el, { yPercent: i ? -50 : 0 }, {
+          yPercent: i ? 0 : -50, duration: i ? 34 : 26, ease: "none", repeat: -1
+        });
+        // occasional re-roll so the stream never reads as a static block
+        gsap.timeline({ repeat: -1, repeatDelay: 7 }).call(function () {
+          var l2 = [];
+          for (var n = 0; n < 70; n++) l2.push(rainLine());
+          el.textContent = l2.join("\n") + "\n" + l2.join("\n");
+        });
       });
-      // occasional re-roll so the stream never reads as a static block
-      gsap.timeline({ repeat: -1, repeatDelay: 2.2 }).call(function () {
-        var l2 = [];
-        for (var n = 0; n < 70; n++) l2.push(rainLine());
-        el.textContent = l2.join("\n") + "\n" + l2.join("\n");
-      });
-    });
+    }
 
     /* scroll progress + section readout */
     var prog = $("[data-prog]");
@@ -580,10 +638,12 @@
       start: 0, end: "max",
       onUpdate: function (self) {
         var p = self.progress;
-        if (prog) gsap.set(prog, { width: (p * 100).toFixed(2) + "%" });
+        if (prog) gsap.set(prog, { scaleX: p, transformOrigin: "0 50%" });
         if (hs) hs.textContent = String(Math.round(p * 100)).padStart(3, "0");
       }
     });
+    if (prog) gsap.set(prog, { width: "100%", scaleX: 0, transformOrigin: "0 50%" });
+
     $$("section[id]").forEach(function (el, i) {
       ScrollTrigger.create({
         trigger: el, start: "top 50%", end: "bottom 50%",
@@ -609,6 +669,23 @@
       });
     });
 
+    /* the rider card's STATUS field never settles on one mood */
+    var STATUS = ["CAFFEINATED", "LOCKED IN", "KINDA TIRED", "DOWNLOADING...", "COMPILING",
+                  "BUFFERING", "IN THE ZONE", "NEEDS SNACKS", "REFACTORING", "DEBUGGING",
+                  "AFK / BRB", "OVERCLOCKED", "LOW BATTERY", "SHIPPING IT", "TOUCHING GRASS"];
+    $$("[data-status]").forEach(function (el) {
+      var cur = el.textContent;
+      (function next() {
+        gsap.delayedCall(gsap.utils.random(3.5, 6), function () {
+          var pick;
+          do { pick = STATUS[Math.floor(Math.random() * STATUS.length)]; } while (pick === cur);
+          cur = pick;
+          if (reduce) { el.textContent = pick; next(); return; }
+          gsap.to(el, { duration: .6, scrambleText: { text: pick, chars: SCRAMBLE, speed: .7 }, onComplete: next });
+        });
+      })();
+    });
+
     $$("[data-cycle]").forEach(function (el) {
       var text = el.textContent;
       gsap.timeline({ repeat: -1, repeatDelay: 5 })
@@ -621,7 +698,7 @@
     });
 
     /* a missing project screenshot falls back to the card gradient
-       instead of a broken-image glyph (7-3 has no shot yet) */
+       instead of a broken-image glyph */
     $$(".card-shot img").forEach(function (img) {
       img.addEventListener("error", function () { img.remove(); });
     });
@@ -643,7 +720,7 @@
   function start() {
     cacheText();
     buildMachine();
-    sheen();
+    if (!lite) sheen();
     hero();
     titles();
     panels();
@@ -677,7 +754,7 @@
         return el.getBoundingClientRect().top < window.innerHeight * 0.95;
       });
       if (!stuck.length) return;
-      console.warn("[holo] watchdog revealed " + stuck.length + " stuck element(s)");
+      console.warn("[rotor] watchdog revealed " + stuck.length + " stuck element(s)");
       gsap.set(stuck, { clearProps: "opacity,transform" });
       gsap.to(stuck, { opacity: 1, duration: .3 });
     }
