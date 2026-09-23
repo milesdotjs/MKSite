@@ -1,0 +1,27 @@
+{
+  "name": "try-not-to-use-bankai",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Byakuya Kuchiki interrogates you on anime trivia. Two wrong answers and he uses Bankai. He always uses Bankai.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "export:csv": "node scripts/export-csv.mjs",
+    "check:questions": "node scripts/check-questions.mjs",
+    "build:site": "next build && node scripts/copy-out.mjs"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "next": "^16.3.6",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.7.0"
+  }
+}

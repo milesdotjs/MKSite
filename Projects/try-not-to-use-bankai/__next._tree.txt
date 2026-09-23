@@ -1,0 +1,4 @@
+:HL["/projects/try-not-to-use-bankai/_next/static/chunks/1svukpx1hsklo.css","style"]
+:HL["/projects/try-not-to-use-bankai/_next/static/media/DotGothic16_Regular-s.p.0eblkvkqp98q1.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
+:HL["/projects/try-not-to-use-bankai/_next/static/media/PressStart2P_Regular-s.p.2z7v_ykrtpt8o.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}},"staleTime":300,"buildId":"hWm-FnBKDrVnB4sPmX_he"}

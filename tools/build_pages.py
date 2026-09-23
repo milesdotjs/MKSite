@@ -374,32 +374,37 @@ RIDER_CARD = '''    <div class="glass rcard" data-panel data-tilt>
 
 # ---------------------------------------------------------------- index
 INDEX_CARDS = [
-    ('01', 'projects/7-3/', 'seven-three.png',
+    ('01', 'projects/try-not-to-use-bankai/', 'try-not-to-use-bankai.png',
+     'Try Not to Use Bankai game preview — Byakuya Kuchiki on a pixel-art arcade stage', 'Try Not to Use Bankai',
+     'Byakuya, Pain or Piccolo interrogates you on anime trivia in a 90s arcade cabinet. '
+     'Two mistakes and they use the move. They always use the move.',
+     'GAME // NEXT.JS // GSAP', 'LAUNCH', 'NEW &#10022; GAME', True, False),
+    ('02', 'projects/7-3/', 'seven-three.png',
      '7-3 game preview — a Game Boy Color styled office RPG', '7-3',
      'A neverending workday RPG in the shape of a 1998 Game Boy Color cartridge — '
      'email, reports and printer jams as turn-based encounters.',
-     'GAME // CANVAS // NO ENGINE', 'LAUNCH', 'NEW &#10022; GAME', True, False),
-    ('02', 'projects/study-something/', 'study-something.png',
+     'GAME // CANVAS // NO ENGINE', 'LAUNCH', None, False, False),
+    ('03', 'projects/study-something/', 'study-something.png',
      'Study Something! chess study utility preview', 'Study Something!',
      'Pulls random over-the-board games from top chess players so I can study unfamiliar positions.',
      'UTILITY // CHESS // JS', 'LAUNCH', 'NEW &#10022; UTILITY', False, False),
-    ('03', 'projects/anime-blackjack/', 'anime-blackjack.jpg',
+    ('04', 'projects/anime-blackjack/', 'anime-blackjack.jpg',
      'Anime Blackjack game preview — animated dealer and card table', 'Anime Blackjack',
      'Blackjack against an animated anime dealer who reacts to every hand.',
      'GAME // REACT // GSAP', 'LAUNCH', None, False, False),
-    ('04', 'projects/infinite-crayons/', 'infinite-crayons.png',
+    ('05', 'projects/infinite-crayons/', 'infinite-crayons.png',
      'InfiniteCrayons color palette generator preview', 'InfiniteCrayons',
      'Color palette generator with per-swatch HSL control.',
      'TOOL // COLOR', 'LAUNCH', None, False, False),
-    ('05', 'projects/jst-play/', 'jst-play.png',
+    ('06', 'projects/jst-play/', 'jst-play.png',
      'JSt Play drum machine preview', 'JSt Play',
      'Browser drum machine &amp; step sequencer.',
      'AUDIO // FUN', 'LAUNCH', None, False, False),
-    ('06', 'projects/more-stock-images/', 'more-stock-images.png',
+    ('07', 'projects/more-stock-images/', 'more-stock-images.png',
      'MoreStockImages photo search preview', 'MoreStockImages',
      'Royalty-free photo search across providers.',
      'TOOL // API', 'LAUNCH', None, False, False),
-    ('07', 'projects/mettatonex.html', 'mettatonex.png',
+    ('08', 'projects/mettatonex.html', 'mettatonex.png',
      'MettatonEX Discord bot preview', 'MettatonEX',
      'Discord bot that announces new YouTube uploads.',
      'NODE.JS // DISCORD.JS', 'CASE STUDY', None, False, False),
@@ -451,7 +456,7 @@ def build_index():
       <p data-boot-line>&gt; spinning up gear train ......... 12/12</p>
       <p data-boot-line>&gt; meshing gear train ............ OK</p>
       <p data-boot-line>&gt; projecting holo layer .......... OK</p>
-      <p data-boot-line>&gt; loading portfolio manifest ..... 07 NODES</p>
+      <p data-boot-line>&gt; loading portfolio manifest ..... %(nodes)02d NODES</p>
       <p data-boot-line>&gt; handshake .......................</p>
     </div>
     <div class="boot-bar"><i data-boot-bar></i></div>
@@ -676,6 +681,7 @@ def build_index():
                           'Reach out about a project, a collaboration, an interesting problem, or just to say hi.'),
         'rcard': RIDER_CARD,
         'cards': '\n\n'.join(c(t) for t in INDEX_CARDS),
+        'nodes': len(INDEX_CARDS),
         'footer': footer('index'), 'scripts': SCRIPTS,
     }
 
@@ -775,27 +781,31 @@ def build_projects():
                       'Pulls random over-the-board games from top chess players so I can study unfamiliar positions.',
                       'UTILITY // CHESS // JS', 'LAUNCH', 'NEW &#10022; UTILITY', True, True)]
     experiments = [
-        card('02', 'projects/7-3/', 'seven-three.png',
+        card('02', 'projects/try-not-to-use-bankai/', 'try-not-to-use-bankai.png',
+             'Try Not to Use Bankai game preview — Byakuya Kuchiki on a pixel-art arcade stage', 'Try Not to Use Bankai',
+             'An anime trivia interrogation dressed as a 90s arcade fighter. Pick Byakuya, Pain or Piccolo and answer ten questions across Bleach, Naruto, Dragon Ball, Yu-Gi-Oh!, Jujutsu Kaisen and Yu Yu Hakusho while the meter climbs. Two mistakes and you get the full cutscene &mdash; Bankai, Almighty Push or Special Beam Cannon, every time. Built in Next.js with GSAP and a WebAudio synth.',
+             'GAME // NEXT.JS // GSAP', 'LAUNCH', 'NEW &#10022; GAME', True, False),
+        card('03', 'projects/7-3/', 'seven-three.png',
              '7-3 game preview — a Game Boy Color styled office RPG', '7-3',
              'A neverending workday RPG in the shape of a 1998 Game Boy Color cartridge. Answer email, file reports and clear printer jams as turn-based encounters on an endlessly generated map &mdash; or flip on autopilot and watch it play itself. You cannot lose, and the level cap is 1000.',
-             'GAME // CANVAS // NO ENGINE', 'LAUNCH', 'NEW &#10022; GAME', True, False),
-        card('03', 'projects/anime-blackjack/', 'anime-blackjack.jpg',
+             'GAME // CANVAS // NO ENGINE', 'LAUNCH', None, False, False),
+        card('04', 'projects/anime-blackjack/', 'anime-blackjack.jpg',
              'Anime Blackjack game preview — animated dealer and card table', 'Anime Blackjack',
              'Blackjack against an animated anime dealer, built in React and TypeScript with a full GSAP animation layer &mdash; card flights, hole-card flips, and a dealer who reacts to every hand.',
              'GAME // REACT // GSAP'),
-        card('04', 'projects/infinite-crayons/', 'infinite-crayons.png',
+        card('05', 'projects/infinite-crayons/', 'infinite-crayons.png',
              'InfiniteCrayons color palette generator preview', 'InfiniteCrayons',
              'A color palette generator with adjustable hue, brightness, and saturation per swatch.',
              'TOOL // COLOR'),
-        card('05', 'projects/jst-play/', 'jst-play.png',
+        card('06', 'projects/jst-play/', 'jst-play.png',
              'JSt Play drum machine preview', 'JSt Play',
              'A browser drum machine and step sequencer with switchable kit sounds.',
              'AUDIO // FUN'),
-        card('06', 'projects/more-stock-images/', 'more-stock-images.png',
+        card('07', 'projects/more-stock-images/', 'more-stock-images.png',
              'MoreStockImages photo search preview', 'MoreStockImages',
              'Search royalty-free photos across providers from a single, simple search bar.',
              'TOOL // API'),
-        card('07', 'projects/mettatonex.html', 'mettatonex.png',
+        card('08', 'projects/mettatonex.html', 'mettatonex.png',
              'MettatonEX Discord bot preview', 'MettatonEX',
              'A customizable Discord bot that posts new YouTube uploads to a server channel.',
              'NODE.JS // DISCORD.JS', 'CASE STUDY'),

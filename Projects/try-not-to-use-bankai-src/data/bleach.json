@@ -1,0 +1,1435 @@
+[
+{
+"id": "blc-001",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is the name of Ichigo Kurosaki's Zanpakuto?",
+"options": [
+"Zangetsu",
+"Zabimaru",
+"Hyorinmaru",
+"Senbonzakura"
+],
+"answer": 0,
+"note": "Agent of the Shinigami arc."
+},
+{
+"id": "blc-002",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Which squad does Byakuya Kuchiki captain?",
+"options": [
+"Squad 6",
+"Squad 10",
+"Squad 11",
+"Squad 13"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-003",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is the name of Byakuya's Bankai?",
+"options": [
+"Senbonzakura Kageyoshi",
+"Hihio Zabimaru",
+"Daiguren Hyorinmaru",
+"Tensa Zangetsu"
+],
+"answer": 0,
+"note": "First shown against Ichigo on Sokyoku Hill."
+},
+{
+"id": "blc-004",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Who transfers her Soul Reaper powers to Ichigo in the very first episode?",
+"options": [
+"Rukia Kuchiki",
+"Orihime Inoue",
+"Rangiku Matsumoto",
+"Yoruichi Shihoin"
+],
+"answer": 0,
+"note": "Episode 1."
+},
+{
+"id": "blc-005",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is the release command for Byakuya's Shikai, Senbonzakura?",
+"options": [
+"Scatter",
+"Howl",
+"Roar",
+"Growl"
+],
+"answer": 0,
+"note": "'Howl' is Zabimaru, 'Roar' is Zangetsu's evolved form in some translations; Senbonzakura is 'Scatter'."
+},
+{
+"id": "blc-006",
+"series": "bleach",
+"difficulty": "easy",
+"q": "In which town does Ichigo live?",
+"options": [
+"Karakura Town",
+"Naruki City",
+"Rukongai",
+"Seireitei"
+],
+"answer": 0,
+"note": "Naruki City is Ginjo's home turf in the Fullbring arc."
+},
+{
+"id": "blc-007",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What kind of stuffed animal does the Mod Soul Kon live in?",
+"options": [
+"A lion",
+"A rabbit",
+"A bear",
+"A pig"
+],
+"answer": 0,
+"note": "Kon's plush lion body, from the Agent of the Shinigami arc onward."
+},
+{
+"id": "blc-008",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Who is the lieutenant of Squad 6 under Byakuya?",
+"options": [
+"Renji Abarai",
+"Izuru Kira",
+"Shuhei Hisagi",
+"Tetsuzaemon Iba"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-009",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is the name of Ichigo's Bankai?",
+"options": [
+"Tensa Zangetsu",
+"Zangetsu Kageyoshi",
+"Getsuga Tensho",
+"Mugetsu"
+],
+"answer": 0,
+"note": "Achieved during the Soul Society arc."
+},
+{
+"id": "blc-010",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Uryu Ishida belongs to which group of Hollow-hunting humans?",
+"options": [
+"The Quincy",
+"The Fullbringers",
+"The Bounts",
+"The Visoreds"
+],
+"answer": 0,
+"note": "Introduced in the Agent of the Shinigami arc."
+},
+{
+"id": "blc-011",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is the world that Hollows come from called?",
+"options": [
+"Hueco Mundo",
+"Soul Society",
+"The Dangai",
+"Las Noches"
+],
+"answer": 0,
+"note": "Las Noches is Aizen's palace inside Hueco Mundo."
+},
+{
+"id": "blc-012",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Aizen's ten strongest Arrancar are known as the...?",
+"options": [
+"Espada",
+"Sternritter",
+"Fraccion",
+"Privaron"
+],
+"answer": 0,
+"note": "Arrancar arc."
+},
+{
+"id": "blc-013",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Which captain betrays Soul Society at the end of the Soul Society arc?",
+"options": [
+"Sosuke Aizen",
+"Kisuke Urahara",
+"Byakuya Kuchiki",
+"Kenpachi Zaraki"
+],
+"answer": 0,
+"note": "Together with Gin Ichimaru and Kaname Tosen."
+},
+{
+"id": "blc-014",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is Sosuke Aizen's Zanpakuto called?",
+"options": [
+"Kyoka Suigetsu",
+"Shinso",
+"Suzumushi",
+"Ryujin Jakka"
+],
+"answer": 0,
+"note": "Its Shikai is Complete Hypnosis."
+},
+{
+"id": "blc-015",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Who is the Head Captain of the 13 Court Guard Squads when the series begins?",
+"options": [
+"Genryusai Shigekuni Yamamoto",
+"Shunsui Kyoraku",
+"Jushiro Ukitake",
+"Retsu Unohana"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-016",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Kenpachi Zaraki is the captain of which squad?",
+"options": [
+"Squad 11",
+"Squad 2",
+"Squad 7",
+"Squad 9"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-017",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is Rukia Kuchiki's Zanpakuto?",
+"options": [
+"Sode no Shirayuki",
+"Hyorinmaru",
+"Haineko",
+"Tobiume"
+],
+"answer": 0,
+"note": "First released in the Bount arc in the anime; Arrancar arc in the manga."
+},
+{
+"id": "blc-018",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Renji Abarai's Zanpakuto is named...?",
+"options": [
+"Zabimaru",
+"Hozukimaru",
+"Wabisuke",
+"Kazeshini"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-019",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Toshiro Hitsugaya's Zanpakuto is...?",
+"options": [
+"Hyorinmaru",
+"Sode no Shirayuki",
+"Ryujin Jakka",
+"Benihime"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-020",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is Ichigo's signature energy slash called?",
+"options": [
+"Getsuga Tensho",
+"Cero",
+"Sokatsui",
+"Senka"
+],
+"answer": 0,
+"note": "Senka is Byakuya's flash-step technique."
+},
+{
+"id": "blc-021",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What colour is Ichigo's hair, which constantly gets him into fights?",
+"options": [
+"Orange",
+"Red",
+"White",
+"Blond"
+],
+"answer": 0,
+"note": "Episode 1."
+},
+{
+"id": "blc-022",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is Ichigo's official title while working for Soul Society?",
+"options": [
+"Substitute Soul Reaper",
+"Captain of Squad 14",
+"Special War Power",
+"Head Quincy"
+],
+"answer": 0,
+"note": "He receives the Substitute badge after the Soul Society arc."
+},
+{
+"id": "blc-023",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Byakuya is Rukia's...?",
+"options": [
+"Adoptive older brother",
+"Biological father",
+"Husband",
+"Cousin"
+],
+"answer": 0,
+"note": "Soul Society arc; explained fully at Rukia's execution."
+},
+{
+"id": "blc-024",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Orihime's power is centred on which accessory?",
+"options": [
+"Her hairpins",
+"Her necklace",
+"Her ring",
+"Her bracelet"
+],
+"answer": 0,
+"note": "The Shun Shun Rikka live in her hairpins."
+},
+{
+"id": "blc-025",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Who runs the shop in Karakura Town that sells Soul Reaper goods?",
+"options": [
+"Kisuke Urahara",
+"Isshin Kurosaki",
+"Don Kanonji",
+"Kugo Ginjo"
+],
+"answer": 0,
+"note": "The Urahara Shop."
+},
+{
+"id": "blc-026",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Which Espada is number 6, the Sexta?",
+"options": [
+"Grimmjow Jaegerjaquez",
+"Ulquiorra Cifer",
+"Nnoitra Gilga",
+"Coyote Starrk"
+],
+"answer": 0,
+"note": "Arrancar arc."
+},
+{
+"id": "blc-027",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Ulquiorra Cifer holds which Espada number?",
+"options": [
+"4",
+"1",
+"6",
+"9"
+],
+"answer": 0,
+"note": "The Cuatro Espada."
+},
+{
+"id": "blc-028",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is the walled city at the centre of Soul Society where the Soul Reapers live?",
+"options": [
+"Seireitei",
+"Rukongai",
+"Las Noches",
+"Karakura"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-029",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Who is the Quincy emperor who invades Soul Society in the Thousand-Year Blood War?",
+"options": [
+"Yhwach",
+"Jugram Haschwalth",
+"Askin Nakk Le Vaar",
+"Bazz-B"
+],
+"answer": 0,
+"note": "Thousand-Year Blood War arc."
+},
+{
+"id": "blc-030",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is Yasutora Sado better known as?",
+"options": [
+"Chad",
+"Sado-kun",
+"Big Guy",
+"Yasu"
+],
+"answer": 0,
+"note": "Ichigo misread his name as Chad and it stuck."
+},
+{
+"id": "blc-031",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What does Ichigo's father Isshin run?",
+"options": [
+"A small medical clinic",
+"A ramen shop",
+"A dojo",
+"A candy store"
+],
+"answer": 0,
+"note": "The Kurosaki Clinic."
+},
+{
+"id": "blc-032",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Ichigo's younger sisters are named...?",
+"options": [
+"Karin and Yuzu",
+"Momo and Nanao",
+"Hisana and Rukia",
+"Ururu and Jinta"
+],
+"answer": 0,
+"note": "Episode 1."
+},
+{
+"id": "blc-033",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Who is the captain of Squad 12 and head of the Department of Research and Development?",
+"options": [
+"Mayuri Kurotsuchi",
+"Kisuke Urahara",
+"Sajin Komamura",
+"Shinji Hirako"
+],
+"answer": 0,
+"note": "Urahara founded the department but Mayuri runs it during the series."
+},
+{
+"id": "blc-034",
+"series": "bleach",
+"difficulty": "easy",
+"q": "What is the name of Gin Ichimaru's Zanpakuto?",
+"options": [
+"Shinso",
+"Kyoka Suigetsu",
+"Suzumushi",
+"Wabisuke"
+],
+"answer": 0,
+"note": "'Shoot to kill, Shinso.'"
+},
+{
+"id": "blc-035",
+"series": "bleach",
+"difficulty": "easy",
+"q": "Yoruichi Shihoin can transform into what animal?",
+"options": [
+"A black cat",
+"A white fox",
+"A crow",
+"A dog"
+],
+"answer": 0,
+"note": "Introduced as a talking cat in the Agent of the Shinigami arc."
+},
+{
+"id": "blc-036",
+"series": "bleach",
+"difficulty": "medium",
+"q": "What was the name of Byakuya's late wife, Rukia's older sister?",
+"options": [
+"Hisana",
+"Masaki",
+"Yachiru",
+"Nanao"
+],
+"answer": 0,
+"note": "Revealed after Rukia's execution is stopped."
+},
+{
+"id": "blc-037",
+"series": "bleach",
+"difficulty": "medium",
+"q": "On whose graves did Byakuya swear never to break Soul Society's laws again?",
+"options": [
+"His parents'",
+"Hisana's",
+"His grandfather's",
+"Yamamoto's"
+],
+"answer": 0,
+"note": "He broke the rules once by adopting Rukia and swore on his parents' graves never to do so again."
+},
+{
+"id": "blc-038",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Where does Ichigo's climactic fight with Byakuya take place?",
+"options": [
+"Sokyoku Hill",
+"The Senzaikyu",
+"Kuchiki Manor",
+"The Squad 6 barracks"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-039",
+"series": "bleach",
+"difficulty": "medium",
+"q": "What is the Sokyoku?",
+"options": [
+"The giant halberd used for Rukia's execution",
+"Byakuya's family heirloom sword",
+"The gate to the Royal Palace",
+"A Kido barrier around Seireitei"
+],
+"answer": 0,
+"note": "It transforms into the fire phoenix Kikoo when released."
+},
+{
+"id": "blc-040",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Who was Byakuya's grandfather, the previous captain of Squad 6?",
+"options": [
+"Ginrei Kuchiki",
+"Koga Kuchiki",
+"Sojun Kuchiki",
+"Ichibe Hyosube"
+],
+"answer": 0,
+"note": "Sojun was Byakuya's father and a lieutenant; Ginrei was the captain."
+},
+{
+"id": "blc-041",
+"series": "bleach",
+"difficulty": "medium",
+"q": "The white hair ornaments Byakuya wears mark him as...?",
+"options": [
+"The head of a noble family",
+"A Kido master",
+"A member of the Royal Guard",
+"A former Squad 2 officer"
+],
+"answer": 0,
+"note": "The kenseikan, worn by the head of the Kuchiki clan."
+},
+{
+"id": "blc-042",
+"series": "bleach",
+"difficulty": "hard",
+"q": "According to Byakuya, his Ginpaku Kazahana no Uzuginu scarf is worth enough to buy how many mansions?",
+"options": [
+"Ten",
+"One",
+"Fifty",
+"A hundred"
+],
+"answer": 0,
+"note": "He says it while fighting Ichigo in the Soul Society arc: the scarf alone could buy ten mansions."
+},
+{
+"id": "blc-043",
+"series": "bleach",
+"difficulty": "medium",
+"q": "How many days did Ichigo have to achieve Bankai before Rukia's execution?",
+"options": [
+"Three",
+"Ten",
+"One",
+"Seven"
+],
+"answer": 0,
+"note": "Urahara's Tenshintai lets Zangetsu materialise for three days."
+},
+{
+"id": "blc-044",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Who trains Ichigo to control his inner Hollow?",
+"options": [
+"The Visoreds",
+"The Quincy",
+"Squad Zero",
+"The Fullbringers of Xcution"
+],
+"answer": 0,
+"note": "Arrancar arc."
+},
+{
+"id": "blc-045",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Which Espada's Resurreccion is Murcielago?",
+"options": [
+"Ulquiorra Cifer",
+"Grimmjow Jaegerjaquez",
+"Tier Harribel",
+"Zommari Rureaux"
+],
+"answer": 0,
+"note": "Hueco Mundo arc."
+},
+{
+"id": "blc-046",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Who is the Primera, the number 1 Espada?",
+"options": [
+"Coyote Starrk",
+"Baraggan Louisenbairn",
+"Tier Harribel",
+"Nnoitra Gilga"
+],
+"answer": 0,
+"note": "Fake Karakura Town arc."
+},
+{
+"id": "blc-047",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Nel, the childlike Arrancar Ichigo meets in Hueco Mundo, is actually a former...?",
+"options": [
+"Espada number 3",
+"Fraccion of Grimmjow",
+"Soul Reaper lieutenant",
+"Quincy"
+],
+"answer": 0,
+"note": "Nelliel Tu Odelschwanck, the former Tres Espada."
+},
+{
+"id": "blc-048",
+"series": "bleach",
+"difficulty": "medium",
+"q": "What is the orb Aizen extracts from Rukia's body called?",
+"options": [
+"The Hogyoku",
+"The Oken",
+"The Soul King's heart",
+"The Reishi core"
+],
+"answer": 0,
+"note": "Soul Society arc finale."
+},
+{
+"id": "blc-049",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Kenpachi's eyepatch was made by Squad 12 in order to...?",
+"options": [
+"Eat away most of his spiritual power",
+"Hide a missing eye",
+"Let him see Hollows",
+"Block Kido"
+],
+"answer": 0,
+"note": "Revealed in his fight with Ichigo."
+},
+{
+"id": "blc-050",
+"series": "bleach",
+"difficulty": "medium",
+"q": "What is the name of Kenpachi Zaraki's Zanpakuto, finally revealed in the Thousand-Year Blood War?",
+"options": [
+"Nozarashi",
+"Yachiru",
+"Sanpo Kenju",
+"Minazuki"
+],
+"answer": 0,
+"note": "Thousand-Year Blood War arc."
+},
+{
+"id": "blc-051",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Who kills Head Captain Yamamoto?",
+"options": [
+"Yhwach",
+"Sosuke Aizen",
+"Jugram Haschwalth",
+"Kenpachi Zaraki"
+],
+"answer": 0,
+"note": "After Yamamoto destroys the impostor Royd Lloyd, the real Yhwach kills him."
+},
+{
+"id": "blc-052",
+"series": "bleach",
+"difficulty": "medium",
+"q": "What is the name of Yhwach's ability that lets him see every possible future?",
+"options": [
+"The Almighty",
+"The Balance",
+"The Visionary",
+"The Miracle"
+],
+"answer": 0,
+"note": "Thousand-Year Blood War arc."
+},
+{
+"id": "blc-053",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Ichigo's mother Masaki was secretly a...?",
+"options": [
+"Quincy",
+"Soul Reaper",
+"Fullbringer",
+"Hollow"
+],
+"answer": 0,
+"note": "Revealed by Isshin in the Thousand-Year Blood War arc."
+},
+{
+"id": "blc-054",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Which Hollow killed Ichigo's mother?",
+"options": [
+"Grand Fisher",
+"Shrieker",
+"Acidwire",
+"Metastacia"
+],
+"answer": 0,
+"note": "Agent of the Shinigami arc; Isshin later finishes him."
+},
+{
+"id": "blc-055",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Renji's Bankai is called...?",
+"options": [
+"Hihio Zabimaru",
+"Daiguren Hyorinmaru",
+"Ryumon Hozukimaru",
+"Kokujo Tengen Myo'o"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-056",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Which captain is famous as the youngest captain in Soul Society's history?",
+"options": [
+"Toshiro Hitsugaya",
+"Byakuya Kuchiki",
+"Gin Ichimaru",
+"Soi Fon"
+],
+"answer": 0,
+"note": "Soul Society arc."
+},
+{
+"id": "blc-057",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Rukia's former lieutenant, whom she was forced to kill when a Hollow possessed him, was...?",
+"options": [
+"Kaien Shiba",
+"Ganju Shiba",
+"Isshin Shiba",
+"Kukaku Shiba"
+],
+"answer": 0,
+"note": "Soul Society arc flashback; the Hollow was Metastacia."
+},
+{
+"id": "blc-058",
+"series": "bleach",
+"difficulty": "medium",
+"q": "How does Ichigo's group break into the Seireitei?",
+"options": [
+"Fired from Kukaku Shiba's cannon",
+"Through the West Gate",
+"Through a Garganta",
+"Disguised as Squad 4 members"
+],
+"answer": 0,
+"note": "Jidanbo opened the gate but Gin slammed it shut, so Kukaku fires them in."
+},
+{
+"id": "blc-059",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Before defecting, Aizen captained which squad?",
+"options": [
+"Squad 5",
+"Squad 3",
+"Squad 9",
+"Squad 12"
+],
+"answer": 0,
+"note": "Gin was Squad 3 and Tosen Squad 9."
+},
+{
+"id": "blc-060",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Which Squad 11 officer secretly has a Bankai that he hides from the rest of the squad?",
+"options": [
+"Ikkaku Madarame",
+"Yumichika Ayasegawa",
+"Tetsuzaemon Iba",
+"Makizo Aramaki"
+],
+"answer": 0,
+"note": "Ryumon Hozukimaru, shown in the Arrancar arc."
+},
+{
+"id": "blc-061",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Which Espada's number changes from 10 to 0 when he releases?",
+"options": [
+"Yammy Llargo",
+"Szayelaporro Granz",
+"Aaroniero Arruruerie",
+"Zommari Rureaux"
+],
+"answer": 0,
+"note": "Hueco Mundo arc."
+},
+{
+"id": "blc-062",
+"series": "bleach",
+"difficulty": "medium",
+"q": "What is an Arrancar's sword release called?",
+"options": [
+"Resurreccion",
+"Bankai",
+"Vollstandig",
+"Fullbring"
+],
+"answer": 0,
+"note": "Arrancar arc."
+},
+{
+"id": "blc-063",
+"series": "bleach",
+"difficulty": "medium",
+"q": "What is the name of Rukia's Bankai?",
+"options": [
+"Hakka no Togame",
+"Sode no Shirayuki Kageyoshi",
+"Hakuren",
+"Juhaku"
+],
+"answer": 0,
+"note": "Thousand-Year Blood War arc, against As Nodt."
+},
+{
+"id": "blc-064",
+"series": "bleach",
+"difficulty": "medium",
+"q": "How many Great Noble Families are there in Soul Society, the Kuchiki clan among them?",
+"options": [
+"Four",
+"Two",
+"Seven",
+"Thirteen"
+],
+"answer": 0,
+"note": "The Four Great Noble Families."
+},
+{
+"id": "blc-065",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Which captain used to play tag with a young Byakuya and tease him?",
+"options": [
+"Yoruichi Shihoin",
+"Kisuke Urahara",
+"Shunsui Kyoraku",
+"Retsu Unohana"
+],
+"answer": 0,
+"note": "Turn Back the Pendulum flashback; she calls him 'Little Byakuya'."
+},
+{
+"id": "blc-066",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Which Sternritter nearly kills Byakuya during the first Quincy invasion?",
+"options": [
+"As Nodt",
+"Bambietta Basterbine",
+"Bazz-B",
+"Gremmy Thoumeaux"
+],
+"answer": 0,
+"note": "Thousand-Year Blood War arc; As Nodt uses Byakuya's own stolen Bankai."
+},
+{
+"id": "blc-067",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Renji and Rukia grew up together in which district of the Rukongai?",
+"options": [
+"Inuzuri",
+"Junrinan",
+"Zaraki",
+"Kusajishi"
+],
+"answer": 0,
+"note": "District 78, Inuzuri."
+},
+{
+"id": "blc-068",
+"series": "bleach",
+"difficulty": "medium",
+"q": "What is the highest class of Menos Grande?",
+"options": [
+"Vasto Lorde",
+"Adjuchas",
+"Gillian",
+"Privaron Espada"
+],
+"answer": 0,
+"note": "Explained by Hitsugaya in the Arrancar arc."
+},
+{
+"id": "blc-069",
+"series": "bleach",
+"difficulty": "medium",
+"q": "Ichigo and Orihime's son is named...?",
+"options": [
+"Kazui",
+"Ichika",
+"Kaien",
+"Sora"
+],
+"answer": 0,
+"note": "Final chapter; Ichika is Renji and Rukia's daughter."
+},
+{
+"id": "blc-070",
+"series": "bleach",
+"difficulty": "medium",
+"q": "According to Isshin, what does Ichigo's name mean?",
+"options": [
+"One who protects",
+"Strawberry",
+"First son",
+"Sword of the moon"
+],
+"answer": 0,
+"note": "Isshin explains it early in the series."
+},
+{
+"id": "blc-071",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Ichigo's Final Getsuga Tensho lets him use a technique named...?",
+"options": [
+"Mugetsu",
+"Senka",
+"Gran Rey Cero",
+"Zanka no Tachi"
+],
+"answer": 0,
+"note": "Deicide arc, against Aizen."
+},
+{
+"id": "blc-072",
+"series": "bleach",
+"difficulty": "hard",
+"q": "How long can Ichigo keep his Hollow mask on when he first learns to control it?",
+"options": [
+"11 seconds",
+"60 seconds",
+"3 seconds",
+"30 minutes"
+],
+"answer": 0,
+"note": "Arrancar arc; he keeps training with the Visoreds to extend it."
+},
+{
+"id": "blc-073",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Which form of Senbonzakura Kageyoshi condenses every blade into a single white sword?",
+"options": [
+"Shukei: Hakuteiken",
+"Senkei",
+"Gokei",
+"Ikka Senjinka"
+],
+"answer": 0,
+"note": "Used against Zommari in the Hueco Mundo arc."
+},
+{
+"id": "blc-074",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Senbonzakura's blades cannot enter a zone around Byakuya's own body. How wide is that 'hurtless area'?",
+"options": [
+"85 centimetres",
+"1 metre",
+"10 centimetres",
+"3 metres"
+],
+"answer": 0,
+"note": "Ichigo works it out during their Soul Society arc fight."
+},
+{
+"id": "blc-075",
+"series": "bleach",
+"difficulty": "hard",
+"q": "What is the name of the mascot character Byakuya likes to draw?",
+"options": [
+"Seaweed Ambassador",
+"Chappy the Rabbit",
+"Kon",
+"Sakura Lion"
+],
+"answer": 0,
+"note": "Wakame Taishi, from the omake and anime extras."
+},
+{
+"id": "blc-076",
+"series": "bleach",
+"difficulty": "hard",
+"q": "What is the name of Mayuri Kurotsuchi's Bankai?",
+"options": [
+"Konjiki Ashisogi Jizo",
+"Kannonbiraki Benihime Aratame",
+"Zanka no Tachi",
+"Kokujo Tengen Myo'o"
+],
+"answer": 0,
+"note": "Soul Society arc, against Uryu."
+},
+{
+"id": "blc-077",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Which squad publishes the Seireitei Bulletin?",
+"options": [
+"Squad 9",
+"Squad 12",
+"Squad 1",
+"Squad 4"
+],
+"answer": 0,
+"note": "Squad 9's official duty."
+},
+{
+"id": "blc-078",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Which Sternritter can make anything he imagines real?",
+"options": [
+"Gremmy Thoumeaux",
+"Askin Nakk Le Vaar",
+"Lille Barro",
+"Gerard Valkyrie"
+],
+"answer": 0,
+"note": "'The Visionary', defeated by Kenpachi."
+},
+{
+"id": "blc-079",
+"series": "bleach",
+"difficulty": "hard",
+"q": "What was Captain Retsu Unohana's original name?",
+"options": [
+"Yachiru Unohana",
+"Retsu Zaraki",
+"Isane Kotetsu",
+"Yachiru Kusajishi"
+],
+"answer": 0,
+"note": "The first Kenpachi; Zaraki named his lieutenant after her."
+},
+{
+"id": "blc-080",
+"series": "bleach",
+"difficulty": "hard",
+"q": "The Quincy purge in which Yhwach stole power from 'impure' Quincy, which led to Masaki's death, is called...?",
+"options": [
+"Auswahlen",
+"Sklaverei",
+"Vollstandig",
+"Blut Vene"
+],
+"answer": 0,
+"note": "Thousand-Year Blood War arc."
+},
+{
+"id": "blc-081",
+"series": "bleach",
+"difficulty": "hard",
+"q": "What is the title of the first chapter of the Bleach manga?",
+"options": [
+"Death & Strawberry",
+"Scatter",
+"Black Moon Rising",
+"Enter the Hollow"
+],
+"answer": 0,
+"note": "Chapter 1."
+},
+{
+"id": "blc-082",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Aizen's original sentence of 18,800 years was extended to 20,000 years because he...?",
+"options": [
+"Insulted the Central 46",
+"Attacked a guard",
+"Refused to speak",
+"Tried to escape"
+],
+"answer": 0,
+"note": "Post-Deicide; Central 46 added time after his remark."
+},
+{
+"id": "blc-083",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Who is the leader of Squad Zero, the Royal Guard?",
+"options": [
+"Ichibe Hyosube",
+"Oetsu Nimaiya",
+"Senjumaru Shutara",
+"Tenjiro Kirinji"
+],
+"answer": 0,
+"note": "Thousand-Year Blood War arc."
+},
+{
+"id": "blc-084",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Which Squad Zero member forges Zanpakuto?",
+"options": [
+"Oetsu Nimaiya",
+"Ichibe Hyosube",
+"Kirio Hikifune",
+"Senjumaru Shutara"
+],
+"answer": 0,
+"note": "He reforges Ichigo's Zangetsu."
+},
+{
+"id": "blc-085",
+"series": "bleach",
+"difficulty": "hard",
+"q": "What is the name of Soi Fon's missile-shaped Bankai?",
+"options": [
+"Jakuho Raikoben",
+"Suzumebachi",
+"Shunko",
+"Kokujo Tengen Myo'o"
+],
+"answer": 0,
+"note": "Fake Karakura Town arc, against Baraggan."
+},
+{
+"id": "blc-086",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Shunsui Kyoraku's Zanpakuto, which forces its opponents to play children's games, is...?",
+"options": [
+"Katen Kyokotsu",
+"Sogyo no Kotowari",
+"Ryujin Jakka",
+"Minazuki"
+],
+"answer": 0,
+"note": "Fake Karakura Town arc, against Starrk."
+},
+{
+"id": "blc-087",
+"series": "bleach",
+"difficulty": "hard",
+"q": "What is the name of Squad 1's long-serving lieutenant killed in the first Quincy invasion?",
+"options": [
+"Chojiro Sasakibe",
+"Tetsuzaemon Iba",
+"Marechiyo Omaeda",
+"Sentaro Kotsubaki"
+],
+"answer": 0,
+"note": "Thousand-Year Blood War arc."
+},
+{
+"id": "blc-088",
+"series": "bleach",
+"difficulty": "hard",
+"q": "Yumichika's true Zanpakuto, which he hides because it is a Kido type, is...?",
+"options": [
+"Ruri'iro Kujaku",
+"Fuji Kujaku",
+"Hozukimaru",
+"Kazeshini"
+],
+"answer": 0,
+"note": "Shown against Charlotte Chuhlhourne."
+},
+{
+"id": "blc-089",
+"series": "bleach",
+"difficulty": "hard",
+"q": "After Zangetsu is reforged in the Thousand-Year Blood War, how many blades does Ichigo wield?",
+"options": [
+"Two",
+"One",
+"Three",
+"None, he uses his fists"
+],
+"answer": 0,
+"note": "A large and a small blade, representing his Hollow and Quincy sides."
+},
+{
+"id": "blc-090",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "In the anime's Bount arc, who leads the Bounts?",
+"options": [
+"Jin Kariya",
+"Go Koga",
+"Ryo Utagawa",
+"Maki Ichinose"
+],
+"answer": 0,
+"note": "Anime-only Bount arc."
+},
+{
+"id": "blc-091",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "The three Mod Souls who help Ichigo hunt Bounts are Ririn, Noba and...?",
+"options": [
+"Kurodo",
+"Kon",
+"Chappy",
+"Nemu"
+],
+"answer": 0,
+"note": "Anime-only Bount arc."
+},
+{
+"id": "blc-092",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "In the Bount arc, Uryu regains his Quincy powers with a bangle given to him by...?",
+"options": [
+"Nemu Kurotsuchi",
+"Ryuken Ishida",
+"Mayuri Kurotsuchi",
+"Kisuke Urahara"
+],
+"answer": 0,
+"note": "Anime-only Bount arc; the Quincy Bangle."
+},
+{
+"id": "blc-093",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "Shusuke Amagai becomes captain of which squad, replacing the traitor Gin Ichimaru?",
+"options": [
+"Squad 3",
+"Squad 5",
+"Squad 9",
+"Squad 6"
+],
+"answer": 0,
+"note": "Anime-only New Captain Shusuke Amagai arc."
+},
+{
+"id": "blc-094",
+"series": "bleach",
+"difficulty": "hard",
+"tags": [
+"filler"
+],
+"q": "Captain Amagai's real goal was revenge against Head Captain Yamamoto for...?",
+"options": [
+"The death of his father",
+"Exiling his clan",
+"Killing his Zanpakuto spirit",
+"Disbanding his squad"
+],
+"answer": 0,
+"note": "Anime-only Amagai arc."
+},
+{
+"id": "blc-095",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "In the New Captain Shusuke Amagai arc, Ichigo's group protects a young noble named...?",
+"options": [
+"Rurichiyo Kasumioji",
+"Senna",
+"Nozomi Kujo",
+"Homura"
+],
+"answer": 0,
+"note": "Anime-only Amagai arc."
+},
+{
+"id": "blc-096",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "In the Zanpakuto Rebellion arc, the villain Muramasa is the Zanpakuto of which Kuchiki clan member?",
+"options": [
+"Koga Kuchiki",
+"Ginrei Kuchiki",
+"Sojun Kuchiki",
+"Hisana Kuchiki"
+],
+"answer": 0,
+"note": "Anime-only Zanpakuto Unknown Tales arc."
+},
+{
+"id": "blc-097",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "In the Zanpakuto Rebellion arc, Senbonzakura's materialised spirit wears...?",
+"options": [
+"A samurai mask",
+"A nobleman's scarf",
+"Nothing but petals",
+"A Hollow mask"
+],
+"answer": 0,
+"note": "Anime-only Zanpakuto Unknown Tales arc."
+},
+{
+"id": "blc-098",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "When Zabimaru materialises in the Zanpakuto Rebellion arc, it appears as...?",
+"options": [
+"A monkey-woman and a snake-child",
+"A giant baboon",
+"Twin swordsmen",
+"A skeletal serpent"
+],
+"answer": 0,
+"note": "Anime-only; Saru and Hebi."
+},
+{
+"id": "blc-099",
+"series": "bleach",
+"difficulty": "medium",
+"tags": [
+"filler"
+],
+"q": "In the Gotei 13 Invading Army arc, Kageroza Inaba creates copies of Soul Reapers called...?",
+"options": [
+"Reigai",
+"Gigai",
+"Bounts",
+"Fraccion"
+],
+"answer": 0,
+"note": "Anime-only Gotei 13 Invading Army arc."
+},
+{
+"id": "blc-100",
+"series": "bleach",
+"difficulty": "hard",
+"tags": [
+"filler"
+],
+"q": "In the anime's Bount arc, what do the Bounts feed on to live forever?",
+"options": [
+"Human souls",
+"Reishi from Hollows",
+"Zanpakuto",
+"Blood"
+],
+"answer": 0,
+"note": "Anime-only Bount arc."
+}
+]
