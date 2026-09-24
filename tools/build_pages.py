@@ -376,7 +376,7 @@ RIDER_CARD = '''    <div class="glass rcard" data-panel data-tilt>
 INDEX_CARDS = [
     ('01', 'projects/try-not-to-use-bankai/', 'try-not-to-use-bankai.png',
      'Try Not to Use Bankai game preview — Byakuya Kuchiki on a pixel-art arcade stage', 'Try Not to Use Bankai',
-     'Byakuya, Pain or Piccolo interrogates you on anime trivia in a 90s arcade cabinet. '
+     'Byakuya, Pain, Piccolo, Mustang or Pikachu interrogates you on anime trivia in a 90s arcade cabinet. '
      'Two mistakes and they use the move. They always use the move.',
      'GAME // NEXT.JS // GSAP', 'LAUNCH', 'NEW &#10022; GAME', True, False),
     ('02', 'projects/7-3/', 'seven-three.png',
@@ -783,7 +783,7 @@ def build_projects():
     experiments = [
         card('02', 'projects/try-not-to-use-bankai/', 'try-not-to-use-bankai.png',
              'Try Not to Use Bankai game preview — Byakuya Kuchiki on a pixel-art arcade stage', 'Try Not to Use Bankai',
-             'An anime trivia interrogation dressed as a 90s arcade fighter. Pick Byakuya, Pain or Piccolo and answer ten questions across Bleach, Naruto, Dragon Ball, Yu-Gi-Oh!, Jujutsu Kaisen and Yu Yu Hakusho while the meter climbs. Two mistakes and you get the full cutscene &mdash; Bankai, Almighty Push or Special Beam Cannon, every time. Built in Next.js with GSAP and a WebAudio synth.',
+             'An anime trivia interrogation dressed as a 90s arcade fighter. Pick Byakuya, Pain, Piccolo, Roy Mustang or Pikachu and answer ten questions across Bleach, Naruto, Dragon Ball, Fullmetal Alchemist, Pokemon, Yu-Gi-Oh!, Jujutsu Kaisen and Yu Yu Hakusho while the meter climbs. Two mistakes and you get the full cutscene &mdash; Bankai, Almighty Push, Special Beam Cannon, a finger snap or a Thunderbolt, every time. Built in Next.js with GSAP and a WebAudio synth.',
              'GAME // NEXT.JS // GSAP', 'LAUNCH', 'NEW &#10022; GAME', True, False),
         card('03', 'projects/7-3/', 'seven-three.png',
              '7-3 game preview — a Game Boy Color styled office RPG', '7-3',

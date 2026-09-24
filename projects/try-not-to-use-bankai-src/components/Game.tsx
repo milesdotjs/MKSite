@@ -18,6 +18,8 @@ import HostSprite, { type HostAnim } from "./HostSprite";
 import Hud from "./Hud";
 import Result from "./Result";
 import SpecialBeamCutscene from "./SpecialBeamCutscene";
+import FlameAlchemyCutscene from "./FlameAlchemyCutscene";
+import ThunderboltCutscene from "./ThunderboltCutscene";
 import Title from "./Title";
 import WinCutscene from "./WinCutscene";
 
@@ -93,7 +95,7 @@ export default function Game() {
       setDebug(true);
       const target: Phase | null = dbg === "bankai" || dbg === "finisher" ? "finisher" : dbg === "win" ? "win" : dbg === "lose" ? "result" : null;
       if (target) {
-        setRun(buildRun(HOSTS[bootHost].series, new Set()));
+        setRun(buildRun(HOSTS[bootHost].series, new Set(), HOSTS[bootHost].solo));
         setStrikes(target === "finisher" ? 2 : 0);
         setScore(2480);
         setAnswered(target === "win" ? 10 : 4);
@@ -132,7 +134,7 @@ export default function Game() {
     const onTitle = phase === "title";
     // Piccolo's canyon has a constant wind while his cape is on (that is the aura
     // farming); Pain's rocks get the same wind so the cloak reads as blowing.
-    const windy = (hostId === "piccolo" && strikes === 0) || hostId === "pain";
+    const windy = (hostId === "piccolo" && strikes === 0) || (HOSTS[hostId].windy && hostId !== "piccolo");
     if (windy && (onTitle || playing)) {
       if (s.mode !== "wind") { s.clear(); s.mode = "wind"; }
       s.target = 28;
@@ -181,7 +183,7 @@ export default function Game() {
     audio.unlock();
     audio.coin();
     const h = HOSTS[hostId];
-    const newRun = buildRun(h.series, getSeen());
+    const newRun = buildRun(h.series, getSeen(), h.solo);
     setRun(newRun);
     setIndex(0);
     setStrikes(0);
@@ -271,6 +273,7 @@ export default function Game() {
   const selectHost = useCallback((id: HostId) => {
     setHostId(id);
     setHost(id);
+    setStrikes(0);
     setAnim("idle");
     setAnimKey((k) => k + 1);
   }, []);
@@ -283,7 +286,20 @@ export default function Game() {
     audio.unlock();
     audio.setMuted(m);
   };
-  const goTitle = useCallback(() => setPhase("title"), []);
+  // Back to the title means a clean slate: no strikes, so Piccolo's cape is
+  // back on, the wind is blowing, and every host is in their idle pose.
+  const goTitle = useCallback(() => {
+    setStrikes(0);
+    setScore(0);
+    setAnswered(0);
+    setIndex(0);
+    setSelected(null);
+    setRevealed(false);
+    setAnswersVisible(false);
+    setAnim("idle");
+    setAnimKey((k) => k + 1);
+    setPhase("title");
+  }, []);
 
   // ---- keyboard
   useEffect(() => {
@@ -346,7 +362,10 @@ export default function Game() {
         {hostId === "piccolo" && strikes === 0 && (phase === "title" || playing) && <div className="stage__aura" />}
         <div className="stage__floor">
           <div className="stage__byakuya">
-            {ready && <HostSprite host={host} anim={anim} struck={strikes > 0} scale={scale} playKey={animKey} />}
+            {ready && <HostSprite host={host} anim={anim} struck={strikes > 0} scale={scale * (host.scaleMul ?? 1)} playKey={animKey} />}
+            {hostId === "pikachu" && strikes > 0 && playing && (
+              <div className="stage__sparks" style={{ "--s": `${scale * (host.scaleMul ?? 1)}` } as React.CSSProperties}><i /><i /></div>
+            )}
           </div>
         </div>
         <canvas ref={petalRef} className="stage__petals" />
@@ -385,6 +404,8 @@ export default function Game() {
       {phase === "finisher" && hostId === "byakuya" && <BankaiCutscene onDone={onFinisherDone} />}
       {phase === "finisher" && hostId === "pain" && <AlmightyPushCutscene onDone={onFinisherDone} />}
       {phase === "finisher" && hostId === "piccolo" && <SpecialBeamCutscene onDone={onFinisherDone} />}
+      {phase === "finisher" && hostId === "mustang" && <FlameAlchemyCutscene onDone={onFinisherDone} />}
+      {phase === "finisher" && hostId === "pikachu" && <ThunderboltCutscene onDone={onFinisherDone} />}
       {phase === "win" && <WinCutscene host={host} onDone={onWinDone} />}
       {phase === "result" && (
         <Result

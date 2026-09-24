@@ -1,11 +1,11 @@
-// The three interrogators. Everything host-specific lives here: sprites,
-// stage, meter labels, the rival who steals the win, and every line of
-// dialogue. Rule for all of them: the host never names the finisher.
-// The threat stays oblique; the cutscene is the punchline.
+// The interrogators. Everything host-specific lives here: sprites, stage,
+// meter labels, the rival who steals the win, and every line of dialogue.
+// Rule for all of them: the host never names the finisher. The threat stays
+// oblique; the cutscene is the punchline.
 
 import type { Series } from "./questions";
 
-export type HostId = "byakuya" | "pain" | "piccolo";
+export type HostId = "byakuya" | "pain" | "piccolo" | "mustang" | "pikachu";
 export type AnimKey = "idle" | "idle2" | "ack" | "strike";
 export interface AnimDef { seq: string; fps: number; loop: boolean; then?: AnimKey }
 
@@ -34,7 +34,14 @@ export interface HostDef {
   face: string;          // sprite sequence for the HUD portrait
   cutin: string;         // sprite sequence for the cutscene cut-in art
   anims: Partial<Record<AnimKey, AnimDef>> & { idle: AnimDef; ack: AnimDef; strike: AnimDef };
+  /** extra sprite scale for small sprites (Pikachu) */
+  scaleMul?: number;
+  /** when true, a run draws only from the host's own series */
+  solo?: boolean;
+  /** dust streaks blow across the stage while the host stands there */
+  windy?: boolean;
   rival: string;
+  rivalScaleMul?: number;
   lose: { head: string; sub: string };
   winSub: string;
   ranks: (score: number, strikes: number) => { title: string; blurb: string };
@@ -127,6 +134,7 @@ const pain: HostDef = {
     ack:    { seq: "pain_ack",  fps: 6,  loop: false, then: "idle" },
     strike: { seq: "pain_palm", fps: 10, loop: false },            // holds the open palm
   },
+  windy: true,
   rival: "NARUTO",
   lose: { head: "ALMIGHTY PUSH WAS USED.", sub: "Now you know pain." },
   winSub: "Almighty Push was not used. The village is still there.",
@@ -191,6 +199,7 @@ const piccolo: HostDef = {
     ack:    { seq: "pic_aura",    fps: 9, loop: false, then: "idle" },
     strike: { seq: "pic_capeoff", fps: 8, loop: false, then: "idle2" },
   },
+  windy: true,
   rival: "GOKU",
   lose: { head: "SPECIAL BEAM CANNON WAS USED.", sub: "He was farming aura. You interrupted." },
   winSub: "The cape stayed on. Aura: preserved.",
@@ -234,6 +243,137 @@ const piccolo: HostDef = {
   },
 };
 
-export const HOSTS: Record<HostId, HostDef> = { byakuya, pain, piccolo };
-export const HOST_ORDER: HostId[] = ["byakuya", "pain", "piccolo"];
+// ---------------------------------------------------------------- Mustang
+const mustang: HostDef = {
+  id: "mustang",
+  name: "MUSTANG",
+  series: "fma",
+  seriesLabel: "FULLMETAL ALCHEMIST",
+  wordmark: "FLAME ALCHEMY",
+  wordmarkSize: 7.2,
+  rule: "TWO MISTAKES. IT IS NOT RAINING TODAY.",
+  meterLabel: "IGNITION",
+  dangerLabel: "DRY",
+  finisher: "FLAME ALCHEMY",
+  stage: "bg/central_hq.png",
+  face: "mus_face",
+  cutin: "mus_eyes",
+  anims: {
+    idle:   { seq: "mus_idle",   fps: 6,  loop: true },
+    ack:    { seq: "mus_ack",    fps: 8,  loop: false, then: "idle" },
+    strike: { seq: "mus_gloves", fps: 6,  loop: false },            // holds the hand up, glove on
+  },
+  rival: "EDWARD",
+  rivalScaleMul: 1.15,
+  lose: { head: "FLAME ALCHEMY WAS USED.", sub: "It was not raining." },
+  winSub: "Nobody snapped. Havoc owes the Colonel a dinner.",
+  ranks: (score, strikes) => {
+    if (strikes === 0 && score >= 4000) return { title: "STATE ALCHEMIST", blurb: "The Colonel said nothing. He is already drafting your promotion." };
+    if (strikes === 0) return { title: "MAJOR", blurb: "Flawless, if slow. Hawkeye noted the time." };
+    if (score >= 2800) return { title: "SECOND LIEUTENANT", blurb: "One mistake. He checked the sky. It stayed clear." };
+    return { title: "PRIVATE", blurb: "You survived. The gloves are back in the drawer. For now." };
+  },
+  lines: {
+    intro: [
+      "Ten questions.",
+      "One mistake, I can overlook. Two... let's just say it isn't raining today.",
+      "...Don't make me put my gloves on.",
+    ],
+    askPrefix: (i, strikes) => {
+      if (i === 0) return "Question one.";
+      if (i === 9) return "Last question.";
+      if (strikes > 0) return pick(["Carefully.", "Again.", "Think.", `Question ${ORD[i]}.`]);
+      return pick([`Question ${ORD[i]}.`, "Next.", "", "", "Go on.", "Answer."]);
+    },
+    correct: (i, strikes, fast) => {
+      if (i === 9) return "...That's ten.";
+      if (strikes > 0) return pick(["Correct. The gloves stay on, but the hand stays down.", "...Good. Still clear out.", "Correct. Don't make me raise it."]);
+      if (fast) return pick(["Quick. Good. Fullmetal would have argued about it first.", "Correct. Lieutenant, note the time.", "Correct. That was fast for a civilian."]);
+      return pick(["Correct.", "Hm.", "Correct. Next.", "Not bad.", "...Acceptable.", "Correct. I've had worse subordinates."]);
+    },
+    wrong: (answer, strikesAfter, timedOut) => {
+      const first = timedOut ? "Nothing? Silence counts as wrong. Ask Havoc." : "Wrong.";
+      const reveal = `The answer was ${answer}.`;
+      if (strikesAfter >= 2) return [first, reveal, "...I did warn you it wasn't raining.", "...Nothing personal."];
+      return [first, reveal, pick([
+        "That's one. ...The gloves are going on. Consider that a courtesy.",
+        "One. I'm checking the weather. It is clear.",
+        "...One. My hand is raised. It is not a wave.",
+      ])];
+    },
+    win: ["...That's ten.", "Passed. Get out of my office before the weather changes."],
+    rivalShout: "I WON! AND I'M NOT SHORT!",
+    afterRival: "...Fullmetal. You weren't here. And you are short.",
+  },
+};
+
+// ---------------------------------------------------------------- Pikachu
+// Pokemon-speak first, the deadpan translation in brackets.
+const pikachu: HostDef = {
+  id: "pikachu",
+  name: "PIKACHU",
+  series: "pokemon",
+  seriesLabel: "POKEMON",
+  wordmark: "THUNDERBOLT",
+  wordmarkSize: 8.4,
+  rule: "TWO MISTAKES. DO NOT MAKE THE CHEEKS SPARK.",
+  meterLabel: "STATIC",
+  dangerLabel: "PIKA",
+  finisher: "THUNDERBOLT",
+  stage: "bg/meadow.png",
+  face: "pika_face",
+  cutin: "pika_idle",
+  anims: {
+    idle:   { seq: "pika_idle", fps: 12, loop: true },
+    ack:    { seq: "pika_idle", fps: 18, loop: false, then: "idle" },
+    strike: { seq: "pika_idle", fps: 14, loop: true },             // the sparks are drawn on top
+  },
+  scaleMul: 1.7,
+  solo: true,
+  rival: "ASH",
+  rivalScaleMul: 1.55,
+  lose: { head: "THUNDERBOLT WAS USED.", sub: "You blacked out." },
+  winSub: "Thunderbolt was not used. Pikachu is still on your shoulder.",
+  ranks: (score, strikes) => {
+    if (strikes === 0 && score >= 4000) return { title: "POKEMON MASTER", blurb: "Pikachu said 'pika'. Twice. That has never happened." };
+    if (strikes === 0) return { title: "GYM LEADER", blurb: "Flawless, if slow. Pikachu had time to finish a ketchup packet." };
+    if (score >= 2800) return { title: "TRAINER", blurb: "One mistake. The cheeks sparked. You will remember the cheeks." };
+    return { title: "YOUNGSTER JOEY", blurb: "You survived. Your Rattata is in the top percentage of Rattata." };
+  },
+  lines: {
+    intro: [
+      "Pika pika. (Ten questions.)",
+      "Pi-ka. Pika pika chu. (One mistake is fine. Two is not.)",
+      "...Pika. (Do not make the cheeks spark.)",
+    ],
+    askPrefix: (i, strikes) => {
+      if (i === 0) return "Pika! (Question one.)";
+      if (i === 9) return "Pi-ka. (Last one.)";
+      if (strikes > 0) return pick(["Pika. (Carefully.)", "...Pika. (Again.)", "Chu. (Focus.)", `Pika. (Question ${ORD[i]}.)`]);
+      return pick([`Pika. (Question ${ORD[i]}.)`, "Pika! (Next.)", "Chu. (Next.)", "Pika pika. (Answer.)", "Pi. (Go.)"]);
+    },
+    correct: (i, strikes, fast) => {
+      if (i === 9) return "Pika pika. (That is all ten.)";
+      if (strikes > 0) return pick(["Pika. (Correct. The cheeks are calming down.)", "...Chu. (Good. Keep it that way.)", "Pika pika. (Correct. Do not make me spark again.)"]);
+      if (fast) return pick(["Pika pika! (Quick. Good.)", "Chu! (Correct. Fast. Ketchup for you.)", "Pika! (Correct. Do not get comfortable.)"]);
+      return pick(["Pika! (Correct.)", "Pi-kachu. (Adequate.)", "Chaaa. (Correct. Next.)", "Pika. (Correct. Even Ash knew that one.)", "Pika pika. (Acceptable.)", "Chu. (Continue.)"]);
+    },
+    wrong: (answer, strikesAfter, timedOut) => {
+      const first = timedOut ? "...Pika? (You said nothing. Silence is also wrong.)" : "Pika. (Wrong.)";
+      const reveal = `Pi-ka. (The answer was ${answer}.)`;
+      if (strikesAfter >= 2) return [first, reveal, "...Pikaaa. (I told you not to make the cheeks spark.)", "...Pi. (So be it.)"];
+      return [first, reveal, pick([
+        "...Pika. (That is one. The cheeks are sparking. That is not a good sign for you.)",
+        "Pika pika. (One. Feel that static? That is your fault.)",
+        "...Chu. (One. Do not make me do the thing I did to the bike.)",
+      ])];
+    },
+    win: ["Pika pika. (That is all ten.)", "Chu. (You passed. The ketchup is on you.)"],
+    rivalShout: "WE WON, PIKACHU!",
+    afterRival: "...Pika. (You were not here. You overslept. Again.)",
+  },
+};
+
+export const HOSTS: Record<HostId, HostDef> = { byakuya, pain, piccolo, mustang, pikachu };
+export const HOST_ORDER: HostId[] = ["byakuya", "pain", "piccolo", "mustang", "pikachu"];
 export const isHostId = (v: unknown): v is HostId => typeof v === "string" && v in HOSTS;

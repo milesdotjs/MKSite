@@ -4,8 +4,8 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const FILES = ["bleach", "naruto", "dragonball", "yugioh", "jjk", "yyh"];
-const LABEL = { bleach: "Bleach", naruto: "Naruto", dragonball: "Dragon Ball", yugioh: "Yu-Gi-Oh! Duel Monsters", jjk: "Jujutsu Kaisen", yyh: "Yu Yu Hakusho" };
+const FILES = ["bleach", "naruto", "dragonball", "fma", "pokemon", "yugioh", "jjk", "yyh"];
+const LABEL = { bleach: "Bleach", naruto: "Naruto", dragonball: "Dragon Ball", fma: "Fullmetal Alchemist", pokemon: "Pokemon", yugioh: "Yu-Gi-Oh! Duel Monsters", jjk: "Jujutsu Kaisen", yyh: "Yu Yu Hakusho" };
 
 const rows = [];
 for (const f of FILES) {

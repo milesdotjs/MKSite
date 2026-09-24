@@ -39,7 +39,7 @@ export default function HostSprite({ host, anim, struck, scale, flip, playKey }:
   if (cur === "hidden") return null;
   const d = host.anims[cur] ?? host.anims.idle;
   // A host without idle2 re-showing "strike" as its resting pose just holds the last frame.
-  const holdLast = cur === "strike" && anim !== "strike";
+  const holdLast = cur === "strike" && anim !== "strike" && !d.loop;
   return (
     <Sprite
       name={d.seq}

@@ -3,7 +3,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const FILES = ["bleach", "naruto", "dragonball", "yugioh", "jjk", "yyh"];
+const FILES = ["bleach", "naruto", "dragonball", "fma", "pokemon", "yugioh", "jjk", "yyh"];
 const all = [];
 for (const f of FILES) {
   const qs = JSON.parse(readFileSync(resolve("data", `${f}.json`), "utf8"));

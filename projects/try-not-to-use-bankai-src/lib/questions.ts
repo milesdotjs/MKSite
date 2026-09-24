@@ -4,8 +4,10 @@ import dragonball from "@/data/dragonball.json";
 import yugioh from "@/data/yugioh.json";
 import jjk from "@/data/jjk.json";
 import yyh from "@/data/yyh.json";
+import fma from "@/data/fma.json";
+import pokemon from "@/data/pokemon.json";
 
-export type Series = "bleach" | "naruto" | "dragonball" | "yugioh" | "jjk" | "yyh";
+export type Series = "bleach" | "naruto" | "dragonball" | "yugioh" | "jjk" | "yyh" | "fma" | "pokemon";
 export type Difficulty = "easy" | "medium" | "hard";
 
 export interface Question {
@@ -31,9 +33,13 @@ export const ALL: Question[] = [
   ...(yugioh as Question[]),
   ...(jjk as Question[]),
   ...(yyh as Question[]),
+  ...(fma as Question[]),
+  ...(pokemon as Question[]),
 ];
 
-export const ALL_SERIES: Series[] = ["bleach", "naruto", "dragonball", "yugioh", "jjk", "yyh"];
+export const ALL_SERIES: Series[] = ["bleach", "naruto", "dragonball", "yugioh", "jjk", "yyh", "fma", "pokemon"];
+// Pokemon is the everyone-mode pool: deliberately easy, and never mixed into other hosts' runs.
+const MIX_EXCLUDE: Series[] = ["pokemon"];
 
 export const SERIES_LABEL: Record<Series, string> = {
   bleach: "BLEACH",
@@ -42,6 +48,8 @@ export const SERIES_LABEL: Record<Series, string> = {
   yugioh: "YU-GI-OH!",
   jjk: "JUJUTSU KAISEN",
   yyh: "YU YU HAKUSHO",
+  fma: "FULLMETAL ALCHEMIST",
+  pokemon: "POKEMON",
 };
 
 export const RUN_LENGTH = 10;
@@ -74,13 +82,16 @@ function pick<T>(arr: T[]): T {
 
 /**
  * Builds one interrogation: ten questions, half of them from the host's own
- * series and one from each of the other five. Difficulty follows SLOTS.
+ * series and one each from five of the other series (Pokemon excluded). A
+ * `solo` host draws all ten from its own series. Difficulty follows SLOTS.
  * `seen` holds ids from recent runs so the same question is not re-asked
  * until the pool has been worked through.
  */
-export function buildRun(host: Series, seen: Set<string>): RunQuestion[] {
-  const others = ALL_SERIES.filter((s) => s !== host);
-  const seriesPlan: Series[] = shuffle([host, host, host, host, host, ...others]);
+export function buildRun(host: Series, seen: Set<string>, solo = false): RunQuestion[] {
+  const others = shuffle(ALL_SERIES.filter((s) => s !== host && !MIX_EXCLUDE.includes(s))).slice(0, 5);
+  const seriesPlan: Series[] = solo
+    ? Array.from({ length: 10 }, () => host)
+    : shuffle([host, host, host, host, host, ...others]);
 
   const used = new Set<string>();
   const out: RunQuestion[] = [];

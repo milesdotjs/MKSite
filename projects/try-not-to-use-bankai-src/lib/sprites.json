@@ -1485,5 +1485,555 @@
    "ox": 0,
    "oy": 0
   }
- ]
+ ],
+ "mus_idle": [
+  {
+   "src": "sprites/mustang/mus_idle_00.png",
+   "w": 31,
+   "h": 67,
+   "ox": 2.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_01.png",
+   "w": 36,
+   "h": 66,
+   "ox": 0.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_02.png",
+   "w": 29,
+   "h": 65,
+   "ox": -0.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_03.png",
+   "w": 29,
+   "h": 64,
+   "ox": -2.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_04.png",
+   "w": 31,
+   "h": 65,
+   "ox": -0.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_05.png",
+   "w": 28,
+   "h": 66,
+   "ox": 0.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_06.png",
+   "w": 31,
+   "h": 65,
+   "ox": -0.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_07.png",
+   "w": 29,
+   "h": 64,
+   "ox": -2.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_08.png",
+   "w": 29,
+   "h": 65,
+   "ox": -0.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_idle_09.png",
+   "w": 36,
+   "h": 66,
+   "ox": 0.0,
+   "oy": 0
+  }
+ ],
+ "mus_ack": [
+  {
+   "src": "sprites/mustang/mus_ack_00.png",
+   "w": 48,
+   "h": 65,
+   "ox": 2.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_ack_01.png",
+   "w": 50,
+   "h": 65,
+   "ox": 2.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_ack_02.png",
+   "w": 49,
+   "h": 65,
+   "ox": 2.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_ack_03.png",
+   "w": 50,
+   "h": 65,
+   "ox": 2.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_ack_04.png",
+   "w": 48,
+   "h": 65,
+   "ox": 2.0,
+   "oy": 0
+  }
+ ],
+ "mus_gloves": [
+  {
+   "src": "sprites/mustang/mus_gloves_00.png",
+   "w": 49,
+   "h": 69,
+   "ox": 1.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_gloves_01.png",
+   "w": 50,
+   "h": 67,
+   "ox": 0.5,
+   "oy": 0
+  }
+ ],
+ "mus_snap": [
+  {
+   "src": "sprites/mustang/mus_snap_00.png",
+   "w": 50,
+   "h": 67,
+   "ox": 0.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_snap_01.png",
+   "w": 64,
+   "h": 72,
+   "ox": 6.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_snap_02.png",
+   "w": 66,
+   "h": 72,
+   "ox": 7.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_snap_03.png",
+   "w": 49,
+   "h": 68,
+   "ox": -1.0,
+   "oy": 0
+  }
+ ],
+ "mus_blast": [
+  {
+   "src": "sprites/mustang/mus_blast_00.png",
+   "w": 90,
+   "h": 72,
+   "ox": 20.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_blast_01.png",
+   "w": 69,
+   "h": 69,
+   "ox": 11.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_blast_02.png",
+   "w": 86,
+   "h": 69,
+   "ox": -3.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_blast_03.png",
+   "w": 53,
+   "h": 69,
+   "ox": -3.5,
+   "oy": 0
+  }
+ ],
+ "mus_hit": [
+  {
+   "src": "sprites/mustang/mus_hit_00.png",
+   "w": 49,
+   "h": 69,
+   "ox": 1.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_hit_01.png",
+   "w": 50,
+   "h": 69,
+   "ox": 0.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/mustang/mus_hit_02.png",
+   "w": 112,
+   "h": 67,
+   "ox": -1.0,
+   "oy": 0
+  }
+ ],
+ "mus_eyes": [
+  {
+   "src": "sprites/art/mus_eyes_00.png",
+   "w": 256,
+   "h": 56,
+   "ox": 0.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/art/mus_eyes_01.png",
+   "w": 256,
+   "h": 56,
+   "ox": 0.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/art/mus_eyes_02.png",
+   "w": 256,
+   "h": 56,
+   "ox": 0.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/art/mus_eyes_03.png",
+   "w": 256,
+   "h": 64,
+   "ox": 0.0,
+   "oy": 0
+  }
+ ],
+ "mus_face": [
+  {
+   "src": "sprites/art/mus_face_00.png",
+   "w": 31,
+   "h": 32,
+   "ox": 0,
+   "oy": 0
+  }
+ ],
+ "ed_idle": [
+  {
+   "src": "sprites/edward/ed_idle_00.png",
+   "w": 32,
+   "h": 53,
+   "ox": 0.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_idle_01.png",
+   "w": 31,
+   "h": 54,
+   "ox": 0.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_idle_02.png",
+   "w": 31,
+   "h": 54,
+   "ox": 0.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_idle_03.png",
+   "w": 31,
+   "h": 54,
+   "ox": 0.0,
+   "oy": 0
+  }
+ ],
+ "ed_dash": [
+  {
+   "src": "sprites/edward/ed_dash_00.png",
+   "w": 97,
+   "h": 51,
+   "ox": 2.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_dash_01.png",
+   "w": 54,
+   "h": 50,
+   "ox": -4.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_dash_02.png",
+   "w": 40,
+   "h": 50,
+   "ox": -2.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_dash_03.png",
+   "w": 56,
+   "h": 49,
+   "ox": 7.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_dash_04.png",
+   "w": 52,
+   "h": 51,
+   "ox": -4.5,
+   "oy": 0
+  }
+ ],
+ "ed_slash": [
+  {
+   "src": "sprites/edward/ed_slash_00.png",
+   "w": 36,
+   "h": 49,
+   "ox": 5.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_slash_01.png",
+   "w": 83,
+   "h": 56,
+   "ox": 10.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_slash_02.png",
+   "w": 60,
+   "h": 49,
+   "ox": 6.5,
+   "oy": 0
+  }
+ ],
+ "ed_clap": [
+  {
+   "src": "sprites/edward/ed_clap_00.png",
+   "w": 94,
+   "h": 56,
+   "ox": -2.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_clap_01.png",
+   "w": 38,
+   "h": 55,
+   "ox": -1.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_clap_02.png",
+   "w": 49,
+   "h": 55,
+   "ox": 0.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_clap_03.png",
+   "w": 38,
+   "h": 55,
+   "ox": -1.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/edward/ed_clap_04.png",
+   "w": 32,
+   "h": 56,
+   "ox": 0.0,
+   "oy": 0
+  }
+ ],
+ "ed_face": [
+  {
+   "src": "sprites/art/ed_face_00.png",
+   "w": 30,
+   "h": 32,
+   "ox": 0.0,
+   "oy": 0
+  }
+ ],
+ "pika_idle": [
+  {
+   "src": "sprites/pikachu/pika_idle_00.png",
+   "w": 53,
+   "h": 59,
+   "ox": 10.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_01.png",
+   "w": 53,
+   "h": 59,
+   "ox": 9.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_02.png",
+   "w": 54,
+   "h": 59,
+   "ox": 10.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_03.png",
+   "w": 55,
+   "h": 59,
+   "ox": 11.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_04.png",
+   "w": 56,
+   "h": 60,
+   "ox": 11.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_05.png",
+   "w": 57,
+   "h": 60,
+   "ox": 11.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_06.png",
+   "w": 58,
+   "h": 60,
+   "ox": 11.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_07.png",
+   "w": 59,
+   "h": 60,
+   "ox": 11.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_08.png",
+   "w": 60,
+   "h": 60,
+   "ox": 11.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_09.png",
+   "w": 60,
+   "h": 60,
+   "ox": 11.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_10.png",
+   "w": 59,
+   "h": 60,
+   "ox": 10.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_11.png",
+   "w": 57,
+   "h": 60,
+   "ox": 10.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_12.png",
+   "w": 57,
+   "h": 60,
+   "ox": 10.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_13.png",
+   "w": 55,
+   "h": 60,
+   "ox": 10.5,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_14.png",
+   "w": 54,
+   "h": 60,
+   "ox": 10.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_15.png",
+   "w": 54,
+   "h": 60,
+   "ox": 10.0,
+   "oy": 0
+  },
+  {
+   "src": "sprites/pikachu/pika_idle_16.png",
+   "w": 53,
+   "h": 60,
+   "ox": 10.0,
+   "oy": 0
+  }
+ ],
+ "pika_still": [
+  {
+   "src": "sprites/pikachu/pika_still_00.png",
+   "w": 39,
+   "h": 46,
+   "ox": 5.5,
+   "oy": 26
+  }
+ ],
+ "pika_face": [
+  {
+   "src": "sprites/art/pika_face_00.png",
+   "w": 39,
+   "h": 39,
+   "ox": 0.0,
+   "oy": 0
+  }
+ ],
+ "ash": [
+  {
+   "src": "sprites/ash/ash_00.png",
+   "w": 29,
+   "h": 64,
+   "ox": 0.5,
+   "oy": 3
+  }
+ ],
+ "ash_face": [
+  {
+   "src": "sprites/art/ash_face_00.png",
+   "w": 29,
+   "h": 29,
+   "ox": 0.0,
+   "oy": 0
+  }
+ ],
+ "_stage_meadow": {
+  "src": "bg/meadow.png",
+  "w": 512,
+  "h": 308
+ },
+ "_stage_central_hq": {
+  "src": "bg/central_hq.png",
+  "w": 512,
+  "h": 384
+ }
 }

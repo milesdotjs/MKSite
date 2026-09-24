@@ -213,6 +213,64 @@ class Synth {
     this.tone(36, 1.6, "sine", 0.32, 6.6, 24);
   }
 
+  // Flame Alchemy, ~8 s. Offsets match FlameAlchemyCutscene's timeline.
+  flameAlchemy() {
+    this.noise(0.35, 0.18, 0.05, { type: "highpass", from: 1200, to: 200 });
+    this.tone(40, 1.2, "sine", 0.35, 0.4, 25);
+    // glove creak
+    this.noise(0.18, 0.05, 1.7, { type: "bandpass", from: 900, q: 4 });
+    // the snap: one dry click, then a beat of nothing
+    this.tone(3200, 0.035, "square", 0.16, 2.45, 900);
+    this.noise(0.05, 0.22, 2.45, { type: "highpass", from: 2500 });
+    // ignition: whoomp, then the roar builds
+    this.tone(60, 0.6, "sine", 0.35, 2.7, 30);
+    this.noise(0.5, 0.3, 2.7, { type: "lowpass", from: 2200, to: 200 });
+    this.noise(5.2, 0.16, 2.9, { type: "lowpass", from: 500, to: 1400, q: 0.7 });
+    this.noise(4.8, 0.10, 3.2, { type: "bandpass", from: 300, to: 900, q: 1.2 });
+    this.tone(48, 4.5, "sawtooth", 0.05, 3.0, 40);
+    for (let i = 0; i < 26; i++) {
+      const at = 3.3 + Math.random() * 3.4;
+      this.noise(0.05 + Math.random() * 0.1, 0.09, at, { type: "bandpass", from: 800 + Math.random() * 2500, q: 3 });
+    }
+    this.tone(55, 0.8, "sine", 0.3, 3.6, 28);
+    this.tone(52, 0.8, "sine", 0.3, 4.2, 26);
+    // wash
+    this.tone(36, 1.8, "sine", 0.34, 7.0, 22);
+    this.noise(1.3, 0.34, 7.0, { type: "lowpass", from: 3000, to: 120 });
+  }
+
+  // Thunderbolt, ~8 s. Offsets match ThunderboltCutscene's timeline.
+  thunderbolt() {
+    this.noise(0.35, 0.18, 0.05, { type: "highpass", from: 1200, to: 200 });
+    this.tone(40, 1.2, "sine", 0.35, 0.4, 25);
+    // cheeks crackle while the hum climbs
+    for (let i = 0; i < 40; i++) {
+      const at = 1.5 + Math.random() * 1.5;
+      this.noise(0.02 + Math.random() * 0.03, 0.08, at, { type: "highpass", from: 3000 });
+    }
+    this.tone(120, 1.5, "sawtooth", 0.05, 1.5, 900, 0.3);
+    this.tone(60, 1.5, "sine", 0.12, 1.5, 200);
+    const bolt = (at: number, big: boolean) => {
+      this.noise(big ? 0.5 : 0.25, big ? 0.4 : 0.25, at, { type: "highpass", from: 2000, to: 300 });
+      this.tone(big ? 32 : 48, big ? 1.4 : 0.6, "sine", big ? 0.42 : 0.25, at + 0.02, 20);
+      this.tone(4200, 0.18, "square", 0.05, at, 1200);
+      this.noise(big ? 1.6 : 0.6, 0.12, at + 0.1, { type: "lowpass", from: 900, to: 120 });
+    };
+    bolt(3.0, true); bolt(3.7, false); bolt(4.1, false); bolt(4.6, true); bolt(5.2, false); bolt(5.5, true); bolt(6.0, true); bolt(6.4, true);
+    this.noise(1.5, 0.35, 6.8, { type: "highpass", from: 1500, to: 6000 });
+    this.tone(30, 1.6, "sine", 0.35, 6.9, 20);
+  }
+
+  clap() {
+    this.noise(0.06, 0.25, 0, { type: "bandpass", from: 1800, q: 1.5 });
+    this.tone(1800, 0.25, "sine", 0.05, 0.06, 2600);
+    this.noise(0.4, 0.1, 0.08, { type: "highpass", from: 3500 });
+  }
+  zap() {
+    this.noise(0.08, 0.14, 0, { type: "highpass", from: 3000 });
+    this.tone(2600, 0.08, "square", 0.05, 0, 900);
+  }
+
   teleport() {
     [1500, 2000, 2600].forEach((f, i) => this.tone(f, 0.08, "sine", 0.05, i * 0.05));
     this.noise(0.25, 0.06, 0, { type: "highpass", from: 4000 });

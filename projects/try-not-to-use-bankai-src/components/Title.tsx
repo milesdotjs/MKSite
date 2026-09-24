@@ -55,7 +55,7 @@ export default function Title({ hosts, hostId, highScore, muted, onSelect, onSta
       </div>
       <div className="title__press">PRESS START</div>
       <div className="title__bottom">
-        <div className="title__spoilers">CONTAINS SPOILERS · BLEACH · NARUTO · DRAGON BALL · YU-GI-OH! · JUJUTSU KAISEN · YU YU HAKUSHO</div>
+        <div className="title__spoilers">CONTAINS SPOILERS · BLEACH · NARUTO · DRAGON BALL · FULLMETAL ALCHEMIST · POKEMON · YU-GI-OH! · JUJUTSU KAISEN · YU YU HAKUSHO</div>
         <div className="title__row">
           <span>{host.rule}</span>
           <button
