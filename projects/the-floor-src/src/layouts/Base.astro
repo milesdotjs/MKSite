@@ -1,0 +1,50 @@
+---
+import "../styles/app.css";
+import { withBase } from "../lib/base";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path segment used to mark the current nav link, e.g. "glossary". */
+  current?: string;
+}
+
+const { title, description, current = "" } = Astro.props;
+const nav = [
+  { href: "build/", label: "Build one", key: "build" },
+  { href: "glossary/", label: "Glossary", key: "glossary" },
+  { href: "red-flags/", label: "Red flags", key: "red-flags" },
+  { href: "for-developers/", label: "For developers", key: "for-developers" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href={withBase("favicon.svg")} type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="wordmark" href={withBase("")}>The Floor</a>
+        <nav class="site-nav" aria-label="Site">
+          {nav.map((n) => <a href={withBase(n.href)} aria-current={current === n.key ? "page" : undefined}>{n.label}</a>)}
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>The Floor. Free, no accounts, no server. Nothing you enter leaves your browser.</span>
+        <span>Made by <a href="https://mileskingdev.com">Miles King</a>.</span>
+      </div>
+    </footer>
+  </body>
+</html>

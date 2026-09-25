@@ -1,0 +1,37 @@
+{
+  "name": "the-floor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A free, no-code tool that turns a few clicks into a generic small-business website, on purpose.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "fonts:sync": "node scripts/sync-fonts.mjs"
+  },
+  "dependencies": {
+    "@astrojs/react": "^7.0.0",
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-semi-condensed": "^5.3.0",
+    "astro": "^7.3.5",
+    "idb-keyval": "^6.3.0",
+    "jszip": "^3.10.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@fontsource/montserrat": "^5.3.0",
+    "@fontsource/pacifico": "^5.2.0",
+    "@fontsource/playfair-display": "^5.2.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.7.0",
+    "vitest": "^5.0.1"
+  }
+}

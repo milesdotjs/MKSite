@@ -1,0 +1,13 @@
+---
+import Base from "../layouts/Base.astro";
+import Wizard from "../components/wizard/Wizard";
+---
+
+<Base title="Build the baseline | The Floor" description="Answer a few questions and get a generic small-business website in about five minutes." current="build">
+  <Wizard client:only="react" />
+  <noscript>
+    <div class="wrap section">
+      <p>The builder needs JavaScript to run in your browser. Nothing is sent anywhere; it just does the work locally.</p>
+    </div>
+  </noscript>
+</Base>

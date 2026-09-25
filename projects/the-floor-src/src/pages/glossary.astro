@@ -1,0 +1,38 @@
+---
+import Base from "../layouts/Base.astro";
+import { GLOSSARY } from "../content/glossary";
+import { wireframeSvg } from "../lib/wireframe";
+---
+
+<Base title="Glossary | The Floor" description="Plain-language definitions of the words developers use, and what a good developer does with each one." current="glossary">
+  <section class="wrap--narrow section">
+    <h1>Glossary</h1>
+    <p class="lede">The words that come up when you buy a website, in plain language. Each one says what a developer worth paying does with it.</p>
+    <ul class="toc" aria-label="Terms">
+      {GLOSSARY.map((g) => <li><a href={`#${g.id}`}>{g.term}</a></li>)}
+    </ul>
+    <ul class="glossary-list">
+      {
+        GLOSSARY.map((g) => (
+          <li id={g.id}>
+            <h2>{g.term}</h2>
+            <p>{g.definition}</p>
+            {g.where !== "none" && (
+              <div class="wireframe" style="max-width: 240px" set:html={wireframeSvg(g.where)} />
+            )}
+            {g.tips && g.tips.length > 0 && (
+              <ul>
+                {g.tips.map((t) => <li>{t}</li>)}
+              </ul>
+            )}
+            {g.developer && (
+              <p class="term-dev">
+                <strong>What a good developer does:</strong> {g.developer}
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

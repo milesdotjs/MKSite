@@ -1,0 +1,27 @@
+---
+import Base from "../layouts/Base.astro";
+import { RED_FLAGS } from "../content/redFlags";
+import { withBase } from "../lib/base";
+---
+
+<Base title="Red flags when hiring a developer | The Floor" description="Ten signs a website quote is a template with a markup." current="red-flags">
+  <section class="wrap--narrow section">
+    <h1>Red flags when hiring a developer</h1>
+    <p class="lede">
+      None of these means someone is dishonest. Each one means you should ask another question before you sign anything.
+    </p>
+    <ol class="flags">
+      {
+        RED_FLAGS.map((f) => (
+          <li>
+            <strong>{f.title}</strong>
+            {f.text}
+          </li>
+        ))
+      }
+    </ol>
+    <p style="margin-top: 2rem">
+      Not sure what to ask? <a href={withBase("build/")}>Build the baseline</a> and the Reality Check at the end gives you the questions.
+    </p>
+  </section>
+</Base>
