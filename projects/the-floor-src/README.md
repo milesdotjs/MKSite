@@ -68,3 +68,18 @@ where it already lives for the rest of this repo.
   Run `npm run build` before committing.
 - The generated sites are meant to look respectable and hollow. If a change
   makes them look either broken or genuinely good, it's the wrong change.
+
+## Splitting off into its own repo
+
+The plan is to move this to its own repository and domain. Nothing in the
+code depends on living inside MKSite. When that happens:
+
+1. Copy this folder to the new repo root.
+2. In `astro.config.mjs`, set `site` to the new domain, `base` to `"/"`
+   (or delete the `PUBLIC_BASE_PATH` logic), and `outDir` to `"dist"`.
+3. Point the two QA scripts at a local Puppeteer install (`npm i -D puppeteer`)
+   instead of the blackjack project's `node_modules`.
+4. Deploy `dist/` to any static host. There's no server to configure.
+
+`withBase()` in `src/lib/base.ts` reads Astro's `BASE_URL`, so every in-app
+link and font URL follows the config change without edits.
