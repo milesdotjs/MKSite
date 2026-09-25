@@ -12,6 +12,9 @@ import {
   contrastRatio,
   contrastPairs,
   ICONS,
+  CHAMPION_NAMES,
+  pickChampionNames,
+  placeholderContent,
   type Answers,
   type ImageAsset,
 } from "./index";
@@ -170,6 +173,33 @@ describe("defaults", () => {
     expect(hasCustomText(a)).toBe(false);
     a.about.story = "We are great.";
     expect(hasCustomText(a)).toBe(true);
+  });
+
+  it("fills placeholder team names from the world chess champion list, stably per seed", () => {
+    for (const type of BUSINESS_TYPES) {
+      const a = defaultAnswers(type.id, 42);
+      expect(a.about.team).toHaveLength(type.teamRoles.length);
+      for (const member of a.about.team) {
+        expect(CHAMPION_NAMES).toContain(member.name);
+      }
+      expect(new Set(a.about.team.map((t) => t.name)).size).toBe(a.about.team.length);
+      expect(a.about.team.map((t) => t.role)).toEqual(type.teamRoles);
+      // Same seed, same names; the placeholder comparison depends on it.
+      expect(defaultAnswers(type.id, 42).about.team).toEqual(a.about.team);
+      expect(placeholderContent(type.id, 42).about.team).toEqual(a.about.team);
+      expect(hasCustomText(a)).toBe(false);
+    }
+    expect(pickChampionNames(1, 2)).not.toEqual(pickChampionNames(2, 2));
+    expect(CHAMPION_NAMES.some((n) => /kramnik/i.test(n))).toBe(false);
+    expect(defaultAnswers("other").seed).not.toBe(defaultAnswers("other").seed);
+  });
+
+  it("retyping keeps the same seed so the team names don't reshuffle", () => {
+    const a = defaultAnswers("restaurant", 7);
+    const b = retypeAnswers(a, "fitness");
+    expect(b.seed).toBe(7);
+    expect(b.about.team.map((t) => t.name)).toEqual(a.about.team.map((t) => t.name));
+    expect(b.about.team.map((t) => t.role)).toEqual(BUSINESS_TYPES.find((t) => t.id === "fitness")!.teamRoles);
   });
 
   it("every default feature icon exists in the icon set", () => {

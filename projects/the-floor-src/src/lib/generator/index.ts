@@ -20,6 +20,7 @@ export { FONT_STYLES, getFontStyle } from "./presets/fontStyles";
 export { LAYOUTS, getLayout } from "./presets/layouts";
 export { BUSINESS_TYPES, getBusinessType } from "./presets/businessTypes";
 export { ICONS, ICON_IDS, getIcon } from "./presets/icons";
+export { CHAMPION_NAMES, pickChampionNames, randomSeed } from "./presets/champions";
 export { PAGE_META } from "./pages";
 export { FONT_DIR } from "./css";
 

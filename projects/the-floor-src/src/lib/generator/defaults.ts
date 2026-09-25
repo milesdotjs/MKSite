@@ -9,14 +9,16 @@ import { DEFAULT_BUSINESS_TYPE, getBusinessType } from "./presets/businessTypes"
 import { DEFAULT_LAYOUT_ID } from "./presets/layouts";
 import { DEFAULT_PALETTE_ID } from "./presets/palettes";
 import { DEFAULT_FONT_STYLE_ID } from "./presets/fontStyles";
+import { pickChampionNames, randomSeed } from "./presets/champions";
 
 export const PLACEHOLDER_ADDRESS = "123 Main Street\nYour Town, ST 12345";
 export const PLACEHOLDER_PHONE = "(555) 123-4567";
 export const PLACEHOLDER_EMAIL = "hello@example.com";
 
 /** Content fields that the business type preset fills in. */
-export function placeholderContent(type: BusinessType): Pick<Answers, "tagline" | "home" | "about" | "services" | "contact"> {
+export function placeholderContent(type: BusinessType, seed: number): Pick<Answers, "tagline" | "home" | "about" | "services" | "contact"> {
   const preset = getBusinessType(type);
+  const names = pickChampionNames(seed, preset.teamRoles.length);
   return {
     tagline: preset.tagline,
     home: {
@@ -28,7 +30,7 @@ export function placeholderContent(type: BusinessType): Pick<Answers, "tagline" 
     },
     about: {
       story: preset.story,
-      team: preset.team.map((t) => ({ ...t })),
+      team: preset.teamRoles.map((role, i) => ({ name: names[i] ?? "", role })),
     },
     services: {
       items: preset.services.map((s) => ({ ...s })),
@@ -42,8 +44,9 @@ export function placeholderContent(type: BusinessType): Pick<Answers, "tagline" 
   };
 }
 
-export function defaultAnswers(type: BusinessType = DEFAULT_BUSINESS_TYPE): Answers {
+export function defaultAnswers(type: BusinessType = DEFAULT_BUSINESS_TYPE, seed: number = randomSeed()): Answers {
   return {
+    seed,
     businessName: "",
     businessType: type,
     layout: DEFAULT_LAYOUT_ID,
@@ -52,7 +55,7 @@ export function defaultAnswers(type: BusinessType = DEFAULT_BUSINESS_TYPE): Answ
     logo: null,
     pages: ["home", "about", "services", "contact"],
     gallery: { images: [] },
-    ...placeholderContent(type),
+    ...placeholderContent(type, seed),
   };
 }
 
@@ -62,8 +65,8 @@ export function defaultAnswers(type: BusinessType = DEFAULT_BUSINESS_TYPE): Answ
  */
 export function retypeAnswers(answers: Answers, newType: BusinessType): Answers {
   if (answers.businessType === newType) return answers;
-  const oldP = placeholderContent(answers.businessType);
-  const newP = placeholderContent(newType);
+  const oldP = placeholderContent(answers.businessType, answers.seed);
+  const newP = placeholderContent(newType, answers.seed);
   const keep = <T>(current: T, oldDefault: T, newDefault: T): T =>
     JSON.stringify(current) === JSON.stringify(oldDefault) ? newDefault : current;
 
@@ -97,7 +100,7 @@ export function retypeAnswers(answers: Answers, newType: BusinessType): Answers 
  * leaving the placeholder copy in place). Used by the Reality Check.
  */
 export function hasCustomText(answers: Answers): boolean {
-  const p = placeholderContent(answers.businessType);
+  const p = placeholderContent(answers.businessType, answers.seed);
   const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
   return !(
     same(answers.tagline, p.tagline) &&

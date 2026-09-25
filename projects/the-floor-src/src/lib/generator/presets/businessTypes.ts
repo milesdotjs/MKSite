@@ -6,7 +6,7 @@
  * The copy is meant to be generic. Fine at a glance, forgettable immediately.
  */
 
-import type { BusinessType, Feature, Service, TeamMember } from "../types";
+import type { BusinessType, Feature, Service } from "../types";
 
 export interface BusinessTypePreset {
   id: BusinessType;
@@ -18,7 +18,8 @@ export interface BusinessTypePreset {
   ctaText: string;
   features: Feature[];
   story: string;
-  team: TeamMember[];
+  /** Roles only. Names are drawn from the world chess champion list at placeholder time. */
+  teamRoles: string[];
   services: Service[];
   hours: string;
   /** Shown in the gallery placeholder tiles when nothing is uploaded. */
@@ -41,10 +42,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
     ],
     story:
       "We opened our doors with a simple idea: serve the kind of food we'd want to eat ourselves. That means real ingredients, recipes we're proud of, and a room where people feel at home.\n\nToday we're still cooking the same way. Our team arrives early to prep everything by hand, and we work with local growers and producers wherever we can. Thank you for being part of it.",
-    team: [
-      { name: "Alex Morgan", role: "Owner and head chef" },
-      { name: "Jamie Lee", role: "Front of house manager" },
-    ],
+    teamRoles: ["Owner and head chef", "Front of house manager"],
     services: [
       { name: "Dine in", description: "Full table service for breakfast, lunch and dinner.", price: "" },
       { name: "Takeaway", description: "Order at the counter or by phone and collect when it suits you.", price: "" },
@@ -69,10 +67,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
     ],
     story:
       "We started with one chair and a belief that everyone deserves to leave feeling like the best version of themselves. That belief hasn't changed, even as the team has grown.\n\nEvery appointment starts with a conversation. We listen, we advise, and we never rush. Come in and see the difference.",
-    team: [
-      { name: "Sam Rivera", role: "Owner and senior stylist" },
-      { name: "Taylor Brooks", role: "Colour specialist" },
-    ],
+    teamRoles: ["Owner and senior stylist", "Colour specialist"],
     services: [
       { name: "Cut and style", description: "A consultation, wash, precision cut and blow dry.", price: "From $45" },
       { name: "Colour", description: "Full colour, highlights, balayage and toning.", price: "From $90" },
@@ -97,10 +92,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
     ],
     story:
       "We've been serving homes and businesses in the local area for years. What started as one van and a toolbox is now a small, tight-knit team who take pride in every job, big or small.\n\nWe believe good work speaks for itself. Most of our customers come from word of mouth, and we intend to keep it that way.",
-    team: [
-      { name: "Chris Walker", role: "Owner and lead tradesperson" },
-      { name: "Jordan Patel", role: "Apprentice" },
-    ],
+    teamRoles: ["Owner and lead tradesperson", "Apprentice"],
     services: [
       { name: "Repairs and maintenance", description: "Fast, tidy fixes for the things that stop working.", price: "Call for quote" },
       { name: "Installations", description: "New fittings and systems, installed to code and tested.", price: "Call for quote" },
@@ -125,10 +117,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
     ],
     story:
       "We founded the practice on a simple principle: good advice should be clear, practical and delivered by someone who takes the time to understand you.\n\nOver the years we've grown, but the approach hasn't changed. Every client gets a dedicated point of contact, straightforward explanations, and a plan that fits.",
-    team: [
-      { name: "Morgan Ellis", role: "Principal" },
-      { name: "Riley Chen", role: "Senior associate" },
-    ],
+    teamRoles: ["Principal", "Senior associate"],
     services: [
       { name: "Initial consultation", description: "A conversation about your situation and what we can do to help.", price: "Free" },
       { name: "Ongoing advice", description: "Regular support and a direct line to your adviser.", price: "From $150 per month" },
@@ -153,10 +142,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
     ],
     story:
       "We opened because we wanted a shop we'd enjoy visiting: somewhere with a considered selection, staff who care, and no pressure to buy.\n\nWe're proud to be part of the neighbourhood. Thank you for shopping small.",
-    team: [
-      { name: "Casey Nguyen", role: "Owner" },
-      { name: "Drew Thompson", role: "Shop manager" },
-    ],
+    teamRoles: ["Owner", "Shop manager"],
     services: [
       { name: "In-store shopping", description: "Visit us and browse the full range in person.", price: "" },
       { name: "Gift wrapping", description: "Complimentary wrapping on any purchase.", price: "Free" },
@@ -181,10 +167,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
     ],
     story:
       "We built this space for people who felt intimidated by big-box gyms. No mirrors wall to wall, no judgement, just good coaching and a community that shows up for each other.\n\nWhether your goal is a first pull-up or a personal best, we'll meet you where you are.",
-    team: [
-      { name: "Jesse Carter", role: "Head coach and owner" },
-      { name: "Avery Kim", role: "Coach and nutrition adviser" },
-    ],
+    teamRoles: ["Head coach and owner", "Coach and nutrition adviser"],
     services: [
       { name: "Group classes", description: "Strength, conditioning and mobility sessions for all levels.", price: "From $20 per class" },
       { name: "Personal training", description: "One-on-one sessions built around your goals.", price: "From $70 per session" },
@@ -209,10 +192,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
     ],
     story:
       "We started as a handful of neighbours who saw a need and decided to do something about it. Since then we've grown into a registered organisation with a dedicated group of volunteers.\n\nOur work is only possible because of the people who give their time and support. If you'd like to be part of it, we'd love to hear from you.",
-    team: [
-      { name: "Robin Adams", role: "Chair" },
-      { name: "Parker Singh", role: "Volunteer coordinator" },
-    ],
+    teamRoles: ["Chair", "Volunteer coordinator"],
     services: [
       { name: "Volunteer with us", description: "Regular and one-off opportunities to help, whatever your skills.", price: "" },
       { name: "Donate", description: "One-off or monthly gifts that fund our programmes directly.", price: "" },
@@ -237,10 +217,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
     ],
     story:
       "We started this business because we saw a way to do things better. That meant putting customers first, being honest about what we can do, and doing it well.\n\nWe're proud of what we've built and grateful to everyone who has supported us along the way.",
-    team: [
-      { name: "Jordan Smith", role: "Owner" },
-      { name: "Sam Taylor", role: "Manager" },
-    ],
+    teamRoles: ["Owner", "Manager"],
     services: [
       { name: "Our main service", description: "A short description of the thing you do most.", price: "" },
       { name: "Another service", description: "Something else you offer, described in a sentence.", price: "" },

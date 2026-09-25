@@ -52,7 +52,7 @@ export async function clearState(): Promise<void> {
  * between versions never leaves a field undefined.
  */
 function mergeAnswers(saved: Partial<Answers>): Answers {
-  const base = defaultAnswers(saved.businessType ?? "other");
+  const base = defaultAnswers(saved.businessType ?? "other", typeof saved.seed === "number" ? saved.seed : undefined);
   return {
     ...base,
     ...saved,

@@ -89,6 +89,8 @@ export interface ContactContent {
 }
 
 export interface Answers {
+  /** Session seed. Fixes the placeholder team names so they survive a refresh and only change on "Start over". */
+  seed: number;
   businessName: string;
   tagline: string;
   businessType: BusinessType;
