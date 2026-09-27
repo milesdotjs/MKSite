@@ -106,3 +106,23 @@ node scripts/qa-persona.cjs http://127.0.0.1:4322/projects/the-floor/ scripts/pe
 Swap `cafe` for `trades`, `salon` or `fitness`. Serve the production build
 first with `./node_modules/.bin/astro preview --port 4322` (built from the
 capital-P path, see above).
+
+## The examples gallery
+
+`/examples/` publishes ten demo sites built with the tool, with a credits list
+for the Creative Commons photographs they use. To rebuild it after a template
+change, serve the new build locally first, because the demos must be built
+against the version you just changed:
+
+```
+./node_modules/.bin/astro build                 # from the capital-P path
+./node_modules/.bin/astro preview --port 4322
+FLOOR_BASE=http://127.0.0.1:4322/projects/the-floor/ node scripts/build-examples.cjs
+FLOOR_BASE=http://127.0.0.1:4322/projects/the-floor/ node scripts/rebuild-legacy.cjs
+node scripts/build-examples.cjs --publish
+node scripts/shoot-example-thumbs.cjs
+./node_modules/.bin/astro build                 # again, to ship the new files
+```
+
+If the photographs are re-fetched, the credits in `src/content/examples.ts`
+are regenerated with them. Don't hand-edit that file.

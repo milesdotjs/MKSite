@@ -3,7 +3,7 @@
 // Usage: node drive-wizard.cjs <baseUrl> <outDir>
 const path = require("node:path");
 const fs = require("node:fs");
-const puppeteer = require("C:/Users/ilove/Documents/GitHub/MKSite/Projects/blackjack with yugi/node_modules/puppeteer");
+const puppeteer = require("C:/Users/ilove/Documents/GitHub/MKSite/projects/blackjack with yugi/node_modules/puppeteer");
 const JSZip = require("jszip");
 
 const base = process.argv[2].replace(/\/+$/, "") + "/";

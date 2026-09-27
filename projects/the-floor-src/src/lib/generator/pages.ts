@@ -120,6 +120,27 @@ function renderFeatures(ctx: RenderContext): string {
 </section>`;
 }
 
+/**
+ * The second image section: a picture beside a paragraph, further down the
+ * home page. Only appears when the owner actually uploads a second photo,
+ * so a site built from nothing but a name is unchanged.
+ */
+function renderSecondSection(ctx: RenderContext): string {
+  const { home } = ctx.answers;
+  if (!home.secondImage) return "";
+  const url = ctx.useImage(home.secondImage, "feature");
+  const reverse = ctx.layout === "split" || ctx.layout === "banner";
+  return `<section class="section band${reverse ? " band--reverse" : ""}">
+  <div class="container band-grid">
+    <img class="band-img" src="${esc(url)}" alt="">
+    <div class="band-text">
+      <h2>${esc(home.secondTitle)}</h2>
+      ${paragraphs(home.secondText)}
+    </div>
+  </div>
+</section>`;
+}
+
 function renderCtaBand(ctx: RenderContext): string {
   const { home } = ctx.answers;
   return `<section class="section cta-band">
@@ -132,9 +153,8 @@ function renderCtaBand(ctx: RenderContext): string {
 }
 
 export function renderHome(ctx: RenderContext): string {
-  const parts = [renderHero(ctx), renderFeatures(ctx)];
-  parts.push(renderCtaBand(ctx));
-  return parts.join("\n");
+  const parts = [renderHero(ctx), renderFeatures(ctx), renderSecondSection(ctx), renderCtaBand(ctx)];
+  return parts.filter(Boolean).join("\n");
 }
 
 /* ---------- Inner page header ---------- */

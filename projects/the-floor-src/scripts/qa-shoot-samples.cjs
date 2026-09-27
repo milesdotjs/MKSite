@@ -2,7 +2,7 @@
 // Usage: node shoot-samples.cjs <samplesDir> <outDir>
 const path = require("node:path");
 const fs = require("node:fs");
-const puppeteer = require("C:/Users/ilove/Documents/GitHub/MKSite/Projects/blackjack with yugi/node_modules/puppeteer");
+const puppeteer = require("C:/Users/ilove/Documents/GitHub/MKSite/projects/blackjack with yugi/node_modules/puppeteer");
 
 const samples = path.resolve(process.argv[2]);
 const out = path.resolve(process.argv[3]);

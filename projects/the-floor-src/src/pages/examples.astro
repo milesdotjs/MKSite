@@ -1,0 +1,195 @@
+---
+import Base from "../layouts/Base.astro";
+import { withBase } from "../lib/base";
+import { EXAMPLES } from "../content/examples";
+
+const totalPhotos = EXAMPLES.reduce((n, e) => n + e.photos, 0);
+const credited = EXAMPLES.flatMap((e) => e.credits);
+---
+
+<Base
+  title="What people built | The Floor"
+  description="Ten small-business websites built with The Floor by people with no technical knowledge, in about five minutes each. Open any of them."
+  current="examples"
+>
+  <section class="wrap section" style="padding-bottom: 1.5rem">
+    <h1>What five minutes buys</h1>
+    <p class="lede">
+      Ten sites, ten businesses, one tool. Each was built by someone answering the same questions you'd answer, with free photographs and no
+      technical knowledge at all. Open any of them and click around. This is the floor, not the ceiling.
+    </p>
+    <div class="notice" style="max-width: 62ch">
+      <p>
+        The businesses are made up, so nobody is misled by a phone number. The websites are real: these are the exact files the tool produced,
+        unopened and unedited, photographs included at the size they were uploaded.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap section" style="padding-top: 0">
+    <ul class="examples">
+      {
+        EXAMPLES.map((e) => (
+          <li class="example">
+            <a class="example-shot" href={withBase(`examples/${e.slug}/`)}>
+              <img src={withBase(`examples-thumbs/${e.slug}.jpg`)} alt={`The home page of ${e.title}`} loading="lazy" width="1200" height="800" />
+            </a>
+            <div class="example-body">
+              <p class="example-trade">{e.trade}</p>
+              <h2>{e.title}</h2>
+              <p class="example-blurb">{e.blurb}</p>
+              <dl class="example-facts">
+                <div><dt>Layout</dt><dd>{e.layout}</dd></div>
+                <div><dt>Colours</dt><dd>{e.palette}</dd></div>
+                <div><dt>Pages</dt><dd>{e.pages.length}</dd></div>
+                <div><dt>Photos</dt><dd>{e.photos}</dd></div>
+                <div><dt>Download</dt><dd>{e.sizeKB >= 1024 ? `${(e.sizeKB / 1024).toFixed(1)} MB` : `${e.sizeKB} KB`}</dd></div>
+              </dl>
+              <p class="example-links">
+                <a class="btn btn--ghost" href={withBase(`examples/${e.slug}/`)}>Open this site</a>
+                <a href={withBase(`examples-thumbs/${e.slug}-phone.jpg`)}>On a phone</a>
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <hr class="floor wrap" />
+
+  <section class="wrap--narrow section">
+    <h2>What they all have in common</h2>
+    <p>
+      Every one of these has two big photographs on the home page, a tidy row of three reasons to choose the business, a gallery, and a price
+      list. That combination is what most people mean when they say a website looks "modern" or "custom". It took each of these owners one
+      upload and a sentence.
+    </p>
+    <p>
+      That's the point of showing you ten of them at once. Individually each looks considered. Side by side you can see the pattern, and once
+      you've seen the pattern you can't unsee it in the next quote you're handed.
+    </p>
+    <p>
+      What none of them have: a contact form that sends anything, a word of search-engine work, a compressed photograph, or anyone who asked
+      what the business actually needs. <a href={withBase("build/")}>Build one yourself</a> and the Reality Check at the end lists the rest.
+    </p>
+
+    <h2>Photograph credits</h2>
+    <p>
+      {totalPhotos} photographs were used across these {EXAMPLES.length} sites, found the way anyone would find free pictures. Most come from
+      Wikimedia Commons under Creative Commons licences, which means the photographers get credited. If you use a free photo on your own site,
+      this is the part people forget.
+    </p>
+    <details class="card">
+      <summary>All {credited.length} credited photographs</summary>
+      <div class="card-body">
+        {
+          EXAMPLES.filter((e) => e.credits.length).map((e) => (
+            <div style="margin-bottom: 1.25rem">
+              <h4>{e.title}</h4>
+              <ul class="credit-list">
+                {e.credits.map((c) => (
+                  <li>
+                    <a href={c.filePage} target="_blank" rel="noopener">{c.title}</a> by {c.author},{" "}
+                    {c.licenseUrl ? <a href={c.licenseUrl} target="_blank" rel="noopener">{c.license}</a> : c.license}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+        <p class="muted small">
+          Photographs marked Lorem Picsum come from Unsplash under the Unsplash licence, which asks for no attribution.
+        </p>
+      </div>
+    </details>
+  </section>
+</Base>
+
+<style>
+  .examples {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 2.5rem;
+  }
+  @media (min-width: 900px) {
+    .examples {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .example {
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+  }
+  .example-shot {
+    display: block;
+    border-bottom: 2px solid var(--ink);
+    background: var(--paper-2);
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+  }
+  .example-shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.25s ease;
+  }
+  .example-shot:hover img {
+    transform: scale(1.02);
+  }
+  .example-body {
+    padding: 1.25rem;
+  }
+  .example-trade {
+    font-size: 0.9375rem;
+    color: var(--ink-3);
+    margin: 0 0 0.15rem;
+  }
+  .example-body h2 {
+    font-size: 1.6rem;
+    margin: 0 0 0.5rem;
+  }
+  .example-blurb {
+    margin-bottom: 1rem;
+  }
+  .example-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.5rem;
+    margin: 0 0 1.1rem;
+    padding: 0.75rem 0 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.9375rem;
+  }
+  .example-facts div {
+    display: flex;
+    gap: 0.4rem;
+  }
+  .example-facts dt {
+    color: var(--ink-3);
+  }
+  .example-facts dd {
+    margin: 0;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .example-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 0;
+  }
+  .credit-list {
+    margin: 0.35rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 0.9rem;
+  }
+  .credit-list li + li {
+    margin-top: 0.2rem;
+  }
+</style>

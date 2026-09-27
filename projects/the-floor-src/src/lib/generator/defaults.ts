@@ -27,6 +27,9 @@ export function placeholderContent(type: BusinessType, seed: number): Pick<Answe
       subtext: preset.subtext,
       features: preset.features.map((f) => ({ ...f })),
       ctaText: preset.ctaText,
+      secondImage: null,
+      secondTitle: preset.secondTitle,
+      secondText: preset.secondText,
     },
     about: {
       story: preset.story,
@@ -80,6 +83,8 @@ export function retypeAnswers(answers: Answers, newType: BusinessType): Answers 
       subtext: keep(answers.home.subtext, oldP.home.subtext, newP.home.subtext),
       features: keep(answers.home.features, oldP.home.features, newP.home.features),
       ctaText: keep(answers.home.ctaText, oldP.home.ctaText, newP.home.ctaText),
+      secondTitle: keep(answers.home.secondTitle, oldP.home.secondTitle, newP.home.secondTitle),
+      secondText: keep(answers.home.secondText, oldP.home.secondText, newP.home.secondText),
     },
     about: {
       story: keep(answers.about.story, oldP.about.story, newP.about.story),
@@ -108,6 +113,8 @@ export function hasCustomText(answers: Answers): boolean {
     same(answers.home.subtext, p.home.subtext) &&
     same(answers.home.features, p.home.features) &&
     same(answers.home.ctaText, p.home.ctaText) &&
+    same(answers.home.secondTitle, p.home.secondTitle) &&
+    same(answers.home.secondText, p.home.secondText) &&
     same(answers.about.story, p.about.story) &&
     same(answers.about.team, p.about.team) &&
     same(answers.services.items, p.services.items) &&
@@ -130,6 +137,8 @@ export function placeholderFields(answers: Answers): string[] {
   if (same(answers.home.subtext, p.home.subtext)) out.push("home page text");
   if (same(answers.home.features, p.home.features)) out.push("the three reasons to choose you");
   if (same(answers.home.ctaText, p.home.ctaText)) out.push("button text");
+  if (answers.home.secondImage && same(answers.home.secondTitle, p.home.secondTitle) && same(answers.home.secondText, p.home.secondText))
+    out.push("the second home page section");
   if (answers.pages.includes("about")) {
     if (same(answers.about.story, p.about.story)) out.push("your story");
     if (answers.about.team.length && same(answers.about.team, p.about.team)) out.push("team names");

@@ -22,7 +22,12 @@ export type FontStyleId = "plain" | "modern" | "classic" | "elegant" | "festive"
 
 export type PageId = "home" | "about" | "services" | "gallery" | "contact";
 
-export const ALL_PAGES: readonly PageId[] = ["home", "about", "services", "gallery", "contact"];
+/**
+ * Menu order. Gallery sits second on purpose: photographs of real work are
+ * the one thing that makes a plain template look like a real business, so
+ * they shouldn't be buried behind the story and the price list.
+ */
+export const ALL_PAGES: readonly PageId[] = ["home", "gallery", "services", "about", "contact"];
 
 export const MAX_PAGES = 5;
 export const MAX_SERVICES = 6;
@@ -66,6 +71,14 @@ export interface HomeContent {
   subtext: string;
   features: Feature[];
   ctaText: string;
+  /**
+   * A second picture further down the home page, beside a paragraph. Costs a
+   * developer nothing and is most of why a template looks "designed", so the
+   * tool offers it rather than letting one good photo do all the work.
+   */
+  secondImage: ImageAsset | null;
+  secondTitle: string;
+  secondText: string;
 }
 
 export interface AboutContent {

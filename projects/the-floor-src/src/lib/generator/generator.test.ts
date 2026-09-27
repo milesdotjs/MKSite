@@ -102,6 +102,39 @@ describe("pages and navigation", () => {
     expect(without.files["index.html"]).toContain(`class="button" href="mailto:hello@example.com"`);
   });
 
+  it("puts the gallery second in the menu, ahead of services and about", () => {
+    const site = generateSite(answersWith({ pages: ["home", "about", "services", "gallery", "contact"] }));
+    expect(site.pages.map((p) => p.label)).toEqual(["Home", "Gallery", "Services", "About", "Contact"]);
+    const nav = site.files["index.html"].split('<nav class="site-nav"')[1].split("</nav>")[0];
+    const order = [...nav.matchAll(/>([A-Za-z]+)<\/a>/g)].map((m) => m[1]);
+    expect(order).toEqual(["Home", "Gallery", "Services", "About", "Contact"]);
+  });
+
+  it("shows the second image section only when a second photo is uploaded", () => {
+    const without = generateSite(answersWith());
+    expect(without.files["index.html"]).not.toContain('class="band');
+
+    const a = answersWith();
+    a.home.secondImage = fakeImage("s1", "shop.jpg");
+    a.home.secondTitle = "The room itself";
+    a.home.secondText = "Long tables, good light.";
+    const with2 = generateSite(a);
+    expect(with2.files["index.html"]).toContain('class="section band');
+    expect(with2.files["index.html"]).toContain("<h2>The room itself</h2>");
+    expect(with2.files["index.html"]).toContain("<p>Long tables, good light.</p>");
+    expect(with2.images.some((i) => i.path.startsWith("assets/feature-"))).toBe(true);
+    expect(with2.files["styles.css"]).toContain(".band-img");
+    // It sits between the three reasons and the closing call to action.
+    const html = with2.files["index.html"];
+    expect(html.indexOf('class="features')).toBeLessThan(html.indexOf('class="section band'));
+    expect(html.indexOf('class="section band')).toBeLessThan(html.indexOf("cta-band"));
+    // And it only counts as leftover placeholder text once it is actually shown.
+    const b = answersWith();
+    expect(placeholderFields(b)).not.toContain("the second home page section");
+    b.home.secondImage = fakeImage("s2");
+    expect(placeholderFields(b)).toContain("the second home page section");
+  });
+
   it("inlines css for the preview and links it for the download", () => {
     const linked = generateSite(answersWith());
     expect(linked.files["index.html"]).toContain(`<link rel="stylesheet" href="styles.css">`);

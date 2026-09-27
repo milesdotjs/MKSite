@@ -19,6 +19,9 @@ export interface BusinessTypePreset {
   subtext: string;
   ctaText: string;
   features: Feature[];
+  /** Heading and paragraph for the second image section on the home page. */
+  secondTitle: string;
+  secondText: string;
   story: string;
   /** Roles only. Names are drawn from the world chess champion list at placeholder time. */
   teamRoles: string[];
@@ -43,6 +46,9 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       { icon: "clock", title: "Open seven days", text: "Breakfast, lunch and dinner, every day of the week. No reservation needed." },
       { icon: "heart", title: "Family owned", text: "Run by the same family for years, and we still greet regulars by name." },
     ],
+    secondTitle: "A room worth sitting in",
+    secondText:
+      "We kept the old tiles, put in a long table by the window and filled the shelves with things we actually use. Come for lunch on your own with a book, or bring eight people and we'll make it work.",
     story:
       "We opened our doors with a simple idea: serve the kind of food we'd want to eat ourselves. That means real ingredients, recipes we're proud of, and a room where people feel at home.\n\nToday we're still cooking the same way. Our team arrives early to prep everything by hand, and we work with local growers and producers wherever we can. Thank you for being part of it.",
     teamRoles: ["Owner and head chef", "Front of house manager"],
@@ -69,6 +75,9 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       { icon: "sparkle", title: "Quality products", text: "We use professional products that care for your hair and skin, and stock them for you to take home." },
       { icon: "calendar", title: "Easy booking", text: "Walk in or call ahead. Evening and weekend appointments available." },
     ],
+    secondTitle: "The chair you'll come back to",
+    secondText:
+      "Good light, honest mirrors and no rush. Every appointment starts with a proper conversation about what you want, what will suit you, and what you can keep up at home.",
     story:
       "We started with one chair and a belief that everyone deserves to leave feeling like the best version of themselves. That belief hasn't changed, even as the team has grown.\n\nEvery appointment starts with a conversation. We listen, we advise, and we never rush. Come in and see the difference.",
     teamRoles: ["Owner and senior stylist", "Colour specialist"],
@@ -95,6 +104,9 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       { icon: "clock", title: "On time, every time", text: "We respect your schedule. If we say Tuesday morning, we mean Tuesday morning." },
       { icon: "check", title: "Honest pricing", text: "Clear written quotes with no surprises. The price we agree is the price you pay." },
     ],
+    secondTitle: "The work behind the finish",
+    secondText:
+      "Anyone can make a job look tidy on the last day. We care about what's under it: the right materials, the right preparation, and a job that still looks like this in ten years.",
     story:
       "We've been serving homes and businesses in the local area for years. What started as one van and a toolbox is now a small, tight-knit team who take pride in every job, big or small.\n\nWe believe good work speaks for itself. Most of our customers come from word of mouth, and we intend to keep it that way.",
     teamRoles: ["Owner and lead tradesperson", "Apprentice"],
@@ -121,6 +133,9 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       { icon: "users", title: "Personal service", text: "You'll work with the same person throughout, someone who knows your situation." },
       { icon: "award", title: "Trusted locally", text: "A reputation built on referrals from clients who keep coming back." },
     ],
+    secondTitle: "People, not a call centre",
+    secondText:
+      "You'll deal with the same person every time, someone who knows your situation and answers the phone. No account managers, no ticket numbers, no starting the story again.",
     story:
       "We founded the practice on a simple principle: good advice should be clear, practical and delivered by someone who takes the time to understand you.\n\nOver the years we've grown, but the approach hasn't changed. Every client gets a dedicated point of contact, straightforward explanations, and a plan that fits.",
     teamRoles: ["Principal", "Senior associate"],
@@ -147,6 +162,9 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       { icon: "star", title: "Local favourites", text: "We stock makers and brands from the area alongside a few finds from further afield." },
       { icon: "heart", title: "Here to help", text: "Not sure what you're after? Ask. We know our products inside out." },
     ],
+    secondTitle: "Chosen by hand, one at a time",
+    secondText:
+      "We buy in small quantities from people we've met, which means the shelves change often and nothing sits around. If you like something, tell us. It's how we decide what to get more of.",
     story:
       "We opened because we wanted a shop we'd enjoy visiting: somewhere with a considered selection, staff who care, and no pressure to buy.\n\nWe're proud to be part of the neighbourhood. Thank you for shopping small.",
     teamRoles: ["Owner", "Shop manager"],
@@ -173,6 +191,9 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       { icon: "users", title: "Supportive community", text: "Small classes and friendly faces. You'll never feel lost in the crowd." },
       { icon: "calendar", title: "Flexible timetable", text: "Early mornings, lunchtimes and evenings, so training fits around your life." },
     ],
+    secondTitle: "A room where nobody's watching you",
+    secondText:
+      "Small groups, no mirrors down one wall, no music you have to shout over. Come as you are and work at your own pace. Most people here started exactly where you are.",
     story:
       "We built this space for people who felt intimidated by big-box gyms. No mirrors wall to wall, no judgement, just good coaching and a community that shows up for each other.\n\nWhether your goal is a first pull-up or a personal best, we'll meet you where you are.",
     teamRoles: ["Head coach and owner", "Coach and nutrition adviser"],
@@ -199,6 +220,9 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       { icon: "users", title: "Volunteer led", text: "Run by people who live here and care about the place they call home." },
       { icon: "check", title: "Transparent", text: "We publish what we raise and how we spend it, every year." },
     ],
+    secondTitle: "Where the money actually goes",
+    secondText:
+      "We're run by volunteers, so almost everything we raise goes straight back into the work. We publish the numbers every year, and anyone is welcome to come and ask about them.",
     story:
       "We started as a handful of neighbours who saw a need and decided to do something about it. Since then we've grown into a registered organisation with a dedicated group of volunteers.\n\nOur work is only possible because of the people who give their time and support. If you'd like to be part of it, we'd love to hear from you.",
     teamRoles: ["Chair", "Volunteer coordinator"],
@@ -225,6 +249,9 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       { icon: "users", title: "Friendly service", text: "Real people, happy to answer your questions and help you out." },
       { icon: "pin", title: "Local and trusted", text: "Based right here, serving the community for years." },
     ],
+    secondTitle: "How we work",
+    secondText:
+      "We keep things simple: do the job properly, charge a fair price, and answer the phone when you ring. Most of our customers come from someone telling a friend about us.",
     story:
       "We started this business because we saw a way to do things better. That meant putting customers first, being honest about what we can do, and doing it well.\n\nWe're proud of what we've built and grateful to everyone who has supported us along the way.",
     teamRoles: ["Owner", "Manager"],

@@ -276,6 +276,26 @@ p:last-child { margin-bottom: 0; }
 .feature p { color: var(--color-muted); }
 @media (min-width: 640px) { .features { grid-template-columns: repeat(3, 1fr); } }
 
+/* ---------- Second image section ---------- */
+.band-grid { display: grid; gap: 2rem; align-items: center; }
+.band-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.band-text h2 { margin-bottom: 0.6rem; }
+.band-text p { color: var(--color-muted); font-size: 1.08rem; }
+@media (min-width: 768px) {
+  .band-grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+  .band--reverse .band-img { order: 2; }
+}
+.layout-cards .band { background: var(--color-surface); }
+.layout-cards .band-img { border-radius: var(--radius); }
+.layout-banner .band-img { border-radius: 0; }
+.layout-hero-columns .band-text { text-align: left; }
+
 /* ---------- CTA band ---------- */
 .cta-band { background: var(--color-primary); color: var(--color-on-primary); text-align: center; }
 .cta-band h2 { color: inherit; }
