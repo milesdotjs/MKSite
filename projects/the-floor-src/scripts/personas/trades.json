@@ -1,0 +1,13 @@
+{
+  "name": "Walker & Son Plumbing",
+  "tagline": "Licensed, insured, on time",
+  "type": "Trades",
+  "layout": "Hero + three columns",
+  "palette": "Navy & Gold",
+  "font": "Plain",
+  "logo": "images/trades-logo-whitebox.jpg",
+  "pages": ["About", "Services", "Gallery", "Contact"],
+  "hero": "images/trades-hero-big.jpg",
+  "gallery": ["images/trades-g1.jpg", "images/trades-g2.jpg", "images/trades-g3.jpg"],
+  "viewport": { "width": 390, "height": 844 }
+}

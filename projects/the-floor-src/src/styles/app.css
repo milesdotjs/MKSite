@@ -42,6 +42,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 5rem;
+  /* The wizard pins a bar to the bottom; keep focused and scrolled-to elements above it. */
+  scroll-padding-bottom: 7rem;
 }
 body {
   margin: 0;
@@ -393,6 +395,9 @@ body:has(.wizard) .site-footer {
   .field-row--3 {
     grid-template-columns: 2fr 3fr 1fr;
   }
+  .field-row--price {
+    grid-template-columns: 3fr 1fr;
+  }
 }
 .check {
   display: flex;
@@ -532,7 +537,9 @@ body:has(.wizard) .site-footer {
   appearance: none;
   background: none;
   border: 0;
-  padding: 0.1rem 0.25rem;
+  padding: 0.5rem 0.35rem;
+  margin: -0.4rem 0;
+  min-height: 36px;
   font: inherit;
   font-size: 0.9375rem;
   font-weight: 500;
@@ -553,6 +560,8 @@ body:has(.wizard) .site-footer {
   top: calc(100% + 0.5rem);
   left: 0;
   width: min(360px, 88vw);
+  max-height: min(70vh, 640px);
+  overflow: auto;
   background: var(--paper);
   border: 2px solid var(--ink);
   border-radius: var(--radius);
@@ -591,10 +600,10 @@ body:has(.wizard) .site-footer {
 }
 .explainer-close {
   position: absolute;
-  top: 0.4rem;
-  right: 0.4rem;
-  width: 32px;
-  height: 32px;
+  top: 0.3rem;
+  right: 0.3rem;
+  width: 44px;
+  height: 44px;
   border: 0;
   background: none;
   font-size: 1.4rem;
@@ -722,11 +731,22 @@ body:has(.wizard) .site-footer {
   }
 }
 .upload-drop {
+  display: block;
   border: 2px dashed var(--ink);
   border-radius: var(--radius);
   padding: 1.5rem;
   text-align: center;
   background: var(--paper-2);
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--ink);
+}
+.upload-drop:hover {
+  background: #fffbe0;
+}
+.upload-drop:focus-within {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
 }
 .upload-drop input {
   display: block;
@@ -771,8 +791,8 @@ body:has(.wizard) .site-footer {
   position: absolute;
   top: 4px;
   right: 4px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border: 0;
   background: var(--ink);
   color: var(--paper);
@@ -820,24 +840,22 @@ body:has(.wizard) .site-footer {
   margin-bottom: 1rem;
 }
 .seg {
-  display: inline-flex;
-  border: 2px solid var(--ink);
-  border-radius: var(--radius);
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-width: 100%;
 }
 .seg button {
   appearance: none;
   font: inherit;
   font-weight: 500;
-  border: 0;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
   background: var(--paper);
   color: var(--ink);
   padding: 0.55rem 0.9rem;
   cursor: pointer;
-  min-height: 42px;
-}
-.seg button + button {
-  border-left: 2px solid var(--ink);
+  min-height: 44px;
 }
 .seg button[aria-pressed="true"] {
   background: var(--ink);

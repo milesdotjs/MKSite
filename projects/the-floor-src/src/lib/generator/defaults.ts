@@ -115,6 +115,69 @@ export function hasCustomText(answers: Answers): boolean {
   );
 }
 
+/**
+ * Which parts of the site still carry placeholder text, as plain labels.
+ * Empty means the user replaced everything. Used by the Reality Check, the
+ * Download step and the README, so nobody puts "(555) 123-4567" online by
+ * accident.
+ */
+export function placeholderFields(answers: Answers): string[] {
+  const p = placeholderContent(answers.businessType, answers.seed);
+  const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
+  const out: string[] = [];
+  if (same(answers.tagline, p.tagline)) out.push("tagline");
+  if (same(answers.home.headline, p.home.headline)) out.push("home page headline");
+  if (same(answers.home.subtext, p.home.subtext)) out.push("home page text");
+  if (same(answers.home.features, p.home.features)) out.push("the three reasons to choose you");
+  if (same(answers.home.ctaText, p.home.ctaText)) out.push("button text");
+  if (answers.pages.includes("about")) {
+    if (same(answers.about.story, p.about.story)) out.push("your story");
+    if (answers.about.team.length && same(answers.about.team, p.about.team)) out.push("team names");
+  }
+  if (answers.pages.includes("services") && same(answers.services.items, p.services.items)) out.push("services and prices");
+  if (answers.pages.includes("contact")) {
+    const c = answers.contact;
+    const contactBits: string[] = [];
+    if (c.address.trim() === PLACEHOLDER_ADDRESS) contactBits.push("address");
+    if (c.phone.trim() === PLACEHOLDER_PHONE) contactBits.push("phone number");
+    if (c.email.trim() === PLACEHOLDER_EMAIL) contactBits.push("email address");
+    if (contactBits.length) out.push(contactBits.join(", "));
+    if (same(c.hours, p.contact.hours)) out.push("opening hours");
+  }
+  return out;
+}
+
+/** The subset of placeholderFields that would actively mislead a visitor. */
+export function misleadingPlaceholders(answers: Answers): string[] {
+  return placeholderFields(answers).filter((f) => /address|phone|email|opening hours|team names/.test(f));
+}
+
+/**
+ * One plain sentence (without a trailing full stop) describing the made-up
+ * things still in the site, or null when there are none. Shared by the
+ * Download step and the README so the wording matches.
+ */
+export function misleadingSummary(answers: Answers): string | null {
+  const items = misleadingPlaceholders(answers);
+  if (!items.length) return null;
+  const contact = items.filter((i) => i !== "team names");
+  const parts: string[] = [];
+  if (contact.length) {
+    const bits = contact.join(", ").replace(/, ([^,]+)$/, " and $1");
+    parts.push(`the contact page still shows the made-up ${bits}`);
+  }
+  if (items.includes("team names")) {
+    const n = answers.about.team.length;
+    parts.push(`the about page still lists ${n === 1 ? "a made-up team member" : `${n} made-up team members`}`);
+  }
+  return parts.join(", and ");
+}
+
+/** "restaurant or café", "shop", "business": how to name the type in a sentence. */
+export function typeNoun(answers: Pick<Answers, "businessType">): string {
+  return getBusinessType(answers.businessType).noun;
+}
+
 /** Display name, falling back so templates never render an empty brand. */
 export function displayName(answers: Pick<Answers, "businessName">): string {
   return answers.businessName.trim() || "Your Business";

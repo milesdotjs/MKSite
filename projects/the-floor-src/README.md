@@ -64,6 +64,12 @@ where it already lives for the rest of this repo.
   shows it capitalised. GitHub Pages is case-sensitive, so `base` in
   `astro.config.mjs` stays lowercase and new files should be added with the
   lowercase path.
+- **Run `npm run build` from the folder spelled the way Windows spells it**
+  (`...\Projects\the-floor-src`, capital P, until the folder is renamed).
+  Run from the lowercase spelling, Astro's build silently drops the app
+  stylesheet: it emits the fonts but no `_astro/*.css` and no `<link>`, and
+  the whole tool renders unstyled. `astro dev` is not affected. If a build
+  ever comes out with no `.css` file in `_astro/`, this is why.
 - The built folder is committed like the other projects in this repo.
   Run `npm run build` before committing.
 - The generated sites are meant to look respectable and hollow. If a change
@@ -83,3 +89,20 @@ code depends on living inside MKSite. When that happens:
 
 `withBase()` in `src/lib/base.ts` reads Astro's `BASE_URL`, so every in-app
 link and font URL follows the config change without edits.
+
+## Beginner persona tests
+
+Four scripted beginners (a café on desktop, a plumber on a phone, a solo
+salon owner on a tablet with a portrait photo, a gym that uploads nothing)
+build a site with real royalty-free photos, download the ZIP, open it from
+disk at two widths, and serve it on a throwaway static host. Each run writes
+screenshots and a report.json.
+
+```
+node scripts/qa-prep-images.cjs scripts/personas/images   # once; fetches the photos
+node scripts/qa-persona.cjs http://127.0.0.1:4322/projects/the-floor/ scripts/personas/cafe.json qa-shots/cafe
+```
+
+Swap `cafe` for `trades`, `salon` or `fitness`. Serve the production build
+first with `./node_modules/.bin/astro preview --port 4322` (built from the
+capital-P path, see above).

@@ -278,7 +278,7 @@ export function renderContact(ctx: RenderContext): string {
         A developer connects it to a service that actually delivers
         the message to you and filters out spam.
       -->
-      <form class="contact-form" action="#" method="get" onsubmit="return false">
+      <form class="contact-form" action="#">
         <h2>Send a message</h2>
         <label for="contact-name">Your name</label>
         <input id="contact-name" name="name" type="text" autocomplete="name">
@@ -286,7 +286,7 @@ export function renderContact(ctx: RenderContext): string {
         <input id="contact-email" name="email" type="email" autocomplete="email">
         <label for="contact-message">Message</label>
         <textarea id="contact-message" name="message"></textarea>
-        <button class="button" type="submit">Send message</button>
+        <button class="button" type="button">Send message</button>
       </form>
       ${emailNote}
     </div>

@@ -11,6 +11,8 @@ import type { BusinessType, Feature, Service } from "../types";
 export interface BusinessTypePreset {
   id: BusinessType;
   name: string;
+  /** How to refer to it in a sentence: "placeholder text for a {noun}". */
+  noun: string;
   /** Default tagline. */
   tagline: string;
   headline: string;
@@ -30,11 +32,12 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
   {
     id: "restaurant",
     name: "Restaurant or café",
+    noun: "restaurant or café",
     tagline: "Good food, made fresh daily",
     headline: "Fresh, local, made from scratch",
     subtext:
       "We serve honest food in a warm, welcoming space. Whether you're stopping in for a quick lunch or settling in for dinner, there's always a seat for you.",
-    ctaText: "View our menu",
+    ctaText: "Book a table",
     features: [
       { icon: "utensils", title: "Seasonal menu", text: "Our dishes change with the seasons, using ingredients from local farms and suppliers." },
       { icon: "clock", title: "Open seven days", text: "Breakfast, lunch and dinner, every day of the week. No reservation needed." },
@@ -55,6 +58,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
   {
     id: "salon",
     name: "Salon, barber or beauty",
+    noun: "salon",
     tagline: "Look good, feel great",
     headline: "Your look, in expert hands",
     subtext:
@@ -80,6 +84,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
   {
     id: "trades",
     name: "Trades or contractor",
+    noun: "trades business",
     tagline: "Reliable work, done right",
     headline: "Quality workmanship you can rely on",
     subtext:
@@ -105,6 +110,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
   {
     id: "professional",
     name: "Professional services",
+    noun: "professional practice",
     tagline: "Advice you can trust",
     headline: "Clear advice for complicated decisions",
     subtext:
@@ -130,11 +136,12 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
   {
     id: "retail",
     name: "Retail shop",
+    noun: "shop",
     tagline: "Something for everyone",
     headline: "Handpicked products, friendly service",
     subtext:
       "Browse a carefully chosen range you won't find in the big chains. Pop in, have a look around, and say hello.",
-    ctaText: "See what's new",
+    ctaText: "Find us",
     features: [
       { icon: "bag", title: "Curated range", text: "Every product on our shelves is chosen because we'd buy it ourselves." },
       { icon: "star", title: "Local favourites", text: "We stock makers and brands from the area alongside a few finds from further afield." },
@@ -155,6 +162,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
   {
     id: "fitness",
     name: "Fitness or wellness",
+    noun: "gym or studio",
     tagline: "Stronger every day",
     headline: "Train smarter, feel better",
     subtext:
@@ -180,6 +188,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
   {
     id: "nonprofit",
     name: "Nonprofit or community group",
+    noun: "community group",
     tagline: "Together, we make a difference",
     headline: "Building a stronger community, together",
     subtext:
@@ -205,6 +214,7 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
   {
     id: "other",
     name: "Something else",
+    noun: "business",
     tagline: "Here to help",
     headline: "Welcome to our business",
     subtext:
@@ -219,10 +229,10 @@ export const BUSINESS_TYPES: readonly BusinessTypePreset[] = [
       "We started this business because we saw a way to do things better. That meant putting customers first, being honest about what we can do, and doing it well.\n\nWe're proud of what we've built and grateful to everyone who has supported us along the way.",
     teamRoles: ["Owner", "Manager"],
     services: [
-      { name: "Our main service", description: "A short description of the thing you do most.", price: "" },
-      { name: "Another service", description: "Something else you offer, described in a sentence.", price: "" },
-      { name: "Consultation", description: "A conversation about what you need and how we can help.", price: "Free" },
-      { name: "Custom work", description: "Something specific to you? Ask us.", price: "Quoted" },
+      { name: "Consultation", description: "A conversation about what you need and how we can help, with no obligation.", price: "Free" },
+      { name: "Standard service", description: "Our most popular option, done properly, on time and at the price we agreed.", price: "From $80" },
+      { name: "Ongoing support", description: "Regular visits or check-ins so things keep running the way they should.", price: "From $50 per month" },
+      { name: "Custom work", description: "Something specific to you? Tell us what you need and we'll quote it.", price: "Quoted" },
     ],
     hours: "Mon to Fri: 9am to 5pm\nWeekends: Closed",
     galleryHint: "Photos of your work",

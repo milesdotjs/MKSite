@@ -10,7 +10,7 @@ import { PAGE_META, PAGE_RENDERERS, type RenderContext } from "./pages";
 import { renderDocument } from "./shell";
 import { buildReadme } from "./readme";
 import { getFontStyle } from "./presets/fontStyles";
-import { displayName } from "./defaults";
+import { displayName, misleadingSummary } from "./defaults";
 
 export * from "./types";
 export * from "./defaults";
@@ -82,7 +82,7 @@ export function generateSite(answers: Answers, options: GenerateOptions = {}): G
   }
 
   const fonts = getFontStyle(answers.fontStyle).files.map((f) => ({ path: `${FONT_DIR}/${f.file}`, file: f.file }));
-  files["README.txt"] = buildReadme(name, pages, fonts.length > 0);
+  files["README.txt"] = buildReadme(name, pages, { hasFonts: fonts.length > 0, hasImages: images.length > 0, warning: misleadingSummary(answers) });
 
   return { files, pages, images, fonts };
 }

@@ -1,0 +1,13 @@
+{
+  "name": "Ironwood Strength",
+  "tagline": "Stronger every day",
+  "type": "Fitness",
+  "layout": "Card grid",
+  "palette": "Charcoal & Mint",
+  "font": "Modern",
+  "logo": null,
+  "pages": ["Services", "Contact"],
+  "hero": null,
+  "gallery": [],
+  "viewport": { "width": 1280, "height": 800 }
+}

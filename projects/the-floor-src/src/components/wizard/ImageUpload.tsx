@@ -1,11 +1,15 @@
-import type { ChangeEvent, ReactNode } from "react";
+import { useEffect, useState, type ChangeEvent, type ReactNode } from "react";
 import type { ImageAsset } from "../../lib/generator";
 import { assetFromFile, revokeUrl, urlFor } from "../../lib/objectUrls";
+
+/** What the template will do with the picture, so we can warn about the wrong shape. */
+export type ImageShape = "landscape" | "wide";
 
 interface SingleProps {
   id: string;
   label: ReactNode;
   hint?: string;
+  shape?: ImageShape;
   value: ImageAsset | null;
   onChange: (asset: ImageAsset | null) => void;
 }
@@ -15,7 +19,45 @@ function formatSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export function ImageUpload({ id, label, hint, value, onChange }: SingleProps) {
+/** Reads the pixel size of an uploaded image, for shape warnings. */
+function useImageSize(asset: ImageAsset | null): { w: number; h: number } | null {
+  const [size, setSize] = useState<{ w: number; h: number } | null>(null);
+  useEffect(() => {
+    setSize(null);
+    if (!asset) return;
+    let cancelled = false;
+    const img = new Image();
+    img.onload = () => {
+      if (!cancelled) setSize({ w: img.naturalWidth, h: img.naturalHeight });
+    };
+    img.src = urlFor(asset);
+    return () => {
+      cancelled = true;
+    };
+  }, [asset]);
+  return size;
+}
+
+function shapeWarning(shape: ImageShape | undefined, size: { w: number; h: number } | null): string | null {
+  if (!shape || !size) return null;
+  if (shape === "landscape") {
+    if (size.h > size.w) {
+      return "This photo is taller than it is wide. The site will crop the top and bottom off to fit the space. A landscape photo works better here.";
+    }
+    if (size.w < 1200) {
+      return `This photo is only ${size.w} pixels across, so it may look soft on a big screen. Bigger is better for the top of the page.`;
+    }
+  }
+  if (shape === "wide" && size.h >= size.w) {
+    return "This logo is as tall as it is wide, so it will show quite small in the header. A wide version, if you have one, fits better.";
+  }
+  return null;
+}
+
+export function ImageUpload({ id, label, hint, shape, value, onChange }: SingleProps) {
+  const size = useImageSize(value);
+  const warning = shapeWarning(shape, size);
+
   function pick(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -34,15 +76,16 @@ export function ImageUpload({ id, label, hint, value, onChange }: SingleProps) {
         <label htmlFor={id}>{label}</label>
       </div>
       <div className="upload">
-        <div className="upload-drop">
-          <span>{value ? "Choose a different picture" : "Choose a picture from your device"}</span>
+        <label className="upload-drop" htmlFor={id}>
+          <span>{value ? "Choose a different picture" : "Tap or click here to choose a picture from your device"}</span>
           <input id={id} type="file" accept="image/*" onChange={pick} />
-        </div>
+        </label>
         {value && (
           <div className="upload-preview">
             <img src={urlFor(value)} alt="" />
             <div className="small muted" style={{ marginTop: "0.4rem" }}>
-              {value.name} ({formatSize(value.blob.size)})
+              {value.name} ({formatSize(value.blob.size)}
+              {size ? `, ${size.w} × ${size.h}` : ""})
             </div>
             <div className="btn-row">
               <button type="button" className="btn btn--quiet btn--danger" onClick={remove}>
@@ -53,6 +96,11 @@ export function ImageUpload({ id, label, hint, value, onChange }: SingleProps) {
         )}
       </div>
       {hint && <span className="field-hint">{hint}</span>}
+      {warning && (
+        <div className="notice notice--tape" role="status" style={{ marginTop: "0.75rem" }}>
+          <p>{warning}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -88,10 +136,10 @@ export function MultiImageUpload({ id, label, hint, images, max, onChange }: Mul
           {images.length} of {max}
         </span>
       </div>
-      <div className="upload-drop">
-        <span>{room > 0 ? `Choose up to ${room} more` : "That's the maximum for this template"}</span>
+      <label className="upload-drop" htmlFor={id}>
+        <span>{room > 0 ? `Tap or click here to choose up to ${room} more` : "That's the maximum for this template"}</span>
         <input id={id} type="file" accept="image/*" multiple onChange={pick} disabled={room === 0} />
-      </div>
+      </label>
       {images.length > 0 && (
         <ul className="thumbs">
           {images.map((img, i) => (

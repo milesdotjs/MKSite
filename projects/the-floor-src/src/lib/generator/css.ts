@@ -40,6 +40,7 @@ ${fontFaces ? fontFaces + "\n" : ""}
   --font-heading: ${font.headingFamily};
   --font-body: ${font.bodyFamily};
   --heading-weight: ${font.headingWeight};
+  --heading-leading: ${font.headingLineHeight};
   --radius: 14px;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   --container: 1120px;
@@ -61,7 +62,7 @@ a { color: var(--color-primary); }
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: var(--heading-weight);
-  line-height: 1.2;
+  line-height: var(--heading-leading);
   margin: 0 0 0.5em;
 }
 h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }

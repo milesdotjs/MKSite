@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { generateSite } from "../../../lib/generator";
+import { generateSite, misleadingSummary } from "../../../lib/generator";
 import { buildZip, downloadBlob } from "../../../lib/zip";
 import { Explainer } from "../Explainer";
 import type { StepProps } from "../types";
@@ -11,9 +11,10 @@ function formatSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-export function DownloadStep({ answers, startOver }: StepProps) {
+export function DownloadStep({ answers, startOver, goTo }: StepProps) {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const site = useMemo(() => generateSite(answers), [answers]);
+  const misleading = useMemo(() => misleadingSummary(answers), [answers]);
   const files = [...Object.keys(site.files), ...site.images.map((i) => i.path), ...site.fonts.map((f) => f.path)].sort();
 
   async function download() {
@@ -33,6 +34,19 @@ export function DownloadStep({ answers, startOver }: StepProps) {
       <p className="lede">
         A ZIP of plain HTML, CSS and your pictures. The same thing a template site gives you. <Explainer term="static-site" />
       </p>
+
+      {misleading && (
+        <div className="notice notice--tape" role="alert">
+          <p>
+            <strong>Before this goes online:</strong> {misleading}. Those came from the example text, and visitors will believe them.
+          </p>
+          <div className="btn-row">
+            <button type="button" className="btn btn--ghost" onClick={() => goTo("content")}>
+              Go back and fix them
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="download-box">
         <div className="btn-row">

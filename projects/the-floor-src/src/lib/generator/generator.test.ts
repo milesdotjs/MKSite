@@ -15,6 +15,10 @@ import {
   CHAMPION_NAMES,
   pickChampionNames,
   placeholderContent,
+  placeholderFields,
+  misleadingPlaceholders,
+  misleadingSummary,
+  typeNoun,
   type Answers,
   type ImageAsset,
 } from "./index";
@@ -200,6 +204,31 @@ describe("defaults", () => {
     expect(b.seed).toBe(7);
     expect(b.about.team.map((t) => t.name)).toEqual(a.about.team.map((t) => t.name));
     expect(b.about.team.map((t) => t.role)).toEqual(BUSINESS_TYPES.find((t) => t.id === "fitness")!.teamRoles);
+  });
+
+  it("lists what is still placeholder, and warns in the README about made-up contact details", () => {
+    const a = defaultAnswers("restaurant", 3);
+    a.businessName = "Blue Door Café";
+    expect(placeholderFields(a)).toContain("address, phone number, email address");
+    expect(misleadingPlaceholders(a)).toEqual(["team names", "address, phone number, email address", "opening hours"]);
+    expect(misleadingSummary(a)).toBe(
+      "the contact page still shows the made-up address, phone number, email address and opening hours, and the about page still lists 2 made-up team members",
+    );
+    expect(generateSite(a).files["README.txt"]).toContain("BEFORE YOU PUT IT ONLINE");
+
+    a.home.headline = "My own headline";
+    expect(placeholderFields(a)).not.toContain("home page headline");
+
+    a.contact = { address: "1 Real St", phone: "0400 000 000", email: "me@real.com", hours: "Always" };
+    a.about.team = [];
+    expect(misleadingPlaceholders(a)).toEqual([]);
+    expect(misleadingSummary(a)).toBeNull();
+    const readme = generateSite(a).files["README.txt"];
+    expect(readme).not.toContain("BEFORE YOU PUT IT ONLINE");
+    expect(readme).toContain("Extract All");
+    expect(readme).not.toContain("assets/"); // nothing uploaded, system font: no assets folder to describe
+    expect(typeNoun(a)).toBe("restaurant or café");
+    expect(typeNoun(defaultAnswers("other"))).toBe("business");
   });
 
   it("every default feature icon exists in the icon set", () => {

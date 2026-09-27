@@ -25,6 +25,8 @@ export interface FontStyle {
   bodyFamily: string;
   /** Weight for h1 to h3. Cursive faces only come in one weight. */
   headingWeight: 400 | 700;
+  /** Line height for headings. Cursive faces need more room for their tails. */
+  headingLineHeight: number;
   files: FontFile[];
 }
 
@@ -39,6 +41,7 @@ export const FONT_STYLES: readonly FontStyle[] = [
     headingFamily: ARIAL,
     bodyFamily: ARIAL,
     headingWeight: 700,
+    headingLineHeight: 1.2,
     files: [],
   },
   {
@@ -48,6 +51,7 @@ export const FONT_STYLES: readonly FontStyle[] = [
     headingFamily: `Montserrat, ${ARIAL}`,
     bodyFamily: ARIAL,
     headingWeight: 700,
+    headingLineHeight: 1.2,
     files: [
       { file: "montserrat-400.woff2", family: "Montserrat", weight: 400 },
       { file: "montserrat-700.woff2", family: "Montserrat", weight: 700 },
@@ -60,6 +64,7 @@ export const FONT_STYLES: readonly FontStyle[] = [
     headingFamily: GEORGIA,
     bodyFamily: GEORGIA,
     headingWeight: 700,
+    headingLineHeight: 1.2,
     files: [],
   },
   {
@@ -69,6 +74,7 @@ export const FONT_STYLES: readonly FontStyle[] = [
     headingFamily: `'Playfair Display', ${GEORGIA}`,
     bodyFamily: GEORGIA,
     headingWeight: 700,
+    headingLineHeight: 1.2,
     files: [
       { file: "playfair-display-400.woff2", family: "Playfair Display", weight: 400 },
       { file: "playfair-display-700.woff2", family: "Playfair Display", weight: 700 },
@@ -81,6 +87,7 @@ export const FONT_STYLES: readonly FontStyle[] = [
     headingFamily: `Pacifico, 'Brush Script MT', cursive`,
     bodyFamily: ARIAL,
     headingWeight: 400,
+    headingLineHeight: 1.35,
     files: [{ file: "pacifico-400.woff2", family: "Pacifico", weight: 400 }],
   },
 ];

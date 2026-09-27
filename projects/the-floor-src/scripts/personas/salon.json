@@ -1,0 +1,14 @@
+{
+  "name": "Salon Luna",
+  "tagline": "",
+  "type": "Salon",
+  "layout": "Split screen",
+  "palette": "Wine",
+  "font": "Festive",
+  "logo": null,
+  "pages": ["About", "Gallery", "Contact"],
+  "hero": "images/salon-hero-portrait.jpg",
+  "gallery": ["images/salon-g1.jpg", "images/salon-g2.jpg", "images/salon-g3.jpg", "images/salon-g4.jpg"],
+  "story": "I opened Salon Luna in 2019 after twelve years working for other people.\n\nIt's just me and one chair. Book ahead, I don't do walk-ins.",
+  "viewport": { "width": 768, "height": 1024 }
+}

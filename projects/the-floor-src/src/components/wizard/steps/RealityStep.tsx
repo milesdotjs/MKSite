@@ -1,10 +1,10 @@
 import {
   enabledPages,
-  getBusinessType,
   getFontStyle,
   getLayout,
   getPalette,
-  hasCustomText,
+  placeholderFields,
+  typeNoun,
 } from "../../../lib/generator";
 import { CLOSING_LINE, REALITY_CHECK, TIERS, type Tier } from "../../../content/realityCheck";
 import { withBase } from "../../../lib/base";
@@ -15,9 +15,15 @@ export function RealityStep({ answers }: StepProps) {
   const layout = getLayout(answers.layout);
   const palette = getPalette(answers.palette);
   const font = getFontStyle(answers.fontStyle);
-  const custom = hasCustomText(answers);
-  const type = getBusinessType(answers.businessType).name.toLowerCase();
+  const leftover = placeholderFields(answers);
+  const type = typeNoun(answers);
   const photos = (answers.home.heroImage ? 1 : 0) + answers.gallery.images.length;
+  const wordsLine =
+    leftover.length === 0
+      ? "Your words, exactly as you typed them"
+      : leftover.length >= 8
+        ? `Placeholder words for a ${type}, because you didn't change them`
+        : `Your words in most places. Still placeholder: ${leftover.join("; ")}`;
 
   const got: string[] = [
     `${pages.length === 1 ? "One page" : `${pages.length} pages`}: ${pages.map((p) => p.label.toLowerCase()).join(", ")}`,
@@ -25,7 +31,7 @@ export function RealityStep({ answers }: StepProps) {
     `Colours: ${palette.name}`,
     `Fonts: ${font.name.toLowerCase()} (${font.detail.toLowerCase()})`,
     answers.logo ? "Your logo in the header" : "Your name as a text logo",
-    custom ? "Your words, exactly as you typed them" : `Placeholder words for a ${type}, because you didn't change them`,
+    wordsLine,
     photos ? `${photos} ${photos === 1 ? "photo" : "photos"}, exactly as uploaded` : "No photos, so flat colour where they'd go",
     "Works on phones, tablets and desktops",
     "Plain HTML and CSS. Opens by double-clicking, hosts for free",

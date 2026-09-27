@@ -3,7 +3,7 @@ import {
   MAX_GALLERY_IMAGES,
   MAX_SERVICES,
   MAX_TEAM,
-  getBusinessType,
+  typeNoun,
   type AboutContent,
   type ContactContent,
   type HomeContent,
@@ -22,7 +22,7 @@ export function ContentStep({ answers, setAnswers }: StepProps) {
   const setServices = (patch: Partial<ServicesContent>) => setAnswers((a) => ({ ...a, services: { ...a.services, ...patch } }));
   const setContact = (patch: Partial<ContactContent>) => setAnswers((a) => ({ ...a, contact: { ...a.contact, ...patch } }));
 
-  const typeName = getBusinessType(answers.businessType).name.toLowerCase();
+  const typeName = typeNoun(answers);
 
   return (
     <>
@@ -43,6 +43,7 @@ export function ContentStep({ answers, setAnswers }: StepProps) {
             </>
           }
           hint="Optional. Wide and landscape, at least 1920 pixels across. If you skip it, the top of the page is a flat block of your main colour."
+          shape="landscape"
           value={answers.home.heroImage}
           onChange={(heroImage) => setHome({ heroImage })}
         />
@@ -124,6 +125,9 @@ export function ContentStep({ answers, setAnswers }: StepProps) {
             <div className="field-label">
               Team members <span className="muted small">optional, up to {MAX_TEAM}</span>
             </div>
+            <span className="field-hint" style={{ marginBottom: "0.75rem" }}>
+              The names here are examples. Replace them with real people, or remove them all if it's just you and the section disappears.
+            </span>
             {answers.about.team.map((t, i) => (
               <div key={i} className="repeat-item">
                 <button
@@ -196,7 +200,7 @@ export function ContentStep({ answers, setAnswers }: StepProps) {
                   onChange={(e) => setServices({ items: answers.services.items.map((x, j) => (j === i ? { ...x, name: e.target.value } : x)) })}
                 />
               </div>
-              <div className="field-row field-row--3" style={{ gridTemplateColumns: "3fr 1fr" }}>
+              <div className="field-row field-row--price">
                 <div className="field">
                   <div className="field-label">
                     <label htmlFor={`service-desc-${i}`}>Short description</label>

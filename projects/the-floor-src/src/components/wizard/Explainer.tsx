@@ -19,7 +19,16 @@ export function Explainer({ term }: { term: string }) {
 
   useEffect(() => {
     if (!open) return;
-    closeRef.current?.focus();
+    closeRef.current?.focus({ preventScroll: true });
+    // The wizard pins a Back/Next bar to the bottom of the viewport. If the
+    // panel opens underneath it, scroll just enough to bring it into view.
+    const panel = panelRef.current;
+    if (panel && window.matchMedia("(min-width: 561px)").matches) {
+      const bar = document.querySelector<HTMLElement>(".wizard-nav");
+      const limit = window.innerHeight - (bar ? bar.offsetHeight : 0) - 16;
+      const rect = panel.getBoundingClientRect();
+      if (rect.bottom > limit) window.scrollBy({ top: Math.min(rect.bottom - limit, rect.top - 16), behavior: "smooth" });
+    }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();

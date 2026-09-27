@@ -45,10 +45,10 @@ async function next(page) {
   page.on("console", (m) => {
     if (m.type() === "error") errors.push(`console: ${m.text()}`);
   });
-  page.on("requestfailed", (r) => errors.push(`requestfailed: ${r.url()} ${r.failure()?.errorText}`));
+  page.on("requestfailed", (r) => /googletagmanager.com|google-analytics.com|analytics.google.com/.test(r.url()) || errors.push(`requestfailed: ${r.url()} ${r.failure()?.errorText}`));
   const origin = new URL(base).origin;
   const offOrigin = new Set();
-  page.on("request", (r) => { const u = r.url(); if (!u.startsWith(origin) && !u.startsWith("file:") && !u.startsWith("about:") && !u.startsWith("data:") && !u.startsWith("blob:")) offOrigin.add(u); });
+  page.on("request", (r) => { const u = r.url(); if (!u.startsWith(origin) && !u.startsWith("file:") && !u.startsWith("about:") && !u.startsWith("data:") && !u.startsWith("blob:") && !/googletagmanager.com|google-analytics.com|analytics.google.com/.test(u)) offOrigin.add(u); });
   const cdp = await page.createCDPSession();
   await cdp.send("Browser.setDownloadBehavior", { behavior: "allow", downloadPath: dl });
 
@@ -227,7 +227,7 @@ async function next(page) {
   await shot(page, "23-after-start-over", false);
 
   if (offOrigin.size) errors.push("Off-origin requests: " + [...offOrigin].join(", "));
-  else console.log("No off-origin requests during the whole session.");
+  else console.log("No off-origin requests during the whole session (Google Tag Manager page-view beacons excluded).");
 
   await browser.close();
   console.log("\nERRORS:", errors.length ? "\n" + errors.join("\n") : "none");

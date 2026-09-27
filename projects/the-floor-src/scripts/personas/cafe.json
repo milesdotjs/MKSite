@@ -1,0 +1,14 @@
+{
+  "name": "Blue Door Café",
+  "tagline": "Good coffee, no fuss",
+  "type": "Restaurant",
+  "layout": "Big image banner",
+  "palette": "Teal",
+  "font": "Elegant",
+  "logo": "images/cafe-logo.png",
+  "pages": ["About", "Services", "Gallery", "Contact"],
+  "hero": "images/cafe-hero.jpg",
+  "gallery": ["images/cafe-g1.jpg", "images/cafe-g2.jpg", "images/cafe-g3.jpg", "images/cafe-g4.jpg", "images/cafe-g5.jpg", "images/cafe-g6.jpg"],
+  "headline": "Coffee worth crossing town for",
+  "viewport": { "width": 1280, "height": 800 }
+}
