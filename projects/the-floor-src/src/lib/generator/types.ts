@@ -111,6 +111,12 @@ export interface Answers {
   palette: string;
   fontStyle: FontStyleId;
   logo: ImageAsset | null;
+  /**
+   * The "Pro" upgrade: scroll reveals, hover lifts, a sticky-header shadow.
+   * Pure decoration. It changes nothing about what the site can do, which is
+   * the entire reason the option exists.
+   */
+  pro: boolean;
   /** Always contains "home". Order is fixed by ALL_PAGES, not by this array. */
   pages: PageId[];
   home: HomeContent;

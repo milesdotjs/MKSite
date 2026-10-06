@@ -5,6 +5,7 @@
 
 import type { GeneratedPage, LayoutId } from "./types";
 import { esc } from "./escape";
+import { MOTION_BODY_SCRIPT, MOTION_HEAD_SCRIPT } from "./motion";
 
 export interface ShellOptions {
   title: string;
@@ -19,6 +20,8 @@ export interface ShellOptions {
   /** Either a <link> to styles.css or an inline <style> block. */
   styleTag: string;
   body: string;
+  /** The "Pro" upgrade: adds the two small motion scripts. */
+  pro: boolean;
 }
 
 function navLinks(pages: GeneratedPage[], current: GeneratedPage): string {
@@ -39,7 +42,7 @@ export function renderDocument(o: ShellOptions): string {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(o.title)}</title>
   <meta name="description" content="${esc(o.description)}">
-  ${o.styleTag}
+  ${o.styleTag}${o.pro ? "\n  " + MOTION_HEAD_SCRIPT : ""}
 </head>
 <body class="layout-${o.layout}">
 <header class="site-header">
@@ -63,7 +66,7 @@ ${o.body}
       ${navLinks(o.pages, o.current)}
     </nav>
   </div>
-</footer>
+</footer>${o.pro ? "\n" + MOTION_BODY_SCRIPT : ""}
 </body>
 </html>
 `;

@@ -95,8 +95,12 @@ async function next(page) {
   await next(page);
 
   await page.waitForSelector(".check");
-  // Turn on gallery.
-  const gallery = (await page.$$(".check"))[3];
+  // Turn on gallery. Found by label, since the page order is Home, Gallery, Services, About, Contact.
+  let gallery = null;
+  for (const c of await page.$$(".check")) {
+    if ((await c.$eval("strong", (el) => el.textContent.trim())) === "Gallery") gallery = c;
+  }
+  if (!gallery) throw new Error("No Gallery checkbox on the Pages step");
   await gallery.click();
   await shot(page, "15-pages");
   await next(page);

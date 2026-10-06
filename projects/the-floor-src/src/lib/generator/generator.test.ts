@@ -19,6 +19,7 @@ import {
   misleadingPlaceholders,
   misleadingSummary,
   typeNoun,
+  motionCost,
   type Answers,
   type ImageAsset,
 } from "./index";
@@ -133,6 +134,33 @@ describe("pages and navigation", () => {
     expect(placeholderFields(b)).not.toContain("the second home page section");
     b.home.secondImage = fakeImage("s2");
     expect(placeholderFields(b)).toContain("the second home page section");
+  });
+
+  it("the Pro upgrade is off by default and adds only decoration when on", () => {
+    const plain = generateSite(answersWith());
+    expect(plain.files["index.html"]).not.toContain("<script");
+    expect(plain.files["styles.css"]).not.toContain("Pro");
+    expect(plain.files["README.txt"]).not.toContain("animations");
+
+    const pro = generateSite(answersWith({ pro: true }));
+    const html = pro.files["index.html"];
+    // Two small inline scripts, nothing fetched from anywhere.
+    expect((html.match(/<script>/g) || []).length).toBe(2);
+    expect(html).not.toMatch(/<script[^>]+src=/);
+    expect(html).toContain("prefers-reduced-motion");
+    expect(html).toContain("IntersectionObserver");
+    expect(pro.files["styles.css"]).toContain("/* ---------- Pro ---------- */");
+    expect(pro.files["styles.css"]).toContain(".js-motion .reveal");
+    expect(pro.files["README.txt"]).toContain("decoration");
+    // Same pages, same images, same words: the upgrade changes nothing else.
+    expect(pro.pages).toEqual(plain.pages);
+    expect(pro.images.length).toBe(plain.images.length);
+    const strip = (s: string) => s.replace(/<script>[\s\S]*?<\/script>/g, "").replace(/\s+/g, " ");
+    expect(strip(html)).toBe(strip(plain.files["index.html"]));
+    // Honest about the cost in the only unit a developer page would use.
+    const cost = motionCost();
+    expect(cost.css).toBeGreaterThan(20);
+    expect(cost.js).toBeLessThan(30);
   });
 
   it("inlines css for the preview and links it for the download", () => {

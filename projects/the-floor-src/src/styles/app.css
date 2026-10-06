@@ -1173,3 +1173,157 @@ body:has(.wizard) .site-footer {
   white-space: nowrap;
   border: 0;
 }
+
+/* ---------- The "Pro" upsell ---------- */
+.pro-offer {
+  display: grid;
+  gap: 1.25rem;
+  align-items: center;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  padding: 1.5rem;
+  margin: 0 0 1.5rem;
+  box-shadow: 8px 8px 0 var(--tape);
+}
+@media (min-width: 700px) {
+  .pro-offer {
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+  }
+}
+.pro-offer h2 {
+  margin: 0.1rem 0 0.5rem;
+}
+.pro-offer-text p:last-child {
+  margin: 0;
+}
+.pro-eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.pro-offer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pro-price {
+  font-size: 0.9375rem;
+  color: var(--ink-3);
+}
+.pro-reveal {
+  margin: 0 0 1.5rem;
+}
+
+/* ---------- Full-screen preview ---------- */
+.preview--full {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #d9d9d4;
+  display: flex;
+  flex-direction: column;
+}
+.preview--full::backdrop {
+  background: #d9d9d4;
+}
+.preview--full .preview-stage {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: #d9d9d4;
+  overflow: auto;
+}
+.preview--full .preview-frame {
+  height: 100%;
+  border: 0;
+}
+.preview--full .preview-frame--tablet,
+.preview--full .preview-frame--mobile {
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+}
+.preview--full .preview-bar {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  margin: 0;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  max-width: calc(100vw - 2rem);
+  overflow-x: auto;
+  background: var(--ink);
+  padding: 0.5rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.preview--full .seg {
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+}
+.preview--full .seg + .seg {
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  padding-left: 0.5rem;
+}
+.preview--full .seg button {
+  border-color: transparent;
+  background: transparent;
+  color: var(--paper);
+  border-radius: 999px;
+  min-height: 40px;
+  padding: 0.45rem 0.8rem;
+  white-space: nowrap;
+}
+.preview--full .seg button[aria-pressed="true"] {
+  background: var(--paper);
+  color: var(--ink);
+}
+.preview--full .preview-full-toggle button,
+.preview--full .preview-full-toggle button[aria-pressed="true"] {
+  background: var(--tape);
+  color: var(--ink);
+  font-weight: 600;
+}
+.preview-exit {
+  display: none;
+}
+@media (max-width: 699px) {
+  .preview--full .preview-exit {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 3;
+    appearance: none;
+    font: inherit;
+    font-weight: 600;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: var(--tape);
+    color: var(--ink);
+    padding: 0.5rem 0.9rem;
+    min-height: 44px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  }
+  /* A phone can't show a wider frame than itself, and the exit is now top-right. */
+  .preview--full .seg[aria-label="Screen size"],
+  .preview--full .preview-full-toggle {
+    display: none;
+  }
+  .preview--full .preview-bar {
+    left: 0.75rem;
+    right: 0.75rem;
+    transform: none;
+    max-width: none;
+    justify-content: center;
+  }
+}

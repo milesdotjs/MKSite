@@ -35,6 +35,9 @@ export function RealityStep({ answers }: StepProps) {
     photos ? `${photos} ${photos === 1 ? "photo" : "photos"}, exactly as uploaded` : "No photos, so flat colour where they'd go",
     "Works on phones, tablets and desktops",
     "Plain HTML and CSS. Opens by double-clicking, hosts for free",
+    ...(answers.pro
+      ? ["The \"Pro\" look: things fade in, cards lift, the menu underlines itself. One click. It changed nothing the site can do"]
+      : []),
   ];
 
   const tiers: Tier[] = ["essential", "depends"];

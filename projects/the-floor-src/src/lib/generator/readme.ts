@@ -10,10 +10,12 @@ export interface ReadmeOptions {
   hasImages: boolean;
   /** From misleadingSummary(); null when nothing made-up is left. */
   warning: string | null;
+  /** Whether the "Pro" motion was switched on. */
+  pro?: boolean;
 }
 
 export function buildReadme(name: string, pages: GeneratedPage[], opts: ReadmeOptions): string {
-  const { hasFonts, hasImages, warning } = opts;
+  const { hasFonts, hasImages, warning, pro = false } = opts;
   const pageList = pages.map((p) => `  ${p.file.padEnd(14)} ${p.label === "Home" ? "your home page" : `your ${p.label.toLowerCase()} page`}`).join("\n");
   const assetsLine =
     hasImages && hasFonts
@@ -119,7 +121,15 @@ WHAT THIS SITE DOESN'T DO
     local business, a free Google Business Profile (google.com/business)
     does more for that than the website itself. Set one up and put this
     site's address in it.
-  - Your pictures went in exactly as you gave them, not made smaller.
+  - Your pictures went in exactly as you gave them, not made smaller.${
+    pro
+      ? `
+  - The animations (things fading in, cards lifting when you hover) are
+    decoration. They were one click in the tool and they don't make the
+    site do anything. If a quote lists "animations", "interactions" or
+    "polish" as something you're paying for, this is what that means.`
+      : ""
+  }
   - There's no booking, payments, analytics, or anything specific to how
     your business works.
 

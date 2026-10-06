@@ -397,7 +397,6 @@ DOC = '''<!DOCTYPE html>
         <p class="chip-label">ANALYTICS &amp; DATA</p>
         <ul class="chips"><li>GA4</li><li>GTM</li><li>LOOKER STUDIO</li><li>BIGQUERY</li><li>DATA VIZ</li></ul>
       </div>
-      <a class="btn btn-ghost" data-magnet href="#"><span data-scramble>RESUME.PDF &darr;</span></a>
     </div>
   </div>
 </section>

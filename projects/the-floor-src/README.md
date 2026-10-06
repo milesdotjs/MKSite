@@ -126,3 +126,29 @@ node scripts/shoot-example-thumbs.cjs
 
 If the photographs are re-fetched, the credits in `src/content/examples.ts`
 are regenerated with them. Don't hand-edit that file.
+
+## The "Pro" upgrade
+
+The preview step offers a free "Upgrade to Pro": scroll reveals with a
+stagger, hover lifts, a nav underline, a header shadow. It exists to show what
+"animations and interactions" on a quote actually are. Everything about it
+lives in `src/lib/generator/motion.ts`: plain CSS plus two small inline
+scripts, no library, so the download stays dependency-free and still opens
+offline. `motionCost()` counts the lines from the real output; the developers
+page prints that number, the wizard deliberately does not (a buyer measures
+effort and result, not lines).
+
+The preview iframe is `sandbox="allow-same-origin allow-scripts"` so the
+motion runs in the preview. That is safe only because the frame holds nothing
+but HTML this generator wrote, with every user string escaped and no inline
+handlers. Keep it that way.
+
+## Full-screen preview
+
+The preview bar has a "Full screen" button. It takes over the viewport with
+one floating control strip (page, screen size, exit) so the site looks the
+way it will in a browser tab, and asks the browser for real full screen where
+that's allowed. Escape or the button leaves it; `fullscreenchange` is watched
+so the browser's own exit also closes the overlay. It is an in-app overlay
+first and native full screen second, because iPhones only allow the latter
+for video. Geometry is checked by `qa-shots/pro/check-fullscreen.cjs`.

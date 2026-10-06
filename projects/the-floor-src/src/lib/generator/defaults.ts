@@ -56,6 +56,7 @@ export function defaultAnswers(type: BusinessType = DEFAULT_BUSINESS_TYPE, seed:
     palette: DEFAULT_PALETTE_ID,
     fontStyle: DEFAULT_FONT_STYLE_ID,
     logo: null,
+    pro: false,
     pages: ["home", "about", "services", "contact"],
     gallery: { images: [] },
     ...placeholderContent(type, seed),

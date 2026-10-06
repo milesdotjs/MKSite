@@ -564,7 +564,6 @@ def build_index():
         <p class="chip-label">ANALYTICS &amp; DATA</p>
         <ul class="chips"><li>GA4</li><li>GTM</li><li>LOOKER STUDIO</li><li>BIGQUERY</li><li>DATA VIZ</li></ul>
       </div>
-      <a class="btn btn-ghost" data-magnet href="assets/Miles-King.pdf" target="_blank" rel="noopener"><span data-scramble>RESUME.PDF &darr;</span></a>
     </div>
   </div>
 </section>
@@ -746,7 +745,6 @@ def build_about():
       </div>
 
       <div class="cta-row">
-        <a class="btn btn-pink" data-magnet href="assets/Miles-King.pdf" target="_blank" rel="noopener"><span data-scramble>VIEW RESUME &darr;</span></a>
         <a class="btn btn-cyan" data-magnet href="projects.html"><span data-scramble>SEE MY WORK</span></a>
       </div>
     </div>

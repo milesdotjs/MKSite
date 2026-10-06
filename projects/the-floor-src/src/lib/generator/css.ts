@@ -10,6 +10,7 @@ import type { Answers, GenerateOptions } from "./types";
 import { getPalette } from "./presets/palettes";
 import { getFontStyle } from "./presets/fontStyles";
 import { cssUrl } from "./escape";
+import { MOTION_CSS } from "./motion";
 
 export const FONT_DIR = "assets/fonts";
 
@@ -429,7 +430,7 @@ p:last-child { margin-bottom: 0; }
 
 /* ---------- Motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
-`;
+${answers.pro ? MOTION_CSS : ""}`;
 }

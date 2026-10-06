@@ -191,6 +191,18 @@ export const GLOSSARY: readonly GlossaryEntry[] = [
     developer: "A developer writes one for every page, aimed at the searches you want to win.",
   },
   {
+    id: "animations",
+    term: "Animations",
+    definition: "Things fading in as you scroll, cards lifting when you hover, a shadow under the menu. Decoration that makes a template feel finished.",
+    where: "section",
+    tips: [
+      "In this tool it's the \"Upgrade to Pro\" button on the preview step. One click, free, and the site does nothing new.",
+      "If a quote lists \"animations\", \"interactions\" or \"polish\" as a line item, ask to see the site with them switched off. Then ask what the difference costs.",
+      "Real motion design, where movement guides your eye to the thing that matters, is a skill. A fade-in on scroll is not it.",
+    ],
+    developer: "A developer decides whether motion earns its place at all, and makes sure it respects people who have asked their device for less of it.",
+  },
+  {
     id: "static-site",
     term: "Static site",
     definition: "A site that's just files: pages, pictures and styles. No database, no login, no server code.",

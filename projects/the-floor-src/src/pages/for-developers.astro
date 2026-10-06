@@ -1,7 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
 import { withBase } from "../lib/base";
+import { motionCost } from "../lib/generator";
 
+const cost = motionCost();
 const url = new URL(withBase(""), Astro.site).toString();
 const snippet = `<a href="${url}">Here's the baseline. Here's what I add.</a>`;
 ---
@@ -32,6 +34,17 @@ const snippet = `<a href="${url}">Here's the baseline. Here's what I add.</a>`;
       The <a href={withBase("build/")}>Reality Check</a> at the end of the wizard lists ten things a developer worth paying should cover, with the
       questions a client should ask. Answer those questions in your proposal before they ask. If your answer to any of them is "I don't do that",
       say so and say who does.
+    </p>
+
+    <h2>About the "Pro" button</h2>
+    <p>
+      The preview step offers a free upgrade to Pro: scroll reveals with a stagger, hover lifts, a nav underline, a header shadow. A client
+      sees it as the difference between a template and a designed site. You know what it is. For the record, it is {cost.css} lines of CSS and{" "}
+      {cost.js} lines of JavaScript with no library, counted from the output, and it ships inline so the download stays dependency-free.
+    </p>
+    <p>
+      The reason it exists is the quote that lists "animations and interactions" as a line item. If that is you, nothing here is aimed at
+      you. If it is someone you are competing against, send the client to the preview step and let them press the button.
     </p>
 
     <h2>The exploration is the work</h2>

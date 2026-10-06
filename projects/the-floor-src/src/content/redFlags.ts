@@ -45,6 +45,10 @@ export const RED_FLAGS: readonly RedFlag[] = [
     text: "Ask what standard they build to. 'It works on mobile' isn't an answer. If they've never heard the question, they haven't thought about it.",
   },
   {
+    title: "The demo leads with things that move",
+    text: "Fade-ins, hover effects, a header that shrinks as you scroll. It looks like craft and it is the cheapest thing on the page: this tool adds all of it with one click, free. If motion is the first thing they show you, ask what the site does, not what it does while you watch.",
+  },
+  {
     title: "They talk about the tools more than your customers",
     text: "The framework, the platform, the builder. None of that is your problem. What your visitors do when they land is.",
   },

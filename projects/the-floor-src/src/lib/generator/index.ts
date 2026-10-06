@@ -23,6 +23,7 @@ export { ICONS, ICON_IDS, getIcon } from "./presets/icons";
 export { CHAMPION_NAMES, pickChampionNames, randomSeed } from "./presets/champions";
 export { PAGE_META } from "./pages";
 export { FONT_DIR } from "./css";
+export { motionCost } from "./motion";
 
 /** The enabled pages in canonical order, home always first, capped at MAX_PAGES. */
 export function enabledPages(answers: Pick<Answers, "pages">): GeneratedPage[] {
@@ -74,6 +75,7 @@ export function generateSite(answers: Answers, options: GenerateOptions = {}): G
       year,
       styleTag,
       body,
+      pro: answers.pro,
     });
   }
 
@@ -82,7 +84,12 @@ export function generateSite(answers: Answers, options: GenerateOptions = {}): G
   }
 
   const fonts = getFontStyle(answers.fontStyle).files.map((f) => ({ path: `${FONT_DIR}/${f.file}`, file: f.file }));
-  files["README.txt"] = buildReadme(name, pages, { hasFonts: fonts.length > 0, hasImages: images.length > 0, warning: misleadingSummary(answers) });
+  files["README.txt"] = buildReadme(name, pages, {
+    hasFonts: fonts.length > 0,
+    hasImages: images.length > 0,
+    warning: misleadingSummary(answers),
+    pro: answers.pro,
+  });
 
   return { files, pages, images, fonts };
 }
