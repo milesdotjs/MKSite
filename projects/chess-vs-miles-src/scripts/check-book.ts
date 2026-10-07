@@ -12,6 +12,7 @@ import { WHITE_LINES } from '../src/book/white';
 import { WHITE_SIDELINES } from '../src/book/white-sidelines';
 import { BLACK_E4_LINES } from '../src/book/black-e4';
 import { BLACK_E4_MORE } from '../src/book/black-e4-more';
+import { BLACK_E4_ANTI } from '../src/book/black-e4-anti';
 import { BLACK_D4_LINES } from '../src/book/black-d4';
 import { BLACK_D4_MORE } from '../src/book/black-d4-more';
 import { bookFor, bookKey, openingName, tokens } from '../src/book/book';
@@ -22,6 +23,7 @@ const sets: Array<[string, 'w' | 'b', Line[]]> = [
   ['white-sidelines', 'w', WHITE_SIDELINES],
   ['black-e4', 'b', BLACK_E4_LINES],
   ['black-e4-more', 'b', BLACK_E4_MORE],
+  ['black-e4-anti', 'b', BLACK_E4_ANTI],
   ['black-d4', 'b', BLACK_D4_LINES],
   ['black-d4-more', 'b', BLACK_D4_MORE],
 ];

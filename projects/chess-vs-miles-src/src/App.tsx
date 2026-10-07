@@ -57,6 +57,8 @@ export function App() {
   const nextId = useRef(0);
   const prevCp = useRef<number | null>(null);
   const leftBook = useRef(false);
+  /** Opening name before the current move; used to see what a move added. */
+  const openingRef = useRef<string | null>(null);
   const resignStreak = useRef(0);
   const warnedLow = useRef({ w: false, b: false });
   const moodTimer = useRef(0);
@@ -200,6 +202,7 @@ export function App() {
       setOpening(null);
       prevCp.current = null;
       leftBook.current = false;
+      openingRef.current = null;
       resignStreak.current = 0;
       warnedLow.current = { w: false, b: false };
       resetQuips();
@@ -273,6 +276,7 @@ export function App() {
     (from: Square, to: Square, promo?: PieceSymbol) => {
       if (phase !== 'playerTurn') return;
       const chess = chessRef.current;
+      const book = bookRef.current!;
       const piece = chess.get(from);
       const lastRank = player === 'w' ? '8' : '1';
       if (!promo && piece?.type === 'p' && piece.color === player && to[1] === lastRank) {
@@ -282,14 +286,24 @@ export function App() {
           return;
         }
       }
+      // Did the book expect *some* reply here? If so and the player picks a
+      // move it does not know, they left the book; if not, the prep simply ran
+      // out and there is nothing to remark on.
+      const bookExpected = bookHadReply(chess, book);
+
       const move = applyMove(from, to, promo);
       if (!move) return;
 
-      const name = openingName(bookRef.current!, chess.fen());
+      const name = openingName(book, chess.fen());
+      const stillInBook = book.names.has(bookKey(chess.fen()));
+      const prevName = openingRef.current;
+      openingRef.current = name;
       setOpening(name);
 
       if (settle()) return;
 
+      // Miles only talks back to what the player just did; his own moves are
+      // silent. Most specific first.
       if (move.captured) {
         const heavy = move.captured === 'q' || move.captured === 'r';
         say(heavy ? 'lostQueen' : 'lostPiece');
@@ -297,7 +311,15 @@ export function App() {
       } else if (chess.inCheck()) {
         say('inCheck');
         setMood('shock');
+      } else {
+        const opener = name !== prevName ? openingQuip(name, prevName, player) : null;
+        if (opener) setMessage(opener);
+        else if (!stillInBook && bookExpected && !leftBook.current) {
+          say('leftBook');
+          setMood('think');
+        } else if (stillInBook && Math.random() < 0.25) say('bookMove');
       }
+      if (!stillInBook) leftBook.current = true;
       setPhase('botThinking');
     },
     [applyMove, phase, player, say, setMood, settle]
@@ -351,6 +373,7 @@ export function App() {
         return;
       }
       setOpening(picked.opening);
+      openingRef.current = picked.opening;
       setMood('idle');
 
       if (settle()) return;
@@ -364,42 +387,25 @@ export function App() {
         }
       }
 
-      // Commentary, most specific first.
+      // The eval swing across the move pair is a verdict on the player's last
+      // move, so it is the one thing worth saying after Miles's own reply.
       const swing = prevCp.current === null || picked.source !== 'engine' ? 0 : picked.cp - prevCp.current;
       if (picked.source === 'engine') prevCp.current = picked.cp;
 
-      const opener = openingQuip(picked.opening);
       if (picked.source === 'punish') {
         say('punish');
         setMood('grin');
-      } else if (move.captured) {
-        const heavy = move.captured === 'q' || move.captured === 'r';
-        say(heavy ? 'captureBig' : 'capture');
-        setMood(heavy ? 'grin' : 'happy');
-      } else if (chess.inCheck()) {
-        say('check');
-        setMood('happy');
-      } else if (move.promotion) {
-        say('promote');
-        setMood('grin');
-      } else if (move.isQueensideCastle()) {
-        say('castleLong');
-      } else if (move.isKingsideCastle()) {
-        say('castle');
-      } else if (opener) {
-        setMessage(opener);
-      } else if (picked.source === 'engine' && !leftBook.current) {
-        leftBook.current = true;
-        say('leftBook');
-        setMood('think');
       } else if (swing >= SWING_CP) {
         say('playerBlunder');
         setMood('grin');
       } else if (swing <= -SWING_CP) {
         say('playerGood');
         setMood('annoyed');
-      } else if (picked.source === 'book' && Math.random() < 0.25) {
-        say('bookMove');
+      } else if (move.captured) {
+        // Expression only, no words: his own moves are not narrated.
+        setMood(move.captured === 'q' || move.captured === 'r' ? 'grin' : 'happy');
+      } else if (chess.inCheck()) {
+        setMood('happy');
       }
       if (picked.source === 'engine') leftBook.current = true;
 
@@ -584,6 +590,18 @@ export function App() {
       )}
     </div>
   );
+}
+
+/** True when at least one legal move from here keeps the position in the book. */
+function bookHadReply(chess: Chess, book: Book): boolean {
+  const fen = chess.fen();
+  if (!book.names.has(bookKey(fen))) return false;
+  for (const m of chess.moves({ verbose: true })) {
+    const probe = new Chess(fen);
+    probe.move(m.san);
+    if (book.names.has(bookKey(probe.fen()))) return true;
+  }
+  return false;
 }
 
 function Material({ value }: { value: number }) {

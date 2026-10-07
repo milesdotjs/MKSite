@@ -16,6 +16,7 @@ import { WHITE_LINES } from './white';
 import { WHITE_SIDELINES } from './white-sidelines';
 import { BLACK_E4_LINES } from './black-e4';
 import { BLACK_E4_MORE } from './black-e4-more';
+import { BLACK_E4_ANTI } from './black-e4-anti';
 import { BLACK_D4_LINES } from './black-d4';
 import { BLACK_D4_MORE } from './black-d4-more';
 
@@ -140,6 +141,6 @@ export function bookFor(side: 'w' | 'b'): Book {
     whiteBook ??= compileBook([...WHITE_LINES, ...WHITE_SIDELINES], 'w');
     return whiteBook;
   }
-  blackBook ??= compileBook([...BLACK_E4_LINES, ...BLACK_E4_MORE, ...BLACK_D4_LINES, ...BLACK_D4_MORE], 'b');
+  blackBook ??= compileBook([...BLACK_E4_LINES, ...BLACK_E4_MORE, ...BLACK_E4_ANTI, ...BLACK_D4_LINES, ...BLACK_D4_MORE], 'b');
   return blackBook;
 }

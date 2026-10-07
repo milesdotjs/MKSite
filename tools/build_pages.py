@@ -376,8 +376,8 @@ RIDER_CARD = '''    <div class="glass rcard" data-panel data-tilt>
 INDEX_CARDS = [
     ('01', 'projects/chess-vs-miles/', 'chess-vs-miles.png',
      'Chess vs. Miles: a pixel-art Miles talks over a chess board mid-Sicilian', 'Chess vs. Miles',
-     'Play chess against me. A bot that plays my openings &mdash; e4 and the Sicilian, every time &mdash; '
-     'at about my level, with a real 5 or 10 minute clock and a running commentary in my voice.',
+     'Play chess against me. Or at least a bot that plays exactly like me, and at the same level. '
+     'I&rsquo;m literally helping you prepare for when you have a chess match against me.',
      'GAME // CHESS // STOCKFISH', 'PLAY', 'NEW &#10022; GAME', False, False),
     ('02', 'projects/try-not-to-use-bankai/', 'try-not-to-use-bankai.png',
      'Try Not to Use Bankai game preview — Byakuya Kuchiki on a pixel-art arcade stage', 'Try Not to Use Bankai',
@@ -786,7 +786,8 @@ def build_projects():
     experiments = [
         card('02', 'projects/chess-vs-miles/', 'chess-vs-miles.png',
              'Chess vs. Miles: a pixel-art Miles talks over a chess board mid-Sicilian', 'Chess vs. Miles',
-             'Play chess against me. A bot built on Stockfish that plays my actual repertoire &mdash; 1.e4 and the Ruy Lopez, the Open Sicilian with the English and Yugoslav Attacks, the Najdorf and Semi-Slav as Black, and the occasional R&eacute;ti or Jobava London for fun &mdash; tuned to about my strength, with a real 5|0 or 10|0 clock (flag and you lose), no takebacks, a Game Boy sprite of me and commentary in my voice.',
+             'Play chess against me. Or at least a bot that plays exactly like me, and at the same level. '
+             'I&rsquo;m literally helping you prepare for when you have a chess match against me.',
              'GAME // CHESS // STOCKFISH', 'PLAY', 'NEW &#10022; GAME', True, False),
         card('03', 'projects/try-not-to-use-bankai/', 'try-not-to-use-bankai.png',
              'Try Not to Use Bankai game preview — Byakuya Kuchiki on a pixel-art arcade stage', 'Try Not to Use Bankai',

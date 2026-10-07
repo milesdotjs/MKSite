@@ -8,8 +8,17 @@
  * the clock is running. The lines here now are placeholders in roughly your
  * voice so the game works; replace freely.
  *
- * Opening quips are keyed by a *substring* of the opening name the book
- * reports (see book/*.ts), matched case-insensitively, most specific first.
+ * Miles only talks back to the player's moves. His own moves are silent, so
+ * the keys for his captures, checks, castling and promotions below are kept
+ * for the record but never fire. The two exceptions after his own move are
+ * `punish` and the eval verdicts (`playerBlunder`, `playerGood`), which are
+ * really about the player's last move.
+ *
+ * Opening quips react to what the *player's* move added to the opening name
+ * the book reports (see book/*.ts): after 1.e4 c5 2.c3 the name grows from
+ * "Sicilian Defense" to "Sicilian Defense: Alapin Variation", so only "Alapin"
+ * is matched. Patterns are matched case-insensitively, most specific first,
+ * and each fires at most once per game.
  * ────────────────────────────────────────────────────────────────────────────
  */
 
@@ -18,20 +27,20 @@ export type QuipKey =
   | "greetingWhite" // game starts and Miles is White
   | "greetingBlack" // game starts and Miles is Black
   | "thinking" // shown while the engine searches (out of book)
-  | "bookMove" // Miles played a move straight from his repertoire
-  | "leftBook" // the opponent left his book; first engine move
+  | "bookMove" // the player's move kept the game inside his repertoire
+  | "leftBook" // the player's move left his book when it still had a reply
   | "punish" // Miles abandoned his book to take a hanging piece
-  | "capture" // Miles took a minor piece or pawn
-  | "captureBig" // Miles took a rook or queen
+  | "capture" // (unused: his own moves are silent)
+  | "captureBig" // (unused: his own moves are silent)
   | "lostPiece" // the opponent took a minor piece or pawn from Miles
   | "lostQueen" // the opponent took his rook or queen
-  | "check" // Miles gave check
+  | "check" // (unused: his own moves are silent)
   | "inCheck" // Miles is in check
   | "playerBlunder" // eval swung hard in Miles's favour after the opponent's move
   | "playerGood" // eval swung hard against Miles after the opponent's move
-  | "castle" // Miles castled
-  | "castleLong" // Miles castled queenside (English Attack energy)
-  | "promote" // Miles promoted a pawn
+  | "castle" // (unused: his own moves are silent)
+  | "castleLong" // (unused: his own moves are silent)
+  | "promote" // (unused: his own moves are silent)
   | "lowTime" // Miles has under 30 seconds
   | "opponentLowTime" // the opponent has under 30 seconds
   | "winMate" // Miles delivered checkmate
@@ -150,99 +159,116 @@ export const QUIPS: Record<QuipKey, string[]> = {
  * reports when the position changes; the first pattern that appears in the
  * name wins, so list specific variations before their parent opening.
  */
-export const OPENING_QUIPS: Array<{ match: string; lines: string[] }> = [
+/**
+ * `side` is who plays that opening. A line fires only when that side is the
+ * player's, so Miles never comments on his own choices: as Black his answer to
+ * 1.e4 is always a Sicilian and the label says so immediately, but "Sicilian"
+ * is Black's opening, so it only fires when the *player* plays 1...c5.
+ */
+export const OPENING_QUIPS: Array<{ match: string; side: "w" | "b"; lines: string[] }> = [
   {
-    match: "Najdorf",
+    match: "Najdorf", side: "b",
     lines: [
       "Najdorf. Of course Najdorf.",
-      "Najdorf. I have one opening and this is it.",
+      "Najdorf. Hey, that's my opening.",
     ],
   },
   {
-    match: "Hyper-Accelerated Dragon",
+    match: "Hyper-Accelerated Dragon", side: "b",
     lines: [
       "Hyper-accelerated. Fast dragon.",
       "g6 on move two. Living dangerously.",
     ],
   },
-  { match: "Classical Variation", lines: ["Classical Sicilian. Respectable."] },
+  { match: "Classical Variation", side: "b", lines: ["Classical Variation. Respectable."] },
   {
-    match: "Yugoslav",
+    match: "Yugoslav", side: "w",
     lines: [
       "Yugoslav Attack. This gets violent.",
       "Dragon? Yugoslav. Every time.",
     ],
   },
   {
-    match: "English Attack",
+    match: "English Attack", side: "w",
     lines: [
       "English Attack. Be3, f3, Qd2, long castle. You know the drill.",
       "Castle long, push pawns at your king. Simple plan.",
     ],
   },
-  { match: "Sveshnikov", lines: ["Sveshnikov. Fine. Fine."] },
+  { match: "Sveshnikov", side: "b", lines: ["Sveshnikov. Fine. Fine."] },
+  { match: "Alapin", side: "w", lines: ["c3. The Alapin. You read a book once.", "Alapin. Fine, I know this too."] },
+  { match: "Smith-Morra", side: "w", lines: ["A gambit. Cute.", "Smith-Morra. I will take the pawn and think about it later."] },
+  { match: "Closed Sicilian", side: "w", lines: ["Closed Sicilian. Slow and sneaky.", "Nc3 and g3. Okay, we are doing the long game."] },
+  { match: "Grand Prix", side: "w", lines: ["Grand Prix. f4 and vibes.", "f4 already? Okay."] },
+  { match: "Rossolimo", side: "w", lines: ["Rossolimo. You want my knight. No."] },
+  { match: "Canal Attack", side: "w", lines: ["Bb5 check. Trading my bishop early. Fine."] },
+  { match: "Wing Gambit", side: "w", lines: ["Wing Gambit? Free pawn. Thank you."] },
+  { match: "King's Indian Attack", side: "w", lines: ["KIA. The pizza setup. Nf3, g3, Bg2. I see you."] },
+  { match: "Bowdler", side: "w", lines: ["Bc4 on move two. Bold. Wrong, but bold."] },
+  { match: "Chekhover", side: "w", lines: ["Queen takes on d4. Okay, come here."] },
+  { match: "Prins", side: "w", lines: ["f3. The Prins. Preparing something slow."] },
   {
-    match: "Sicilian",
+    match: "Sicilian", side: "b",
     lines: ["Sicilian. A person of taste.", "c5. Respect."],
   },
-  { match: "Scotch", lines: ["Scotch today. Felt like it."] },
-  { match: "Berlin", lines: ["Berlin. You want a draw already?"] },
+  { match: "Scotch", side: "w", lines: ["Scotch. Okay, we're having fun."] },
+  { match: "Berlin", side: "b", lines: ["Berlin. You want a draw already?"] },
   {
-    match: "Ruy Lopez",
+    match: "Ruy Lopez", side: "w",
     lines: [
       "Ruy Lopez. The Spanish torture begins.",
       "Bb5. We are doing this properly.",
     ],
   },
-  { match: "Petrov", lines: ["Petrov. Okay."] },
-  { match: "Panov", lines: ["Panov. c4 against the Caro, always."] },
-  { match: "Caro-Kann", lines: ["Caro-Kann. Solid. Annoying. Respect."] },
+  { match: "Petrov", side: "b", lines: ["Petrov. Okay."] },
+  { match: "Panov", side: "w", lines: ["Panov. c4 against the Caro. Correct."] },
+  { match: "Caro-Kann", side: "b", lines: ["Caro-Kann. Solid. Annoying. Respect."] },
   {
-    match: "French",
+    match: "French", side: "b",
     lines: [
       "French. e5 is coming and your bishop is going to hate it.",
-      "Advance variation. I like space.",
+      "French. I'm going to take all the space. Just so you know.",
     ],
   },
-  { match: "Scandinavian", lines: ["Scandi. Sure."] },
-  { match: "Alekhine", lines: ["Alekhine's. Bold."] },
-  { match: "Pirc", lines: ["Pirc. Alright."] },
-  { match: "Modern", lines: ["Modern. Alright."] },
+  { match: "Scandinavian", side: "b", lines: ["Scandi. Sure."] },
+  { match: "Alekhine", side: "b", lines: ["Alekhine's. Bold."] },
+  { match: "Pirc", side: "b", lines: ["Pirc. Alright."] },
+  { match: "Modern", side: "b", lines: ["Modern. Alright."] },
   {
-    match: "Réti",
+    match: "Réti", side: "w",
     lines: [
-      "Réti today. Nf3, b3, bishop on b2. This is my fun one.",
-      "Flank opening. Humor me.",
+      "Réti? Nf3, b3, bishop on b2. Hey, that's my fun one.",
+      "Flank opening. Okay, I see you.",
     ],
   },
   {
-    match: "Jobava",
+    match: "Jobava", side: "w",
     lines: [
-      "Jobava London. I hate this opening. Playing it anyway.",
-      "Nc3 and Bf4. Yes, really. No, I am not proud.",
+      "Jobava London. I hate this opening. Even when I play it.",
+      "Nc3 and Bf4. Yes, really. I do this too and I am not proud.",
     ],
   },
-  { match: "Botvinnik", lines: ["Botvinnik variation. Buckle up."] },
-  { match: "Anti-Moscow", lines: ["Anti-Moscow gambit. Okay then."] },
-  { match: "Meran", lines: ["Meran. The good Semi-Slav."] },
-  { match: "Moscow", lines: ["Moscow variation. Keep it calm."] },
+  { match: "Botvinnik", side: "b", lines: ["Botvinnik variation. Buckle up."] },
+  { match: "Anti-Moscow", side: "w", lines: ["Anti-Moscow gambit. Okay then."] },
+  { match: "Meran", side: "b", lines: ["Meran. The good Semi-Slav."] },
+  { match: "Moscow", side: "w", lines: ["Moscow variation. Keep it calm."] },
   {
-    match: "Semi-Slav",
+    match: "Semi-Slav", side: "b",
     lines: ["Semi-Slav. My d4 answer.", "c6 and e6. Semi-Slav, like always."],
   },
-  { match: "Queen's Indian", lines: ["Queen's Indian today. Changing it up."] },
-  { match: "Nimzo-Indian", lines: ["Nimzo. Rare for me. Enjoy it."] },
+  { match: "Queen's Indian", side: "b", lines: ["Queen's Indian. Fine. Changing it up."] },
+  { match: "Nimzo-Indian", side: "b", lines: ["Nimzo. Rare for me. Here we go."] },
   {
-    match: "London",
+    match: "London", side: "w",
     lines: ["London System. Of course it is.", "The London. Sigh."],
   },
-  { match: "Catalan", lines: ["Catalan. Fancy."] },
-  { match: "English Opening", lines: ["English. Fine, we transpose."] },
-  { match: "Grob", lines: ["Grob? Grob.", "g4. Why."] },
+  { match: "Catalan", side: "w", lines: ["Catalan. Fancy."] },
+  { match: "English Opening", side: "w", lines: ["English. Fine, we transpose."] },
+  { match: "Grob", side: "w", lines: ["Grob? Grob.", "g4. Why."] },
 ];
 
 let lastByKey: Partial<Record<QuipKey, string>> = {};
-let lastOpening = "";
+let usedPatterns = new Set<string>();
 
 /** Pick a line for an event, never repeating the previous line for that key. */
 export function quip(key: QuipKey): string {
@@ -257,18 +283,33 @@ export function quip(key: QuipKey): string {
   return pick;
 }
 
-/** A reaction to an opening name, once per distinct name per game. */
-export function openingQuip(name: string | null): string | null {
-  if (!name || name === lastOpening) return null;
-  const hit = OPENING_QUIPS.find((o) =>
-    name.toLowerCase().includes(o.match.toLowerCase()),
+/**
+ * A reaction to the part of the opening name the player's move just added,
+ * for openings that are the player's to choose (see `side`).
+ * `prev` is the name before their move; whatever the new name adds on top of
+ * it is what gets matched, so a move that merely stays inside an opening says
+ * nothing and a move that names one ("Alapin") gets its line.
+ */
+export function openingQuip(
+  name: string | null,
+  prev: string | null,
+  playerSide: "w" | "b",
+): string | null {
+  if (!name) return null;
+  const added = prev && name.startsWith(prev) ? name.slice(prev.length) : name;
+  if (!added.trim()) return null;
+  const hit = OPENING_QUIPS.find(
+    (o) =>
+      o.side === playerSide &&
+      !usedPatterns.has(o.match) &&
+      added.toLowerCase().includes(o.match.toLowerCase()),
   );
   if (!hit) return null;
-  lastOpening = name;
+  usedPatterns.add(hit.match);
   return hit.lines[Math.floor(Math.random() * hit.lines.length)];
 }
 
 export function resetQuips(): void {
   lastByKey = {};
-  lastOpening = "";
+  usedPatterns = new Set();
 }

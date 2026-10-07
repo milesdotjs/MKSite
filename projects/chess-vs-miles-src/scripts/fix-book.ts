@@ -15,6 +15,7 @@ import { WHITE_LINES } from '../src/book/white';
 import { WHITE_SIDELINES } from '../src/book/white-sidelines';
 import { BLACK_E4_LINES } from '../src/book/black-e4';
 import { BLACK_E4_MORE } from '../src/book/black-e4-more';
+import { BLACK_E4_ANTI } from '../src/book/black-e4-anti';
 import { BLACK_D4_LINES } from '../src/book/black-d4';
 import { BLACK_D4_MORE } from '../src/book/black-d4-more';
 
@@ -23,6 +24,7 @@ const files: Array<[string, 'w' | 'b', Line[]]> = [
   ['src/book/white-sidelines.ts', 'w', WHITE_SIDELINES],
   ['src/book/black-e4.ts', 'b', BLACK_E4_LINES],
   ['src/book/black-e4-more.ts', 'b', BLACK_E4_MORE],
+  ['src/book/black-e4-anti.ts', 'b', BLACK_E4_ANTI],
   ['src/book/black-d4.ts', 'b', BLACK_D4_LINES],
   ['src/book/black-d4-more.ts', 'b', BLACK_D4_MORE],
 ];
